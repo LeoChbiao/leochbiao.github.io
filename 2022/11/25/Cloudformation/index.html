@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	
+	<!-- title -->
+	
+	<title>
+	
+		Cloudformation | 
+	 
+	Leo Chbiao
+	</title>
+	
+	<!-- keywords,description -->
+	 
+
+	<!-- favicon -->
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+	
+
+
+	<!-- search -->
+	<script>
+		var searchEngine = "https://www.google.com/search?q=";
+		if(typeof searchEngine == "undefined" || searchEngine == null || searchEngine == ""){
+			searchEngine = "https://www.google.com/search?q=";
+		}
+		var homeHost = "wujun234.github.io";
+		if(typeof homeHost == "undefined" || homeHost == null || homeHost == ""){
+			homeHost = window.location.host;
+		}
+	</script>
+
+
+	
+<link rel="stylesheet" href="/css/main.css">
+
+	
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/darcula.min.css">
+
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+
+	
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/npm/jquery-pjax@2.0.1/jquery.pjax.min.js"></script>
+
+	
+<script src="/js/main.js"></script>
+
+	
+		
+<script src="https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
+
+		
+<script src="https://cdn.jsdelivr.net/npm/valine@v1.4.14/dist/Valine.min.js"></script>
+
+	
+	
+		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  // var hm = document.createElement("script");
+  // hm.src = "https://hm.baidu.com/hm.js?3efe99c287df5a1d6f0d02d187e403c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<header id="header">
+    <a id="title" href="/" class="logo">Leo Chbiao</a>
+
+	<ul id="menu">
+		<li class="menu-item">
+			<a href="/about" class="menu-item-link">ABOUT</a>
+		</li>
+	
+
+	
+
+		<li class="menu-item">
+			<a href="https://leochbiao.github.io" class="menu-item-link" target="_blank">
+				Me
+			</a>
+		</li>
+		<li class="menu-item">
+			<a href="https://leochbiao.github.io" class="menu-item-link" target="_blank">
+				<i class="fa fa-github fa-2x"></i>
+			</a>
+		</li>
+	</ul>
+</header>
+
+	
+<div id="sidebar">
+	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
+	
+	<div id="site-toc">
+		<input id="search-input" class="search-input" type="search" placeholder="按回车全站搜索">
+		<div id="tree">
+			
+
+			
+							<ul>
+								<li class="file active">
+									<a href="/2022/11/25/Cloudformation/">
+                     
+										    Cloudformation
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/22/Kubernetes/">
+                     
+										    Kubernetes
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/22/Markdown/">
+                     
+										    Markdown
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/22/Terraform/">
+                     
+										    Terraform
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/22/hello-world/">
+                     
+										    hello-world
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+		</div>
+	</div>
+</div>
+
+	<!-- 引入正文 -->
+	<div id="content">
+		<h1 id="article-title">
+	Cloudformation
+</h1>
+<div class="article-meta">
+	
+	<span>Leo Chbiao</span>
+	<span>2022-11-25 21:38:30</span>
+		<div id="article-categories">
+    
+		<span>Categories：</span>
+            
+    
+
+    
+		<span>Tags：</span>
+            
+    
+		</div>
+
+</div>
+
+<div id="article-content">
+	<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>CloudFormation is an AWS service. It is easy to help us to create AWS services,we can use <strong>Yaml</strong> or <strong>Json</strong> file format to define what we want to create. Meanwhile ,we can also share our cloudformation configuration file to other and help them to execute POC to avoid the difference between enviroments.</p>
+<h2 id="Main-Concepts"><a href="#Main-Concepts" class="headerlink" title="Main Concepts"></a>Main Concepts</h2><p>Following is Cloudformation code snippet, we can learn there are some main concept, most of them are optional.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">AWSTemplateFormatVersion: &quot;version date&quot; (optional)</span><br><span class="line">Description:(optional)</span><br><span class="line">  String</span><br><span class="line">Metadata:</span><br><span class="line">  template metadata(optional)</span><br><span class="line">Parameters:(optional)</span><br><span class="line">  set of parameters</span><br><span class="line">Rules:(optional)</span><br><span class="line">  set of rules</span><br><span class="line">Mappings:(optional)</span><br><span class="line">  set of mappings</span><br><span class="line">Conditions:(optional)</span><br><span class="line">  set of conditions</span><br><span class="line">Transform:(optional)</span><br><span class="line">  set of transforms</span><br><span class="line">Resources:(required)</span><br><span class="line">  set of resources</span><br><span class="line">Outputs:(optional)</span><br><span class="line">  set of outputs</span><br></pre></td></tr></table></figure>
+<h3 id="AWSTemplateFormatVersion"><a href="#AWSTemplateFormatVersion" class="headerlink" title="AWSTemplateFormatVersion"></a>AWSTemplateFormatVersion</h3><p>AWSTemplateFormatVersion identifies the functionality of template. The latest format version is <strong>2010-09-09</strong>.When we create the Cloudformation configuration file ,we don’t need to add this section. But if we want to add , now the latest value is <strong><font color="#dd0000">2010-09-09</font></strong>.When using the following configuration, we will find a error alert in AWS console: <strong>Template format error: 2011-09-09 is not a supported value forAWSTemplateFormatVersion.</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">AWSTemplateFormatVersion: &quot;2011-09-09&quot;</span><br><span class="line">Resources:</span><br><span class="line">  myVPC:</span><br><span class="line">    Type: &quot;AWS::EC2::VPC&quot;</span><br><span class="line">    Properties:</span><br><span class="line">      CidrBlock: 10.0.0.0/16</span><br><span class="line">      EnableDnsSupport: &quot;true&quot;</span><br><span class="line">      EnableDnsHostnames: &quot;true&quot;</span><br><span class="line">      Tags:</span><br><span class="line">        - Key: stack</span><br><span class="line">          Value: production</span><br></pre></td></tr></table></figure>
+<p>After we modify the AWSTemplateFormatVersion from <strong>2011-09-09</strong> to <strong>2010-09-09</strong>, It works successful.</p>
+<h3 id="Description-1"><a href="#Description-1" class="headerlink" title="Description"></a>Description</h3><p>Description don’t cause any impact for Cloudformation’s running. When you filled in this section，you can see Cloudformation’s description on AWS console. It just a reminder.</p>
+<h3 id="Parameters"><a href="#Parameters" class="headerlink" title="Parameters"></a>Parameters</h3><p>Sometimes when we create stack with the configuration, we want to input the parameters by ourself or maybe we share our configuration with others, because of the difference in different environments, so we will ask users to fill in their own parameters.And then ,in the configurations , we will use the <strong>Parameters</strong>. Now I use the following configuration file to test.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;AWSTemplateFormatVersion&quot;: &quot;2010-09-09&quot;,</span><br><span class="line">    &quot;Description&quot;: &quot;This is MyTest Cloudformation VPC configuration&quot;,</span><br><span class="line">    &quot;Metadata&quot;: &#123;</span><br><span class="line">        &quot;myVPC&quot;: &#123;</span><br><span class="line">            &quot;Description&quot;: &quot;Information about myVPC&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;Parameters&quot;: &#123;</span><br><span class="line">        &quot;VpcName&quot;: &#123;</span><br><span class="line">            &quot;Type&quot;: &quot;String&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;Resources&quot;: &#123;</span><br><span class="line">        &quot;myVPC&quot;: &#123;</span><br><span class="line">            &quot;Type&quot;: &quot;AWS::EC2::VPC&quot;,</span><br><span class="line">            &quot;Properties&quot;: &#123;</span><br><span class="line">                &quot;CidrBlock&quot;: &quot;10.0.0.0/16&quot;,</span><br><span class="line">                &quot;EnableDnsSupport&quot;: &quot;true&quot;,</span><br><span class="line">                &quot;EnableDnsHostnames&quot;: &quot;true&quot;,</span><br><span class="line">                &quot;Tags&quot;: [</span><br><span class="line">                    &#123;</span><br><span class="line">                        &quot;Key&quot;: &quot;stack&quot;,</span><br><span class="line">                        &quot;Value&quot;: &quot;production&quot;</span><br><span class="line">                    &#125;,</span><br><span class="line">                    &#123;</span><br><span class="line">                        &quot;Key&quot;: &quot;Name&quot;,</span><br><span class="line">                        &quot;Value&quot;: &#123;</span><br><span class="line">                            &quot;Ref&quot;: &quot;VpcName&quot;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>In this way, during you submit the configuration file to console, it asks you to fill in the VpcName. After you submit ,you will find it works well and the VPC has two tags.</p>
+<h3 id="Rules"><a href="#Rules" class="headerlink" title="Rules"></a>Rules</h3><p>The rules includes two attributes template, <font color="#dd0000">Rule condition (optional)</font> and <font color="#dd0000">Assertions (required)</font>. For the two attributes via  <a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/rules-section-structure.html">AWS public document</a> , you will find one is optional and the other is required.Now let’s start our test. The Prerequisites are as follows:<br>We need to define two parameters, <strong>Enviroment</strong> and <strong>InstanceType</strong>. When the <strong>Enviroment</strong> we filled ip <strong>Prod</strong>, the <strong>InstanceType</strong> must be <strong>a1.large</strong>;When the <strong>Enviroment</strong> we filled ip <strong>Test</strong>, the <strong>InstanceType</strong> must be <strong>a1.medium</strong>. Now let’s start</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;AWSTemplateFormatVersion&quot;: &quot;2010-09-09&quot;,</span><br><span class="line">	&quot;Description&quot;: &quot;This is MyTest Cloudformation VPC configuration&quot;,</span><br><span class="line">	&quot;Metadata&quot;: &#123;</span><br><span class="line">		&quot;myVPC&quot;: &#123;</span><br><span class="line">			&quot;Description&quot;: &quot;Information about myVPC&quot;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	&quot;Parameters&quot;: &#123;</span><br><span class="line">		&quot;Environment&quot;: &#123;</span><br><span class="line">			&quot;Type&quot;: &quot;String&quot;</span><br><span class="line">		&#125;,</span><br><span class="line">		&quot;InstanceType&quot;: &#123;</span><br><span class="line">			&quot;Type&quot;: &quot;String&quot;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	&quot;Rules&quot;: &#123;</span><br><span class="line">		&quot;testInstanceType&quot;: &#123;</span><br><span class="line">			&quot;RuleCondition&quot;: &#123;</span><br><span class="line">				&quot;Fn::Equals&quot;: [</span><br><span class="line">					&#123;</span><br><span class="line">						&quot;Ref&quot;: &quot;Environment&quot;</span><br><span class="line">					&#125;,</span><br><span class="line">					&quot;test&quot;</span><br><span class="line">				]</span><br><span class="line">			&#125;,</span><br><span class="line">			&quot;Assertions&quot;: [</span><br><span class="line">				&#123;</span><br><span class="line">					&quot;Assert&quot;: &#123;</span><br><span class="line">						&quot;Fn::Contains&quot;: [</span><br><span class="line">							[</span><br><span class="line">								&quot;a1.medium&quot;</span><br><span class="line">							],</span><br><span class="line">							&#123;</span><br><span class="line">								&quot;Ref&quot;: &quot;InstanceType&quot;</span><br><span class="line">							&#125;</span><br><span class="line">						]</span><br><span class="line">					&#125;,</span><br><span class="line">					&quot;AssertDescription&quot;: &quot;For a test environment, </span><br><span class="line">          the instance type must be a1.medium&quot;</span><br><span class="line">				&#125;</span><br><span class="line">			]</span><br><span class="line">		&#125;,</span><br><span class="line">		&quot;prodInstanceType&quot;: &#123;</span><br><span class="line">			&quot;RuleCondition&quot;: &#123;</span><br><span class="line">				&quot;Fn::Equals&quot;: [</span><br><span class="line">					&#123;</span><br><span class="line">						&quot;Ref&quot;: &quot;Environment&quot;</span><br><span class="line">					&#125;,</span><br><span class="line">					&quot;prod&quot;</span><br><span class="line">				]</span><br><span class="line">			&#125;,</span><br><span class="line">			&quot;Assertions&quot;: [</span><br><span class="line">				&#123;</span><br><span class="line">					&quot;Assert&quot;: &#123;</span><br><span class="line">						&quot;Fn::Contains&quot;: [</span><br><span class="line">							[</span><br><span class="line">								&quot;a1.large&quot;</span><br><span class="line">							],</span><br><span class="line">							&#123;</span><br><span class="line">								&quot;Ref&quot;: &quot;InstanceType&quot;</span><br><span class="line">							&#125;</span><br><span class="line">						]</span><br><span class="line">					&#125;,</span><br><span class="line">					&quot;AssertDescription&quot;: &quot;For a production environment, </span><br><span class="line">          the instance type must be a1.large&quot;</span><br><span class="line">				&#125;</span><br><span class="line">			]</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	&quot;Resources&quot;: &#123;</span><br><span class="line">		&quot;myVPC&quot;: &#123;</span><br><span class="line">			&quot;Type&quot;: &quot;AWS::EC2::VPC&quot;,</span><br><span class="line">			&quot;Properties&quot;: &#123;</span><br><span class="line">				&quot;CidrBlock&quot;: &quot;10.0.0.0/16&quot;,</span><br><span class="line">				&quot;EnableDnsSupport&quot;: &quot;true&quot;,</span><br><span class="line">				&quot;EnableDnsHostnames&quot;: &quot;true&quot;,</span><br><span class="line">				&quot;Tags&quot;: [</span><br><span class="line">					&#123;</span><br><span class="line">						&quot;Key&quot;: &quot;stack&quot;,</span><br><span class="line">						&quot;Value&quot;: &quot;production&quot;</span><br><span class="line">					&#125;,</span><br><span class="line">				]</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>For the testing, we found there are the following conclusions, When we filled in the parameters：<strong>Environment</strong> and <strong>InstanceType</strong>, filled different context， we can get different results:<br>1)<strong>Environment</strong> filled neither <strong>test</strong> or <strong>prod</strong>， so the ruled will not be triggered and the template will work successful.<br>2)Input the <strong>Environment</strong> the right choices: <strong>prod</strong> or <strong>test</strong>， if we don’t input the right <strong>InstanceType</strong>, AWS console will show the error alert like this : <font color="#dd0000">For a production environment, the instance type must be a1.large</font><br>In <a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/rules-section-structure.html">AWS public document</a> , because <strong>RuleCondition</strong> is optional , so when I delete the <strong>RuleCondition</strong> and test again , we will find the <em><strong>InstanceType</strong></em> only input  a1.large or a1.medium, if we dont’t, we will receive the following alert:<br><font color="#dd0000">For a test environment, the instance type must be a1.mediumFor a production environment, the instance type must be a1.large</font></p>
+<h3 id="Outputs"><a href="#Outputs" class="headerlink" title="Outputs"></a>Outputs</h3><h4 id="same-stacks"><a href="#same-stacks" class="headerlink" title="same stacks"></a>same stacks</h4><p>Outputs feature helps us to use these values more effectively，for example：we can directly look the resource ARN, or sometimes we may need to import the values to other stack.Now let’s show the attribute on the console:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;AWSTemplateFormatVersion&quot;: &quot;2010-09-09&quot;,</span><br><span class="line">	&quot;Description&quot;: &quot;This is MyTest Cloudformation VPC configuration&quot;,</span><br><span class="line">	&quot;Metadata&quot;: &#123;</span><br><span class="line">		&quot;myVPC&quot;: &#123;</span><br><span class="line">			&quot;Description&quot;: &quot;Information about myVPC&quot;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	&quot;Parameters&quot;: &#123;</span><br><span class="line">		&quot;Environment&quot;: &#123;</span><br><span class="line">			&quot;Type&quot;: &quot;String&quot;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	&quot;Rules&quot;: &#123;	</span><br><span class="line">	&#125;,</span><br><span class="line">	&quot;Resources&quot;: &#123;</span><br><span class="line">		&quot;myVPC&quot;: &#123;</span><br><span class="line">			&quot;Type&quot;: &quot;AWS::EC2::VPC&quot;,</span><br><span class="line">			&quot;Properties&quot;: &#123;</span><br><span class="line">				&quot;CidrBlock&quot;: &quot;10.0.0.0/16&quot;,</span><br><span class="line">				&quot;EnableDnsSupport&quot;: &quot;true&quot;,</span><br><span class="line">				&quot;EnableDnsHostnames&quot;: &quot;true&quot;,</span><br><span class="line">				&quot;Tags&quot;: [</span><br><span class="line">					&#123;</span><br><span class="line">						&quot;Key&quot;: &quot;stack&quot;,</span><br><span class="line">						&quot;Value&quot;: &quot;production&quot;</span><br><span class="line">					&#125;</span><br><span class="line">				]</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	&quot;Outputs&quot;:&#123;</span><br><span class="line">		&quot;VpcId&quot;:&#123;</span><br><span class="line">			&quot;Description&quot;: &quot;The VPC ARN&quot;,</span><br><span class="line">			&quot;Value&quot;:&#123;&quot;Fn::GetAtt&quot;:[&quot;myVPC&quot;, &quot;VpcId&quot;]&#125;,</span><br><span class="line">      &quot;Export&quot; : &#123;</span><br><span class="line">	 		  &quot;Name&quot; : &#123;&quot;Fn::Sub&quot;: &quot;$&#123;AWS::StackName&#125;-VPCID&quot; &#125;</span><br><span class="line">	 		&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">		&quot;CidrBlock&quot;:&#123;</span><br><span class="line">			&quot;Description&quot;: &quot;The VPC ARN&quot;,</span><br><span class="line">			&quot;Value&quot;:&#123;&quot;Fn::GetAtt&quot;:[&quot;myVPC&quot;, &quot;CidrBlock&quot;]&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">    &quot;vp&quot;:&#123;</span><br><span class="line">			&quot;Description&quot;: &quot;vp&quot;,</span><br><span class="line">			&quot;Value&quot;: &#123;&quot;Ref&quot;: &quot;myVPC&quot;&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">    </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>When we want to return the value and can be look on console, there are three points needed to be looked at:<br>1)we need use the <strong>Fn::GetAtt</strong> methods and it define like this { “Fn::GetAtt” : [ <font colr="#dd0000">“logicalNameOfResource</font>“, “<font color="#dd0000">attributeName</font>“ ] }. we can query the whole supported functions in the <a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/zh_cn/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html#intrinsic-function-reference-getatt-return">AWS Public Document</a><br>2)How we know what the attribute can be renturn , look this: <a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/zh_cn/AWSCloudFormation/latest/UserGuide/AWS_EC2.html">https://docs.aws.amazon.com/zh_cn/AWSCloudFormation/latest/UserGuide/AWS_EC2.html</a><br>3)The 3th section I just used vp to return VpcID , we can learn from the document: <a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/zh_cn/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">https://docs.aws.amazon.com/zh_cn/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html</a>, <strong>Ref</strong> has special use, when we use it , we can directly get the resouce, but different service we can get different information ,for <strong>AWS::EC2::EIP</strong>, we can get IP and it will return the EC2 ARN for resource <strong>AWS::EC2::Instance</strong></p>
+<h4 id="cross-stacks"><a href="#cross-stacks" class="headerlink" title="cross stacks"></a>cross stacks</h4><p>Just mentioned , Cloudformation can pass the parameters between the stacks. The above example, I export the VpcID and now I need to create template to use the parameters</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;AWSTemplateFormatVersion&quot;: &quot;2010-09-09&quot;,</span><br><span class="line">	&quot;Description&quot;: &quot;This is MyTest Cloudformation VPC configuration&quot;,</span><br><span class="line">	&quot;Metadata&quot;: &#123;</span><br><span class="line">		&quot;myVPC&quot;: &#123;</span><br><span class="line">			&quot;Description&quot;: &quot;Information about myVPC&quot;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	&quot;Parameters&quot;: &#123;</span><br><span class="line">		&quot;StackName&quot;: &#123;</span><br><span class="line">			&quot;Type&quot;: &quot;String&quot;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	&quot;Rules&quot;: &#123;	</span><br><span class="line">	&#125;,</span><br><span class="line">	&quot;Resources&quot;: &#123;</span><br><span class="line">		&quot;myVPC&quot;: &#123;</span><br><span class="line">			&quot;Type&quot;: &quot;AWS::EC2::VPC&quot;,</span><br><span class="line">			&quot;Properties&quot;: &#123;</span><br><span class="line">				&quot;CidrBlock&quot;: &quot;10.0.0.0/16&quot;,</span><br><span class="line">				&quot;EnableDnsSupport&quot;: &quot;true&quot;,</span><br><span class="line">				&quot;EnableDnsHostnames&quot;: &quot;true&quot;,</span><br><span class="line">				&quot;Tags&quot;: [</span><br><span class="line">					&#123;</span><br><span class="line">						&quot;Key&quot;: &quot;Name&quot;,</span><br><span class="line">						&quot;Value&quot;: [&#123;&quot;Fn::ImportValue&quot;: &#123;&quot;Fn::Sub&quot;:&quot;$&#123;StackName&#125;-VPCID&quot;&#125;&#125;]</span><br><span class="line">					&#125;</span><br><span class="line">				]</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>In this template, when I submit this template , <font color="#dd0000">I need to input the StackName(This is above stack name)</font>.At last ,I will get a new VPC and will be a label with a content of above VpcID.</p>
+
+</div>
+
+
+    <div class="post-guide">
+        <div class="item left">
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2022/11/22/Markdown/">
+                Markdown
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+
+
+
+	<div id="vcomments"></div>
+
+
+<script>
+	// 
+	// 	// 评论
+	// 	new Valine({
+	// 		el: '#vcomments',
+	// 		appId: '',
+	// 		appKey: '',
+	// 		placeholder: '请输入评论',
+	// 		path: window.location.pathname,
+	// 		avatar: 'retro',
+	// 		highlight: false,
+  //     recordIP: true,
+  //     enableQQ: true,
+	// 		requiredFields: ['nick','mail']
+	// 	})
+	// 
+	
+</script>
+	</div>
+	<div id="footer">
+	<p>
+	©2019-<span id="footerYear"></span> 
+	<a href="/">Leo Chbiao</a> 
+	
+	
+		|
+		<span id="busuanzi_container_site_pv">
+			pv
+			<span id="busuanzi_value_site_pv"></span>
+		</span>
+		|
+		<span id="busuanzi_container_site_uv"> 
+			uv
+			<span id="busuanzi_value_site_uv"></span>
+		</span>
+	
+	<br>
+	<!-- Theme <a href="//github.com/wujun234/hexo-theme-tree" target="_blank">Tree</a>
+	by <a href="//github.com/wujun234" target="_blank">WuJun</a>
+	Powered by <a href="//hexo.io" target="_blank">Hexo</a> -->
+	</p>
+</div>
+<script type="text/javascript"> 
+	document.getElementById('footerYear').innerHTML = new Date().getFullYear() + '';
+</script>
+	<button id="totop-toggle" class="toggle"><i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
+</body>
+</html>

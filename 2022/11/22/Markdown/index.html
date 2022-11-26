@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		Terraform | 
+		Markdown | 
 	 
 	Leo Chbiao
 	</title>
@@ -145,7 +145,7 @@ var _hmt = _hmt || [];
 							</ul>
 			
 							<ul>
-								<li class="file">
+								<li class="file active">
 									<a href="/2022/11/22/Markdown/">
                      
 										    Markdown
@@ -156,7 +156,7 @@ var _hmt = _hmt || [];
 							</ul>
 			
 							<ul>
-								<li class="file active">
+								<li class="file">
 									<a href="/2022/11/22/Terraform/">
                      
 										    Terraform
@@ -184,12 +184,12 @@ var _hmt = _hmt || [];
 	<!-- 引入正文 -->
 	<div id="content">
 		<h1 id="article-title">
-	Terraform
+	Markdown
 </h1>
 <div class="article-meta">
 	
 	<span>Leo Chbiao</span>
-	<span>2022-11-22 10:33:35</span>
+	<span>2022-11-22 15:24:46</span>
 		<div id="article-categories">
     
 		<span>Categories：</span>
@@ -214,36 +214,23 @@ var _hmt = _hmt || [];
 </div>
 
 <div id="article-content">
-	<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Install-on-Mac"><a href="#Install-on-Mac" class="headerlink" title="Install on Mac"></a>Install on Mac</h3><p>Refer the offical website</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli</span><br></pre></td></tr></table></figure>
-<h2 id="Providers"><a href="#Providers" class="headerlink" title="Providers"></a>Providers</h2><h2 id="Command"><a href="#Command" class="headerlink" title="Command"></a>Command</h2><h2 id="State"><a href="#State" class="headerlink" title="State"></a>State</h2><h2 id="Variables"><a href="#Variables" class="headerlink" title="Variables"></a>Variables</h2><h3 id="1-Define-variables-in-files"><a href="#1-Define-variables-in-files" class="headerlink" title="1. Define variables in files"></a>1. Define variables in files</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">variable &quot;subnet_cidr_block&quot; &#123;</span><br><span class="line">  description = &quot;subnet cidr block&quot;</span><br><span class="line">&#125;</span><br><span class="line">resource &quot;aws_subnet&quot; &quot;dev-subnet-1&quot; &#123;</span><br><span class="line">  ...</span><br><span class="line">  cidr_block = var.subnet_cidr_block</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Then, when input terraform apply with terminal， you will find the script ask you to input the value of subnet_cidr_block.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ terraform apply</span><br><span class="line">var.subnet_cidr_block</span><br><span class="line">   subnet cidr block</span><br><span class="line">   Enter a value:</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-Pass-the-variables-through-command-line"><a href="#2-Pass-the-variables-through-command-line" class="headerlink" title="2.Pass the variables through command line"></a>2.Pass the variables through command line</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ terraform apply -var &quot;subnet_cidr_block=10.0.1.0/24&quot;</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-Pass-variables-via-configuration-file"><a href="#3-Pass-variables-via-configuration-file" class="headerlink" title="3.Pass variables via configuration file"></a>3.Pass variables via configuration file</h3><p>default configuration file name is  <strong>terraform.tfvar</strong>. In the cnfiguration file ,we can define the variables with key-value format, like this:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ subnet_cidr_block=&quot;10.0.1.0/24&quot;</span><br></pre></td></tr></table></figure>
-<p>Then we just run the command and terraform will query the variables automatic.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ terraform apply</span><br></pre></td></tr></table></figure>
-<p>If we want to use our custom configuration file and the name is not terraform.tfvar, maybe we will use terraform-dev.tfvar or terraform-prod.tfvar and so on , so when we execute the terraform , we need to specify the specific configuration file</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ terraform apply -var-file terraform-dev.tfvar</span><br></pre></td></tr></table></figure>
+	
 </div>
 
 
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2022/11/22/Kubernetes/">
+              <a href="/2022/11/25/Cloudformation/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  Kubernetes
+                  Cloudformation
               </a>
             
         </div>
         <div class="item right">
             
-              <a href="/2022/11/22/hello-world/">
-                Hello World
+              <a href="/2022/11/22/Kubernetes/">
+                Kubernetes
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             
