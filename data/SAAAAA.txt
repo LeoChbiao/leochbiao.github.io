@@ -1,0 +1,2966 @@
+
+Q1.一家公司收集多个大陆城市的温度、湿度和大气压力数据。公司每天从每个站点收集的平均数据量为 500 GB。每个站点都 有高速互联网连接。该公司希望尽快将来自所有这些全球站点的数据聚合到一个 Amazon S3 存储桶中。该解决方案必须最大限度地降低操作复杂性。 哪个解决方案满足这些要求?
+A. 在目标 S3 存储桶上打开 S3 Transfer Acceleration。使用分段上传将站点数据直接上传到目标 S3 存储桶。
+B. 将每个站点的数据上传到最近区域中的 S3 存储桶。使用 S3 跨区域复制将对象复制到目标 S3 存储桶。然后从原始 S3 存储桶中删 除数据。
+C. 每天安排 AWS Snowball Edge Storage Optimized 设备作业，将数据从每个站点传输到最近的区域。使用 S3 跨区域复制将对象复 制到目标 S3 存储桶。
+D. 将每个站点的数据上传到最近的 Region 中的 Amazon EC2 实例。将数据存储在 Amazon Elastic Block Store (Amazon EBS) 卷中。 定期拍摄 EBS 快照并将其复制到包含目标 S3 存储桶的区域。恢复该区域中的 EBS 卷。
+答案.A
+
+Q2.公司需要能够分析其专有应用程序的日志文件。日志以 JSON 格式存储在 Amazon S3 存储桶中。查询将很简单，并将按需 运行。解决方案架构师需要在对现有架构进行最少更改的情况下执行分析。 解决方案架构师应该怎么做才能以最少的运营开销满足这些要求?
+A. 使用 Amazon Redshift 将所有内容加载到一个地方并根据需要运行 SQL 查询。
+B. 使用 Amazon CloudWatch Logs 存储日志。根据需要从 Amazon CloudWatch 控制台运行 SQL 查询。
+C. 直接将 Amazon Athena 与 Amazon S3 结合使用以根据需要运行查询。
+D. 使用 AWS Glue 对日志进行编目。使用 Amazon EMR 上的瞬态 Apache Spark 集群根据需要运行 SQL 查询。
+答案.C
+
+Q3.一家公司使用 AWS Organizations 来管理不同部门的多个 AWS 账户。主账户有一个包含项目报告的 Amazon S3 存储桶。 该公司希望将对此 S3 存储桶的访问权限限制为仅 AWS Organizations 中组织内账户的用户。 哪种解决方案能够以最少的运营开销满足这些要求?
+A. 将引用组织 ID 的 aws PrincipalOrgID 全局条件键添加到 S3 存储桶策略。
+B. 为每个部门创建一个组织单元 (OU)。将 aws:PrincipalOrgPaths 全局条件键添加到 S3 存储桶策略。
+C. 使用 AWS CloudTrail 监控 CreateAccount、InviteAccountToOrganization、LeaveOrganization 和 RemoveAccountFromOrganization 事件。相应地更新 S3 存储桶策略。
+D. 标记每个需要访问 S3 存储桶的用户。将 aws:PrincipalTag 全局条件键添加到 S3 存储桶策略。
+答案.A
+
+Q4.应用程序在 VPC 中的 Amazon EC2 实例上运行。该应用程序处理存储在 Amazon S3 存储桶中的日志。EC2 实例需 要在不连接到 Internet 的情况下访问 S3 存储桶。哪种解决方案将提供与 Amazon S3 的专用网络连接?
+A. 创建 S3 存储桶的网关 VPC 端点。
+B. 将日志流式传输到 Amazon CloudWatch Logs。将日志导出到 S3 存储桶。
+C. 在 Amazon EC2 上创建实例配置文件以允许 S3 访问。
+D. 创建一个带有私有链接的 Amazon API Gateway API 来访问 S3 端点。
+答案.A
+
+Q5.一家公司在 AWS 上使用单个 Amazon EC2 实例托管 Web 应用程序，该实例将用户上传的文档存储在 Amazon EBS 卷 中。为了获得更好的可扩展性和可用性，该公司复制了架构并在另一个可用区中创建了第二个 EC2 实例和 EBS 卷，将两者置于应用程序负 载均衡器之后。完成此更改后，用户报告说，每次刷新网站时，他们只能看到文档的一个子集或另一个子集，但不能同时看到所有文档。 解决方案架构师应该提出什么建议来确保用户一次看到他们的所有文档?
+A. 复制数据，使两个 EBS 卷都包含所有文档
+B. 配置 Application Load Balancer 以将用户定向到带有文档的服务器
+C. 将两个 EBS 卷中的数据复制到 Amazon EFS。修改应用程序以将新文档保存到 Amazon EFS
+D. 配置 Application Load Balancer 以将请求发送到两个服务器。从正确的服务器返回每个文档
+答案.C
+
+Q6.一家公司使用 NFS 在本地网络附加存储中存储大型视频文件。每个视频文件的大小从 1 MB 到 500 GB 不等。总存储量为 70 TB，并且不再增长。公司决定将视频文件迁移到 Amazon S3。公司必须尽快迁移视频文件，同时使用尽可能少的网络带宽。 哪种解决方案可以满足这些要求?
+A. 创建一个 S3 存储桶。创建一个 IAM 角色，该角色有权写入 S3 存储桶。使用 AWS CLI 将所有文件本地复制到 S3 存储桶。
+B. 创建一个 AWS Snowball Edge 作业。在本地接收 Snowball Edge 设备。使用 Snowball Edge 客户端将数据传输到设备。返回设 备，以便 AWS 可以将数据导入 Amazon S3。
+C. 在本地部署 S3 文件网关。创建公共服务端点以连接到 S3 文件网关。创建 S3 存储桶。在 S3 文件网关上创建新的 NFS 文件共享。 将新文件共享指向 S3 存储桶。将数据从现有 NFS 文件共享传输到 S3 文件网关。
+D. 在本地网络和 AWS 之间建立 AWS Direct Connect 连接。在本地部署 S3 文件网关。创建公有虚拟接口 (VIF) 以连接到 S3 文件网 关。创建 S3 存储桶。在 S3 文件网关上创建新的 NFS 文件共享。将新文件共享指向 S3 存储桶。将数据从现有 NFS 文件共享传输到 S3 文件网关。
+答案.B
+
+Q7.一家公司有一个应用程序可以接收传入的消息。然后，许多其他应用程序和微服务会快速使用这些消息。消息的数量变化 很大，有时会突然增加到每秒 100,000 条。该公司希望解耦解决方案并提高可扩展性。哪个解决方案满足这些要求?
+A. 将消息保存到 Amazon Kinesis Data Analytics。配置消费者应用程序以读取和处理消息。
+B. 在 Auto Scaling 组中的 Amazon EC2 实例上部署摄取应用程序，以根据 CPU 指标扩展 EC2 实例的数量。
+C. 使用单个分片将消息写入 Amazon Kinesis Data Streams。使用 AWS Lambda 函数预处理消息并将它们存储在 Amazon DynamoDB 中。配置消费者应用程序以从 DynamoDB 读取以处理消息。
+D. 将消息发布到具有多个 Amazon Simple Queue Service (Amazon SOS) 订阅的 Amazon Simple Notification Service (Amazon SNS) 主题。配置消费者应用程序以处理来自队列的消息。
+答案.D
+
+Q8.一家公司正在将分布式应用程序迁移到 AWS。该应用程序服务于可变的工作负载。遗留平台由一个主服务器组成，它协 调跨多个计算节点的作业。该公司希望通过能够最大限度地提高弹性和可扩展性的解决方案来实现应用程序的现代化。 解决方案架构师应如何设计架构以满足这些要求?
+A. 配置一个 Amazon Simple Queue Service (Amazon SQS) 队列作为作业的目的地。使用在 Auto Scaling 组中管理的 Amazon EC2 实 例实施计算节点。配置 EC2 Auto Scaling 以使用计划的缩放。
+B. 配置一个 Amazon Simple Queue Service (Amazon SQS) 队列作为作业的目的地。使用在 Auto Scaling 组中管理的 Amazon EC2 实 例实施计算节点。根据队列大小配置 EC2 Auto Scaling。
+C. 使用在 Auto Scaling 组中管理的 Amazon EC2 实例实施主服务器和计算节点。将 AWS CloudTrail 配置为作业的目标。根据主服务 器上的负载配置 EC2 Auto Scaling。
+D. 使用在 Auto Scaling 组中管理的 Amazon EC2 实例实施主服务器和计算节点。将 Amazon EventBridge (Amazon CloudWatch Events) 配置为作业的目标。根据计算节点上的负载配置 EC2 Auto Scaling。
+答案.B
+
+Q9.一家公司在其数据中心运行 SMB 文件服务器。文件服务器存储大文件，这些文件在文件创建后的前几天经常访问。7 天 后，文件很少被访问。 总数据量不断增加，接近公司总存储容量。解决方案架构师必须增加公司的可用存储空间，而不会丢失对最近访问的文件的低延迟访问。 解决方案架构师还必须提供文件生命周期管理，以避免未来出现存储问题。哪种解决方案可以满足这些要求?
+A. 使用 AWS DataSync 将超过 7 天的数据从 SMB 文件服务器复制到 AWS。
+B. 创建一个Amazon S3 文件网关来扩展公司的存储空间。创建 S3 生命周期策略以在 7 天后将数据转换到 S3 Glacier Deep Archive。
+C. 创建一个 Amazon FSx for Windows File Server 文件系统来扩展公司的存储空间。
+D. 在每个用户的计算机上安装一个实用程序以访问 Amazon S3。创建 S3 生命周期策略以在 7 天后将数据转换为 S3 Glacier 灵活检 索。
+答案.B
+
+Q10.一家公司正在 AWS 上构建电子商务 Web 应用程序。该应用程序将有关新订单的信息发送到 Amazon API Gateway REST API 进行处理。公司希望确保按照收到订单的顺序处理订单。哪种解决方案可以满足这些要求?
+A. 当应用程序收到订单时，使用 API 网关集成向 Amazon Simple Notification Service (Amazon SNS) 主题发布消息。将 AWS Lambda 函数订阅到主题以执行处理。
+B. 当应用程序收到订单时，使用 API 网关集成向 Amazon Simple Queue Service (Amazon SQS) FIFO 队列发送消息。配置 SQS FIFO 队列以调用 AWS Lambda 函数进行处理。
+C. 在应用程序处理订单时使用 API 网关授权方阻止任何请求。
+D. 当应用程序收到订单时，使用 API 网关集成向 Amazon Simple Queue Service (Amazon SQS) 标准队列发送消息。配置 SQS 标准队 列以调用 AWS Lambda 函数进行处理。
+答案.B
+
+Q11.一家公司有一个在 Amazon EC2 实例上运行并使用 Amazon Aurora 数据库的应用程序。EC2 实例使用存储在本地文件中 的用户名和密码连接到数据库。该公司希望最大限度地减少凭证管理的运营开销。解决方案架构师应该做什么来实现这个目标?
+A. 使用 AWS Secrets Manager。开启自动旋转。
+B. 使用 AWS Systems Manager Parameter Store。开启自动旋转。
+C. 创建一个 Amazon S3 存储桶来存储使用 AWS Key Management Service (AWS KMS) 加密密钥加密的对象。将凭证文件迁移到 S3 存储桶。将应用程序指向 S3 存储桶。
+D. 为每个 EC2 实例创建一个加密的 Amazon Elastic Block Store (Amazon EBS) 卷。将新的 EBS 卷附加到每个 EC2 实例。将凭证文 件迁移到新的 EBS 卷。将应用程序指向新的 EBS 卷。
+答案.A
+
+Q12.一家跨国公司在应用程序负载均衡器 (ALB) 后面的 Amazon EC2 实例上托管其 Web 应用程序。Web 应用程序具有静态 数据和动态数据。该公司将其静态数据存储在 Amazon S3 存储桶中。该公司希望提高性能并减少静态数据和动态数据的延迟。该公司正在 使用自己在 Amazon Route 53 上注册的域名。解决方案架构师应该怎么做才能满足这些要求?
+A. 创建一个以 S3 存储桶和 ALB 作为源的 Amazon CloudFront 分配。配置 Route 53 以将流量路由到 CloudFront 分配。
+B. 创建一个以 ALB 作为源的 Amazon CloudFront 分配。创建一个将 S3 存储桶作为端点的 AWS Global Accelerator 标准加速器 配置 Route 53 以将流量路由到 CloudFront 分配。
+C. 创建一个以 S3 存储桶为源的 Amazon CloudFront 分配。创建一个将 ALB 和 CloudFront 分发作为终端节点的 AWS Global Accelerator 标准加速器。创建指向加速器 DNS 名称的自定义域名。使用自定义域名作为 Web 应用程序的端点。
+D. 创建一个以 ALB 作为源的 Amazon CloudFront 分配。创建一个将 S3 存储桶作为终端节点的 AWS Global Accelerator 标准加速 器。创建两个域名。将一个域名指向动态内容的 CloudFront DNS 名称。将另一个域名指向静态内容的加速器 DNS 名称。使用域名作 为 Web 应用程序的端点。
+答案.A
+
+Q13.一家公司每月对其 AWS 基础设施进行维护。在这些维护活动期间，该公司需要在多个 AWS 区域轮换其 Amazon RDS for MySQL 数据库的凭证。哪种解决方案能够以最少的运营开销满足这些要求?
+A. 将凭证作为机密存储在 AWS Secrets Manager 中。对所需区域使用多区域秘密复制。配置 Secrets Manager 以按计划轮换密钥。
+B. 通过创建安全字符串参数将凭证作为机密存储在 AWS Systems Manager 中。对所需区域使用多区域秘密复制。配置 Systems Manager 以按计划轮换机密。
+C. 将凭据存储在启用了服务器端加密 (SSE) 的 Amazon S3 存储桶中。使用 Amazon EventBridge (Amazon CloudWatch Events) 调用 AWS Lambda 函数来轮换凭证。
+D. 使用 AWS Key Management Service (AWS KMS) 多区域客户托管密钥将凭证加密为机密。将机密存储在 Amazon DynamoDB 全局 表中。使用 AWS Lambda 函数从 DynamoDB 检索机密。使用 RDS API 轮换密钥。
+答案.A
+
+Q14.一家公司在 Application Load Balancer 后面的 Amazon EC2 实例上运行电子商务应用程序。这些实例在跨多个可用区的 Amazon EC2 Auto Scaling 组中运行。Auto Scaling 组根据 CPU 利用率指标进行扩展。电子商务应用程序将交易数据存储在托管在大型 EC2 实例上的 MySQL 8.0 数据库中。 随着应用程序负载的增加，数据库的性能会迅速下降。应用程序处理的读取请求多于写入事务。该公司需要一种能够自动扩展数据库以满 足不可预测的读取工作负载需求同时保持高可用性的解决方案。哪种解决方案可以满足这些要求?
+A. 将 Amazon Redshift 与单个节点一起用于领导和计算功能。
+B. 将 Amazon RDS 与单可用区部署结合使用 配置 Amazon RDS 以在不同的可用区中添加读取器实例。
+C. 将 Amazon Aurora 与多可用区部署结合使用。使用 Aurora 副本配置 Aurora Auto Scaling。
+D. 使用 Amazon ElastiCache for Memcached 和 EC2 Spot 实例。
+答案.C
+
+Q15.一家公司最近迁移到 AWS，并希望实施一种解决方案来保护流入和流出生产 VPC 的流量。该公司在其本地数据中心有 一个检查服务器。检测服务器进行流量检测、流量过滤等具体操作。该公司希望在 AWS 云中拥有相同的功能。 哪种解决方案可以满足这些要求?
+A. 使用 Amazon GuardDuty 在生产 VPC 中进行流量检查和流量过滤。
+B. 使用流量镜像从生产 VPC 镜像流量以进行流量检查和过滤。
+C. 使用 AWS Network Firewall 为生产 VPC 创建流量检查和流量过滤所需的规则。
+D. 使用 AWS Firewall Manager 为生产 VPC 创建流量检查和流量过滤所需的规则。
+答案.C
+
+Q16.一家公司在 AWS 上托管一个数据湖。数据湖由 Amazon S3 和 Amazon RDS for PostgreSQL 中的数据组成。该公司需要 一个报告解决方案来提供数据可视化并包括数据湖中的所有数据源。只有公司的管理团队才能完全访问所有可视化。公司的其他人应该只 有有限的访问权限。哪种解决方案可以满足这些要求?
+A. 在 Amazon QuickSight 中创建分析。连接所有数据源并创建新数据集。发布仪表板以可视化数据。与适当的 IAM 角色共享仪表 板。
+B. 在 Amazon QuickSight 中创建分析。连接所有数据源并创建新数据集。发布仪表板以可视化数据。与适当的用户和组共享仪表板。
+C. 为 Amazon S3 中的数据创建一个 AWS Glue 表和爬虫。创建 AWS Glue 提取、转换和加载 (ETL) 作业以生成报告。将报告发布到 Amazon S3。使用 S3 存储桶策略来限制对报告的访问。
+D. 为 Amazon S3 中的数据创建一个 AWS Glue 表和爬虫。使用 Amazon Athena 联合查询访问 Amazon RDS for PostgreSQL 中的数 据。使用 Amazon Athena 生成报告。将报告发布到 Amazon S3。使用 S3 存储桶策略来限制对报告的访问。
+答案.B
+
+Q17.一家公司正在实施一个新的业务应用程序。该应用程序在两个 Amazon EC2 实例上运行，并使用 Amazon S3 存储桶进行 文档存储。解决方案架构师需要确保 EC2 实例可以访问 S3 存储桶。解决方案架构师应该怎么做才能满足这个要求?
+A. 创建一个 IAM 角色，授予对 S3 存储桶的访问权限。将角色附加到 EC2 实例。
+B. 创建一个 IAM 策略来授予对 S3 存储桶的访问权限。将策略附加到 EC2 实例。
+C. 创建一个 IAM 组来授予对 S3 存储桶的访问权限。将该组附加到 EC2 实例。
+D. 创建一个 IAM 用户，授予对 S3 存储桶的访问权限。将用户帐户附加到 EC2 实例。
+答案.A
+
+Q18.一个应用程序开发团队正在设计一个微服务，可以将大图像转换为较小的压缩图像。当用户通过 Web 界面上传图像时， 微服务应将图像存储在 Amazon S3 存储桶中，使用 AWS Lambda 函数处理和压缩图像，并将图像以压缩形式存储在不同的 S3 存储桶中。 解决方案架构师需要设计一个解决方案，使用持久的、无状态的组件来自动处理图像。哪种行动组合将满足这些要求?(选择两项。)
+A. 创建一个 Amazon Simple Queue Service (Amazon SQS) 队列。将 S3 存储桶配置为在图像上传到 S3 存储桶时向 SQS 队列发送通 知。
+B. 配置 Lambda 函数以使用 Amazon Simple Queue Service (Amazon SQS) 队列作为调用源。当SQS消息处理成功后，删除队列中的 消息。
+C. 配置 Lambda 函数以监控 S3 存储桶的新上传。当检测到上传的图像时，将文件名写入内存中的文本文件，并使用该文本文件来跟 踪已处理的图像。
+D. 启动 Amazon EC2 实例以监控 Amazon Simple Queue Service (Amazon SQS) 队列。将项目添加到队列后，将文件名记录在 EC2 实例上的文本文件中并调用 Lambda 函数。
+E. 配置 Amazon EventBridge (Amazon CloudWatch Events) 事件以监控 S3 存储桶。上传图像时，使用应用程序所有者的电子邮件地 址向 Amazon ample Notification Service (Amazon SNS) 主题发送警报以进行进一步处理。
+答案.AB
+
+Q19.一家公司有一个部署在 AWS 上的三层 Web 应用程序。Web 服务器部署在 VPC 的公共子网中。应用服务器和数据库服 务器部署在同一个VPC的私有子网中。该公司在检查 VPC 中部署了来自 AWS Marketplace 的第三方虚拟防火墙设备。该设备配置有一个可 以接受 IP 数据包的 IP 接口。解决方案架构师需要将 Web 应用程序与设备集成，以便在流量到达 Web 服务器之前检查到应用程序的所有流量。 哪种解决方案能够以最少的运营开销满足这些要求?
+A. 在应用程序 VPC 的公共子网中创建一个网络负载均衡器，以将流量路由到设备以进行数据包检查。
+B. 在应用程序 VPC 的公共子网中创建应用程序负载均衡器，以将流量路由到设备以进行数据包检查。
+C. 在检查 VPConfigure 路由表中部署一个中转网关，以通过中转网关路由传入的数据包。
+D. 在检查 VPC 中部署网关负载均衡器。创建网关负载平衡器端点以接收传入数据包并将数据包转发到设备。
+答案.D
+
+Q20.一家公司希望提高将大量生产数据克隆到同一 AWS 区域的测试环境中的能力。数据存储在 Amazon Elastic Block Store (Amazon EBS) 卷上的 Amazon EC2 实例中。对克隆数据的修改不得影响生产环境。访问此数据的软件需要始终如一的高 I/O 性能。 解决方案架构师需要尽量减少将生产数据克隆到测试环境所需的时间。哪种解决方案可以满足这些要求?
+A. 拍摄生产 EBS 卷的 EBS 快照。将快照还原到测试环境中的 EC2 实例存储卷上。
+B. 配置生产 EBS 卷以使用 EBS 多重附加功能。拍摄生产 EBS 卷的 EBS 快照。将生产 EBS 卷附加到测试环境中的 EC2 实例。
+C. 拍摄生产 EBS 卷的 EBS 快照。创建并初始化新的 EBS 卷。在从生产 EBS 快照恢复卷之前，将新的 EBS 卷附加到测试环境中的 EC2 实例。
+D. 拍摄生产 EBS 卷的 EBS 快照。在 EBS 快照上启用 EBS 快速快照还原功能。将快照还原到新的 EBS 卷中。将新的 EBS 卷附加到测 试环境中的 EC2 实例。
+答案.D
+
+Q21.一家电子商务公司想要在 AWS 上推出一个每日一单的网站。在 24 小时内，每天都将专门销售一种产品。该公司希望能 够在高峰时段以毫秒级延迟处理每小时数百万个请求。哪种解决方案能够以最少的运营开销满足这些要求?
+A. 使用 Amazon S3 将整个网站托管在不同的 S3 存储桶中。添加 Amazon CloudFront 分配。将 S3 存储桶设置为分布的来源。将订单 数据存储在 Amazon S3 中。
+B. 在跨多个可用区的 Auto Scaling 组中运行的 Amazon EC2 实例上部署完整的网站。添加应用程序负载均衡器 (ALB) 以分配网站流 量。为后端 API 添加另一个 ALB。将数据存储在 Amazon RDS for MySQL 中。
+C. 迁移完整的应用程序以在容器中运行。在 Amazon Elastic Kubernetes Service (Amazon EKS) 上托管容器。使用 Kubernetes Cluster Autoscaler 来增加和减少 pod 的数量以处理突发流量。将数据存储在 Amazon RDS for MySQL 中。
+D. 使用 Amazon S3 存储桶来托管网站的静态内容。部署 Amazon CloudFront 分配。将 S3 存储桶设置为源。将 Amazon API Gateway 和 AWS Lambda 函数用于后端 API。将数据存储在 Amazon DynamoDB 中。
+答案.D
+
+Q22.解决方案架构师正在使用 Amazon S3 设计新数字媒体应用程序的存储架构。媒体文件必须能够恢复可用区的丢失。一些 文件被频繁访问，而另一些文件很少以不可预测的模式访问。解决方案架构师必须最大限度地降低存储和检索媒体文件的成本。 哪个存储选项满足这些要求?
+A. S3标准
+B. S3 智能分层
+C. S3标准-不频繁访问(S3 Standard-IA)
+D. S3 One Zone-Infrequent Access(S3 One Zone-IA)
+答案.B
+
+Q23.一家公司正在使用 Amazon S3 Standard 存储来存储备份文件。这些文件被频繁访问 1 个月。但是，1 个月后无法访 问这些文件。公司必须无限期地保存这些文件。哪种存储解决方案能够最经济高效地满足这些要求?
+A. 配置 S3 Intelligent-Tiering 自动迁移对象。
+B. 创建 S3 生命周期配置以在 1 个月后将对象从 S3 Standard 转换到 S3 Glacier Deep Archive。
+C. 创建一个 S3 生命周期配置以在 1 个月后将对象从 S3 标准过渡到 S3 标准-不频繁访问 (S3 标准-IA)。
+D. 创建一个 S3 生命周期配置，以在 1 个月后将对象从 S3 标准过渡到 S3 单一区域-不频繁访问 (S3 单一区域-IA)。
+答案.B
+
+Q24.一家公司在其最近的账单中发现 Amazon EC2 成本有所增加。计费团队注意到一些 EC2 实例的实例类型不需要垂直扩 展。解决方案架构师需要创建一个图表来比较过去 2 个月的 EC2 成本并执行深入分析以确定垂直扩展的根本原因。 解决方案架构师应该如何以最少的运营开销生成信息?
+A. 使用 AWS Budgets 创建预算报告并根据实例类型比较 EC2 成本。
+B. 使用 Cost Explorer 的粒度过滤功能根据实例类型对 EC2 成本进行深入分析。
+C. 使用 AWS Billing and Cost Management 控制面板中的图表来比较过去 2 个月基于实例类型的 EC2 成本。
+D. 使用 AWS Cost and Usage Reports 创建报告并将其发送到 Amazon S3 存储桶。将 Amazon QuickSight 与 Amazon S3 一起用作 源，以根据实例类型生成交互式图表。
+答案.B
+
+Q25.一家公司正在设计一个应用程序。该应用程序使用 AWS Lambda 函数通过 Amazon API Gateway 接收信息并将信息存储 在 Amazon Aurora PostgreSQL 数据库中。在概念验证阶段，公司必须大幅增加 Lambda 配额，以处理公司需要加载到数据库中的大量数据。解决方案架构师必须推荐一种新设计， 以提高可伸缩性并最大限度地减少配置工作。哪种解决方案可以满足这些要求?
+A. 将 Lambda 函数代码重构为在 Amazon EC2 实例上运行的 Apache Tomcat 代码。使用本机 Java 数据库连接 (JDBC) 驱动程序连接 数据库。
+B. 将平台从 Aurora 更改为 Amazon DynamoDProvision 一个 DynamoDB Accelerator (DAX) 集群。使用 DAX 客户端 SDK 将现有的 DynamoDB API 调用指向 DAX 集群。
+C. 设置两个 Lambda 函数。配置一个函数来接收信息。配置另一个函数以将信息加载到数据库中。使用 Amazon Simple Notification Service (Amazon SNS) 集成 Lambda 函数。
+D. 设置两个 Lambda 函数。配置一个函数来接收信息。配置另一个函数以将信息加载到数据库中。使用 Amazon Simple Queue Service (Amazon SQS) 队列集成 Lambda 函数。
+答案.D
+
+Q26.一家公司需要审查其 AWS 云部署，以确保其 Amazon S3 存储桶没有未经授权的配置更改。解决方案架构师应该做什么来实现这个目标?
+A. 使用适当的规则打开 AWS Config。
+B. 通过适当的检查打开 AWS Trusted Advisor。
+C. 使用适当的评估模板打开 Amazon Inspector。
+D. 打开 Amazon S3 服务器访问日志记录。配置 Amazon EventBridge(Amazon Cloud Watch 事件)。
+答案.A
+
+Q27.一家公司正在启动一个新应用程序，并将在 Amazon CloudWatch 控制面板上显示应用程序指标。公司的产品经理需要 定期访问这个仪表板。产品经理没有 AWS 账户。解决方案架构师必须遵循最小特权原则向产品经理提供访问权限。 哪种解决方案可以满足这些要求?
+A. 从 CloudWatch 控制台共享控制面板。输入产品经理邮箱，完成分享步骤。为产品经理提供仪表板的可共享链接。
+B. 为产品经理创建一个IAM用户。将 CloudWatchReadOnlyAccess AWS 托管策略附加到用户。与产品经理共享新的登录凭据。与产 品经理共享正确仪表板的浏览器 URL。
+C. 为公司员工创建一个IAM用户。将 ViewOnlyAccess AWS 托管策略附加到 IAM 用户。与产品经理共享新的登录凭据。让产品经理 导航到 CloudWatch 控制台，并在“仪表板”部分按名称找到仪表板。
+D. 在公共子网中部署堡垒服务器。当产品经理需要访问仪表板时，启动服务器并共享 RDP 凭据。在堡垒服务器上，确保浏览器配置 为使用缓存的 AWS 凭据打开仪表板 URL，这些凭据具有查看仪表板的适当权限。
+答案.A
+
+Q28.一家公司正在将应用程序迁移到 AWS。应用程序部署在不同的帐户中。公司使用 AWS Organizations 集中管理账户。 公司的安全团队需要跨公司所有帐户的单点登录 (SSO) 解决方案。公司必须继续在其内部部署的自我管理 Microsoft Active Directory 中管 理用户和组。哪种解决方案可以满足这些要求?
+A. 从 AWS SSO 控制台启用 AWS Single Sign-On (AWS SSO)。通过使用适用于 Microsoft Active Directory 的 AWS Directory Service，创建单向林信任或单向域信任以将公司自行管理的 Microsoft Active Directory 与 AWS SSO 连接起来。
+B. 从 AWS SSO 控制台启用 AWS Single Sign-On (AWS SSO)。通过使用适用于 Microsoft Active Directory 的 AWS Directory Service，创建双向林信任以将公司自行管理的 Microsoft Active Directory 与 AWS SSO 连接起来。
+C. 使用 AWS 目录服务。与公司自行管理的 Microsoft Active Directory 建立双向信任关系。
+D. 在本地部署身份提供者 (IdP)。从 AWS SSO 控制台启用 AWS Single Sign-On (AWS SSO)。
+答案.B
+
+Q29.一家公司提供使用 UDP 连接的互联网协议语音 (VoIP) 服务。该服务由在 Auto Scaling 组中运行的 Amazon EC2 实例组 成。该公司在多个 AWS 区域进行部署。公司需要将用户路由到延迟最低的区域。公司还需要区域之间的自动故障转移。哪种解决方案可以满足这些要求?
+A. 部署网络负载平衡器 (NLB) 和关联的目标组。将目标组与 Auto Scaling 组相关联。使用 NLB 作为每个区域中的 AWS Global Accelerator 终端节点。
+B. 部署应用程序负载均衡器 (ALB) 和关联的目标组。将目标组与 Auto Scaling 组相关联。使用 ALB 作为每个区域中的 AWS Global Accelerator 终端节点。
+C. 部署网络负载平衡器 (NLB) 和关联的目标组。将目标组与 Auto Scaling 组相关联。创建指向每个 NLB 的别名的 Amazon Route 53 延迟记录。创建一个使用延迟记录作为源的 Amazon CloudFront 分配。
+D. 部署应用程序负载均衡器 (ALB) 和关联的目标组。将目标组与 Auto Scaling 组相关联。创建指向每个 ALB 的别名的 Amazon Route 53 加权记录。部署使用加权记录作为源的 Amazon CloudFront 分配。
+答案.A
+
+Q30.开发团队在启用 Performance Insights 的情况下对其通用 Amazon RDS for MySQL 数据库实例运行月度资源密集型测 试。测试每月一次持续 48 小时，并且是唯一使用数据库的过程。该团队希望在不降低数据库实例的计算和内存属性的情况下降低运行测试 的成本。哪种解决方案能够最经济有效地满足这些要求?
+A. 测试完成后停止数据库实例。需要时重新启动数据库实例。
+B. 将 Auto Scaling 策略与数据库实例一起使用，以在测试完成时自动扩展。
+C. 测试完成后创建快照。终止数据库实例并在需要时恢复快照。
+D. 测试完成后将数据库实例修改为低容量实例。需要时再次修改数据库实例。
+答案.C
+
+Q31.一家在 AWS 上托管其 Web 应用程序的公司希望确保所有 Amazon EC2 实例。Amazon RDS 数据库实例。Amazon Redshift 集群配置有标签。公司希望最大限度地减少配置和操作此检查的工作量。解决方案架构师应该怎么做才能实现这一目标?
+A. 使用 AWS Config 规则定义和检测未正确标记的资源。
+B. 使用 Cost Explorer 显示未正确标记的资源。手动标记这些资源。
+C. 编写 API 调用以检查所有资源是否正确分配标签。定期在 EC2 实例上运行代码。
+D. 编写 API 调用以检查所有资源以正确分配标签。通过 Amazon CloudWatch 安排 AWS Lambda 函数以定期运行代码。
+答案.A
+
+Q32.开发团队需要托管一个网站，其他团队可以访问该网站。网站内容由 HTML、CSS、客户端 JavaScript 和图像组成。哪种托管网站的方法最划算?
+A. 将网站容器化并将其托管在 AWS Fargate 中。
+B. 创建一个 Amazon S3 存储桶并在那里托管网站。
+C. 在 Amazon EC2 实例上部署 Web 服务器以托管网站。
+D. 使用使用 Express.js 框架的 AWS Lambda 目标配置 Application Load Balancer。
+答案.B
+
+Q33.一家公司在 AWS 上运行在线市场 Web 应用程序。该应用程序在高峰时段为数十万用户提供服务。公司需要一个可扩展 的、近乎实时的解决方案来与其他几个内部应用程序共享数百万笔金融交易的详细信息。在存储在文档数据库中以进行低延迟检索之前， 还需要处理事务以删除敏感数据。解决方案架构师应该推荐什么来满足这些要求?
+A. 将交易数据存储到 Amazon DynamoDB 中。在 DynamoDB 中设置规则以在写入时从每个事务中删除敏感数据。使用 DynamoDB Streams 与其他应用程序共享交易数据。
+B. 将交易数据流式传输到 Amazon Kinesis Data Firehose，以将数据存储在 Amazon DynamoDB 和 Amazon S3 中。使用 AWS Lambda 与 Kinesis Data Firehose 的集成来删除敏感数据。其他应用程序可以使用存储在 Amazon S3 中的数据。
+C. 将交易数据流式传输到 Amazon Kinesis Data Streams。使用 AWS Lambda 集成从每笔交易中删除敏感数据，然后将交易数据存储 在 Amazon DynamoDB 中。其他应用程序可以使用 Kinesis 数据流中的交易数据。
+D. 将批量交易数据作为文件存储在 Amazon S3 中。在更新 Amazon S3 中的文件之前，使用 AWS Lambda 处理每个文件并删除敏感 数据。Lambda 函数随后将数据存储在 Amazon DynamoDB 中。其他应用程序可以使用存储在 Amazon S3 中的交易文件。
+答案.C
+
+Q34.一家公司在 AWS 上托管其多层应用程序。对于合规性、治理、审计和安全性，公司必须跟踪其 AWS 资源上的配置更 改，并记录对这些资源进行的 API 调用的历史记录。解决方案架构师应该怎么做才能满足这些要求?
+A. 使用 AWS CloudTrail 跟踪配置更改并使用 AWS Config 记录 API 调用。
+B. 使用 AWS Config 跟踪配置更改并使用 AWS CloudTrail 记录 API 调用。
+C. 使用 AWS Config 跟踪配置更改并使用 Amazon CloudWatch 记录 API 调用。
+D. 使用 AWS CloudTrail 跟踪配置更改并使用 Amazon CloudWatch 记录 API 调用。
+答案.B
+
+Q35.一家公司正准备在 AWS 云中启动一个面向公众的 Web 应用程序。该架构由位于 Elastic Load Balancer (ELB) 后面的 VPC 中的 Amazon EC2 实例组成。第三方服务用于 DNS。公司的解决方案架构师必须推荐一种解决方案来检测和防范大规模 DDoS 攻击。 哪个解决方案满足这些要求?
+A. 在账户上启用 Amazon GuardDuty。
+B. 在 EC2 实例上启用 Amazon Inspector。
+C. 启用 AWS Shield 并为其分配 Amazon Route 53。
+D. 启用 AWS Shield Advanced 并将 ELB 分配给它。
+答案.D
+
+Q36.一家公司正在 AWS 云中构建应用程序。该应用程序将数据存储在两个 AWS 区域的 Amazon S3 存储桶中。公司必须使用 AWS Key Management Service (AWS KMS) 客户管理的密钥来加密存储在 S3 存储桶中的所有数据。两个 S3 存储桶中的数据必须使用相同 的 KMS 密钥加密和解密。数据和密钥必须存储在两个区域中的每一个中。哪种解决方案能够以最少的运营开销满足这些要求?
+A. 在每个区域创建一个 S3 存储桶。配置 S3 存储桶以使用带有 Amazon S3 托管加密密钥 (SSE-S3) 的服务器端加密。配置 S3 存储桶 之间的复制。
+B. 创建客户管理的多区域 KMS 密钥。在每个区域中创建一个 S3 存储桶。配置 S3 存储桶之间的复制。将应用程序配置为使用 KMS 密钥进行客户端加密。
+C. 在每个区域创建一个客户管理的 KMS 密钥和一个 S3 存储桶。配置 S3 存储桶以使用带有 Amazon S3 托管加密密钥 (SSE-S3) 的服 务器端加密。配置 S3 存储桶之间的复制。
+D. 在每个区域创建一个客户管理的 KMS 密钥和一个 S3 存储桶。配置 S3 存储桶以通过 AWS KMS 密钥 (SSE-KMS) 使用服务器端加 密。配置 S3 存储桶之间的复制。
+答案.B
+
+Q37.一家公司最近在其 AWS 账户中的 Amazon EC2 实例上启动了各种新的工作负载。该公司需要制定战略来远程安全地访 问和管理实例。该公司需要实施一个可重复的流程，该流程可与原生 AWS 服务配合使用并遵循 AWS Well-Architected Framework。 哪种解决方案能够以最少的运营开销满足这些要求?
+A. 使用EC2串口控制台直接访问各个实例的终端界面进行管理。
+B. 将适当的 IAM 角色附加到每个现有实例和新实例。使用 AWS Systems Manager 会话管理器建立远程 SSH 会话。
+C. 创建管理 SSH 密钥对。将公钥加载到每个 EC2 实例中。在公共子网中部署堡垒机，为每个实例的管理提供隧道。
+D. 建立 AWS 站点到站点 VPN 连接。指导管理员使用本地本地计算机通过 VPN 隧道使用 SSH 密钥直接连接到实例。
+答案.B
+
+Q38.一家公司在 Amazon S3 上托管一个静态网站，并使用 Amazon Route 53 进行 DNS。该网站正在经历来自世界各地的不 断增长的需求。公司必须减少访问该网站的用户的延迟。哪种解决方案能够最经济有效地满足这些要求?
+A. 将包含该网站的 S3 存储桶复制到所有 AWS 区域。添加 Route 53 地理位置路由条目。
+B. 在 AWS Global Accelerator 中配置加速器。将提供的 IP 地址与 S3 存储桶相关联。编辑 Route 53 条目以指向加速器的 IP 地址。
+C. 在 S3 存储桶前面添加一个 Amazon CloudFront 分布。编辑 Route 53 条目以指向 CloudFront 分配。
+D. 在存储桶上启用 S3 Transfer Acceleration。编辑 Route 53 条目以指向新端点。
+答案.C
+
+Q39.一家公司在其网站上维护着一个可搜索的项目存储库。数据存储在包含超过 1000 万行的 Amazon RDS for MySQL 数据 库表中。该数据库有 2 TB 的通用 SSD 存储。每天通过公司网站对该数据进行数百万次更新。该公司注意到某些插入操作需要 10 秒或更长时间。该公司已确定数据库存储性能是问题所在。哪个解决方案解决了这个性能问题?
+A. 将存储类型更改为 Provisioned IOPS SSD。
+B. 将数据库实例更改为内存优化实例类。
+C. 将数据库实例更改为可突发性能实例类。
+D. 使用 MySQL 本机异步复制启用多可用区 RDS 只读副本。
+答案.A
+
+Q40.一家公司拥有数千台边缘设备，每天总共生成 1 TB 的状态警报。每个警报的大小约为 2 KB。解决方案架构师需要实施 解决方案来摄取和存储警报以供将来分析。 公司需要一个高度可用的解决方案。但是，该公司需要最大限度地降低成本，并且不想管理额外的基础设施。此外，该公司希望保留 14 天 的数据以供即时分析，并存档任何超过 14 天的数据。满足这些要求的最有效的运营解决方案是什么?
+A. 创建一个 Amazon Kinesis Data Firehose 传输流来接收警报。配置 Kinesis Data Firehose 流以将警报传送到 Amazon S3 存储桶。 设置 S3 生命周期配置以在 14 天后将数据传输到 Amazon S3 Glacier。
+B. 跨两个可用区启动 Amazon EC2 实例，并将它们放在弹性负载均衡器后面以接收警报。在 EC2 实例上创建脚本，将警报存储在 Amazon S3 存储桶中。设置 S3 生命周期配置以在 14 天后将数据传输到 Amazon S3 Glacier。
+C. 创建一个 Amazon Kinesis Data Firehose 传输流来接收警报。配置 Kinesis Data Firehose 流以将警报传送到 Amazon OpenSearch Service (Amazon Elasticsearch Service) 集群。将 Amazon OpenSearch Service (Amazon Elasticsearch Service) 集群设置为每天手动 拍摄快照并从集群中删除超过 14 天的数据。
+D. 创建一个 Amazon Simple Queue Service (Amazon SQS) 标准队列来接收警报，并将消息保留期设置为 14 天。配置消费者轮询SQS 队列，检查消息的年龄，并根据需要分析消息数据。如果消息已存在 14 天，消费者应将消息复制到 Amazon S3 存储桶并从 SQS 队列 中删除消息。
+答案.A
+
+Q41.一家公司的应用程序与多个软件即服务 (SaaS) 源集成以进行数据收集。该公司运行 Amazon EC2 实例来接收数据并将数 据上传到 Amazon S3 存储桶进行分析。接收和上传数据的同一 EC2 实例还会在上传完成时向用户发送通知。该公司注意到应用程序性能缓 慢，并希望尽可能提高性能。
+哪种解决方案能够以最少的运营开销满足这些要求?
+A. 创建一个 Auto Scaling 组，以便 EC2 实例可以横向扩展。配置 S3 事件通知以在上传到 S3 存储桶完成时将事件发送到 Amazon Simple Notification Service (Amazon SNS) 主题。
+B. 创建一个 Amazon AppFlow 流以在每个 SaaS 源和 S3 存储桶之间传输数据。配置 S3 事件通知以在上传到 S3 存储桶完成时将事件 发送到 Amazon Simple Notification Service (Amazon SNS) 主题。
+C. 为每个 SaaS 源创建一个 Amazon EventBridge (Amazon CloudWatch Events) 规则以发送输出数据。将 S3 存储桶配置为规则的目 标。创建第二个 EventBridge (Cloud Watch Events) 规则以在上传到 S3 存储桶完成时发送事件。将 Amazon Simple Notification Service (Amazon SNS) 主题配置为第二条规则的目标。
+D. 创建一个 Docker 容器来代替 EC2 实例。在 Amazon Elastic Container Service (Amazon ECS) 上托管容器化应用程序。将 Amazon CloudWatch Container Insights 配置为在上传到 S3 存储桶完成后将事件发送到 Amazon Simple Notification Service (Amazon SNS) 主题。
+答案.B
+
+Q42.一家公司在单个 VPC 中的 Amazon EC2 实例上运行高可用性图像处理应用程序。EC2 实例在跨多个可用区的多个子网 内运行。EC2 实例不相互通信。但是，EC2 实例从 Amazon S3 下载图像并通过单个 NAT 网关将图像上传到 Amazon S3。该公司担心数据 传输费用。公司避免区域数据传输费用的最具成本效益的方法是什么?
+A. 在每个可用区启动 NAT 网关。
+B. 用 NAT 实例替换 NAT 网关。
+C. 为 Amazon S3 部署网关 VPC 端点。
+D. 配置一个 EC2 专用主机来运行 EC2 实例。
+答案.C
+
+Q43.一家公司有一个本地应用程序，该应用程序生成大量备份到 Amazon S3 的时间敏感数据。该应用程序已经发展壮大，并 且有用户抱怨互联网带宽限制。解决方案架构师需要设计一个长期解决方案，既可以及时备份到 Amazon S3，又可以将对内部用户 Internet 连接的影响降到最低。哪个解决方案满足这些要求?
+A. 建立 AWS VPN 连接并通过 VPC 网关端点代理所有流量。
+B. 建立新的 AWS Direct Connect 连接并通过这个新连接引导备份流量。
+C. 订购每日 AWS Snowball 设备。将数据加载到 Snowball 设备上，然后每天将设备返回给 AWS。
+D. 通过 AWS 管理控制台提交支持票证。请求从帐户中删除 S3 服务限制。
+答案.B
+
+Q44.一家公司有一个包含关键数据的 Amazon S3 存储桶。公司必须保护数据不被意外删除。解决方案架构师应该采取哪些步骤组合来满足这些要求?(选择两项。)
+A. 在 S3 存储桶上启用版本控制。
+B. 在 S3 存储桶上启用 MFA 删除。
+C. 在 S3 存储桶上创建存储桶策略。
+D. 在 S3 存储桶上启用默认加密。
+E. 为 S3 存储桶中的对象创建生命周期策略。
+答案.AB
+
+Q45.一家公司有一个数据摄取工作流程，包括以下内容:用于通知新数据交付的 Amazon Simple Notification Service (Amazon SNS) 主题;用于处理数据和记录元数据的 AWS Lambda 函数公司观察到由于网络连接问题，摄取工作流偶尔会失败。当发生此类故障时，Lambda 函数不会提取相应的数据，除非公司手动重新运行该 作业。解决方案架构师应该采取哪些行动组合来确保 Lambda 函数在未来提取所有数据?(选择两项。)
+A. 在多个可用区中部署 Lambda 函数。
+B. 创建一个 Amazon Simple Queue Service (Amazon SQS) 队列，并将其订阅到 SNS 主题。
+C. 增加分配给 Lambda 函数的 CPU 和内存。
+D. 增加 Lambda 函数的配置吞吐量。
+E. 修改 Lambda 函数以从 Amazon Simple Queue Service (Amazon SQS) 队列读取。
+答案.BE
+
+Q46.一家公司有一个为商店提供营销服务的应用程序。这些服务基于商店顾客以前的购买。门店通过SFTP将交易数据上传至 公司，数据经过处理和分析生成新的营销报价。一些文件的大小可能超过 200 GB。 最近，该公司发现一些商店上传了包含不应该包含的个人身份信息 (PII) 的文件。该公司希望管理员在 PII 再次被共享时收到警报。该公司 还希望自动修复。解决方案架构师应该如何以最少的开发工作来满足这些要求?
+A. 使用 Amazon S3 存储桶作为安全传输点。使用 Amazon Inspector 扫描存储桶中的对象。如果对象包含 PII，则触发 S3 生命周期策 略以删除包含 PII 的对象。
+B. 使用 Amazon S3 存储桶作为安全传输点。使用 Amazon Macie 扫描存储桶中的对象。如果对象包含 PII，请使用 Amazon Simple Notification Service (Amazon SNS) 触发通知管理员删除包含 PII 的对象。
+C. 在 AWS Lambda 函数中实施自定义扫描算法。当对象加载到桶中时触发该函数。如果对象包含 PII，请使用 Amazon Simple Notification Service (Amazon SNS) 触发通知管理员删除包含 PII 的对象。
+D. 在 AWS Lambda 函数中实施自定义扫描算法。当对象加载到桶中时触发该函数。如果对象包含 PII，请使用 Amazon Simple Email Service (Amazon SES) 触发给管理员的通知并触发 S3 生命周期策略以删除包含 PII 的内容。
+答案.B
+
+Q47.一家公司需要在特定 AWS 区域的三个特定可用区中保证 Amazon EC2 容量，以应对即将到来的持续 1 周的活动。公司应该怎么做才能保证EC2的容量?
+A. 购买指定所需区域的预留实例。
+B. 创建指定所需区域的按需容量预留。
+C. 购买指定区域和所需三个可用区的预留实例。
+D. 创建指定所需区域和三个可用区的按需容量预留。
+答案.D
+
+Q48.一家公司的网站使用 Amazon EC2 实例存储作为其商品目录。公司希望确保该目录具有高可用性，并且该目录存储在一 个持久的位置。解决方案架构师应该怎么做才能满足这些要求?
+A. 将目录移至 Amazon ElastiCache for Redis。
+B. 部署具有更大实例存储的更大 EC2 实例。
+C. 将目录从实例存储移动到 Amazon S3 Glacier Deep Archive。
+D. 将目录移动到 Amazon Elastic File System (Amazon EFS) 文件系统。
+答案.D
+
+Q49.一家公司按月存储通话记录文件。用户在调用后 1 年内随机访问文件，但 1 年后用户访问文件的频率较低。该公司希望通 过让用户能够尽快查询和检索不到 1 年的文件来优化其解决方案。检索旧文件的延迟是可以接受的。 哪种解决方案能够最经济有效地满足这些要求?
+A. 在 Amazon S3 Glacier Instant Retrieval 中存储带有标签的单个文件。查询标签以从 S3 Glacier 即时检索中检索文件。
+B. 将单个文件存储在 Amazon S3 智能分层中。1 年后使用 S3 生命周期策略将文件移动到 S3 Glacier 灵活检索。使用 Amazon Athena 查询和检索 Amazon S3 中的文件。使用 S3 Glacier Select 查询和检索 S3 Glacier 中的文件。
+C. 在 Amazon S3 标准存储中存储带有标签的单个文件。将每个存档的搜索元数据存储在 Amazon S3 标准存储中。使用 S3 生命周期 策略在 1 年后将文件移动到 S3 Glacier Instant Retrieval。通过从 Amazon S3 搜索元数据来查询和检索文件。
+D. 将单个文件存储在 Amazon S3 标准存储中。使用 S3 生命周期策略在 1 年后将文件移动到 S3 Glacier Deep Archive。在 Amazon RDS 中存储搜索元数据。从 Amazon RDS 查询文件。从 S3 Glacier Deep Archive 检索文件。
+答案.B
+
+Q50.一家公司的生产工作负载在 1,000 个 Amazon EC2 Linux 实例上运行。工作负载由第三方软件提供支持。该公司需要尽 快为所有 EC2 实例上的第三方软件打补丁，以修复一个严重的安全漏洞。解决方案架构师应该怎么做才能满足这些要求?
+A. 创建一个 AWS Lambda 函数以将补丁应用于所有 EC2 实例。
+B. 配置 AWS Systems Manager Patch Manager 以将补丁应用于所有 EC2 实例。
+C. 安排 AWS Systems Manager 维护窗口以将补丁应用于所有 EC2 实例。
+D. 使用 AWS Systems Manager Run Command 运行将补丁应用于所有 EC2 实例的自定义命令。
+答案.D
+
+Q51.一家公司正在开发一个应用程序，该应用程序提供订单运输统计信息以供 REST API 检索。公司希望提取运输统计数据， 将数据组织成易于阅读的 HTML 格式，并在每天早上同时将报告发送到多个电子邮件地址。 解决方案架构师应该采取哪些步骤组合来满足这些要求?(选择两项。)
+A. 配置应用程序以将数据发送到 Amazon Kinesis Data Firehose。
+B. 使用 Amazon Simple Email Service (Amazon SES) 格式化数据并通过电子邮件发送报告。
+C. 创建一个 Amazon EventBridge (Amazon CloudWatch Events) 计划事件，调用 AWS Glue 作业来查询应用程序的 API 以获取数 据。
+D. 创建调用 AWS Lambda 函数的 Amazon EventBridge (Amazon CloudWatch Events) 计划事件来查询应用程序的 API 以获取数据。
+E. 将应用程序数据存储在 Amazon S3 中。创建一个 Amazon Simple Notification Service (Amazon SNS) 主题作为 S3 事件目标以通过 电子邮件发送报告。
+答案.BD
+
+Q52.一家公司希望将其本地应用程序迁移到 AWS。该应用程序生成的输出文件大小从数十 GB 到数百 TB 不等。应用程序数据 必须存储在标准文件系统结构中。该公司想要一个可以自动扩展的解决方案。是高度可用的，并且需要最小的操作开销。 哪种解决方案可以满足这些要求?
+A. 迁移应用程序以在 Amazon Elastic Container Service (Amazon ECS) 上作为容器运行。使用 Amazon S3 进行存储。
+B. 迁移应用程序以在 Amazon Elastic Kubernetes Service (Amazon EKS) 上作为容器运行。使用 Amazon Elastic Block Store (Amazon EBS) 进行存储。
+C. 将应用程序迁移到多可用区 Auto Scaling 组中的 Amazon EC2 实例。使用 Amazon Elastic File System (Amazon EFS) 进行存储。
+D. 将应用程序迁移到多可用区 Auto Scaling 组中的 Amazon EC2 实例。使用 Amazon Elastic Block Store (Amazon EBS) 进行存储。
+答案.C
+
+Q53.一家公司需要将其会计记录存储在 Amazon S3 中。记录必须可立即访问 1 年，然后必须再存档 9 年。公司任何 人，包括管理用户和根用户，都不能删除整个 10 年期间的记录。记录必须以最大的弹性存储。哪种解决方案可以满足这些要求?
+A. 将整个 10 年期间的记录存储在 S3 Glacier 中。使用访问控制策略在 10 年内拒绝删除记录。
+B. 使用 S3 Intelligent-Tiering 存储记录。使用 IAM 策略拒绝删除记录。10 年后，更改 IAM 策略以允许删除。
+C. 使用 S3 生命周期策略在 1 年后将记录从 S3 Standard 转换到 S3 Glacier Deep Archive。在合规模式下使用 S3 对象锁定 10 年。
+D. 使用 S3 生命周期策略在 1 年后将记录从 S3 Standard 转换为 S3 One Zone-Infrequent Access (S3 One Zone-IA)。在治理模式下使 用 S3 对象锁 10 年。
+答案.C
+
+Q54.一家公司在 AWS 上运行多个 Windows 工作负载。公司员工使用托管在两个 Amazon EC2 实例上的 Windows 文件共 享。文件共享在它们之间同步数据并维护副本。该公司需要一种高度可用且持久的存储解决方案，以保留用户当前访问文件的方式。 解决方案架构师应该怎么做才能满足这些要求?
+A. 将所有数据迁移到 Amazon S3。为用户设置 IAM 身份验证以访问文件。
+B. 设置 Amazon S3 文件网关。在现有 EC2 实例上安装 S3 文件网关。
+C. 使用多可用区配置将文件共享环境扩展到 Amazon FSx for Windows File Server。将所有数据迁移到 FSx for Windows 文件服务 器。
+D. 将文件共享环境扩展到具有多可用区配置的 Amazon Elastic File System (Amazon EFS)。将所有数据迁移到 Amazon EFS。
+答案.C
+
+Q55.解决方案架构师正在开发包含多个子网的 VPC 架构。该架构将托管使用 Amazon EC2 实例和 Amazon RDS 数据 库实例的应用程序。该架构由两个可用区中的六个子网组成。每个可用区都包括一个公共子网、一个私有子网和一个用于数据库的专用子 网。只有在私有子网中运行的 EC2 实例才能访问 RDS 数据库。哪种解决方案可以满足这些要求?
+A. 创建一个新的路由表，排除到公共子网的 CIDR 块的路由。将路由表与数据库子网相关联。
+B. 创建一个安全组，拒绝来自分配给公共子网中实例的安全组的入站流量。将安全组附加到数据库实例。
+C. 创建一个安全组，允许来自分配给私有子网中实例的安全组的入站流量。将安全组附加到数据库实例。
+D. 在公共子网和私有子网之间创建一个新的对等连接。在私有子网和数据库子网之间创建不同的对等连接。
+答案.C
+
+Q56.一家公司已在 Amazon Route 53 上注册了其域名。该公司使用 ca-central-1 区域中的 Amazon API Gateway 作为其后端 微服务 API 的公共接口。第三方服务安全地使用 API。公司想用公司的域名和对应的证书设计自己的API Gateway URL，以便第三方服务 可以使用HTTPS。哪种解决方案可以满足这些要求?
+A. 在 API 网关中创建 Name="Endpoint-URL" 和 Value="Company Domain Name" 的阶段变量以覆盖默认 URL。将与公司域名关联 的公共证书导入 AWS Certificate Manager (ACM)。
+B. 使用公司域名创建 Route 53 DNS 记录。将别名记录指向区域 API 网关阶段端点。将与公司域名关联的公共证书导入 us-east-1 区 域的 AWS Certificate Manager (ACM)。
+C. 创建区域 API 网关端点。将 API 网关端点与公司的域名相关联。将与公司域名关联的公共证书导入同一区域的 AWS Certificate Manager (ACM)。将证书附加到 API 网关端点。配置 Route 53 以将流量路由到 API 网关端点。
+D. 创建区域 API 网关端点。将 API 网关端点与公司的域名相关联。将与公司域名关联的公共证书导入 us-east-1 区域的 AWS Certificate Manager (ACM)。将证书附加到 API 网关 API。使用公司域名创建 Route 53 DNS 记录。将A记录指向公司的域名。
+答案.C
+
+Q57.一家公司正在运营一个流行的社交媒体网站。该网站使用户能够上传图像以与其他用户共享。该公司希望确保图像不包含 不当内容。公司需要一种能够最大限度地减少开发工作量的解决方案。解决方案架构师应该怎么做才能满足这些要求?
+A. 使用 Amazon Comprehend 检测不当内容。使用人工审核进行低置信度预测。
+B. 使用 Amazon Rekognition 检测不当内容。使用人工审核进行低置信度预测。
+C. 使用 Amazon SageMaker 检测不当内容。使用基本事实来标记低置信度的预测。
+D. 使用 AWS Fargate 部署自定义机器学习模型来检测不当内容。使用基本事实来标记低置信度的预测。
+答案.B
+
+Q58.一家公司希望在容器中运行其关键应用程序以满足可扩展性和可用性的要求。该公司更愿意专注于关键应用程序 的维护。该公司不想负责配置和管理运行容器化工作负载的底层基础设施。解决方案架构师应该怎么做才能满足这些要求?
+A. 使用 Amazon EC2 实例，并在实例上安装 Docker。
+B. 在 Amazon EC2 工作节点上使用 Amazon Elastic Container Service (Amazon ECS)。
+C. 在 AWS Fargate 上使用 Amazon Elastic Container Service (Amazon ECS)。
+D. 使用来自 Amazon Elastic Container Service (Amazon ECS) 优化的 Amazon Machine Image (AMI) 的 Amazon EC2 实例。
+答案.C
+
+Q59.一家公司拥有 300 多个全球网站和应用程序。该公司需要一个平台来分析每天超过 30 TB 的点击流数据。解决方案架构师应该如何传输和处理点击流数据?
+A. 设计 AWS Data Pipeline 以将数据存档到 Amazon S3 存储桶，并使用数据运行 Amazon EMR 集群以生成分析。
+B. 创建一个 Amazon EC2 实例的 Auto Scaling 组来处理数据并将其发送到 Amazon S3 数据湖供 Amazon Redshift 用于分析。
+C. 将数据缓存到 Amazon CloudFront。将数据存储在 Amazon S3 存储桶中。将对象添加到 S3 存储桶时。运行 AWS Lambda 函数来 处理数据以进行分析。
+D. 从 Amazon Kinesis Data Streams 收集数据。使用 Amazon Kinesis Data Firehose 将数据传输到 Amazon S3 数据湖。将数据加载到 Amazon Redshift 中进行分析。
+答案.D
+
+Q60.一家公司在 AWS 上托管了一个网站。该网站位于配置为分别处理 HTTP 和 HTTPS 的应用程序负载均衡器 (ALB) 之后。 公司希望将所有请求转发到网站，以便请求将使用 HTTPS。解决方案架构师应该怎么做才能满足此要求?
+A. 更新 ALB 的网络 ACL 以仅接受 HTTPS 流量。
+B. 创建一条规则，将 URL 中的 HTTP 替换为 HTTPS。
+C. 在 ALB 上创建侦听器规则以将 HTTP 流量重定向到 HTTPS。
+D. 将 ALB 替换为配置为使用服务器名称指示 (SNI) 的网络负载平衡器。
+答案.C
+
+Q61.一家公司正在 AWS 上开发一个两层网络应用程序。该公司的开发人员已将应用程序部署在直接连接到后端 Amazon RDS 数据库的 Amazon EC2 实例上。公司不得在应用程序中对数据库凭据进行硬编码。公司还必须实施一种解决方案，以定期自动轮换数 据库凭据。哪种解决方案能够以最少的运营开销满足这些要求?
+A. 将数据库凭证存储在实例元数据中。使用 Amazon EventBridge (Amazon CloudWatch Events) 规则运行计划的 AWS Lambda 函 数，同时更新 RDS 凭证和实例元数据。
+B. 将数据库凭据存储在加密的 Amazon S3 存储桶中的配置文件中。使用 Amazon EventBridge (Amazon CloudWatch Events) 规则运 行计划的 AWS Lambda 函数，同时更新 RDS 凭证和配置文件中的凭证。使用 S3 版本控制确保能够回退到以前的值。
+C. 将数据库凭证作为秘密存储在 AWS Secrets Manager 中。为密文开启自动轮换。将所需权限附加到 EC2 角色以授予对密钥的访问 权限。
+D. 将数据库凭证作为加密参数存储在 AWS Systems Manager Parameter Store 中。为加密参数开启自动轮换。将所需权限附加到 EC2 角色以授予对加密参数的访问权限。
+答案.C
+
+Q62.一家公司正在向 AWS 部署一个新的公共 Web 应用程序。该应用程序将在应用程序负载均衡器 (ALB) 后面运行。应用程 序需要使用外部证书颁发机构 (CA) 颁发的 SSL/TLS 证书在边缘进行加密。证书必须在证书过期之前每年轮换一次。 解决方案架构师应该怎么做才能满足这些要求?
+A. 使用 AWS Certificate Manager (ACM) 颁发 SSL/TLS 证书。将证书应用到 ALB。使用托管续订功能自动轮换证书。
+B. 使用 AWS Certificate Manager (ACM) 颁发 SSL/TLS 证书。从证书中导入密钥材料。将证书应用到 AL 使用托管续订功能自动轮换 证书。
+C. 使用 AWS Certificate Manager (ACM) 私有证书颁发机构从根 CA 颁发 SSL/TLS 证书。将证书应用到 ALB。使用托管续订功能自 动轮换证书。
+D. 使用 AWS Certificate Manager (ACM) 导入 SSL/TLS 证书。将证书应用到 ALB。使用 Amazon EventBridge (Amazon CloudWatch Events) 在证书即将到期时发送通知。手动轮换证书。
+答案.D
+
+Q63.一家公司在 AWS 上运行其基础设施，其文档管理应用程序拥有 700,000 名注册用户。该公司打算创建一种将大型 .pdf 文件转换为 .jpg 图像文件的产品。.pdf 文件的平均大小为 5 MB。公司需要存储原始文件和转换后的文件。解决方案架构师必须设计一个可 扩展的解决方案，以满足随着时间的推移快速增长的需求。哪种解决方案能够最经济有效地满足这些要求?
+A. 将 .pdf 文件保存到 Amazon S3。配置 S3 PUT 事件以调用 AWS Lambda 函数将文件转换为 .jpg 格式并将它们存储回 Amazon S3。
+B. 将 .pdf 文件保存到 Amazon DynamoD使用 DynamoDB Streams 功能调用 AWS Lambda 函数将文件转换为 .jpg 格式并将它们存储 回 DynamoDB。
+C. 将 .pdf 文件上传到 AWS Elastic Beanstalk 应用程序，其中包括 Amazon EC2 实例、Amazon Elastic Block Store (Amazon EBS) 存 储和 Auto Scaling 组。使用 EC2 实例中的程序将文件转换为 .jpg 格式。将 .pdf 文件和 .jpg 文件保存在 EBS 存储中。
+D. 将 .pdf 文件上传到 AWS Elastic Beanstalk 应用程序，其中包括 Amazon EC2 实例、Amazon Elastic File System (Amazon EFS) 存 储和 Auto Scaling 组。使用 EC2 实例中的程序将文件转换为 .jpg 格式。将 .pdf 文件和 .jpg 文件保存在 EBS 存储中。
+答案.A
+
+Q64.一家公司在内部运行的 Windows 文件服务器上拥有超过 5 TB 的文件数据。用户和应用程序每天都与数据交互。 该公司正在将其 Windows 工作负载转移到 AWS。随着公司继续此过程，公司需要以最低延迟访问 AWS 和本地文件存储。公司需要一种能 够最大限度地减少运营开销并且不需要对现有文件访问模式进行重大更改的解决方案。该公司使用 AWS 站点到站点 VPN 连接来连接到 AWS。解决方案架构师应该怎么做才能满足这些要求?
+A. 在 AWS 上为 Windows 文件服务器部署和配置 Amazon FSx。将本地文件数据移动到 FSx for Windows 文件服务器。重新配置工作 负载以使用 FSx for Windows File Server on AWS。
+B. 在本地部署和配置 Amazon S3 文件网关。将本地文件数据移动到 S3 文件网关。重新配置本地工作负载和云工作负载以使用 S3 文 件网关。
+C. 在本地部署和配置 Amazon S3 文件网关。将本地文件数据移动到 Amazon S3。重新配置工作负载以直接使用 Amazon S3 或 S3 文 件网关。取决于每个工作负载的位置。
+D. 在 AWS 上为 Windows 文件服务器部署和配置 Amazon FSx。在本地部署和配置 Amazon FSx 文件网关。将本地文件数据移动到 FSx 文件网关。配置云工作负载以使用 FSx for Windows File Server on AWS。配置本地工作负载以使用 FSx 文件网关。
+答案.D
+
+Q65.一家医院最近使用 Amazon API Gateway 和 AWS Lambda 部署了一个 RESTful API。医院使用 API Gateway 和 Lambda 上传 PDF 格式和 JPEG 格式的报告。医院需要修改 Lambda 代码以识别报告中受保护的健康信息 (PHI)。 哪种解决方案能够以最少的运营开销满足这些要求?
+A. 使用现有的 Python 库从报告中提取文本并从提取的文本中识别 PHI。
+B. 使用 Amazon Textract 从报告中提取文本。使用 Amazon SageMaker 从提取的文本中识别 PHI。
+C. 使用 Amazon Textract 从报告中提取文本。使用 Amazon Comprehend Medical 从提取的文本中识别 PHI。
+D. 使用 Amazon Rekognition 从报告中提取文本。使用 Amazon Comprehend Medical 从提取的文本中识别 PHI。
+答案.C
+
+Q66.一家公司的应用程序生成大量文件，每个文件的大小约为 5 MB。这些文件存储在 Amazon S3 中。公司政策要求文件必 须保存 4 年才能删除。由于文件包含不容易复制的关键业务数据，因此始终需要立即可访问性。这些文件在对象创建的前 30 天被频繁访 问，但在前 30 天之后很少被访问。哪种存储解决方案最具成本效益?
+A. 创建 S3 存储桶生命周期策略，以在对象创建后 30 天将文件从 S3 Standard 移动到 S3 Glacier。对象创建 4 年后删除文件。
+B. 创建一个 S3 存储桶生命周期策略，以在对象创建后 30 天将文件从 S3 Standard 移动到 S3 One Zone-Infrequent Access (S3 One Zone-IA)。对象创建 4 年后删除文件。
+C. 创建 S3 存储桶生命周期策略，以在对象创建后 30 天将文件从 S3 标准移动到 S3 标准-不频繁访问 (S3 标准-IA)。对象创建 4 年后 删除文件。
+D. 创建 S3 存储桶生命周期策略，以在对象创建后 30 天将文件从 S3 标准移动到 S3 标准-不频繁访问 (S3 标准-IA)。对象创建 4 年后 将文件移至 S3 Glacier。
+答案.C
+
+Q67.一家公司在多个 Amazon EC2 实例上托管一个应用程序。该应用程序处理来自 Amazon SQS 队列的消息，写入 Amazon RDS 表，然后从队列中删除消息。在 RDS 表中偶尔会发现重复记录。SQS 队列不包含任何重复消息。 解决方案架构师应该怎么做才能确保消息只被处理一次?
+A. 使用 CreateQueue API 调用创建一个新队列。
+B. 使用 AddPermission API 调用添加适当的权限。
+C. 使用 ReceiveMessage API 调用来设置适当的等待时间。
+D. 使用 ChangeMessageVisibility API 调用来增加可见性超时。
+答案.D
+
+Q68.解决方案架构师正在设计一种新的混合架构，以将公司的本地基础设施扩展到 AWS。公司需要与 AWS 区域的高可用性 连接和一致的低延迟。公司需要最大限度地降低成本，并愿意在主连接出现故障时接受较慢的流量。 解决方案架构师应该怎么做才能满足这些要求?
+A. 为区域预置 AWS Direct Connect 连接。如果主要 Direct Connect 连接失败，请提供 VPN 连接作为备份。
+B. 提供到区域的 VPN 隧道连接以实现专用连接。为专用连接提供第二个 VPN 隧道，并在主 VPN 连接失败时作为备份。
+C. 提供与区域的 AWS Direct Connect 连接。如果主要 Direct Connect 连接失败，则向同一区域提供第二个 Direct Connect 连接作为 备份。
+D. 提供与区域的 AWS Direct Connect 连接。如果主要 Direct Connect 连接失败，请使用 AWS CLI 中的 Direct Connect 故障转移属 性自动创建备份连接。
+答案.A
+
+Q69.一家公司在 Application Load Balancer 后面的 Amazon EC2 实例上运行业务关键型 Web 应用程序。EC2 实例位于 Auto Scaling 组中。该应用程序使用部署在单个可用区中的 Amazon Aurora PostgreSQL 数据库。该公司希望应用程序具有高可用性，同时最大 限度地减少停机时间和数据丢失。哪种解决方案能够以最少的运营努力满足这些要求?
+A. 将 EC2 实例放置在不同的 AWS 区域。使用 Amazon Route 53 健康检查来重定向流量。使用 Aurora PostgreSQL 跨区域复制。
+B. 配置 Auto Scaling 组使用多个可用区。将数据库配置为多可用区。为数据库配置 Amazon RDS 代理实例。
+C. 配置 Auto Scaling 组使用一个可用区。生成数据库的每小时快照。发生故障时从快照中恢复数据库。
+D. 配置 Auto Scaling 组以使用多个 AWS 区域。将数据从应用程序写入 Amazon S3。使用 S3 事件通知启动 AWS Lambda 函数以将数 据写入数据库。
+答案.B
+
+Q70.一家公司的 HTTP 应用程序位于网络负载平衡器 (NLB) 后面。NLB 的目标组配置为使用具有多个运行 Web 服务的 EC2 实例的 Amazon EC2 Auto Scaling 组。公司注意到 NLB 没有检测应用程序的 HTTP 错误。这些错误需要手动重启运行 Web 服务的 EC2 实例。公司需要在不编写自定义脚本或代 码的情况下提高应用程序的可用性。解决方案架构师应该怎么做才能满足这些要求?
+A. 在 NLB 上启用 HTTP 健康检查，提供公司应用程序的 URL。
+B. 为 EC2 实例添加一个 cron 作业，每分钟检查一次本地应用程序的日志。如果检测到 HTTP 错误。应用程序将重新启动。
+C. 用应用程序负载均衡器替换 NLB。通过提供公司应用程序的 URL 启用 HTTP 健康检查。配置 Auto Scaling 操作以替换运行状况不 佳的实例。
+D. 创建一个 Amazon Cloud Watch 警报来监控 NLB 的 UnhealthyHostCount 指标。配置 Auto Scaling 操作以在警报处于 ALARM 状 态时替换不健康的实例。
+答案.C
+
+Q71.一家公司运行一个使用 Amazon DynamoDB 存储客户信息的购物应用程序。在数据损坏的情况下，解决方案架构师需要 设计一个解决方案来满足 15 分钟的恢复点目标 (RPO) 和 1 小时的恢复时间目标 (RTO)。解决方案架构师应该推荐什么来满足这些要求?
+A. 配置 DynamoDB 全局表。对于 RPO 恢复，将应用程序指向不同的 AWS 区域。
+B. 配置 DynamoDB 时间点恢复。对于 RPO 恢复，恢复到所需的时间点。
+C. 每天将 DynamoDB 数据导出到 Amazon S3 Glacier。对于 RPO 恢复，将数据从 S3 Glacier 导入到 DynamoDB。
+D. 每 15 分钟为 DynamoDB 表安排一次 Amazon Elastic Block Store (Amazon EBS) 快照。对于 RPO 恢复，使用 EBS 快照恢复 DynamoDB 表。
+答案.B
+
+Q72.一家公司运行一个照片处理应用程序，该应用程序需要频繁地从位于同一 AWS 区域的 Amazon S3 存储桶上传和下载图 片。解决方案架构师注意到数据传输费用成本增加，需要实施解决方案来降低这些成本。解决方案架构师如何满足这一要求?
+A. 将 Amazon API Gateway 部署到公共子网中并调整路由表以通过它路由 S3 调用。
+B. 将 NAT 网关部署到公共子网中并附加允许访问 S3 存储桶的端点策略。
+C. 将应用程序部署到公共子网并允许它通过互联网网关路由以访问 S3 存储桶。
+D. 将 S3 VPC 网关端点部署到 VPC 中并附加允许访问 S3 存储桶的端点策略。
+答案.D
+
+Q73.一家公司最近在私有子网中的 Amazon EC2 上启动了基于 Linux 的应用程序实例，并在 VPC 的公共子网中的 Amazon EC2 实例上启动了基于 Linux 的堡垒主机。解决方案架构师需要通过公司的 Internet 连接从本地网络连接到堡垒主机和应用程序 服务器。解决方案架构师必须确保所有 EC2 实例的安全组都允许该访问。 解决方案架构师应该采取哪些步骤组合来满足这些要求?(选择两项。)
+A. 将堡垒主机的当前安全组替换为仅允许来自应用程序实例的入站访问的安全组。
+B. 将堡垒机的当前安全组替换为只允许从公司内部 IP 范围入站访问的安全组。
+C. 将堡垒机的当前安全组替换为只允许从公司外部 IP 范围入站访问的安全组。
+D. 将应用程序实例的当前安全组替换为仅允许从堡垒主机的私有 IP 地址进行入站 SSH 访问的安全组。 E. 将应用程序实例的当前安全组替换为仅允许从堡垒主机的公共 IP 地址进行入站 SSH 访问的安全组。
+答案.CD
+
+Q74.解决方案架构师正在设计一个两层 Web 应用程序。该应用程序包含一个面向公众的 Web 层，托管在公共子网中的 Amazon EC2 上。数据库层由在私有子网中的 Amazon EC2 上运行的 Microsoft SQL Server 组成。安全是公司的重中之重。 这种情况应该如何配置安全组呢?(选择两项。)
+A. 为 Web 层配置安全组以允许来自 0.0.0.0/0 的端口 443 上的入站流量。
+B. 为 web 层配置安全组，允许 443 端口从 0.0.0.0/0 出站流量。
+C. 配置数据库层的安全组以允许来自 Web 层安全组的端口 1433 上的入站流量。
+D. 配置数据库层的安全组以允许端口 443 和 1433 上的出站流量流向 Web 层的安全组。 E. 为数据库层配置安全组以允许来自 Web 层安全组的端口 443 和 1433 上的入站流量。
+答案.AC
+
+Q75.一家公司希望将多层应用程序从本地迁移到 AWS 云以提高应用程序的性能。该应用程序由通过 RESTful 服务相互通信 的应用程序层组成。当一层变得过载时，事务将被丢弃。解决方案架构师必须设计解决这些问题并使应用程序现代化的解决方案。 哪种解决方案满足这些要求并且是最高效的运营方式?
+A. 使用 Amazon API Gateway 并将事务定向到作为应用层的 AWS Lambda 函数。使用 Amazon Simple Queue Service (Amazon SQS) 作为应用程序服务之间的通信层。
+B. 使用 Amazon CloudWatch 指标分析应用程序性能历史记录以确定性能故障期间服务器的峰值利用率。增加应用程序服务器的 Amazon EC2 实例的大小以满足峰值要求。
+C. 使用 Amazon Simple Notification Service (Amazon SNS) 处理在 Auto Scaling 组中的 Amazon EC2 上运行的应用程序服务器之间 的消息传递。使用 Amazon CloudWatch 监控 SNS 队列长度并根据需要扩大和缩小规模。
+D. 使用 Amazon Simple Queue Service (Amazon SQS) 处理在 Auto Scaling 组中的 Amazon EC2 上运行的应用程序服务器之间的消息 传递。使用 Amazon CloudWatch 监控 SQS 队列长度并在检测到通信故障时扩大规模。
+答案.A
+
+Q76.一家公司每天从一家工厂的多台机器接收 10 TB 的仪表数据。数据由存储在工厂内部数据中心的存储区域网络 (SAN) 上 的 JSON 文件组成。该公司希望将此数据发送到 Amazon S3，供其他几个提供关键的近实时分析的系统访问。安全传输很重要，因为数据 被认为是敏感的。哪种解决方案提供最可靠的数据传输?
+A. 公共互联网上的 AWS DataSync
+B. 通过 AWS Direct Connect 的 AWS DataSync
+C. 公共互联网上的 AWS Database Migration Service (AWS DMS)
+D. 通过 AWS Direct Connect 的 AWS Database Migration Service (AWS DMS)
+答案.B
+
+Q77.公司需要为其应用程序配置实时数据摄取架构。公司需要一个 API，一个在数据流式传输时转换数据的过程，以及 一个数据存储解决方案。哪种解决方案能够以最少的运营开销满足这些要求?
+A. 部署 Amazon EC2 实例以托管将数据发送到 Amazon Kinesis 数据流的 API。创建使用 Kinesis 数据流作为数据源的 Amazon Kinesis Data Firehose 传输流。使用 AWS Lambda 函数转换数据。使用 Kinesis Data Firehose 传输流将数据发送到 Amazon S3。
+B. 部署一个 Amazon EC2 实例来托管一个将数据发送到 AWS Glue 的 API。停止对 EC2 实例的源/目标检查。使用 AWS Glue 转换数 据并将数据发送到 Amazon S3。
+C. 配置 Amazon API Gateway API 以将数据发送到 Amazon Kinesis 数据流。创建使用 Kinesis 数据流作为数据源的 Amazon Kinesis Data Firehose 传输流。使用 AWS Lambda 函数转换数据。使用 Kinesis Data Firehose 传输流将数据发送到 Amazon S3。
+D. 配置 Amazon API Gateway API 以将数据发送到 AWS Glue。使用 AWS Lambda 函数转换数据。使用 AWS Glue 将数据发送到 Amazon S3。
+答案.C
+
+Q78.一家公司需要将用户交易数据保存在 Amazon DynamoDB 表中。公司必须将数据保留 7 年。满足这些要求的最有效的运营解决方案是什么?
+A. 使用 DynamoDB 时间点恢复来连续备份表。
+B. 使用 AWS Backup 为表创建备份计划和保留策略。
+C. 使用 DynamoDB 控制台创建表的按需备份。将备份存储在 Amazon S3 存储桶中。为 S3 存储桶设置 S3 生命周期配置。
+D. 创建一个 Amazon EventBridge (Amazon CloudWatch Events) 规则来调用 AWS Lambda 函数。配置 Lambda 函数以备份表并将备 份存储在 Amazon S3 存储桶中。为 S3 存储桶设置 S3 生命周期配置。
+答案.B
+
+Q79.一家公司计划使用 Amazon DynamoDB 表进行数据存储。公司关注成本优化。大多数早晨不会使用这张桌子。在晚上， 读写流量往往不可预测。当出现流量高峰时，它们会很快发生。解决方案架构师应该推荐什么?
+A. 在按需容量模式下创建 DynamoDB 表。
+B. 创建一个带有全局二级索引的 DynamoDB 表。
+C. 创建一个具有配置容量和自动缩放的 DynamoDB 表。
+D. 以预配置容量模式创建 DynamoDB 表，并将其配置为全局表。
+答案.A
+
+Q80.一家公司最近与 AWS 托管服务提供商 (MSP) 合作伙伴签署了一份合同，以帮助实施应用程序迁移计划。解决方案架构 师需要与 MSP 合作伙伴的 AWS 账户共享现有 AWS 账户中的 Amazon 系统映像 (AMI)。AMI 由 Amazon Elastic Block Store (Amazon EBS) 提供支持，并使用 AWS Key Management Service (AWS KMS) 客户管理的密钥来加密 EBS 卷快照。解决方案架构师与 MSP 合作伙伴的 AWS 账户共享 AMI 的最安全方式是什么?
+A. 使加密的 AMI 和快照公开可用。修改密钥策略以允许 MSP 合作伙伴的 AWS 账户使用该密钥。
+B. 修改 AMI 的 launchPermission 属性。仅与 MSP 合作伙伴的 AWS 账户共享 AMI。修改密钥策略以允许 MSP 合作伙伴的 AWS 账 户使用该密钥。
+C. 修改 AMI 的 launchPermission 属性。仅与 MSP 合作伙伴的 AWS 账户共享 AMI。修改密钥策略以信任 MSP 合作伙伴拥有的新 KMS 密钥进行加密。
+D. 将 AMI 从源账户导出到 MSP 合作伙伴的 AWS 账户中的 Amazon S3 存储桶，使用 MSP 合作伙伴拥有的新 KMS 密钥加密 S3 存储 桶。在 MSP 合作伙伴的 AWS 账户中复制并启动 AMI。
+答案.B
+
+Q81.解决方案架构师正在为部署在 AWS 上的新应用程序设计云架构。该过程应并行运行，同时根据要处理的作业数量根据 需要添加和删除应用程序节点。处理器应用程序是无状态的。解决方案架构师必须确保应用程序是松散耦合的并且持久存储作业项。 解决方案架构师应该使用哪种设计?
+A. 创建一个 Amazon SNS 主题来发送需要处理的作业。创建包含处理器应用程序的 Amazon 系统映像 (AMI)。创建使用 AMI 的启动 配置。使用启动配置创建 Auto Scaling 组。为 Auto Scaling 组设置扩展策略，根据 CPU 使用率添加和删除节点。
+B. 创建一个 Amazon SQS 队列来保存需要处理的作业。创建包含处理器应用程序的 Amazon 系统映像 (AMI)。创建使用 AMI 的启动 配置。使用启动配置创建 Auto Scaling 组。为 Auto Scaling 组设置扩展策略以根据网络使用情况添加和删除节点。
+C. 创建一个 Amazon SQS 队列来保存需要处理的作业。创建包含处理器应用程序的 Amazon 系统映像 (AMI)。创建使用 AMI 的启动 模板。使用启动模板创建 Auto Scaling 组。为 Auto Scaling 组设置扩展策略，以根据 SQS 队列中的项目数添加和删除节点。
+D. 创建一个 Amazon SNS 主题来发送需要处理的作业。创建包含处理器应用程序的 Amazon 系统映像 (AMI)。创建使用 AMI 的启动 模板。使用启动模板创建 Auto Scaling 组。为 Auto Scaling 组设置扩展策略，以根据发布到 SNS 主题的消息数添加和删除节点。
+答案.C
+
+Q82.一家公司在 AWS 云中托管其 Web 应用程序。该公司将 Elastic Load Balancer 配置为使用导入到 AWS Certificate Manager (ACM) 中的证书。必须在每个证书到期前 30 天通知公司的安全团队。解决方案架构师应该推荐什么来满足这个要求?
+A. 在 ACM 中添加一条规则，每天向 Amazon Simple Notification Service (Amazon SNS) 主题发布一条自定义消息，从任何证书到期 前 30 天开始。
+B. 创建一个 AWS Config 规则来检查将在 30 天内过期的证书。配置 Amazon EventBridge (Amazon CloudWatch Events) 以在 AWS Config 报告不合规资源时通过 Amazon Simple Notification Service (Amazon SNS) 调用自定义警报。
+C. 使用 AWS Trusted Advisor 检查将在 30 天内过期的证书。创建基于 Trusted Advisor 指标的 Amazon CloudWatch 警报以检查状态 更改。配置警报以通过 Amazon Simple Notification Service (Amazon SNS) 发送自定义警报。
+D. 创建一个 Amazon EventBridge (Amazon CloudWatch Events) 规则来检测任何将在 30 天内过期的证书。配置规则以调用 AWS Lambda 函数。配置 Lambda 函数以通过 Amazon Simple Notification Service (Amazon SNS) 发送自定义警报。
+答案.B
+
+Q83.一家公司的动态网站在美国使用本地服务器托管。该公司正在欧洲推出其产品，并希望为新的欧洲用户优化网站 加载时间。该网站的后端必须留在美国。该产品将在几天内推出，需要立即解决。解决方案架构师应该推荐什么?
+A. 在 us-east-1 中启动一个 Amazon EC2 实例并将站点迁移到它。
+B. 将网站移动到 Amazon S3。在区域之间使用跨区域复制。
+C. 将 Amazon CloudFront 与指向本地服务器的自定义源一起使用。
+D. 使用指向本地服务器的 Amazon Route 53 地理临近度路由策略。
+答案.C
+
+Q84.一家公司希望降低其现有三层 Web 架构的成本。Web、应用程序和数据库服务器在用于开发、测试和生产环境的 Amazon EC2 实例上运行。EC2 实例在高峰时段平均 CPU 利用率为 30%，在非高峰时段平均 CPU 利用率为 10%。生产 EC2 实例每天 24 小时运行。开发和测试 EC2 实例每天至少运行 8 小时。该公司计划实施自动化以在不使用时停止开发和测试 EC2 实例。哪种 EC2 实例购买解决方案能够最经济高效地满足公司的要求?
+A. 将 Spot 实例用于生产 EC2 实例。使用预留实例开发和测试 EC2 实例。
+B. 将预留实例用于生产 EC2 实例。使用按需实例开发和测试 EC2 实例。
+C. 将 Spot 块用于生产 EC2 实例。使用预留实例开发和测试 EC2 实例。
+D. 将按需实例用于生产 EC2 实例。将 Spot 块用于开发和测试 EC2 实例。
+答案.B
+
+Q85.一家公司有一个生产 Web 应用程序，用户可以在其中通过 Web 界面或移动应用程序上传文档。根据新的监管要求。新文 档存储后不能修改或删除。解决方案架构师应该怎么做才能满足此要求?
+A. 将上传的文档存储在启用了 S3 版本控制和 S3 对象锁定的 Amazon S3 存储桶中。
+B. 将上传的文档存储在 Amazon S3 存储桶中。配置 S3 生命周期策略以定期存档文档。
+C. 将上传的文档存储在启用了 S3 版本控制的 Amazon S3 存储桶中。配置 ACL 以将所有访问限制为只读。
+D. 将上传的文档存储在 Amazon Elastic File System (Amazon EFS) 卷上。通过以只读模式安装卷来访问数据。
+答案.A
+
+Q86.一家公司有多个 Web 服务器，需要频繁访问一个通用的 Amazon RDS MySQL 多可用区数据库实例。该公司需要 一种安全的方法让 Web 服务器连接到数据库，同时满足频繁轮换用户凭据的安全要求。哪个解决方案满足这些要求?
+A. 将数据库用户凭证存储在 AWS Secrets Manager 中。授予必要的 IAM 权限以允许 Web 服务器访问 AWS Secrets Manager。
+B. 将数据库用户凭证存储在 AWS Systems Manager OpsCenter 中。授予必要的 IAM 权限以允许 Web 服务器访问 OpsCenter。
+C. 将数据库用户凭证存储在安全的 Amazon S3 存储桶中。授予必要的 IAM 权限以允许 Web 服务器检索凭据和访问数据库。
+D. 将数据库用户凭证存储在 Web 服务器文件系统上使用 AWS Key Management Service (AWS KMS) 加密的文件中。Web 服务器应 该能够解密文件并访问数据库。
+答案.A
+
+Q87.一家公司在 AWS Lambda 函数上托管一个应用程序，该函数由 Amazon API Gateway API 调用。Lambda 函数将客户数 据保存到 Amazon Aurora MySQL 数据库中。每当公司升级数据库时，Lambda 函数都无法建立数据库连接，直到升级完成。结果是某些事 件的客户数据未被记录。解决方案架构师需要设计一个解决方案来存储在数据库升级期间创建的客户数据。哪种解决方案可以满足这些要求?
+A. 提供 Amazon RDS 代理以位于 Lambda 函数和数据库之间。配置 Lambda 函数以连接到 RDS 代理。
+B. 将 Lambda 函数的运行时间增加到最大值。在将客户数据存储在数据库中的代码中创建重试机制。
+C. 将客户数据保存到 Lambda 本地存储。配置新的 Lambda 函数扫描本地存储，将客户数据保存到数据库中。
+D. 将客户数据存储在 Amazon Simple Queue Service (Amazon SQS) FIFO 队列中。创建一个新的 Lambda 函数来轮询队列并将客户 数据存储在数据库中。
+答案.D
+
+Q88.一家调查公司多年来一直在美国地区收集数据。该公司将数据托管在一个大小为 3 TB 且还在不断增长的 Amazon S3 存储桶中。该公司已开始与一家拥有 S3 存储桶的欧洲营销公司共享数据。该公司希望确保其数据传输成本尽可能低。 哪种解决方案可以满足这些要求?
+A. 在公司的 S3 存储桶上配置请求者付款功能。
+B. 配置从公司的 S3 存储桶到营销公司的 S3 存储桶之一的 S3 跨区域复制。
+C. 为营销公司配置跨账户访问，使营销公司可以访问公司的S3存储桶。
+D. 配置公司的S3 bucket使用S3 Intelligent-Tiering。将 S3 存储桶同步到营销公司的 S3 存储桶之一。
+答案.B
+
+Q89.一家公司使用 Amazon S3 来存储其机密审计文档。S3 存储桶使用存储桶策略根据最小权限原则限制对审计团队 IAM 用户凭证的访问。公司管理者担心S3存储桶中的文档被误删，希望有更安全的解决方案。解决方案架构师应该如何保护审计文档?
+A. 在 S3 存储桶上启用版本控制和 MFA 删除功能。
+B. 对每个审计团队 IAM 用户帐户的 IAM 用户凭证启用多因素身份验证 (MFA)。
+C. 将 S3 生命周期策略添加到审计团队的 IAM 用户帐户，以在审计期间拒绝 s3:DeleteObject 操作。
+D. 使用 AWS 密钥管理服务 (AWS KMS) 加密 S3 存储桶并限制审计团队 IAM 用户帐户访问 KMS 密钥。
+答案.A
+
+Q90.一家公司正在使用 SQL 数据库来存储可公开访问的电影数据。该数据库在 Amazon RDS 单可用区数据库实例上运行。脚 本每天以随机间隔运行查询，以记录已添加到数据库中的新电影的数量。该脚本必须在工作时间内报告最终总数。 该公司的开发团队注意到脚本运行时数据库性能不足以完成开发任务。解决方案架构师必须推荐解决此问题的解决方案。 哪种解决方案能够以最少的运营开销满足此要求?
+A. 将数据库实例修改为多可用区部署。
+B. 创建数据库的只读副本。配置脚本以仅查询只读副本。
+C. 指示开发团队在每天结束时手动导出数据库中的条目。
+D. 使用 Amazon ElastiCache 缓存脚本针对数据库运行的常见查询。
+答案.B
+
+Q91.一家公司的应用程序在 VPC 中的 Amazon EC2 实例上运行。其中一个应用程序需要调用 Amazon S3 API 来存储 和读取对象。根据公司的安全规定，不允许来自应用程序的流量通过互联网传输。哪种解决方案可以满足这些要求?
+A. 配置 S3 网关端点。
+B. 在私有子网中创建 S3 存储桶。
+C. 在与 EC2 实例相同的 AWS 区域中创建一个 S3 存储桶。
+D. 在与 EC2 实例相同的子网中配置 NAT 网关。
+答案.A
+
+Q92.一家公司将敏感的用户信息存储在 Amazon S3 存储桶中。该公司希望从在 VPC 内的 Amazon EC2 实例上运行的应用程 序层提供对该存储桶的安全访问。解决方案架构师应该采取哪些步骤组合来实现这一目标?(选择两项。)
+A. 在 VPC 内为 Amazon S3 配置 VPC 网关端点。
+B. 创建存储桶策略，使 S3 存储桶中的对象公开。
+C. 创建一个桶策略，将访问限制为仅在 VPC 中运行的应用程序层。
+D. 使用 S3 访问策略创建 IAM 用户并将 IAM 凭证复制到 EC2 实例。 E. 创建一个 NAT 实例并让 EC2 实例使用 NAT 实例访问 S3 存储桶。
+答案.AC
+
+Q93.一家公司运行一个由 MySQL 数据库提供支持的本地应用程序。该公司正在将该应用程序迁移到 AWS，以提高应 用程序的弹性和可用性。当前架构在正常操作期间显示数据库上的大量读取活动。每隔 4 小时，公司的开发团队就会提取生产数据库的完整导出，以填充暂存环境 中的数据库。在此期间，用户会遇到不可接受的应用程序延迟。在过程完成之前，开发团队无法使用暂存环境。 解决方案架构师必须推荐可减轻应用程序延迟问题的替代架构。替换架构还必须让开发团队能够毫不拖延地继续使用暂存环境。 哪个解决方案满足这些要求?
+A. 使用 Amazon Aurora MySQL 和多可用区 Aurora 副本进行生产。通过实施使用 mysqldump 实用程序的备份和恢复过程来填充登 台数据库。
+B. 使用 Amazon Aurora MySQL 和多可用区 Aurora 副本进行生产。使用数据库克隆按需创建登台数据库。
+C. 将 Amazon RDS for MySQL 与多可用区部署和只读副本用于生产。将备用实例用于暂存数据库。
+D. 将 Amazon RDS for MySQL 与多可用区部署和只读副本用于生产。通过实施使用 mysqldump 实用程序的备份和恢复过程来填充登 台数据库。
+答案.B
+
+Q94.一家公司正在设计一个应用程序，用户可以在其中将小文件上传到 Amazon S3。用户上传文件后，需要对文件进 行一次性简单处理，将数据转化为JSON格式，以供后续分析。 每个文件在上传后必须尽快处理。需求会有所不同。在某些日子里，用户会上传大量文件。在其他日子里，用户会上传一些文件或没有文 件。哪种解决方案以最少的运营开销满足这些要求?
+A. 配置 Amazon EMR 以从 Amazon S3 读取文本文件。运行处理脚本来转换数据。将生成的 JSON 文件存储在 Amazon Aurora 数据 库集群中。
+B. 配置 Amazon S3 以将事件通知发送到 Amazon Simple Queue Service (Amazon SQS) 队列。使用 Amazon EC2 实例从队列中读取 并处理数据。将生成的 JSON 文件存储在 Amazon DynamoDB 中。
+C. 配置 Amazon S3 以将事件通知发送到 Amazon Simple Queue Service (Amazon SQS) 队列。使用 AWS Lambda 函数从队列中读取 并处理数据。将生成的 JSON 文件存储在 Amazon DynamoDB 中。
+D. 配置 Amazon EventBridge (Amazon CloudWatch Events) 以在上传新文件时向 Amazon Kinesis Data Streams 发送事件。使用 AWS Lambda 函数使用流中的事件并处理数据。将生成的 JSON 文件存储在 Amazon Aurora 数据库集群中。
+答案.C
+
+Q95.一个应用程序允许公司总部的用户访问产品数据。产品数据存储在 Amazon RDS MySQL 数据库实例中。运营团 队已隔离应用程序性能下降，并希望将读取流量与写入流量分开。解决方案架构师需要快速优化应用程序的性能。 解决方案架构师应该推荐什么?
+A. 将现有数据库更改为多可用区部署。服务来自主要可用区的读取请求。
+B. 将现有数据库更改为多可用区部署。服务来自辅助可用区的读取请求。
+C. 为数据库创建只读副本。配置具有一半计算和存储资源的只读副本作为源数据库。
+D. 为数据库创建只读副本。使用与源数据库相同的计算和存储资源配置只读副本。
+答案.D
+
+Q96.Amazon EC2 管理员创建了以下与包含多个用户的 IAM 组相关联的策略:此策略有何作用?
+A. 用户可以在除 us-east-1 之外的任何 AWS 区域终止 EC2 实例。
+B. 用户可以在 us-east-1 区域终止 IP 地址为 10.100.100.1 的 EC2 实例。
+C. 当用户的源IP为10.100.100.254时，用户可以终止us-east-1 Region中的EC2实例。
+D. 当用户的源IP为10.100.100.254时，用户无法终止us-east-1 Region中的EC2实例。
+答案.C
+
+Q97.一家公司有一个大型 Microsoft SharePoint 部署在本地运行，需要 Microsoft Windows 共享文件存储。该公司希望将此 工作负载迁移到 AWS 云，并正在考虑各种存储选项。存储解决方案必须具有高可用性并与 Active Directory 集成以实现访问控制。 哪种解决方案可以满足这些要求?
+A. 配置 Amazon EFS 存储并设置 Active Directory 域以进行身份验证。
+B. 在两个可用区中的 AWS Storage Gateway 文件网关上创建 SMB 文件共享。
+C. 创建一个 Amazon S3 存储桶并配置 Microsoft Windows Server 以将其装载为一个卷。
+D. 在 AWS 上创建 Amazon FSx for Windows File Server 文件系统并设置 Active Directory 域进行身份验证。
+答案.D
+
+Q98.一家图像处理公司有一个 Web 应用程序，用户可以使用它来上传图像。该应用程序将图像上传到 Amazon S3 存 储桶中。该公司已设置 S3 事件通知以将对象创建事件发布到 Amazon Simple Queue Service (Amazon SQS) 标准队列。SQS 队列用作处理 图像并通过电子邮件将结果发送给用户的 AWS Lambda 函数的事件源。 用户报告说，他们收到每张上传图片的多封电子邮件。解决方案架构师确定 SQS 消息不止一次调用 Lambda 函数，从而导致多封电子邮 件。解决方案架构师应该如何以最少的运营开销解决此问题?
+A. 通过将 ReceiveMessage 等待时间增加到 30 秒，在 SQS 队列中设置长轮询。
+B. 将 SQS 标准队列更改为 SQS FIFO 队列。使用消息去重 ID 丢弃重复的消息。
+C. 将 SQS 队列中的可见性超时增加到大于函数超时和批处理窗口超时的总和的值。
+D. 修改 Lambda 函数，在处理之前读取消息后立即从 SQS 队列中删除每条消息。
+答案.C
+
+Q99.一家公司正在为托管在本地数据中心的游戏应用程序实施共享存储解决方案。公司需要能够使用 Lustre 客户端访问数 据。该解决方案必须得到全面管理。哪个解决方案满足这些要求?
+A. 创建一个 AWS Storage Gateway 文件网关。创建使用所需客户端协议的文件共享。将应用程序服务器连接到文件共享。
+B. 创建一个 Amazon EC2 Windows 实例。在实例上安装和配置 Windows 文件共享角色。将应用程序服务器连接到文件共享。
+C. 创建一个 Amazon Elastic File System (Amazon EFS) 文件系统，并配置它以支持 Lustre。将文件系统附加到源服务器。将应用程 序服务器连接到文件系统。
+D. 创建一个 Amazon FSx for Lustre 文件系统。将文件系统附加到源服务器。将应用程序服务器连接到文件系统。
+答案.D
+
+Q100.一家公司的容器化应用程序在 Amazon EC2 实例上运行。该应用程序需要先下载安全证书，然后才能与其他业 务应用程序进行通信。该公司需要一种高度安全的解决方案来近乎实时地加密和解密证书。该解决方案还需要在数据加密后将数据存储在 高可用存储中。哪种解决方案能够以最少的运营开销满足这些要求?
+A. 为加密证书创建 AWS Secrets Manager 密钥。根据需要手动更新证书。使用细粒度 IAM 访问控制对数据的访问。
+B. 创建一个使用 Python 加密库接收和执行加密操作的 AWS Lambda 函数。将函数存储在 Amazon S3 存储桶中。
+C. 创建一个 AWS Key Management Service (AWS KMS) 客户管理的密钥。允许 EC2 角色使用 KMS 密钥进行加密操作。将加密数据 存储在 Amazon S3 上。
+D. 创建一个 AWS Key Management Service (AWS KMS) 客户管理的密钥。允许 EC2 角色使用 KMS 密钥进行加密操作。将加密数据 存储在 Amazon Elastic Block Store (Amazon EBS) 卷上。
+答案.C
+
+Q101.解决方案架构师正在设计具有公有子网和私有子网的 VPC。VPC 和子网使用 IPv4 CIDR 块。三个可用区 (AZ) 中 的每一个都有一个公有子网和一个私有子网，以实现高可用性。互联网网关用于为公共子网提供互联网访问。私有子网需要访问互联网以 允许 Amazon EC2 实例下载软件更新。解决方案架构师应该如何为私有子网启用 Internet 访问?
+A. 创建三个 NAT 网关，每个 AZ 中的每个公共子网一个。为每个 AZ 创建私有路由表，将非 VPC 流量转发到其 AZ 中的 NAT 网关。
+B. 创建三个 NAT 实例，每个 AZ 中的每个私有子网一个。为每个 AZ 创建私有路由表，将非 VPC 流量转发到其 AZ 中的 NAT 实例。
+C. 在其中一个私有子网上创建第二个互联网网关。更新将非 VPC 流量转发到私有互联网网关的私有子网的路由表。
+D. 在其中一个公共子网上创建一个仅出口互联网网关。更新将非 VPC 流量转发到仅出口 Internet 网关的私有子网的路由表。
+答案.A
+
+Q102.一家公司想要将本地数据中心迁移到 AWS。数据中心托管一个 SFTP 服务器，该服务器将其数据存储在基于 NFS 的文件系统上。服务器拥有 200 GB 的需要传输的数据。服务器必须托管在使用 Amazon Elastic File System (Amazon EFS) 文件系统 的 Amazon EC2 实例上。解决方案架构师应该采取哪些步骤组合来自动执行此任务?(选择两项。)
+A. 将 EC2 实例启动到与 EFS 文件系统相同的可用区。
+B. 在本地数据中心安装 AWS DataSync 代理。
+C. 在 EC2 实例上为数据创建辅助 Amazon Elastic Block Store (Amazon EBS) 卷。
+D. 手动使用操作系统复制命令将数据推送到 EC2 实例。
+E. 使用 AWS DataSync 为本地 SFTP 服务器创建合适的位置配置。
+答案.AB
+
+Q103.一家公司有一个 AWS Glue 提取、转换和加载 (ETL) 作业，每天在同一时间运行。该作业处理 Amazon S3 存储桶中的 XML 数据。每天都有新数据添加到 S3 存储桶中。解决方案架构师注意到 AWS Glue 在每次运行期间处理所有数据。 解决方案架构师应该如何防止 AWS Glue 重新处理旧数据?
+A. 编辑作业以使用作业书签。
+B. 数据处理完成后编辑作业删除数据。
+C. 通过将 NumberOfWorkers 字段设置为 1 来编辑作业。
+D. 使用 FindMatches 机器学习 (ML) 转换。
+答案.A
+
+Q104.解决方案架构师必须为网站设计高度可用的基础设施。该网站由在 Amazon EC2 实例上运行的 Windows Web 服 务器提供支持。解决方案架构师必须实施能够减轻源自数千个 IP 地址的大规模 DDoS 攻击的解决方案。网站不能接受停机时间。 解决方案架构师应采取哪些措施来保护网站免受此类攻击?(选择两项。)
+A. 使用 AWS Shield Advanced 来阻止 DDoS 攻击。
+B. 配置 Amazon GuardDuty 以自动阻止攻击者。
+C. 将网站配置为对静态和动态内容使用 Amazon CloudFront。
+D. 使用 AWS Lambda 函数自动将攻击者 IP 地址添加到 VPC 网络 ACL。
+E. 在 Auto Scaling 组中使用 EC2 Spot 实例，目标跟踪扩展策略设置为 80% CPU 使用率。
+答案.AC
+
+Q105.一家公司正准备部署新的无服务器工作负载。解决方案架构师必须使用最小特权原则来配置将用于运行 AWS Lambda 函数的权限。Amazon EventBridge (Amazon CloudWatch Events) 规则将调用该函数。哪个解决方案满足这些要求?
+A. 以 lambda:InvokeFunction 作为动作，以 * 作为委托人，向函数添加执行角色。
+B. 以 lambda:InvokeFunction 作为操作，以 Service: lambda.amazonaws.com 作为委托人，向函数添加执行角色。
+C. 将基于资源的策略添加到以 lambda:* 作为操作并以 Service: events.amazonaws.com 作为委托人的函数。
+D. 将基于资源的策略添加到以 lambda:InvokeFunction 作为操作并以 Service: events.amazonaws.com 作为委托人的函数。
+答案.D
+
+Q106.一家公司准备在 Amazon S3 中存储机密数据。出于合规性原因，数据必须在静态时加密。出于审计目的，必须 记录加密密钥的使用情况。钥匙必须每年轮换一次。哪种解决方案满足这些要求并且是最高效的运营方式?
+A. 使用客户提供的密钥的服务器端加密 (SSE-C)
+B. 使用 Amazon S3 托管密钥的服务器端加密 (SSE-S3)
+C. 使用 AWS KMS 密钥 (SSE-KMS) 手动轮换的服务器端加密
+D. 使用 AWS KMS 密钥 (SSE-KMS) 自动轮换的服务器端加密
+答案.D
+
+Q107.一家自行车共享公司正在开发一种多层架构，以在高峰时段跟踪其自行车的位置。该公司希望在其现有分析平台 中使用这些数据点。解决方案架构师必须确定最可行的多层选项来支持此架构。数据点必须可从 REST API 访问。 哪个操作满足存储和检索位置数据的这些要求?
+A. 将 Amazon Athena 与 Amazon S3 结合使用。
+B. 将 Amazon API Gateway 与 AWS Lambda 结合使用。
+C. 将 Amazon QuickSight 与 Amazon Redshift 结合使用。
+D. 将 Amazon API Gateway 与 Amazon Kinesis Data Analytics 结合使用。
+答案.D
+
+Q108.一家公司有一个汽车销售网站，该网站将其列表存储在 Amazon RDS 上的数据库中。出售汽车时，需要从网站 上删除列表，并且必须将数据发送到多个目标系统。解决方案架构师应该推荐哪种设计?
+A. 创建一个在 Amazon RDS 上的数据库更新时触发的 AWS Lambda 函数，以将信息发送到 Amazon Simple Queue Service (Amazon SQS) 队列供目标使用。
+B. 创建一个 AWS Lambda 函数，当 Amazon RDS 上的数据库更新时触发，以将信息发送到 Amazon Simple Queue Service (Amazon SQS) FIFO 队列供目标使用。
+C. 订阅一个 RDS 事件通知并发送一个 Amazon Simple Queue Service (Amazon SQS) 队列散开到多个 Amazon Simple Notification Service (Amazon SNS) 主题。使用 AWS Lambda 函数更新目标。
+D. 订阅一个 RDS 事件通知并发送一个 Amazon Simple Notification Service (Amazon SNS) 主题散开到多个 Amazon Simple Queue Service (Amazon SQS) 队列。使用 AWS Lambda 函数更新目标。
+答案.D
+
+Q109.一家公司需要将数据存储在 Amazon S3 中，并且必须防止数据被更改。公司希望上传到 Amazon S3 的新对象在 一段非特定的时间内保持不变，直到公司决定修改这些对象。只有公司 AWS 账户中的特定用户才具有 10 删除对象的能力。 解决方案架构师应该怎么做才能满足这些要求?
+A. 创建一个 S3 Glacier 保管库。对对象应用一次写入多次读取 (WORM) 保管库锁定策略。
+B. 创建启用 S3 对象锁定的 S3 存储桶。启用版本控制。设置 100 年的保留期。使用治理模式作为 S3 存储桶的新对象的默认保留模 式。
+C. 创建一个 S3 存储桶。使用 AWS CloudTrail 跟踪任何修改对象的 S3 API 事件。根据通知，从公司拥有的任何备份版本中恢复修改 后的对象。
+D. 创建启用 S3 对象锁定的 S3 存储桶。启用版本控制。为对象添加合法保留。在需要删除对象的用户的IAM策略中添加 s3:PutObjectLegalHold权限。
+答案.D
+
+Q110.一家社交媒体公司允许用户将图片上传到其网站。该网站在 Amazon EC2 实例上运行。在上传请求期间，网站将 图像调整为标准尺寸并将调整后的图像存储在 Amazon S3 中。用户对网站的上传请求速度缓慢。 公司需要降低应用程序内部的耦合度并提高网站性能。解决方案架构师必须设计最高效的图像上传流程。 解决方案架构师应该采取哪些行动组合来满足这些要求?(选择两项。)
+A. 配置应用程序以将图像上传到 S3 Glacier。
+B. 配置网络服务器将原始图像上传到 Amazon S3。
+C. 配置应用程序通过使用预先签名的 URL 将图像直接从每个用户的浏览器上传到 Amazon S3
+D. 配置 S3 事件通知以在上传图像时调用 AWS Lambda 函数。使用函数调整图像大小。
+E. 创建一个 Amazon EventBridge (Amazon CloudWatch Events) 规则，该规则按计划调用 AWS Lambda 函数以调整上传图像的大 小。
+答案.BD
+
+Q111. 一家公司最近将一个消息处理系统迁移到了 AWS。系统将消息接收到在 Amazon EC2 实例上运行的 ActiveMQ 队 列中。消息由运行在 Amazon EC2 上的消费者应用程序处理。消费者应用程序处理消息并将结果写入在 Amazon EC2 上运行的 MySQL 数 据库。该公司希望此应用程序具有高可用性和低操作复杂性。哪种架构提供最高的可用性?
+A. 将第二个 ActiveMQ 服务器添加到另一个可用区。在另一个可用区中添加一个额外的消费者 EC2 实例。将 MySQL 数据库复制到另 一个可用区。
+B. 将 Amazon MQ 与跨两个可用区配置的活动/备用代理一起使用。在另一个可用区中添加一个额外的消费者 EC2 实例。将 MySQL 数据库复制到另一个可用区。
+C. 将 Amazon MQ 与跨两个可用区配置的活动/备用代理一起使用。在另一个可用区中添加一个额外的消费者 EC2 实例。使用启用了 多可用区的 Amazon RDS for MySQL。
+D. 将 Amazon MQ 与跨两个可用区配置的活动/备用代理一起使用。为跨两个可用区的消费者 EC2 实例添加一个 Auto Scaling 组。使 用启用了多可用区的 Amazon RDS for MySQL。
+答案.D
+
+Q112.一家公司在处理传入请求的一组本地服务器上托管一个容器化的 Web 应用程序。请求的数量正在快速增长。本 地服务器无法处理增加的请求数。该公司希望以最少的代码更改和最少的开发工作将应用程序迁移到 AWS。 哪种解决方案能够以最少的运营开销满足这些要求?
+A. 在 Amazon Elastic Container Service (Amazon ECS) 上使用 AWS Fargate 来运行带有 Service Auto Scaling 的容器化 Web 应用程 序。使用 Application Load Balancer 分发传入请求。
+B. 使用两个 Amazon EC2 实例来托管容器化 Web 应用程序。使用 Application Load Balancer 分发传入请求。
+C. 将 AWS Lambda 与使用一种受支持语言的新代码结合使用。创建多个 Lambda 函数来支持负载。使用 Amazon API Gateway 作为 Lambda 函数的入口点。
+D. 使用 AWS ParallelCluster 等高性能计算 (HPC) 解决方案建立 HPC 集群，以适当的规模处理传入的请求。
+答案.A
+
+Q113.一家公司使用 50 TB 的数据进行报告。该公司希望将这些数据从本地迁移到 AWS。公司数据中心的自定义应用程序每周 运行一次数据转换作业。该公司计划暂停申请，直到数据传输完成，需要尽快开始传输过程。 数据中心没有任何可用的网络带宽来处理额外的工作负载。解决方案架构师必须传输数据并且必须配置转换作业以继续在 AWS 云中运行。 哪种解决方案能够以最少的运营开销满足这些要求?
+A. 使用 AWS DataSync 移动数据。使用 AWS Glue 创建自定义转换作业。
+B. 订购 AWS Snowcone 设备来移动数据。将转换应用程序部署到设备。
+C. 订购 AWS Snowball Edge Storage Optimized 设备。将数据复制到设备。使用 AWS Glue 创建自定义转换作业。
+D. 订购包含 Amazon EC2 计算的 AWS Snowball Edge Storage Optimized 设备。将数据复制到设备。在 AWS 上创建一个新的 EC2 实 例来运行转换应用程序。
+答案.C
+
+Q114.一家公司创建了一个图像分析应用程序，用户可以在其中上传照片并为他们的图像添加相框。用户上传图像和元数 据以指示他们想要将哪些相框添加到他们的图像中。该应用程序使用单个 Amazon EC2 实例和 Amazon DynamoDB 来存储元数据。 该应用程序变得越来越流行，用户数量也在增加。该公司预计并发用户的数量会根据一天中的时间和一周中的日期而有很大差异。公司必 须确保应用程序可以扩展以满足不断增长的用户群的需求。哪种解决方案满足这些要求?
+A. 使用 AWS Lambda 处理照片。将照片和元数据存储在 DynamoDB 中。
+B. 使用 Amazon Kinesis Data Firehose 处理照片并存储照片和元数据。
+C. 使用 AWS Lambda 处理照片。将照片存储在 Amazon S3 中。保留 DynamoDB 来存储元数据。
+D. 将 EC2 实例的数量增加到三个。使用预配置 IOPS SSD (io2) Amazon Elastic Block Store (Amazon EBS) 卷来存储照片和元数据。
+答案.C
+
+Q115.一家医疗记录公司在 Amazon EC2 实例上托管一个应用程序。该应用程序处理存储在 Amazon S3 上的客户数据 文件。EC2 实例托管在公共子网中。EC2 实例通过互联网访问 Amazon S3，但它们不需要任何其他网络访问。 一项新要求要求用于文件传输的网络流量采用专用路由，而不是通过互联网发送。 解决方案架构师应该建议对网络架构进行哪些更改才能满足此要求?
+A. 创建一个 NAT 网关。为公共子网配置路由表以通过 NAT 网关将流量发送到 Amazon S3。
+B. 为 EC2 实例配置安全组以限制出站流量，以便只允许到 S3 前缀列表的流量。
+C. 将 EC2 实例移动到私有子网。为 Amazon S3 创建一个 VPC 终端节点，并将该终端节点链接到私有子网的路由表。
+D. 从 VPC 中删除互联网网关。设置 AWS Direct Connect 连接，并通过 Direct Connect 连接将流量路由到 Amazon S3。
+答案.C
+
+Q116.一家公司为其公司网站使用流行的内容管理系统 (CMS)。然而，所需的修补和维护是繁重的。公司正在重新设计 其网站并需要新的解决方案。该网站每年更新四次，不需要有任何可用的动态内容。该解决方案必须提供高可扩展性和增强的安全性。 哪些更改组合将以最少的运营开销满足这些要求?(选择两项。)
+A. 在网站前面配置 Amazon CloudFront 以使用 HTTPS 功能。
+B. 在网站前面部署一个AWS WAF web ACL，提供HTTPS功能。
+C. 创建和部署 AWS Lambda 函数来管理和提供网站内容。
+D. 创建新网站和一个 Amazon S3 存储桶。在启用静态网站托管的情况下将网站部署在 S3 存储桶上。
+E. 创建新网站。使用 Application Load Balancer 后面的 Amazon EC2 实例的 Auto Scaling 组部署网站。
+答案.AD
+
+Q117.一家公司将其应用程序日志存储在 Amazon CloudWatch Logs 日志组中。一项新政策要求公司将所有应用程序日志近乎 实时地存储在 Amazon OpenSearch Service (Amazon Elasticsearch Service) 中。哪种解决方案能够以最少的运营开销满足此要求?
+A. 配置 CloudWatch Logs 订阅以将日志流式传输到 Amazon OpenSearch Service (Amazon Elasticsearch Service)。
+B. 创建一个 AWS Lambda 函数。使用日志组调用函数将日志写入 Amazon OpenSearch Service (Amazon Elasticsearch Service)。
+C. 创建 Amazon Kinesis Data Firehose 传输流。将日志组配置为传输流源。将 Amazon OpenSearch Service (Amazon Elasticsearch Service) 配置为传输流的目的地。
+D. 在每个应用程序服务器上安装和配置 Amazon Kinesis Agent，以将日志传送到 Amazon Kinesis Data Streams。配置 Kinesis Data Streams 以将日志传送到 Amazon OpenSearch Service (Amazon Elasticsearch Service)。
+答案.A
+
+Q118.一家公司正在构建一个基于 Web 的应用程序，该应用程序在多个可用区的 Amazon EC2 实例上运行。Web 应用程序将 提供对总大小约为 900 TB 的文本文档存储库的访问。该公司预计 Web 应用程序将经历高需求时期。解决方案架构师必须确保文本文档的 存储组件可以随时扩展以满足应用程序的需求。该公司关注解决方案的总体成本。哪种存储解决方案能够最经济高效地满足这些要求?
+A. Amazon Elastic Block Store (Amazon EBS)
+B. 亚马逊弹性文件系统(Amazon EFS)
+C. 亚马逊开放搜索服务(Amazon Elasticsearch Service)
+D. 亚马逊 S3
+答案.D
+
+Q119.一家跨国公司正在使用 Amazon API Gateway 为其在 us-east-1 区域和 ap-southeast-2 区域的忠诚度俱乐部用户设计 REST API。解决方案架构师必须设计一个解决方案来保护这些跨多个帐户的 API 网关管理的 REST API 免受 SQL 注入和跨站点脚本攻击。 哪种解决方案能够以最少的管理工作量满足这些要求?
+A. 在两个区域中设置 AWS WAF。将区域 Web ACL 与 API 阶段相关联。
+B. 在两个区域中设置 AWS Firewall Manager。集中配置 AWS WAF 规则。
+C. 在 bath 区域设置 AWS Shield。将区域 Web ACL 与 API 阶段相关联。
+D. 在其中一个区域设置 AWS Shield。将区域 Web ACL 与 API 阶段相关联。
+答案.B
+
+Q120.一家公司在 us-west-2 区域的网络负载均衡器 (NLB) 后面的三个 Amazon EC2 实例上实施了自我管理的 DNS 解决方 案。公司的大部分用户位于美国和欧洲。该公司希望提高解决方案的性能和可用性。该公司在 eu-west-1 区域启动并配置了三个 EC2 实 例，并将这些 EC2 实例添加为新 NLB 的目标。公司可以使用哪种解决方案将流量路由到所有 EC2 实例?
+A. 创建一个 Amazon Route 53 地理定位路由策略以将请求路由到两个 NLB 之一。创建 Amazon CloudFront 分配。使用 Route 53 记 录作为分发的来源。
+B. 在 AWS Global Accelerator 中创建标准加速器。在 us-west-2 和 eu-west-1 中创建端点组。添加两个 NLB 作为端点组的端点。
+C. 将弹性 IP 地址附加到六个 EC2 实例。创建 Amazon Route 53 地理定位路由策略以将请求路由到六个 EC2 实例之一。创建 Amazon CloudFront 分配。使用 Route 53 记录作为分发的来源。
+D. 用两个应用程序负载均衡器 (ALB) 替换两个 NLB。创建 Amazon Route 53 延迟路由策略以将请求路由到两个 ALB 之一。创建 Amazon CloudFront 分配。使用 Route 53 记录作为分发的来源。
+答案.B
+
+Q121.一家公司正在 AWS 上运行在线事务处理 (OLTP) 工作负载。此工作负载在多可用区部署中使用未加密的 Amazon RDS 数据库实例。每日数据库快照是从此实例中获取的。解决方案架构师应该怎么做才能确保数据库和快照始终加密?
+A. 加密最新数据库快照的副本。通过恢复加密的快照替换现有的数据库实例。
+B. 创建一个新的加密 Amazon Elastic Block Store (Amazon EBS) 卷并将快照复制到它。在数据库实例上启用加密。
+C. 复制快照并使用 AWS Key Management Service (AWS KMS) 启用加密将加密的快照还原到现有数据库实例。
+D. 将快照复制到使用服务器端加密和 AWS Key Management Service (AWS KMS) 托管密钥 (SSE-KMS) 加密的 Amazon S3 存储桶。
+答案.A
+
+Q122.一家公司想要构建一个可扩展的密钥管理基础架构，以支持需要在其应用程序中加密数据的开发人员。解决方案架构师应该怎么做才能减轻运营负担?
+A. 使用多重身份验证 (MFA) 来保护加密密钥。
+B. 使用 AWS Key Management Service (AWS KMS) 来保护加密密钥。
+C. 使用 AWS Certificate Manager (ACM) 创建、存储和分配加密密钥。
+D. 使用 IAM 策略限制具有访问权限的用户范围以保护加密密钥。
+答案.B
+
+Q123.一家公司在两个 Amazon EC2 实例上托管了一个动态 Web 应用程序。公司有自己的SSL证书，在每个实例上执 行SSL终止。最近流量有所增加，运营团队确定 SSL 加密和解密导致 Web 服务器的计算能力达到其最大限制。 解决方案架构师应该如何提高应用程序的性能?
+A. 使用 AWS Certificate Manager (ACM) 创建新的 SSL 证书。在每个实例上安装 ACM 证书。
+B. 创建 Amazon S3 存储桶将 SSL 证书迁移到 S3 存储桶。配置 EC2 实例以引用用于 SSL 终止的存储桶。
+C. 创建另一个 EC2 实例作为代理服务器。将 SSL 证书迁移到新实例并将其配置为直接连接到现有 EC2 实例。
+D. 将 SSL 证书导入 AWS Certificate Manager (ACM)。使用来自 ACM 的 SSL 证书的 HTTPS 侦听器创建应用程序负载均衡器。
+答案.D
+
+Q124.一家公司有一个高度动态的批处理作业，它使用许多 Amazon EC2 实例来完成它。该作业本质上是无状态的，可 以在任何给定时间启动和停止而不会产生负面影响，通常总共需要 60 分钟以上才能完成。该公司已要求解决方案架构师设计满足工作要求 的可扩展且具有成本效益的解决方案。解决方案架构师应该推荐什么?
+A. 实施 EC2 Spot 实例。
+B. 购买 EC2 预留实例。
+C. 实施 EC2 按需实例。
+D. 在 AWS Lambda 上实施处理。
+答案.A
+
+Q125.一家公司在 AWS 上运行其两层电子商务网站。Web 层包含一个将流量发送到 Amazon EC2 实例的负载均衡器。数据 库层使用 Amazon RDS 数据库实例。EC2 实例和 RDS 数据库实例不应暴露于公共互联网。EC2 实例需要 Internet 访问才能通过第三方 Web 服务完成订单的支付处理。应用程序必须具有高可用性。哪种配置选项组合可以满足这些要求?(选择两项。)
+A. 使用 Auto Scaling 组在私有子网中启动 EC2 实例。在私有子网中部署 RDS 多可用区数据库实例。
+B. 跨两个可用区配置一个具有两个私有子网和两个 NAT 网关的 VPC。在私有子网中部署应用程序负载均衡器。
+C. 使用 Auto Scaling 组在两个可用区的公共子网中启动 EC2 实例。在私有子网中部署 RDS 多可用区数据库实例。
+D. 跨两个可用区配置一个具有一个公有子网、一个私有子网和两个 NAT 网关的 VPC。在公共子网中部署应用程序负载均衡器。 D. 跨两个可用区配置一个具有两个公有子网、两个私有子网和两个 NAT 网关的 VPC。在公共子网中部署应用程序负载均衡器。
+答案.AE
+
+Q126.解决方案架构师需要实施解决方案来降低公司的存储成本。公司的所有数据都在 Amazon S3 标准存储类中。公 司必须将所有数据保存至少 25 年。最近 2 年的数据必须高度可用且可立即检索。哪种解决方案可以满足这些要求?
+A. 设置 S3 生命周期策略以立即将对象转换到 S3 Glacier Deep Archive。
+B. 设置 S3 生命周期策略以在 2 年后将对象转换到 S3 Glacier Deep Archive。
+C. 使用 S3 智能分层。激活存档选项以确保数据存档在 S3 Glacier Deep Archive 中。
+D. 设置 S3 生命周期策略以立即将对象转换为 S3 One Zone-Infrequent Access (S3 One Zone-IA)，并在 2 年后转换为 S3 Glacier Deep Archive。
+答案.B
+
+Q127.一家媒体公司正在评估将其系统迁移到 AWS 云的可能性。公司需要至少 10 TB 的存储空间和最大可能的 I/O 性 能用于视频处理，300 TB 的非常耐用的存储空间用于存储媒体内容，以及 900 TB 的存储空间以满足不再使用的归档媒体的要求。 解决方案架构师应该推荐哪一组服务来满足这些要求?
+A. Amazon EBS 用于最高性能，Amazon S3 用于持久数据存储，Amazon S3 Glacier 用于存档存储
+B. 用于最高性能的 Amazon EBS、用于持久数据存储的 Amazon EFS 和用于存档存储的 Amazon S3 Glacier
+C. 用于实现最佳性能的 Amazon EC2 实例存储、用于持久数据存储的 Amazon EFS 以及用于存档存储的 Amazon S3
+D. Amazon EC2 实例存储以获得最佳性能，Amazon S3 用于持久数据存储，Amazon S3 Glacier 用于归档存储
+答案.D
+
+Q128.一家公司想要在 AWS 云中的容器中运行应用程序。这些应用程序是无状态的，可以容忍底层基础设施内的中 断。公司需要一种能够最大限度地降低成本和运营开销的解决方案。解决方案架构师应该怎么做才能满足这些要求?
+A. 使用 Amazon EC2 Auto Scaling 组中的 Spot 实例来运行应用程序容器。
+B. 在 Amazon Elastic Kubernetes Service (Amazon EKS) 托管节点组中使用 Spot 实例。
+C. 使用 Amazon EC2 Auto Scaling 组中的按需实例来运行应用程序容器。
+D. 在 Amazon Elastic Kubernetes Service (Amazon EKS) 托管节点组中使用按需实例。
+答案.B
+
+Q129.一家公司正在本地运行一个多层 Web 应用程序。Web 应用程序是容器化的，并在许多连接到包含用户记录的 PostgreSQL 数据库的 Linux 主机上运行。维护基础设施和容量规划的运营开销限制了公司的发展。解决方案架构师必须改进应用程序的基 础架构。解决方案架构师应该采取哪些行动组合来实现这一目标?(选择两项。)
+A. 将 PostgreSQL 数据库迁移到 Amazon Aurora。
+B. 迁移要托管在 Amazon EC2 实例上的 Web 应用程序。
+C. 为 Web 应用程序内容设置 Amazon CloudFront 分发。
+D. 在 Web 应用程序和 PostgreSQL 数据库之间设置 Amazon ElastiCache。
+E. 使用 Amazon Elastic Container Service (Amazon ECS) 迁移要托管在 AWS Fargate 上的 Web 应用程序。
+答案.AE
+
+Q130.应用程序在跨多个 Availability Zonas 的 Amazon EC2 实例上运行。这些实例在 Application Load Balancer 后面 的 Amazon EC2 Auto Scaling 组中运行。当 EC2 实例的 CPU 使用率达到或接近 40% 时，应用程序性能最佳。 解决方案架构师应该怎么做才能在组中的所有实例中保持所需的性能?
+A. 使用简单的扩展策略来动态扩展 Auto Scaling 组。
+B. 使用目标跟踪策略动态扩展 Auto Scaling 组。
+C. 使用 AWS Lambda 函数更新所需的 Auto Scaling 组容量。
+D. 使用计划的扩展操作来扩展和缩减 Auto Scaling 组。
+答案.B
+
+Q131.一家公司正在开发一个文件共享应用程序，该应用程序将使用 Amazon S3 存储桶进行存储。该公司希望通过 Amazon CloudFront 分发提供所有文件。该公司不希望通过直接导航到 S3 URL 来访问这些文件。 解决方案架构师应该怎么做才能满足这些要求?
+A. 为每个 S3 存储桶编写单独的策略以仅授予 CloudFront 访问的读取权限。
+B. 创建一个 IAM 用户。授予用户对 S3 存储桶中对象的读取权限。将用户分配给 CloudFront。
+C. 编写一个 S3 存储桶策略，将 CloudFront 分配 ID 分配为委托人，并将目标 S3 存储桶分配为亚马逊资源名称 (ARN)。
+D. 创建原始访问身份 (OAI)。将 OAI 分配给 CloudFront 分配。配置S3 bucket权限，只有OAI有读权限。
+答案.D
+
+Q132.一家公司的网站为用户提供可下载的历史绩效报告。该网站需要一个能够扩展以满足全球公司网站需求的解决方 案。该解决方案应该具有成本效益，限制基础设施资源的配置，并提供尽可能快的响应时间。 解决方案架构师应该推荐哪种组合来满足这些要求?
+A. Amazon CloudFront 和 Amazon S3
+B. AWS Lambda 和 Amazon DynamoDB
+C. 带有 Amazon EC2 Auto Scaling 的应用程序负载均衡器
+D. 带有内部应用程序负载均衡器的 Amazon Route 53
+答案.A
+
+Q133.一家公司在本地运行 Oracle 数据库。作为公司向 AWS 迁移的一部分，公司希望将数据库升级到最新的可用版本。公司 还想为数据库设置灾难恢复 (DR)。公司需要最大限度地减少正常操作和 DR 设置的操作开销。公司还需要维护对数据库底层操作系统的访 问。哪种解决方案可以满足这些要求?
+A. 将 Oracle 数据库迁移到 Amazon EC2 实例。设置到不同 AWS 区域的数据库复制。
+B. 将 Oracle 数据库迁移到 Amazon RDS for Oracle。激活跨区域自动备份以将快照复制到另一个 AWS 区域。
+C. 将 Oracle 数据库迁移到 Amazon RDS Custom for Oracle。在另一个 AWS 区域中为数据库创建只读副本。
+D. 将 Oracle 数据库迁移到 Amazon RDS for Oracle。在另一个可用区中创建备用数据库。
+答案.C
+
+Q134.一家公司希望将其应用程序迁移到无服务器解决方案。无服务器解决方案需要使用 SL 来分析现有数据和新数 据。该公司将数据存储在 Amazon S3 存储桶中。数据需要加密并且必须复制到不同的 AWS 区域。 哪种解决方案能够以最少的运营开销满足这些要求?
+A. 创建一个新的 S3 存储桶。将数据加载到新的 S3 存储桶中。使用 S3 跨区域复制 (CRR) 将加密对象复制到另一个区域中的 S3 存储 桶。将服务器端加密与 AWS KMS 多区域密钥 (SSE-KMS) 结合使用。使用 Amazon Athena 查询数据。
+B. 创建一个新的 S3 存储桶。将数据加载到新的 S3 存储桶中。使用 S3 跨区域复制 (CRR) 将加密对象复制到另一个区域中的 S3 存储 桶。通过 AWS KMS 多区域密钥 (SSE-KMS) 使用服务器端加密。使用 Amazon RDS 查询数据。
+C. 将数据加载到现有的 S3 存储桶中。使用 S3 跨区域复制 (CRR) 将加密对象复制到另一个区域中的 S3 存储桶。通过 Amazon S3 托 管加密密钥 (SSE-S3) 使用服务器端加密。使用 Amazon Athena 查询数据。
+D. 将数据加载到现有的 S3 存储桶中。使用 S3 跨区域复制 (CRR) 将加密对象复制到另一个区域中的 S3 存储桶。通过 Amazon S3 托 管加密密钥 (SSE-S3) 使用服务器端加密。使用 Amazon RDS 查询数据。
+答案.C
+
+Q135.一家公司在 AWS 上运行工作负载。公司需要连接到来自外部提供商的服务。该服务托管在提供商的 VPC 中。据该公司 的安全团队称，连接必须是私有的，并且必须仅限于目标服务。连接只能从公司的 VPC 发起。哪种解决方案将满足这些要求?
+A. 在公司的 VPC 和提供商的 VPC 之间创建 VPC 对等连接。更新路由表以连接到目标服务。
+B. 要求提供商在其 VPC 中创建一个虚拟专用网关。使用 AWS PrivateLink 连接到目标服务。
+C. 在公司VP的公共子网中创建NAT网关更新路由表以连接到目标服务。
+D. 要求提供商为目标服务创建一个 VPC 端点。使用 AWS PrivateLink 连接到目标服务。
+答案.D
+
+Q136.一家公司正在将其本地 PostgreSQL 数据库迁移到 Amazon Aurora PostgreSQL。在迁移过程中，本地数据库必须保持 在线且可访问。Aurora 数据库必须与本地数据库保持同步。解决方案架构师必须采取哪些行动组合才能满足这些要求?(选择两项。)
+A. 创建一个正在进行的复制任务。
+B. 创建本地数据库的数据库备份。
+C. 创建一个 AWS Database Migration Service (AWS DMS) 复制服务器。
+D. 使用 AWS Schema Conversion Tool (AWS SCT) 转换数据库架构。
+E. 创建一个 Amazon EventBridge (Amazon CloudWatch Events) 规则来监控数据库同步。
+答案.AC
+
+Q137.一家公司使用 AWS Organizations 为每个业务部门创建专用的 AWS 账户，以便根据要求独立管理每个业务部门的账 户。根电子邮件收件人错过了发送到一个帐户的根用户电子邮件地址的通知。该公司希望确保不会错过所有未来的通知。以后的通知必须 仅限于帐户管理员。哪种解决方案可以满足这些要求?
+A. 配置公司的电子邮件服务器，将发送到 AWS 账户根用户电子邮件地址的通知电子邮件消息转发给组织中的所有用户。
+B. 将所有 AWS 账户根用户电子邮件地址配置为分发列表，发送给少数可以响应警报的管理员。在 AWS Organizations 控制台中或以 编程方式配置 AWS 账户备用联系人。
+C. 将所有 AWS 账户根用户电子邮件消息配置为发送给一位管理员，该管理员负责监控警报并将这些警报转发给相应的组。
+D. 配置所有现有的 AWS 账户和所有新创建的账户以使用相同的根用户电子邮件地址。在 AWS Organizations 控制台中或以编程方式 配置 AWS 账户备用联系人。
+答案.B
+
+Q138.一家公司在 AWS 上运行其电子商务应用程序。每个新订单都作为消息发布在 RabbitMQ 队列中，该队列在单个可用区 中的 Amazon EC2 实例上运行。这些消息由在单独的 EC2 实例上运行的不同应用程序处理。此应用程序将详细信息存储在另一个 EC2 实例 上的 PostgreSQL 数据库中。所有 EC2 实例都在同一个可用区中。公司需要重新设计其架构，以便以最少的运营开销提供最高的可用性。解决方案架构师应该怎么做才能满足这些要求?
+A. 将队列迁移到 Amazon MQ 上的 RabbitMQ 实例冗余对(活动/备用)。为托管应用程序的 EC2 实例创建多可用区 Auto Scaling 组。为托管 PostgreSQL 数据库的 EC2 实例创建另一个多可用区 Auto Scaling 组。
+B. 将队列迁移到 Amazon MQ 上的 RabbitMQ 实例冗余对(主用/备用)。为托管应用程序的 EC2 实例创建多可用区 Auto Scaling 组。迁移数据库以在 Amazon RDS for PostgreSQL 的多可用区部署上运行。
+C. 为托管 RabbitMQ 队列的 EC2 实例创建一个多可用区 Auto Scaling 组。为托管应用程序的 EC2 实例创建另一个多可用区 Auto Scaling 组。迁移数据库以在 Amazon RDS for PostgreSQL 的多可用区部署上运行。
+D. 为托管 RabbitMQ 队列的 EC2 实例创建一个多可用区 Auto Scaling 组。为托管应用程序的 EC2 实例创建另一个多可用区 Auto Scaling 组。为托管 PostgreSQL 数据库的 EC2 实例创建第三个多可用区 Auto Scaling 组
+答案.B
+
+Q139.报告团队每天在 Amazon S3 存储桶中接收文件。报告团队每天同时手动审查文件并将其从这个初始 S3 存储桶复制到 一个分析 S3 存储桶，以便与 Amazon QuickSight 一起使用。其他团队开始将更多更大的文件发送到初始 S3 存储桶。 报告团队希望在文件进入初始 S3 存储桶时自动移动文件分析 S3 存储桶。报告团队还希望使用 AWS Lambda 函数对复制的数据运行模式匹 配代码。此外，报告团队希望将数据文件发送到 Amazon SageMaker Pipelines 中的管道。 解决方案架构师应该怎么做才能以最少的运营开销满足这些要求?
+A. 创建一个 Lambda 函数将文件复制到分析 S3 存储桶。为分析 S3 存储桶创建 S3 事件通知。将 Lambda 和 SageMaker 管道配置为 事件通知的目标。配置 s3:ObjectCreated:Put 作为事件类型。
+B. 创建 Lambda 函数将文件复制到分析 S3 存储桶。配置分析 S3 存储桶以将事件通知发送到 Amazon EventBridge (Amazon CloudWatch Events)。在 EventBridge (CloudWatch Events) 中配置 ObjectCreated 规则。将 Lambda 和 SageMaker 管道配置为规则 的目标。
+C. 配置 S3 桶之间的 S3 复制。为分析 S3 存储桶创建 S3 事件通知。将 Lambda 和 SageMaker 管道配置为事件通知的目标。配置 s3:ObjectCreated:Put 作为事件类型。
+D. 配置 S3 桶之间的 S3 复制。配置分析 S3 存储桶以将事件通知发送到 Amazon EventBridge (Amazon CloudWatch Events)。在 EventBridge (CloudWatch Events) 中配置 ObjectCreated 规则。将 Lambda 和 SageMaker 管道配置为规则的目标。
+答案.D
+
+Q140.解决方案架构师需要帮助公司优化在 AWS 上运行应用程序的成本。该应用程序将使用 Amazon EC2 实例、AWS Fargate 和 AWS Lambda 在架构内进行计算。EC2 实例将运行应用程序的数据摄取层。EC2 的使用将是零星的和不可预测的。在 EC2 实例上运行的工作负载可以随时中断。应用前端将 在 Fargate 上运行，Lambda 将服务于 API 层。明年的前端利用率和 API 层利用率将是可预测的。 哪种购买选项组合将为托管此应用程序提供最具成本效益的解决方案?(选择两项。)
+A. 将 Spot 实例用于数据摄取层
+B. 为数据摄取层使用按需实例
+C. 为前端和 API 层购买为期 1 年的 Compute Savings Plan。
+D. 为数据摄取层购买 1 年期 All Upfront Reserved 实例。
+E. 为前端和 API 层购买 1 年期 EC2 实例储蓄计划。
+答案.AC
+
+Q141.一家公司运行一个基于 Web 的门户网站，为用户提供全球突发新闻、本地警报和天气更新。该门户通过混合使用静态和 动态内容为每个用户提供个性化视图。通过应用程序负载均衡器 (ALB) 后面的 Amazon EC2 实例上运行的 API 服务器，通过 HTTPS 提供 内容。该公司希望该门户网站尽快将此内容提供给世界各地的用户。解决方案架构师应如何设计应用程序以确保所有用户的延迟最少?
+A. 在单个 AWS 区域中部署应用程序堆栈。通过将 ALB 指定为源，使用 Amazon CloudFront 提供所有静态和动态内容。
+B. 在两个 AWS 区域部署应用程序堆栈。使用 Amazon Route 53 延迟路由策略为最近区域中的 ALB 提供所有内容。
+C. 在单个 AWS 区域中部署应用程序堆栈。使用 Amazon CloudFront 提供静态内容。直接从 ALB 提供动态内容。
+D. 在两个 AWS 区域部署应用程序堆栈。使用 Amazon Route 53 地理定位路由策略为最近区域中的 ALB 中的所有内容提供服务。
+答案.A
+
+Q142.一家游戏公司正在设计一个高度可用的架构。该应用程序在修改后的 Linux 内核上运行，并且仅支持基于 UDP 的流量。公司需要前端层来提供最佳的用户体验。该层必须具有低延迟，将流量路由到最近的边缘位置，并提供静态 IP 地址以进入应用程 序端点。解决方案架构师应该怎么做才能满足这些要求?
+A. 配置 Amazon Route 53 以将请求转发到 Application Load Balancer。将 AWS Lambda 用于 AWS Application Auto Scaling 中的应 用程序。
+B. 配置 Amazon CloudFront 以将请求转发到网络负载均衡器。将 AWS Lambda 用于 AWS Application Auto Scaling 组中的应用程 序。
+C. 配置 AWS Global Accelerator 以将请求转发到网络负载均衡器。将 Amazon EC2 实例用于 EC2 Auto Scaling 组中的应用程序。
+D. 配置 Amazon API Gateway 以将请求转发到 Application Load Balancer。将 Amazon EC2 实例用于 EC2 Auto Scaling 组中的应用 程序。
+答案.C
+
+Q143.一家公司希望将其现有的本地整体式应用程序迁移到 AWS。公司希望保留尽可能多的前端代码和后端代码。但 是，该公司希望将应用程序分解为更小的应用程序。不同的团队将管理每个应用程序。公司需要一个高度可扩展的解决方案，以最大限度 地减少运营开销。哪种解决方案可以满足这些要求?
+A. 在 AWS Lambda 上托管应用程序。将应用程序与 Amazon API Gateway 集成。
+B. 使用 AWS Amplify 托管应用程序。将应用程序连接到与 AWS Lambda 集成的 Amazon API Gateway API。
+C. 在 Amazon EC2 实例上托管应用程序。设置 Application Load Balancer，将 Auto Scaling 组中的 EC2 实例作为目标。
+D. 在 Amazon Elastic Container Service (Amazon ECS) 上托管应用程序。设置一个以 Amazon ECS 作为目标的应用程序负载均衡 器。
+答案.D
+
+Q144.一家公司最近开始使用 Amazon Aurora 作为其全球电子商务应用程序的数据存储。当运行大型报告时，开发人 员报告电子商务应用程序性能不佳。在查看 Amazon CloudWatch 中的指标后，解决方案架构师发现 ReadIOPS 和 CPUUtilizalion 指标在 运行月度报告时出现峰值。什么是最具成本效益的解决方案?
+A. 将每月报告迁移到 Amazon Redshift。
+B. 将月度报告迁移到 Aurora 副本。
+C. 将 Aurora 数据库迁移到更大的实例类。
+D. 增加 Aurora 实例上的预配置 IOPS。
+答案.B
+
+Q145.一家公司在单个 Amazon EC2 按需实例上托管网站分析应用程序。分析软件是用 PHP 编写的，并使用 MySQL 数据 库。分析软件、提供 PHP 的 Web 服务器和数据库服务器都托管在 EC2 实例上。该应用程序在繁忙时段表现出性能下降的迹象，并出现 5xx 错误。公司需要无缝扩展应用程序。哪种解决方案能够最经济有效地满足这些要求?
+A. 将数据库迁移到 Amazon RDS for MySQL 数据库实例。创建 Web 应用程序的 AMI。使用 AMI 启动第二个 EC2 按需实例。使用 Application Load Balancer 将负载分配给每个 EC2 实例。
+B. 将数据库迁移到 Amazon RDS for MySQL 数据库实例。创建 Web 应用程序的 AMI。使用 AMI 启动第二个 EC2 按需实例。使用 Amazon Route 53 加权路由在两个 EC2 实例之间分配负载。
+C. 将数据库迁移到 Amazon Aurora MySQL 数据库实例。创建一个 AWS Lambda 函数来停止 EC2 实例并更改实例类型。创建 Amazon CloudWatch 警报以在 CPU 使用率超过 75% 时调用 Lambda 函数。
+D. 将数据库迁移到 Amazon Aurora MySQL 数据库实例。创建 Web 应用程序的 AMI。将 AMI 应用于启动模板。使用启动模板创建 Auto Scaling 组 配置启动模板以使用 Spot 队列。将 Application Load Balancer 附加到 Auto Scaling 组。
+答案.D
+
+Q146.一家公司在 Application Load Balancer 后面的一组 Amazon EC2 按需实例上运行生产中的无状态 Web 应用程序。在每 个工作日的 8 小时内，应用程序的使用量很大。应用程序使用情况适中，一夜之间稳定。周末应用程序使用率较低。 该公司希望在不影响应用程序可用性的情况下将其 EC2 成本降至最低。哪种解决方案可以满足这些要求?
+A. 对整个工作负载使用 Spot 实例。
+B. 使用预留实例作为基准使用水平。将 Spot 实例用于应用程序需要的任何额外容量。
+C. 使用按需实例作为基准使用水平。将 Spot 实例用于应用程序需要的任何额外容量。
+D. 使用专用实例作为基准使用水平。将按需实例用于应用程序需要的任何额外容量。
+答案.B
+
+Q147.公司需要将关键应用程序的应用程序日志文件保留 10 年。应用程序团队定期访问过去一个月的日志以进行故障 排除，但很少访问超过 1 个月的日志。该应用程序每月生成超过 10 TB 的日志。哪种存储选项可以最经济高效地满足这些要求?
+A. 将日志存储在 Amazon S3 中。使用 AWS Backup 将超过 1 个月的日志移动到 S3 Glacier Deep Archive。
+B. 将日志存储在 Amazon S3 中。使用 S3 生命周期策略将超过 1 个月的日志移动到 S3 Glacier Deep Archive。
+C. 将日志存储在 Amazon CloudWatch Logs 中。使用 AWS Backup 将超过 1 个月的日志移动到 S3 Glacier Deep Archive。
+D. 将日志存储在 Amazon CloudWatch Logs 中。使用 Amazon S3 生命周期策略将超过 1 个月的日志移动到 S3 Glacier Deep Archive。
+答案.B
+
+Q148.一家公司有一个数据摄取工作流程，其中包括以下组件:一个 Amazon Simple Notification Service (Amazon SNS) 主题，用于接收有关新数据交付的通知,一个 AWS Lambda 函数，用于处理和存储数据 摄取工作流程偶尔会失败，因为网络连接问题。当发生故障时，除非公司手动重新运行作业，否则不会提取相应的数据。 解决方案架构师应该怎么做才能确保最终处理所有通知?
+A. 配置 Lambda 函数以跨多个可用区部署。
+B. 修改 Lambda 函数的配置以增加函数的 CPU 和内存分配。
+C. 配置 SNS 主题的重试策略以增加重试次数和重试之间的等待时间。
+D. 将 Amazon Simple Queue Service (Amazon SQS) 队列配置为发生故障时的目的地。修改 Lambda 函数以处理队列中的消息。
+答案.D
+
+Q149.一家公司有一个产生事件数据的服务。该公司希望使用 AWS 来处理收到的事件数据。数据以必须在整个处理过程 中维护的特定顺序写入。该公司希望实施可最大限度减少运营开销的解决方案。解决方案架构师应该如何实现这一目标?
+A. 创建一个 Amazon Simple Queue Service (Amazon SQS) FIFO 队列来保存消息。设置 AWS Lambda 函数来处理来自队列的消息。
+B. 创建一个 Amazon Simple Notification Service (Amazon SNS) 主题来传送包含要处理的有效负载的通知。将 AWS Lambda 函数配 置为订阅者。
+C. 创建一个 Amazon Simple Queue Service (Amazon SQS) 标准队列来保存消息。设置 AWS Lambda 函数以独立处理来自队列的消 息。
+D. 创建一个 Amazon Simple Notification Service (Amazon SNS) 主题来传送包含要处理的有效负载的通知。将 Amazon Simple Queue Service (Amazon SQS) 队列配置为订阅者。
+答案.A
+
+Q150.一家公司正在将应用程序从本地服务器迁移到 Amazon EC2 实例。作为迁移设计要求的一部分，解决方案架构师必须 实施基础架构指标警报。如果 CPU 利用率在短时间内增加到 50% 以上，公司无需采取任何措施。但是，如果CPU使用率上升到50%以上， 同时磁盘读取IOPS很高，公司就需要尽快行动了。解决方案架构师还必须减少误报。解决方案架构师应该怎么做才能满足这些要求?
+A. 尽可能创建 Amazon CloudWatch 复合警报。
+B. 创建 Amazon CloudWatch 仪表板以可视化指标并对问题做出快速反应。
+C. 创建 Amazon CloudWatch Synthetics 金丝雀以监控应用程序并发出警报。
+D. 尽可能创建具有多个指标阈值的单个 Amazon CloudWatch 指标警报。
+答案.A
+
+Q151.一家公司想要将其本地数据中心迁移到 AWS。根据公司合规要求，公司只能使用ap-northeast-3 Region。公司管 理员不允许将 VPC 连接到 Internet。哪些解决方案将满足这些要求?(选择两项。)
+A. 使用 AWS Control Tower 实施数据驻留护栏以拒绝互联网访问并拒绝访问除 ap-northeast-3 以外的所有 AWS 区域。
+B. 使用 AWS WAF 中的规则来阻止互联网访问。在 AWS 账户设置中拒绝访问除 ap-northeast-3 之外的所有 AWS 区域。
+C. 使用 AWS Organizations 配置服务控制策略 (SCPS)，以防止 VPC 获得互联网访问权限。拒绝访问除 ap-northeast-3 之外的所有 AWS 区域。
+D. 在每个 VPC 中为网络 ACL 创建出站规则，以拒绝来自 0.0.0.0/0 的所有流量。为每个用户创建 IAM 策略以防止使用 ap- northeast-3 以外的任何 AWS 区域。
+E. 使用 AWS Config 激活托管规则以检测互联网网关并发出警报，并检测部署在 ap-northeast-3 之外的新资源并发出警报。
+答案.AC
+
+Q152.一家公司使用三层 Web 应用程序为新员工提供培训。该应用程序每天只有 12 小时被访问。该公司正在使用 Amazon RDS for MySQL 数据库实例来存储信息，并希望最大限度地降低成本。解决方案架构师应该怎么做才能满足这些要求?
+A. 为 AWS Systems Manager 会话管理器配置 IAM 策略。为该策略创建一个 IAM 角色。更新角色的信任关系。为数据库实例设置自 动启动和停止。
+B. 创建一个 Amazon ElastiCache for Redis 缓存集群，使用户能够在数据库实例停止时访问缓存中的数据。在数据库实例启动后使缓 存失效。
+C. 启动 Amazon EC2 实例。创建一个 IAM 角色来授予对 Amazon RDS 的访问权限。将角色附加到 EC2 实例。配置 cron 作业以按所 需计划启动和停止 EC2 实例。
+D. 创建 AWS Lambda 函数来启动和停止数据库实例。创建 Amazon EventBridge (Amazon CloudWatch Events) 计划规则以调用 Lambda 函数。将 Lambda 函数配置为规则的事件目标。
+答案.D
+
+Q153.一家公司销售由流行歌曲剪辑制作的铃声。包含铃声的文件存储在 Amazon S3 Standard 中，大小至少为 128 KB。该公司拥有数百万个文件，但很少下载超过 90 天的铃声。公司需要在存储上节省资金，同时让最常访问的文件随时可供用户使用。 公司应该采取什么行动来最经济有效地满足这些要求?
+A. 为对象的初始存储层配置S3 Standard-Infrequent Access(S3 Standard-IA)存储。
+B. 将文件移至 S3 Intelligent-Tiering 并将其配置为在 90 天后将对象移至成本较低的存储层。
+C. 配置 S3 清单以管理对象并在 90 天后将它们移至 S3 标准-不频繁访问 (S3 Standard-1A)。
+D. 实施 S3 生命周期策略，在 90 天后将对象从 S3 Standard 移至 S3 Standard-Infrequent Access (S3 Standard-1A)。
+答案.D
+
+Q154.一家公司需要将医学试验的结果保存到 Amazon S3 存储库中。存储库必须允许一些科学家添加新文件，并且必须将所有 其他用户限制为只读访问。任何用户都不能修改或删除存储库中的任何文件。公司必须在其创建日期后将每个文件保存在存储库中至少 1 年。哪种解决方案可以满足这些要求?
+A. 在治理模式下使用 S3 对象锁，合法持有期为 1 年。
+B. 在合规模式下使用 S3 对象锁定，保留期为 365 天。
+C. 使用 IAM 角色限制所有用户删除或更改 S3 存储桶中的对象。使用 S3 存储桶策略仅允许 IAM 角色。
+D. 配置 S3 存储桶以在每次添加对象时调用 AWS Lambda 函数。配置函数以跟踪已保存对象的哈希值，以便可以相应地标记修改的对 象。
+答案.B
+
+Q155.一家大型媒体公司在 AWS 上托管一个 Web 应用程序。该公司希望开始缓存机密媒体文件，以便全球用户可以可 靠地访问这些文件。内容存储在 Amazon S3 存储桶中。公司必须快速交付内容，无论请求来自何处。哪种解决方案可以满足这些要求?
+A. 使用 AWS DataSync 将 S3 存储桶连接到 Web 应用程序。
+B. 部署 AWS Global Accelerator 以将 S3 存储桶连接到 Web 应用程序。
+C. 部署 Amazon CloudFront 以将 S3 存储桶连接到 CloudFront 边缘服务器。
+D. 使用 Amazon Simple Queue Service (Amazon SQS) 将 S3 存储桶连接到 Web 应用程序。
+答案.C
+
+Q156.一家公司生产来自不同数据库的批量数据。该公司还从网络传感器和应用程序 API 生成实时流数据。公司需要将 所有数据整合到一个地方进行业务分析。公司需要处理传入的数据，然后将数据暂存在不同的 Amazon S3 存储桶中。团队稍后将运行一次 性查询并将数据导入商业智能工具以显示关键绩效指标 (KPI)。哪些步骤组合将以最少的操作开销满足这些要求?(选择两项。)
+A. 使用 Amazon Athena 进行一次性查询。使用 Amazon QuickSight 为 KPI 创建控制面板。
+B. 使用 Amazon Kinesis Data Analytics 进行一次性查询。使用 Amazon QuickSight 为 KPI 创建控制面板。
+C. 创建自定义 AWS Lambda 函数以将单个记录从数据库移动到 Amazon Redshift 集群。
+D. 使用 AWS Glue 提取、转换和加载 (ETL) 作业将数据转换为 JSON 格式。将数据加载到多个 Amazon OpenSearch Service (Amazon Elasticsearch Service) 集群中。
+E. 使用 AWS Lake Formation 中的蓝图来识别可以提取到数据湖中的数据。使用 AWS Glue 抓取源、提取数据并将数据以 Apache Parquet 格式加载到 Amazon S3。
+答案.AE
+
+Q157.一家公司将数据存储在 Amazon Aurora PostgreSQL 数据库集群中。公司必须将所有数据存储 5 年，并且必须在 5 年后 删除所有数据。公司还必须无限期保留在数据库中执行的操作的审计日志。目前，该公司已为 Aurora 配置了自动备份。解决方案架构师应该采取哪些步骤组合来满足这些要求?(选择两项。)
+A. 拍摄数据库集群的手动快照。
+B. 为自动备份创建生命周期策略。
+C. 配置自动备份保留 5 年。
+D. 为数据库集群配置 Amazon CloudWatch Logs 导出。 E. 使用 AWS Backup 进行备份并将备份保留 5 年。
+答案.AD
+
+Q158.解决方案架构师正在为即将举行的音乐活动优化网站。表演视频将实时流式传输，然后按需提供。该活动预计将 吸引全球在线观众。哪种服务可以提高实时和点播流媒体的性能?
+A. 亚马逊 CloudFront
+B. AWS 全球加速器
+C. 亚马逊 53 号公路
+D. Amazon S3 传输加速
+答案.A
+
+Q159.一家公司正在运行一个可公开访问的无服务器应用程序，该应用程序使用 Amazon API Gateway 和 AWS Lambda。由于来自僵尸网络的欺诈请求，该应用程序的流量最近激增。解决方案架构师应采取哪些步骤来阻止未经授权用户的请求?(选择两项。)
+A. 使用仅与真正用户共享的 API 密钥创建使用计划。
+B. 在 Lambda 函数中集成逻辑以忽略来自欺诈 IP 地址的请求。
+C. 实施 AWS WAF 规则以针对恶意请求并触发操作以将其过滤掉。
+D. 将现有的公共 API 转换为私有 API。更新 DNS 记录以将用户重定向到新的 API 端点。 E. 为每个尝试访问 API 的用户创建一个 IAM 角色。用户将在进行 API 调用时承担该角色。
+答案.AC
+
+Q160.一家电子商务公司在 AWS 云中托管其分析应用程序。该应用程序每月生成大约 300 MB 的数据。数据以 JSON 格式存储。该公司正在评估用于备份数据的灾难恢复解决方案。如果需要，数据必须在毫秒内可访问，并且数据必须保留 30 天。 哪种解决方案能够最经济有效地满足这些要求?
+A. 亚马逊开放搜索服务(Amazon Elasticsearch Service)
+B. 亚马逊 S3 冰川
+C. 亚马逊 S3 标准
+D. Amazon RDS for PostgreSQL
+答案.C
+
+Q161.一家公司有一个小型 Python 应用程序，用于处理 JSON 文档并将结果输出到本地 SQL 数据库。该应用程序每天 运行数千次。公司希望将应用程序移动到 AWS 云。公司需要一个高度可用的解决方案，以最大限度地提高可扩展性并最大限度地减少运营 开销。哪种解决方案可以满足这些要求?
+A. 将 JSON 文档放入 Amazon S3 存储桶中。在多个 Amazon EC2 实例上运行 Python 代码以处理文档。将结果存储在 Amazon Aurora 数据库集群中。
+B. 将 JSON 文档放入 Amazon S3 存储桶中。创建一个运行 Python 代码的 AWS Lambda 函数，以在文档到达 S3 存储桶时对其进行 处理。将结果存储在 Amazon Aurora 数据库集群中。
+C. 将 JSON 文档放在 Amazon Elastic Block Store (Amazon EBS) 卷中。使用 EBS 多重附加功能将卷附加到多个 Amazon EC2 实例。 在 EC2 实例上运行 Python 代码以处理文档。将结果存储在 Amazon RDS 数据库实例上。
+D. 将 JSON 文档作为消息放入 Amazon Simple Queue Service (Amazon SQS) 队列中。在配置了 Amazon EC2 启动类型的 Amazon Elastic Container Service (Amazon ECS) 集群上将 Python 代码部署为容器。使用容器处理 SQS 消息。将结果存储在 Amazon RDS 数 据库实例上。
+答案.B
+
+Q162.一家公司希望使用 AWS 上的高性能计算 (HPC) 基础设施进行财务风险建模。该公司的 HPC 工作负载在 Linux 上运 行。每个 HPC 工作流在数百个 Amazon EC2 Spot 实例上运行，是短暂的，并生成数千个输出文件，这些文件最终存储在持久性存储中以 供分析和未来长期使用。该公司寻求一种云存储解决方案，该解决方案允许将本地数据复制到长期持久存储，以使数据可供所有 EC2 实例处理。该解决方案还应该 是一个高性能的文件系统，它与持久存储集成以读写数据集和输出文件。哪种 AWS 服务组合可以满足这些要求?
+A. Amazon FSx for Lustre 与 Amazon S3 集成
+B. Amazon FSx for Windows 文件服务器与 Amazon S3 集成
+C. 与 Amazon Elastic Block Store (Amazon EBS) 集成的 Amazon S3 Glacier
+D. 带有 VPC 端点的 Amazon S3 存储桶与 Amazon Elastic Block Store (Amazon EBS) 通用 SSD (gp2) 卷集成
+答案.A
+
+Q163.一家公司正在本地构建容器化应用程序，并决定将该应用程序迁移到 AWS。该应用程序在部署后不久将拥有数千名用户。该公司不确定如何大规模管理容器部署。公司需要在高度可用的架构中部署容器化应用程序，以最大限度地减少运营开销。哪种解决方案可以满足这些要求?
+A. 将容器镜像存储在 Amazon Elastic Container Registry (Amazon ECR) 存储库中。使用具有 AWS Fargate 启动类型的 Amazon Elastic Container Service (Amazon ECS) 集群来运行容器。使用目标跟踪根据需求自动扩展。
+B. 将容器镜像存储在 Amazon Elastic Container Registry (Amazon ECR) 存储库中。使用具有 Amazon EC2 启动类型的 Amazon Elastic Container Service (Amazon ECS) 集群来运行容器。使用目标跟踪根据需求自动扩展。
+C. 将容器镜像存储在运行在 Amazon EC2 实例上的存储库中。在分布在多个可用区的 EC2 实例上运行容器。监控 Amazon CloudWatch 中的平均 CPU 使用率。根据需要启动新的 EC2 实例。
+D. 创建包含容器映像的 Amazon EC2 Amazon 系统映像 (AMI)。在跨多个可用区的 Auto Scaling 组中启动 EC2 实例。当超过平均 CPU 使用率阈值时，使用 Amazon CloudWatch 警报扩展 EC2 实例。
+答案.A
+
+Q164.一家公司有两个应用程序:一个发送方应用程序发送带有待处理有效负载的消息，一个处理应用程序用于接收带 有有效负载的消息。该公司希望实施一项 AWS 服务来处理两个应用程序之间的消息。发件人应用程序每小时可以发送大约 1,000 条消息。 处理消息最多可能需要 2 天:如果消息处理失败，则必须保留它们，以免影响任何剩余消息的处理。哪种解决方案满足这些要求并且是最高效的运营方式?
+A. 设置运行 Redis 数据库的 Amazon EC2 实例。配置两个应用程序以使用该实例。分别存储、处理和删除消息。
+B. 使用 Amazon Kinesis 数据流从发送方应用程序接收消息。将处理应用程序与 Kinesis Client Library (KCL) 集成。
+C. 将发送方和处理方应用程序与 Amazon Simple Queue Service (Amazon SQS) 队列集成。配置死信队列以收集处理失败的消息。
+D. 将处理应用程序订阅到 Amazon Simple Notification Service (Amazon SNS) 主题以接收要处理的通知。集成发件人应用程序以写入 SNS 主题。
+答案.С
+
+Q165.解决方案架构师必须设计一个解决方案，该解决方案使用 Amazon CloudFront 和 Amazon S3 来源来存储静态网站。公司的安全策略要求所有网站流量都由 AWS WAF 检查。 解决方案架构师应如何满足这些要求?
+A. 配置 S3 存储桶策略以仅接受来自 AWS WAF 亚马逊资源名称 (ARN) 的请求。
+B. 配置 Amazon CloudFront 以在从 S3 来源请求内容之前将所有传入请求转发到 AWS WAF。
+C. 配置一个安全组，只允许 Amazon CloudFront IP 地址访问 Amazon S3。将 AWS WAF 关联到 CloudFront。
+D. 配置 Amazon CloudFront 和 Amazon S3 以使用原始访问身份 (OAI) 来限制对 S3 存储桶的访问。在分配上启用 AWS WAF。
+答案.D
+
+Q166.全球活动的组织者希望将每日报告作为静态 HTML 页面在线发布。这些页面预计会产生来自世界各地用户的数百万次浏览。这些文件存储在 Amazon S3 存储桶中。已要求解决方案架构师设计高效且有效的解决方案。 解决方案架构师应该采取什么行动来实现这一点?
+A. 为文件生成预签名的 URL。
+B. 使用跨区域复制到所有区域。
+C. 使用 Amazon Route 53 的地理临近度功能。
+D. 使用以 S3 存储桶为源的 Amazon CloudFront。
+答案.D
+
+Q167.一家公司在一组 Amazon EC2 实例上运行生产应用程序。该应用程序从 Amazon SQS 队列中读取数据并并行处理消息。消息量不可预测，并且经常有断断续续的流量。此应用程序应在没有任何停机时间的情况下持续处理消息。哪种解决方案能够最经济有效地满足这些要求?
+A. 专门使用 Spot 实例来处理所需的最大容量。
+B. 专门使用预留实例来处理所需的最大容量。
+C. 使用预留实例作为基准容量并使用 Spot 实例来处理额外容量。
+D. 使用预留实例作为基准容量，使用按需实例处理额外容量。
+答案.D
+
+Q168.安全团队想要限制对团队所有 AWS 账户中特定服务或操作的访问。所有账户都属于 AWS Organizations 中的一个大型 组织。该解决方案必须是可扩展的，并且必须有一个可以维护权限的点。解决方案架构师应该怎么做才能实现这一目标?
+A. 创建一个 ACL 以提供对服务或操作的访问。
+B. 创建一个安全组以允许帐户并将其附加到用户组。
+C. 在每个账户中创建跨账户角色以拒绝访问服务或操作。
+D. 在根组织单元中创建服务控制策略以拒绝访问服务或操作。
+答案.D
+
+Q169.由于最近的 Web 攻击，一家公司担心其公共 Web 应用程序的安全性。该应用程序使用应用程序负载均衡器(ALB)。解决方案架构师必须降低针对应用程序的 DDoS 攻击风险。 解决方案架构师应该怎么做才能满足这个要求?
+A. 将 Amazon Inspector 代理添加到 ALB。
+B. 配置 Amazon Macie 以防止攻击。
+C. 启用 AWS Shield Advanced 以防止攻击。
+D. 配置 Amazon GuardDuty 以监控 ALB。
+答案.C
+
+Q170.一家公司的 Web 应用程序在 Application Load Balancer 后面的 Amazon EC2 实例上运行。该公司最近更改了政策，现在要求只能从一个特定国家/地区访问该应用程序。 哪种配置可以满足此要求?
+A. 为 EC2 实例配置安全组。
+B. 在 Application Load Balancer 上配置安全组。
+C. 在 VPC 中的应用程序负载均衡器上配置 AWS WAF。
+D. 为包含 EC2 实例的子网配置网络 ACL。
+答案.C
+
+Q171.一家公司为其用户提供了一个 API，可以根据商品价格自动查询税务计算。该公司在假期期间遇到大量查询，这只会导致响应时间变慢。解决方案架构师需要设计一个可扩展且有弹性的解决方案。 解决方案架构师应该怎么做才能实现这一点?
+A. 提供托管在 Amazon EC2 实例上的 API。EC2 实例在发出 API 请求时执行所需的计算。
+B. 使用接受项目名称的 Amazon API Gateway 设计 REST API。API 网关将项目名称传递给 AWS Lambda 以进行税务计算。
+C. 创建一个 Application Load Balancer，其背后有两个 Amazon EC2 实例。EC2 实例将计算收到的项目名称的税费。
+D. 使用与 Amazon EC2 实例上托管的 API 连接的 Amazon API Gateway 设计 REST API。API 网关接受项目名称并将其传递给 EC2 实例以进行税收计算。
+答案.B
+
+Q172.解决方案架构师正在为应用程序创建新的 Amazon CloudFront 分配。用户提交的一些信息是敏感的。该应用程序使用 HTTPS，但需要另一层安全保护。敏感信息应该在整个应用程序堆栈中受到保护，并且对信息的访问应该仅限于某些应用程序。解决方案架构师应该采取什么行动?
+A. 配置 CloudFront 签名 URL。
+B. 配置 CloudFront 签名的 cookie。
+C. 配置 CloudFront 字段级加密配置文件。
+D. 配置 CloudFront 并将查看器协议策略的源协议策略设置为仅 HTTPS。
+答案.C
+
+Q173.一家游戏公司在 AWS 上托管基于浏览器的应用程序。应用程序的用户使用存储在 Amazon S3 中的大量视频和图像。此 内容对所有用户都是相同的。该应用程序越来越受欢迎，全世界有数百万用户访问这些媒体文件。该公司希望在向用户提供文件的同时减少源站的负载。哪种解决方案能够最经济有效地满足这些要求?
+A. 在 Web 服务器前面部署一个 AWS Global Accelerator 加速器。
+B. 在 S3 存储桶前面部署一个 Amazon CloudFront 网络分配。
+C. 在 Web 服务器前面部署 Amazon ElastiCache for Redis 实例。
+D. 在 Web 服务器前面为 Memcached 实例部署一个 Amazon ElastiCache。
+答案.B
+
+Q174.一家公司有一个多层应用程序，它在应用程序负载均衡器 (ALB) 后面的单个可用区中的 Amazon EC2 Auto Scaling 组中运行六个前端 Web 服务器。解决方案架构师需要在不修改应用程序的情况下修改基础架构以实现高可用性。 解决方案架构师应该选择哪种架构来提供高可用性?
+A. 创建一个 Auto Scaling 组，在两个区域中的每一个区域使用三个实例。
+B. 修改 Auto Scaling 组以跨两个可用区中的每一个使用三个实例。
+C. 创建一个 Auto Scaling 模板，可用于在另一个 Region 中快速创建更多实例。
+D. 在循环配置中更改 Amazon EC2 实例前面的 ALB 以平衡到 Web 层的流量。
+答案.B
+
+Q175.一家电子商务公司有一个使用 Amazon API Gateway 和 AWS Lambda 函数的订单处理应用程序。该应用程序将数据存 储在 Amazon Aurora PostgreSQL 数据库中。在最近的一次销售活动中，客户订单突然激增。一些客户遇到超时，应用程序没有处理这些客 户的订单。解决方案架构师确定数据库的 CPU 使用率和内存使用率很高，因为有大量打开的连接。解决方案架构师需要在对应用程序进行尽可能少的 更改的同时防止超时错误。哪种解决方案可以满足这些要求?
+A. 为 Lambda 函数配置预置并发。将数据库修改为多个 AWS 区域中的全局数据库。
+B. 使用 Amazon RDS Proxy 为数据库创建代理。修改 Lambda 函数以使用 RDS 代理终端节点而不是数据库终端节点。
+C. 在不同的 AWS 区域为数据库创建只读副本。在 API 网关中使用查询字符串参数将流量路由到只读副本。
+D. 使用 AWS Database Migration Service (AWS DMS) 将数据从 Aurora PostgreSQL 迁移到 Amazon DynamoDB。修改 Lambda 函数 以使用 DynamoDB 表。
+答案.B
+
+Q176.应用程序在私有子网中的 Amazon EC2 实例上运行。应用程序需要访问 Amazon DynamoDB 表。 在确保流量不离开 AWS 网络的同时访问表的最安全方法是什么?
+A. 为 DynamoDB 使用 VPC 端点。
+B. 在公共子网中使用 NAT 网关。
+C. 在私有子网中使用 NAT 实例。
+D. 使用连接到 VPC 的互联网网关。
+答案.A
+
+Q177.一家娱乐公司正在使用 Amazon DynamoDB 来存储媒体元数据。该应用程序读取密集且遇到延迟。该公司没有 人员处理额外的运营开销，需要在不重新配置应用程序的情况下提高 DynamoDB 的性能效率。解决方案架构师应该推荐什么来满足这个要求?
+A. 使用 Amazon ElastiCache for Redis。
+B. 使用亚马逊 DynamoDB 加速器 (DAX)。
+C. 使用 DynamoDB 全局表复制数据。
+D. 使用 Amazon ElastiCache for Memcached 并启用自动发现。
+答案.B
+
+Q178.公司的基础设施由单个 AWS 区域中的 Amazon EC2 实例和 Amazon RDS 数据库实例组成。公司希望在单独的区域中备份其数据。哪种解决方案能够以最少的运营开销满足这些要求?
+A. 使用 AWS Backup 将 EC2 备份和 RDS 备份复制到单独的区域。
+B. 使用 Amazon Data Lifecycle Manager (Amazon DLM) 将 EC2 备份和 RDS 备份复制到单独的区域。
+C. 创建 EC2 实例的 Amazon 机器映像 (AMI)。将 AMI 复制到单独的区域。在单独的区域中为 RDS 数据库实例创建只读副本。
+D. 创建 Amazon Elastic Block Store (Amazon EBS) 快照。将 EBS 快照复制到单独的区域。创建 RDS 快照。将 RDS 快照导出到 Amazon S3。将 S3 跨区域复制 (CRR) 配置到单独的区域。
+答案.A
+
+Q179.解决方案架构师需要安全地存储应用程序用来访问 Amazon RDS 数据库实例的数据库用户名和密码。访问数据库的应用程序在 Amazon EC2 实例上运行。解决方案架构师想要在 AWS Systems Manager Parameter Store 中创建一个安全参数。 解决方案架构师应该怎么做才能满足这个要求?
+A. 创建一个对 Parameter Store 参数具有读取权限的 IAM 角色。允许解密访问用于加密参数的 AWS Key Management Service (AWS KMS) 密钥。将此 IAM 角色分配给 EC2 实例。
+B. 创建允许读取参数存储参数的 IAM 策略。允许解密访问用于加密参数的 AWS Key Management Service (AWS KMS) 密钥。将此 IAM 策略分配给 EC2 实例。
+C. 在 Parameter Store 参数和 EC2 实例之间创建 IAM 信任关系。将 Amazon RDS 指定为信任策略中的委托人。
+D. 在数据库实例和 EC2 实例之间创建 IAM 信任关系。将 Systems Manager 指定为信任策略中的委托人。
+答案.A
+
+Q180.一家公司正在设计一个由 API 驱动的云通信平台。该应用程序托管在网络负载均衡器 (NLB) 后面的 Amazon EC2 实例上。该公司使用 Amazon API Gateway 为外部用户提供通过 API 访问应用程序的权限。该公司希望保护平台免受 SQL 注入等 Web 攻击，还希望检测和缓解大型、复杂的 DDoS 攻击。哪种解决方案组合可提供 MOST 保护?(选择两项。)
+A. 使用 AWS WAF 保护 NLB。
+B. 将 AWS Shield Advanced 与 NLB 结合使用。
+C. 使用 AWS WAF 保护 Amazon API Gateway。
+D. 将 Amazon GuardDuty 与 AWS Shield Standard 结合使用
+E. 将 AWS Shield Standard 与 Amazon API Gateway 结合使用。
+答案.BC
+
+Q181.一家公司有一个在 Amazon EC2 实例上运行的遗留数据处理应用程序。数据按顺序处理，但结果的顺序无关紧要。该应用程序使用单体架构。公司可以扩展应用程序以满足不断增长的需求的唯一方法是增加实例的大小。 该公司的开发人员已决定重写应用程序以在 Amazon Elastic Container Service (Amazon ECS) 上使用微服务架构。 解决方案架构师应该为微服务之间的通信推荐什么?
+A. 创建一个 Amazon Simple Queue Service (Amazon SQS) 队列。向数据生产者添加代码，并将数据发送到队列。向数据使用者添加 代码以处理队列中的数据。
+B. 创建一个 Amazon Simple Notification Service (Amazon SNS) 主题。向数据生产者添加代码，并向主题发布通知。向数据消费者添 加代码以订阅主题。
+C. 创建一个 AWS Lambda 函数来传递消息。将代码添加到数据生成器以使用数据对象调用 Lambda 函数。向数据使用者添加代码以 接收从 Lambda 函数传递的数据对象。
+D. 创建一个 Amazon DynamoDB 表。启用 DynamoDB 流。向数据生产者添加代码以将数据插入表中。向数据使用者添加代码以使用 DynamoDB Streams API 检测新表条目并检索数据。
+答案.A
+
+Q182.一家公司希望将其 MySQL 数据库从本地迁移到 AWS。该公司最近经历了一次严重影响业务的数据库中断。为确保不再发生这种情况，该公司需要 AWS 上的可靠数据库解决方案，以最大限度地减少数据丢失并将每笔交易存储在至少两个节点上。 哪个解决方案满足这些要求?
+A. 创建一个同步复制到三个可用区中的三个节点的 Amazon RDS 数据库实例。
+B. 创建启用多可用区功能的 Amazon RDS MySQL 数据库实例以同步复制数据。
+C. 创建一个 Amazon RDS MySQL 数据库实例，然后在同步复制数据的单独 AWS 区域中创建只读副本。
+D. 创建一个安装了 MySQL 引擎的 Amazon EC2 实例，触发 AWS Lambda 函数将数据同步复制到 Amazon RDS MySQL 数据库实 例。
+答案.B
+
+Q183.一家公司正在建立一个新的动态订购网站。该公司希望最大限度地减少服务器维护和修补。网站必须是高可用的，必须尽快扩展读写容量以满足用户需求的变化。哪种解决方案可以满足这些要求?
+A. 在 Amazon S3 中托管静态内容。使用 Amazon API Gateway 和 AWS Lambda 托管动态内容。使用具有按需容量的数据库的 Amazon DynamoDB。配置 Amazon CloudFront 以交付网站内容。
+B. 在 Amazon S3 中托管静态内容。使用 Amazon API Gateway 和 AWS Lambda 托管动态内容。将 Amazon Aurora 与 Aurora Auto Scaling 一起用于数据库。配置 Amazon CloudFront 以交付网站内容。
+C. 在 Amazon EC2 实例上托管所有网站内容。创建一个 Auto Scaling 组来扩展 EC2 实例。使用 Application Load Balancer 来分配流 量。将 Amazon DynamoDB 与数据库的预置写入容量结合使用。
+D. 在 Amazon EC2 实例上托管所有网站内容。创建一个 Auto Scaling 组来扩展 EC2 实例。使用 Application Load Balancer 来分配流 量。将 Amazon Aurora 与 Aurora Auto Scaling 一起用于数据库。
+答案.A
+
+Q184.一家公司有一个用于软件工程的 AWS 账户。AWS 账户可以通过一对 AWS Direct Connect 连接访问公司的本地数据中心。所有非 VPC 流量都路由到虚拟专用网关。一个开发团队最近通过控制台创建了一个 AWS Lambda 函数。开发团队需要允许该函数访问在公司数据中心的私有子网中运行的数据库。 哪种解决方案可以满足这些要求?
+A. 配置 Lambda 函数以在具有适当安全组的 VPC 中运行。
+B. 设置从 AWS 到数据中心的 VPN 连接。通过 VPN 路由来自 Lambda 函数的流量。
+C. 更新VPC中的路由表，允许Lambda函数通过专线访问本地数据中心。
+D. 创建弹性 IP 地址。配置 Lambda 函数以在没有弹性网络接口的情况下通过弹性 IP 地址发送流量。
+答案.A
+
+Q185.一家公司使用 Amazon ECS 运行应用程序。该应用程序创建原始图像的调整大小版本，然后调用 Amazon S3 API 以将调整大小的图像存储在 Amazon S3 中。 解决方案架构师如何确保应用程序有权访问 Amazon S3?
+A. 更新 AWS IAM 中的 S3 角色以允许从 Amazon ECS 进行读/写访问，然后重新启动容器。
+B. 创建一个具有 S3 权限的 IAM 角色，然后将该角色指定为任务定义中的 taskRoleArn。
+C. 创建一个允许从 Amazon ECS 访问 Amazon S3 的安全组，并更新 ECS 集群使用的启动配置。
+D. 创建一个具有 S3 权限的 IAM 用户，然后在以此帐户登录的同时为 ECS 集群重新启动 Amazon EC2 实例。
+答案.B
+
+Q186.一家公司有一个基于 Windows 的应用程序必须迁移到 AWS。该应用程序需要使用附加到跨多个可用区部署的多个 Amazon EC2 Windows 实例的共享 Windows 文件系统: 解决方案架构师应该如何满足此要求?
+A. 在卷网关模式下配置 AWS Storage Gateway。将卷装载到每个 Windows 实例。
+B. 为 Windows 文件服务器配置 Amazon FSx。将 Amazon FSx 文件系统挂载到每个 Windows 实例。
+C. 使用 Amazon Elastic File System (Amazon EFS) 配置文件系统。将 EFS 文件系统挂载到每个 Windows 实例。
+D. 配置具有所需大小的 Amazon Elastic Block Store (Amazon EBS) 卷。将每个 EC2 实例附加到该卷。将卷内的文件系统挂载到每个 Windows 实例。
+答案.B
+
+Q187.一家公司正在开发一个电子商务应用程序，它将包含一个负载平衡的前端、一个基于容器的应用程序和一个关系数据库。解决方案架构师需要创建一个高度可用的解决方案，该解决方案的运行需要尽可能少的人工干预。 哪些解决方案满足这些要求?(选择两项。)
+A. 在多可用区模式下创建一个 Amazon RDS 数据库实例。
+B. 在另一个可用区中创建一个 Amazon RDS 数据库实例和一个或多个副本。
+C. 创建一个基于 Amazon EC2 实例的 Docker 集群来处理动态应用程序负载。
+D. 创建一个具有 Fargate 启动类型的 Amazon Elastic Container Service (Amazon ECS) 集群来处理动态应用程序负载。
+E. 创建一个具有 Amazon EC2 启动类型的 Amazon Elastic Container Service (Amazon ECS) 集群来处理动态应用程序负载。
+答案.AD
+
+Q188.一家公司使用 Amazon S3 作为其数据湖。公司有一个新的合作伙伴，必须使用 SFTP 上传数据文件。解决方案架构师需要实施高度可用的 SFTP 解决方案，以最大限度地减少运营开销。 哪种解决方案可以满足这些要求?
+A. 使用 AWS Transfer Family 配置具有可公开访问端点的支持 SFTP 的服务器。选择 S3 数据湖作为目标。
+B. 使用 Amazon S3 文件网关作为 SFTP 服务器。向新合作伙伴公开 S3 文件网关端点 URL。与新合作伙伴共享 S3 文件网关终端节 点。
+C. 在 VP 的私有子网中启动 Amazon EC2 实例指示新合作伙伴使用 VPN 将文件上传到 EC2 实例。在 EC2 实例上运行 cron 作业脚本 以将文件上传到 S3 数据湖。
+D. 在 VPC 的私有子网中启动 Amazon EC2 实例。在 EC2 实例前面放置一个网络负载平衡器 (NLB)。为 NLB 创建 SFTP 侦听器端 口。与新合作伙伴共享 NLB 主机名。在 EC2 实例上运行 cron 作业脚本以将文件上传到 S3 数据湖。
+答案.A
+
+Q189.公司需要存储合同文件。合同有效期为 5 年。在5年期间，公司必须确保文件不能被覆盖或删除。公司需要对静态 文档进行加密，并每年自动轮换加密密钥。解决方案架构师应该采取哪些步骤组合来以最少的运营开销满足这些要求?(选择两项。)
+A. 将文档存储在 Amazon S3 中。在治理模式下使用 S3 对象锁。
+B. 将文档存储在 Amazon S3 中。在合规模式下使用 S3 对象锁定。
+C. 使用带有 Amazon S3 托管加密密钥 (SSE-S3) 的服务器端加密。配置密钥轮换。
+D. 通过 AWS Key Management Service (AWS KMS) 客户管理的密钥使用服务器端加密。配置密钥轮换。
+E. 使用 AWS Key Management Service (AWS KMS) 客户提供(导入)密钥的服务器端加密。配置密钥轮换。
+答案.BD
+
+Q190.一家公司有一个基于 Java 和 PHP 的 Web 应用程序。该公司计划将该应用程序从本地迁移到 AWS。公司需要能 够经常测试新站点功能。该公司还需要一个高度可用和托管的解决方案，该解决方案需要最少的运营开销。哪种解决方案可以满足这些要求?
+A. 创建一个 Amazon S3 存储桶。在 S3 存储桶上启用静态 Web 托管。将静态内容上传到 S3 存储桶。使用 AWS Lambda 处理所有动 态内容。
+B. 将 Web 应用程序部署到 AWS Elastic Beanstalk 环境。使用 URL 交换在多个 Elastic Beanstalk 环境之间切换以进行功能测试。
+C. 将 Web 应用程序部署到配置了 Java 和 PHP 的 Amazon EC2 实例。使用 Auto Scaling 组和 Application Load Balancer 来管理网站 的可用性。
+D. 容器化 Web 应用程序。将 Web 应用程序部署到 Amazon EC2 实例。使用 AWS 负载均衡器控制器在包含用于测试的新站点功能的 容器之间动态路由流量。
+答案.B
+
+Q191.一家公司有一个订购应用程序，将客户信息存储在 Amazon RDS for MySQL 中。在正常工作时间，员工会出于 报告目的运行一次性查询。订单处理期间发生超时，因为报告查询需要很长时间才能运行。公司需要在不阻止员工执行查询的情况下消除 超时。解决方案架构师应该怎么做才能满足这些要求?
+A. 创建只读副本。将报告查询移动到只读副本。
+B. 创建只读副本。将排序应用程序分发到主数据库实例和只读副本。
+C. 将订购应用程序迁移到具有按需容量的 Amazon DynamoDB。
+D. 安排非高峰时段的报告查询。
+答案.A
+
+Q192.一家医院想要为其大量历史书面记录创建数字副本。医院将继续每天添加数百份新文件。医院的数据团队将扫描文档并 将文档上传到 AWS 云。解决方案架构师必须实施解决方案来分析文档、提取医疗信息并存储文档，以便应用程序可以对数据运行 SQL 查询。该解决方案必须最大 限度地提高可扩展性和运营效率。解决方案架构师应该采取哪些步骤组合来满足这些要求?(选择两项。)
+A. 将文档信息写入运行 MySQL 数据库的 Amazon EC2 实例。
+B. 将文档信息写入 Amazon S3 存储桶。使用 Amazon Athena 查询数据。
+C. 创建 Amazon EC2 实例的 Auto Scaling 组以运行处理扫描文件并提取医疗信息的自定义应用程序。
+D. 创建一个在上传新文档时运行的 AWS Lambda 函数。使用 Amazon Rekognition 将文档转换为原始文本。使用 Amazon Transcribe Medical 从文本中检测和提取相关医疗信息。
+E. 创建一个在上传新文档时运行的 AWS Lambda 函数。使用 Amazon Textract 将文档转换为原始文本。使用 Amazon Comprehend Medical 从文本中检测和提取相关医疗信息。
+答案.BE
+
+Q193.一家公司正在 Amazon EC2 实例上运行批处理应用程序。该应用程序由具有多个 Amazon RDS 数据库的后端组 成。应用程序导致对数据库的大量读取。解决方案架构师必须减少数据库读取次数，同时确保高可用性。解决方案架构师应该怎么做才能满足这个要求?
+A. 添加 Amazon RDS 只读副本。
+B. 使用 Amazon ElastiCache for Redis。
+C. 使用 Amazon Route 53 DNS 缓存
+D. 使用 Amazon ElastiCache for Memcached。
+答案.B
+
+Q194.一家公司需要在 AWS 上运行一个关键应用程序。公司需要使用 Amazon EC2 作为应用程序的数据库。数据库必 须高度可用，并且必须在发生破坏性事件时自动进行故障转移。哪种解决方案可以满足这些要求?
+A. 启动两个 EC2 实例，每个实例位于同一 AWS 区域的不同可用区中。在两个 EC2 实例上安装数据库。将 EC2 实例配置为集群。设 置数据库复制。
+B. 在可用区启动一个 EC2 实例。在 EC2 实例上安装数据库。使用 Amazon Machine Image (AMI) 备份数据。如果发生中断事件，使 用 AWS CloudFormation 自动配置 EC2 实例。
+C. 启动两个 EC2 实例，每个都在不同的 AWS 区域中。在两个 EC2 实例上安装数据库。设置数据库复制。将数据库故障转移到第二 个区域。
+D. 在可用区启动一个 EC2 实例。在 EC2 实例上安装数据库。使用 Amazon Machine Image (AMI) 备份数据。如果发生破坏性事件， 使用 EC2 自动恢复来恢复实例。
+答案.C
+
+Q195.公司的订单系统将来自客户的请求发送到 Amazon EC2 实例。EC2 实例处理订单，然后将订单存储在 Amazon RDS 上的数据库中。用户报告说，当系统出现故障时，他们必须重新处理订单。该公司需要一个弹性解决方案，可以在系统中断时自动处 理订单。解决方案架构师应该怎么做才能满足这些要求?
+A. 将 EC2 实例移动到一个 Auto Scaling 组中。创建 Amazon EventBridge (Amazon CloudWatch Events) 规则以将 Amazon Elastic Container Service (Amazon ECS) 任务作为目标。
+B. 将 EC2 实例移动到 Application Load Balancer (ALB) 后面的 Auto Scaling 组中。更新订单系统以将消息发送到 ALB 端点。
+C. 将 EC2 实例移动到一个 Auto Scaling 组中。配置订单系统以将消息发送到 Amazon Simple Queue Service (Amazon SQS) 队列。配 置 EC2 实例以使用队列中的消息。
+D. 创建一个 Amazon Simple Notification Service (Amazon SNS) 主题。创建一个 AWS Lambda 函数，并将该函数订阅到 SNS 主题。 配置订单系统以将消息发送到 SNS 主题。使用 AWS Systems Manager Run Command 向 EC2 实例发送命令以处理消息。
+答案.C
+
+Q196.一家公司在大量 Amazon EC2 实例上运行应用程序。该应用程序读取条目并将条目写入 Amazon DynamoDB 表。DynamoDB 表的大小不断增长，但应用程序只需要最近 30 天的数据。公司需要一种能够最大限度地减少成本和开发工作的解决方 案。哪个解决方案满足这些要求?
+A. 使用 AWS CloudFormation 模板部署完整的解决方案。每 30 天重新部署一次 CloudFormation 堆栈，并删除原始堆栈。
+B. 使用从 AWS Marketplace 运行监控应用程序的 EC2 实例。配置监控应用程序以使用 Amazon DynamoDB Streams 在表中创建新项 目时存储时间􏰀。使用在 EC2 实例上运行的脚本删除时间􏰀超过 30 天的项目。
+C. 配置 Amazon DynamoDB Streams 以在表中创建新项目时调用 AWS Lambda 函数。配置 Lambda 函数以删除表中超过 30 天的项 目。
+D. 扩展应用程序以将值为当前时间􏰀加上 30 天的属性添加到表中创建的每个新项目。配置 DynamoDB 以将该属性用作 TTL 属性。
+答案.D
+
+Q197.一家公司有一个在本地 Windows Server 上运行的 Microsoft .NET 应用程序。该应用程序使用 Oracle 数据库标准版服务器存储数据。该公司正在计划迁移到 AWS，并希望在迁移应用程序时尽量减少开发更改。AWS应用环境应该是高可用的。 公司应该采取哪些行动组合来满足这些要求?(选择两项。)
+A. 使用运行 .NET Core 的 AWS Lambda 函数将应用程序重构为无服务器。
+B. 在多可用区部署中使用 .NET 平台在 AWS Elastic Beanstalk 中重新托管应用程序。
+C. 使用 Amazon Linux Amazon Machine Image (AMI) 重新构建应用程序平台以在 Amazon EC2 上运行。
+D. 使用 AWS Database Migration Service (AWS DMS) 在多可用区部署中从 Oracle 数据库迁移到 Amazon DynamoDB。
+E. 使用 AWS Database Migration Service (AWS DMS) 在多可用区部署中从 Oracle 数据库迁移到 Amazon RDS 上的 Oracle。
+答案.BE
+
+Q198.一家公司在本地数据中心的 Kubernetes 集群上运行容器化应用程序。该公司正在使用 MongoDB 数据库进行数 据存储。该公司希望将其中一些环境迁移到 AWS，但目前无法更改代码或更改部署方法。公司需要一种能够最大限度地减少运营开销的解 决方案。哪个解决方案满足这些要求?
+A. 使用 Amazon Elastic Container Service (Amazon ECS) 和 Amazon EC2 工作节点进行计算，并使用 EC2 上的 MongoDB 进行数据 存储。
+B. 使用 Amazon Elastic Container Service (Amazon ECS) 和 AWS Fargate 进行计算，使用 Amazon DynamoDB 进行数据存储
+C. 使用 Amazon Elastic Kubernetes Service (Amazon EKS) 和 Amazon EC2 工作节点进行计算，使用 Amazon DynamoDB 进行数据 存储。
+D. 使用 Amazon Elastic Kubernetes Service (Amazon EKS) 和 AWS Fargate 进行计算，使用 Amazon DocumentDB(兼容 MongoDB)进行数据存储。
+答案.D
+
+Q199.一家电话营销公司正在 AWS 上设计其客户呼叫中心功能。该公司需要一种能够提供多说话人识别并生成文字记录文件的解决方案。公司想要查询成绩单文件以分析业务模式。成绩单文件必须保存 7 年以供审计之用。 哪种解决方案可以满足这些要求?
+A. 使用 Amazon Rekognition 进行多说话人识别。将转录文件存储在 Amazon S3 中。使用机器学习模型进行转录文件分析。
+B. 使用 Amazon Transcribe 进行多说话人识别。使用 Amazon Athena 进行转录文件分析。
+C. 使用 Amazon Translate 进行多说话人识别。将转录文件存储在 Amazon Redshift 中。使用 SQL 查询进行成绩单文件分析。
+D. 使用 Amazon Rekognition 进行多说话人识别。将转录文件存储在 Amazon S3 中。使用 Amazon Textract 进行脚本文件分析。
+答案.B
+
+Q200.一家公司在 AWS 上托管其应用程序。该公司使用 Amazon Cognito 来管理用户。当用户登录应用程序时，应用 程序使用托管在 Amazon API Gateway 中的 REST API 从 Amazon DynamoDB 获取所需数据。该公司需要一个 AWS 托管解决方案来控制 对 REST API 的访问以减少开发工作。哪种解决方案能够以最少的运营开销满足这些要求?
+A. 将 AWS Lambda 函数配置为 API Gateway 中的授权方，以验证哪个用户发出了请求。
+B. 对于每个用户，创建并分配一个必须随每个请求一起发送的 API 密钥。使用 AWS Lambda 函数验证密钥。
+C. 在每个请求的标头中发送用户的电子邮件地址。调用 AWS Lambda 函数来验证具有该电子邮件地址的用户是否具有适当的访问权 限。
+D. 在 API Gateway 中配置 Amazon Cognito 用户池授权方以允许 Amazon Cognito 验证每个请求。
+
+Q201.一家公司正在开发针对移动应用程序用户的营销传播服务。公司需要通过短消息服务 (SMS) 向其用户发送确认 消息。用户必须能够回复 SMS 消息。公司必须将响应存储一年以供分析。解决方案架构师应该怎么做才能满足这些要求?
+A. 创建一个 Amazon Connect 联系流来发送 SMS 消息。使用 AWS Lambda 处理响应。
+B. 构建 Amazon Pinpoint 旅程。配置 Amazon Pinpoint 以将事件发送到 Amazon Kinesis 数据流以进行分析和存档。
+C. 使用 Amazon Simple Queue Service (Amazon SQS) 分发 SMS 消息。使用 AWS Lambda 处理响应。
+D. 创建一个 Amazon Simple Notification Service (Amazon SNS) FIFO 主题。将 Amazon Kinesis 数据流订阅到 SNS 主题以进行分析 和存档。
+答案.B
+
+Q202.一家公司计划将其数据移动到 Amazon S3 存储桶。数据存储在 S3 存储桶中时必须加密。此外，加密密钥必须每 年自动轮换。哪种解决方案能够以最少的运营开销满足这些要求?
+A. 将数据移动到 S3 存储桶。通过 Amazon S3 托管加密密钥 (SSE-S3) 使用服务器端加密。使用 SSE-S3 加密密钥的内置密钥轮换行 为。
+B. 创建一个 AWS Key Management Service (AWS KMS) 客户管理的密钥。启用自动密钥轮换。将 S3 存储桶的默认加密行为设置为使 用客户管理的 KMS 密钥。将数据移动到 S3 存储桶。
+C. 创建一个 AWS Key Management Service (AWS KMS) 客户管理的密钥。将 S3 存储桶的默认加密行为设置为使用客户管理的 KMS 密钥。将数据移动到 S3 存储桶。每年手动轮换 KMS 密钥。
+D. 在将数据移动到 S3 存储桶之前，使用客户密钥材料加密数据。创建没有密钥材料的 AWS Key Management Service (AWS KMS) 密钥。将客户密钥材料导入 KMS 密钥。启用自动密钥轮换。
+答案.B
+
+Q203.一家财务公司的客户通过发送短信请求与财务顾问的约会。在 Amazon EC2 实例上运行的 Web 应用程序接受约 会请求。文本消息通过 Web 应用程序发布到 Amazon Simple Queue Service (Amazon SQS) 队列。然后，在 EC2 实例上运行的另一个应用 程序向客户发送会议邀请和会议确认电子邮件。成功安排后，此应用程序将会议信息存储在 Amazon DynamoDB 数据库中。随着公司的扩张，客户报告说他们的会议邀请需要更长的时间才能送达。解决方案架构师应该建议什么来解决这个问题?
+A. 在 DynamoDB 数据库前面添加一个 DynamoDB Accelerator (DAX) 集群。
+B. 在接受预约请求的 Web 应用程序前面添加一个 Amazon API Gateway API。
+C. 添加 Amazon CloudFront 分配。将源设置为接受约会请求的 Web 应用程序。
+D. 为发送会议邀请的应用程序添加一个 Auto Scaling 组。配置 Auto Scaling 组以根据 SQS 队列的深度进行缩放。
+答案.D
+
+Q204.一家在线零售公司拥有超过 5000 万活跃客户，每天收到超过 25,000 个订单。该公司为客户收集购买数据并将这些数据存储在 Amazon S3 中。其他客户数据存储在 Amazon RDS 中。 公司希望将所有数据提供给各个团队，以便团队可以执行分析。该解决方案必须提供管理数据细粒度权限的能力，并且必须最大限度地减少操作开销。哪种解决方案可以满足这些要求?
+A. 迁移购买数据以直接写入 Amazon RDS。使用 RDS 访问控制来限制访问。
+B. 安排 AWS Lambda 函数定期将数据从 Amazon RDS 复制到 Amazon S3。创建 AWS Glue 爬网程序。使用 Amazon Athena 查询数 据。使用 S3 策略限制访问。
+C. 使用 AWS Lake Formation 创建数据湖。创建到 Amazon RDS 的 AWS Glue JDBC 连接。在 Lake Formation 中注册 S3 存储桶。使 用 Lake Formation 访问控制来限制访问。
+D. 创建一个 Amazon Redshift 集群。安排 AWS Lambda 函数定期将数据从 Amazon S3 和 Amazon RDS 复制到 Amazon Redshift。 使用 Amazon Redshift 访问控制来限制访问。
+答案.C
+
+Q205.一家公司在本地数据中心托管一个营销网站。该网站由静态文档组成，并在单个服务器上运行。管理员不经常更新网 站内容并使用 SFTP 客户端上传新文档。公司决定在 AWS 上托管其网站并使用 Amazon CloudFront。公司的解决方案架构师创建了一个 CloudFront 分配。解决方案架构师必须为 网站托管设计最具成本效益和弹性的架构，以充当 CloudFront 源。哪种解决方案可以满足这些要求?
+A. 使用 Amazon Lightsail 创建虚拟服务器。在 Lightsail 实例中配置 Web 服务器。使用 SFTP 客户端上传网站内容。
+B. 为 Amazon EC2 实例创建一个 AWS Auto Scaling 组。使用应用程序负载均衡器。使用 SFTP 客户端上传网站内容。
+C. 创建私有 Amazon S3 存储桶。使用 S3 存储桶策略允许从 CloudFront 原始访问身份 (OAI) 进行访问。使用 AWS CLI 上传网站内 容。
+D. 创建一个公共 Amazon S3 存储桶。为 SFTP 配置 AWS 传输。为网站托管配置 S3 存储桶。使用SFTP 客户端上传网站内容。
+答案.C
+
+Q206.一家公司想要管理 Amazon Machine Images (AMI)。该公司目前将 AMI 复制到创建 AMI 的同一 AWS 区域。公司需要设计一个应用程序来捕获 AWS API 调用并在公司账户内调用 Amazon EC2 CreateImage API 操作时发送警报。 哪种解决方案能够以最少的运营开销满足这些要求?
+A. 创建一个 AWS Lambda 函数来查询 AWS CloudTrail 日志并在检测到 CreateImage API 调用时发送警报。
+B. 使用 Amazon Simple Notification Service (Amazon SNS) 通知配置 AWS CloudTrail，该通知在更新的日志发送到 Amazon S3 时发 生。使用 Amazon Athena 创建新表并在检测到 API 调用时查询 CreateImage。
+C. 为 CreateImage API 调用创建 Amazon EventBridge (Amazon CloudWatch Events) 规则。将目标配置为 Amazon Simple Notification Service (Amazon SNS) 主题，以便在检测到 CreateImage API 调用时发送警报。
+D. 配置一个 Amazon Simple Queue Service (Amazon SQS) FIFO 队列作为 AWS CloudTrail 日志的目标。创建 AWS Lambda 函数以 在检测到 CreateImage API 调用时向 Amazon Simple Notification Service (Amazon SNS) 主题发送警报。
+答案.C
+
+Q207.一家公司拥有一个异步 API，用于接收用户请求，并根据请求类型将请求分派到适当的微服务进行处理。该公司 正在使用 Amazon API Gateway 部署 API 前端，并使用 AWS Lambda 函数调用 Amazon DynamoDB 来存储用户请求，然后再将它们分派 到处理微服务。该公司在其预算允许的范围内配置了尽可能多的 DynamoDB 吞吐量，但该公司仍然遇到可用性问题并且正在丢失用户请求。 解决方案架构师应该怎么做才能在不影响现有用户的情况下解决这个问题?
+A. 使用服务器端限制在 API 网关上添加限制。
+B. 使用 DynamoDB 加速器 (DAX) 和 Lambda 来缓冲对 DynamoDB 的写入。
+C. 在 DynamoDB 中为具有用户请求的表创建二级索引。
+D. 使用 Amazon Simple Queue Service (Amazon SQS) 队列和 Lambda 缓冲写入 DynamoDB。
+答案.D
+
+Q208.一家公司需要将数据从 Amazon EC2 实例移动到 Amazon S3 存储桶。公司必须确保没有 API 调用和数据通过公共互联网路由进行路由。只有 EC2 实例可以访问将数据上传到 S3 存储桶。 哪种解决方案可以满足这些要求?
+A. 在 EC2 实例所在的子网中为 Amazon S3 创建接口 VPC 端点。将资源策略附加到 S3 存储桶以仅允许 EC2 实例的 IAM 角色进行访 问。
+B. 在 EC2 实例所在的可用区中为 Amazon S3 创建网关 VPC 端点。将适当的安全组附加到端点。将资源策略附加到 S3 存储桶以仅允 许 EC2 实例的 IAM 角色进行访问。
+C. 从 EC2 实例内部运行 nslookup 工具以获取 S3 存储桶的服务 API 端点的私有 IP 地址。在 VPC 路由表中创建一条路由，为 EC2 实 例提供对 S3 存储桶的访问权限。将资源策略附加到 S3 存储桶以仅允许 EC2 实例的 IAM 角色进行访问。
+D. 使用 AWS 提供的公开可用的 ip-ranges.json 文件获取 S3 存储桶的服务 API 端点的私有 IP 地址。在 VPC 路由表中创建一条路由， 为 EC2 实例提供对 S3 存储桶的访问权限。将资源策略附加到 S3 存储桶以仅允许 EC2 实例的 IAM 角色进行访问。
+答案.A
+
+Q209.解决方案架构师正在设计部署到 AWS 云的新应用程序的架构。该应用程序将在 Amazon EC2 按需实例上运行，并将 自动扩展到多个可用区。EC2 实例将在一天中频繁扩展和缩减。应用程序负载均衡器 (ALB) 将处理负载分配。该体系结构需要支持分布式 会话数据管理。如果需要，公司愿意更改代码。解决方案架构师应该如何确保架构支持分布式会话数据管理?
+A. 使用 Amazon ElastiCache 管理和存储会话数据。
+B. 使用 ALB 的会话亲和性(粘性会话)来管理会话数据。
+C. 使用 AWS Systems Manager 中的会话管理器来管理会话。
+D. 使用 AWS Security Token Service (AWS STS) 中的 GetSessionToken API 操作来管理会话。
+答案.A
+
+Q210.一家公司提供快速增长的送餐服务。由于增长，公司的订单处理系统在高峰时段遇到扩展问题。当前架构包括以下内容:在 Amazon EC2 Auto Scaling 组中运行的一组 Amazon EC2 实例，用于从应用程序收集订单;在 Amazon EC2 Auto Scaling 组中运行的另一组 EC2 实例，用于完成订单 订单 集合过程发生得很快，但订单履行过程可能需要更长的时间。数据不能因为缩放事件而丢失。 解决方案架构师必须确保订单收集流程和订单履行流程都可以在高峰流量时段适当扩展。该解决方案必须优化公司 AWS 资源的利用率。 哪个解决方案满足这些要求?
+A. 使用 Amazon CloudWatch 指标监控 Auto Scaling 组中每个实例的 CPU。根据峰值工作负载值配置每个 Auto Scaling 组的最小容 量。
+B. 使用 Amazon CloudWatch 指标监控 Auto Scaling 组中每个实例的 CPU。配置 CloudWatch 警报以调用 Amazon Simple Notification Service (Amazon SNS) 主题，按需创建额外的 Auto Scaling 组。
+C. 提供两个 Amazon Simple Queue Service (Amazon SQS) 队列:一个用于订单收集，另一个用于订单履行。配置 EC2 实例以轮询它 们各自的队列。根据队列发送的通知扩展 Auto Scaling 组。
+D. 提供两个 Amazon Simple Queue Service (Amazon SQS) 队列:一个用于订单收集，另一个用于订单履行。配置 EC2 实例以轮询它 们各自的队列。根据每个实例的积压计算创建指标。根据此指标扩展 Auto Scaling 组。
+答案.D
+
+Q211.一家公司拥有多个生产应用程序。其中一个应用程序包含来自多个 AWS 区域的 Amazon EC2、AWS Lambda、 Amazon RDS、Amazon Simple Notification Service (Amazon SNS) 和 Amazon Simple Queue Service (Amazon SQS) 的资源。所有公司资 源都标有“应用程序”的标签名称和对应于每个应用程序的值。解决方案架构师必须提供最快的解决方案来识别所有标记的组件。哪个解决方案满足这些要求?
+A. 使用 AWS CloudTrail 生成带有应用程序标签的资源列表。
+B. 使用 AWS CLI 跨所有区域查询每项服务以报告标记的组件。
+C. 在 Amazon CloudWatch Logs Insights 中运行查询以报告带有应用程序标签的组件。
+D. 使用 AWS Resource Groups Tag Editor 运行查询以使用应用程序标签报告全局资源。
+答案.D
+
+Q212.一家公司需要每天将其数据库导出到 Amazon S3 以供其他团队访问。导出的对象大小在 2 GB 到 5 GB 之间变 化。数据的 S3 访问模式是可变的并且变化很快。数据必须立即可用，并且最多可访问 3 个月。公司需要不会增加检索时间的最具成本效益 的解决方案。公司应使用哪种 S3 存储类来满足这些要求?
+A. S3 智能分层
+B. S3 Glacier 即时检索
+C. S3 标准
+D. S3标准-不频繁访问(S3 Standard-IA)
+答案.A
+
+Q213.一家公司正在开发一款新的移动应用程序。公司必须实施适当的流量过滤，以保护其 Application Load Balancer (ALB) 免受常见的应用程序级攻击，例如跨站点脚本或 SQL 注入。该公司拥有最少的基础设施和运营人员。该公司需要减少其在为其 AWS 环境 管理、更新和保护服务器方面的责任。解决方案架构师应该推荐什么来满足这些要求?
+A. 配置 AWS WAF 规则并将它们与 ALB 相关联。
+B. 使用启用公共托管的 Amazon S3 部署应用程序。
+C. 部署 AWS Shield Advanced 并将 ALB 添加为受保护资源。
+D. 创建一个新的 ALB，将流量定向到运行第三方防火墙的 Amazon EC2 实例，然后将流量传递到当前的 ALB。
+答案.C
+
+Q214.公司的报告系统每天将数百个 .csv 文件传送到 Amazon S3 存储桶。公司必须将这些文件转换为 Apache Parquet 格式，并且必须将文件存储在转换后的数据桶中。 哪种解决方案能够以最少的开发工作满足这些要求?
+A. 创建一个安装了 Apache Spark 的 Amazon EMR 集群。编写一个 Spark 应用程序来转换数据。使用 EMR 文件系统 (EMRFS) 将文 件写入转换后的数据桶。
+B. 创建一个 AWS Glue 爬虫来发现数据。创建 AWS Glue 提取、转换和加载 (ETL) 作业以转换数据。在输出步骤中指定转换后的数据 桶。
+C. 使用 AWS Batch 使用 Bash 语法创建作业定义以转换数据并将数据输出到转换后的数据桶。使用作业定义来提交作业。指定阵列作 业作为作业类型。
+D. 创建一个 AWS Lambda 函数来转换数据并将数据输出到转换后的数据桶中。为 S3 存储桶配置事件通知。将 Lambda 函数指定为 事件通知的目标。
+答案.B
+
+Q215.一家公司在其数据中心的网络附加存储 (NAS) 中存储了 700 TB 的备份数据。此备份数据需要可供不频繁的监管 请求访问，并且必须保留 7 年。该公司已决定将此备份数据从其数据中心迁移到 AWS。迁移必须在 1 个月内完成。该公司在其公共互联网 连接上拥有 500 Mbps 的专用带宽，可用于数据传输。解决方案架构师应该如何以最低成本迁移和存储数据?
+A. 订购 AWS Snowball 设备来传输数据。使用生命周期策略将文件转换到 Amazon S3 Glacier Deep Archive。
+B. 在数据中心和 Amazon VPC 之间部署 VPN 连接。使用 AWS CLI 将数据从本地复制到 Amazon S3 Glacier。
+C. 提供 500 Mbps AWS Direct Connect 连接并将数据传输到 Amazon S3。使用生命周期策略将文件转换到 Amazon S3 Glacier Deep Archive。
+D. 使用 AWS DataSync 传输数据并在本地部署 DataSync 代理。使用 DataSync 任务将文件从本地 NAS 存储复制到 Amazon S3 Glacier。
+答案.A
+
+Q216.一家公司有一个无服务器网站，在 Amazon S3 存储桶中有数百万个对象。该公司使用 S3 存储桶作为 Amazon CloudFront 分配的来源。公司在加载对象之前没有对S3 bucket设置加密。解决方案架构师需要为所有现有对象和将来添加到 S3 存储桶的 所有对象启用加密。哪种解决方案能够以最少的努力满足这些要求?
+A. 创建一个新的 S3 存储桶。为新的 S3 存储桶启用默认加密设置。将所有现有对象下载到临时本地存储。将对象上传到新的 S3 存储 桶。
+B. 打开 S3 存储桶的默认加密设置。使用 S3 清单功能创建一个列出未加密对象的 .csv 文件。运行使用复制命令加密这些对象的 S3 批 量操作作业。
+C. 使用 AWS Key Management Service (AWS KMS) 创建新的加密密钥。更改 S3 存储桶上的设置以使用带有 AWS KMS 托管加密密 钥 (SSE-KMS) 的服务器端加密。为 S3 存储桶启用版本控制。
+D. 在 AWS 管理控制台中导航到 Amazon S3。浏览 S3 存储桶的对象。按加密字段排序。选择每个未加密的对象。使用修改按钮将默 认加密设置应用于 S3 存储桶中的每个未加密对象。
+答案.B
+
+Q217.一家公司在 Application Load Balancer 后面的 Amazon EC2 实例上运行一个全球 Web 应用程序。该应用程序将数据存 储在 Amazon Aurora 中。公司需要创建一个灾难恢复解决方案，并且可以容忍长达 30 分钟的停机时间和潜在的数据丢失。当主要基础设 施健康时，该解决方案不需要处理负载。解决方案架构师应该怎么做才能满足这些要求?
+A. 使用所需的基础设施元素部署应用程序。使用 Amazon Route 53 配置主动-被动故障转移。在第二个 AWS 区域中创建一个 Aurora 副本。
+B. 在第二个 AWS 区域托管应用程序的缩减部署。使用 Amazon Route 53 配置主动-主动故障转移。在第二个区域中创建一个 Aurora 副本。
+C. 在第二个 AWS 区域复制主要基础设施。使用 Amazon Route 53 配置主动-主动故障转移。创建从最新快照还原的 Aurora 数据库。
+D. 使用 AWS Backup 备份数据。使用备份在第二个 AWS 区域中创建所需的基础设施。使用 Amazon Route 53 配置主动-被动故障转 移。在第二个区域中创建一个 Aurora 第二主实例。
+答案.A
+
+Q218.一家公司有一个 Web 服务器在公共子网中的 Amazon EC2 实例上运行，具有弹性 IP 地址。默认安全组分配给EC2 实例。默认网络 ACL 已修改为阻止所有流量。解决方案架构师需要通过端口 443 从任何地方访问 Web 服务器。 哪些步骤组合可以完成此任务?(选择两项。)
+A. 创建一个安全组，其规则允许来自源 0.0.0.0/0 的 TCP 端口 443。
+B. 创建一个安全组，其规则允许 TCP 端口 443 到目标 0.0.0.0/0。
+C. 更新网络 ACL 以允许来自源 0.0.0.0/0 的 TCP 端口 443。
+D. 更新网络 ACL 以允许从源 0.0.0.0/0 到目标 0.0.0.0/0 的入站/出站 TCP 端口 443。
+E. 更新网络 ACL 以允许来自源 0.0.0.0/0 的入站 TCP 端口 443 和出站 TCP 端口 32768-65535 到目标 0.0.0.0/0。
+答案.AE
+
+Q219.一家公司的应用程序存在性能问题。该应用程序是有状态的，需要在 Amazon EC2 实例上完成内存中的任务。该 公司使用 AWS CloudFormation 部署基础设施并使用 M5 EC2 实例系列。随着流量增加，应用程序性能下降。当用户尝试访问应用程序 时，用户会报告延迟。哪种解决方案将以最有效的方式解决这些问题?
+A. 将 EC2 实例替换为在 Auto Scaling 组中运行的 T3 EC2 实例。使用 AWS 管理控制台进行更改。
+B. 修改 CloudFormation 模板以在 Auto Scaling 组中运行 EC2 实例。当需要增加时，手动增加 Auto Scaling 组的期望容量和最大容 量。
+C. 修改 CloudFormation 模板。将 EC2 实例替换为 R5 EC2 实例。使用 Amazon CloudWatch 内置的 EC2 内存指标来跟踪应用程序性 能以进行未来的容量规划。
+D. 修改 CloudFormation 模板。将 EC2 实例替换为 R5 EC2 实例。在 EC2 实例上部署 Amazon CloudWatch 代理，为未来的容量规划 生成自定义应用程序延迟指标。
+答案.D
+
+Q220.解决方案架构师正在使用 Amazon API Gateway 设计一个新的 API，该 API 将接收来自用户的请求。请求量变化很 大;几个小时都没有收到任何请求。数据处理将异步进行，但应在发出请求后几秒钟内完成。解决方案架构师应该让 API 调用哪个计算服务以最低的成本交付需求?
+A. AWS Glue 作业
+B. 一个 AWS Lambda 函数
+C. 托管在 Amazon Elastic Kubernetes Service (Amazon EKS) 中的容器化服务
+D. 使用 Amazon EC2 在 Amazon ECS 中托管的容器化服务
+答案.B
+
+Q221.一家公司在一组 Amazon Linux EC2 实例上运行一个应用程序。出于合规原因，公司必须将所有应用程序日志文件保留 7 年。日志文件将由报告工具进行分析，该工具必须能够同时访问所有文件。 哪种存储解决方案能够最经济高效地满足这些要求?
+A. Amazon Elastic Block Store (Amazon EBS)
+B. 亚马逊弹性文件系统(Amazon EFS)
+C. Amazon EC2 实例存储
+D. 亚马逊 S3
+答案.D
+
+Q222.一家公司聘请了外部供应商在公司的 AWS 账户中执行工作。供应商使用托管在供应商拥有的 AWS 账户中的自动化工具。供应商没有 IAM 访问公司 AWS 账户的权限。 解决方案架构师应如何将此访问权限授予供应商?
+A. 在公司账户中创建一个 IAM 角色以委托对供应商的 IAM 角色的访问。将适当的 IAM 策略附加到角色以获得供应商所需的权限。
+B. 在公司账户中创建IAM用户，密码满足密码复杂度要求。将适当的 IAM 策略附加到用户以获得供应商所需的权限。
+C. 在公司账户中创建一个IAM组。将该工具的 IAM 用户从供应商账户添加到该组。将适当的 IAM 策略附加到组以获得供应商所需的 权限。
+D. 通过在 IAM 控制台中选择“AWS 账户”作为提供者类型来创建新的身份提供者。提供供应商的 AWS 账户 ID 和用户名。将适当的 IAM 策略附加到新提供者以获得供应商所需的权限。
+答案.A
+
+Q223. 一家公司将 Java Spring Boot 应用程序部署为在私有子网中的 Amazon Elastic Kubernetes Service (Amazon EKS) 上运行的 pod。应用程序需要将数据写入 Amazon DynamoDB 表。解决方案架构师必须确保应用程序可以与 DynamoDB 表交互，而 不会将流量暴露给互联网。解决方案架构师应该采取哪些步骤组合来实现这个目标?(选择两项。)
+A. 将具有足够权限的 IAM 角色附加到 EKS pod。
+B. 将具有足够权限的 IAM 用户附加到 EKS pod。
+C. 允许通过私有子网的网络 ACL 出站连接到 DynamoDB 表。
+D. 为 DynamoDB 创建一个 VPC 端点。
+E. 在 Java Spring Boot 代码中嵌入访问密钥。
+答案.AD
+
+Q224.一家公司最近通过在单个 AWS 区域中的 Amazon EC2 实例上重新托管应用程序，将其 Web 应用程序迁移到 AWS。该公司希望重新设计其应用程序架构，使其具有高可用性和容错能力。流量必须随机到达所有正在运行的 EC2 实例。 公司应该采取哪些步骤组合来满足这些要求?(选择两项。)
+A. 创建 Amazon Route 53 故障转移路由策略。
+B. 创建一个 Amazon Route 53 加权路由策略。
+C. 创建一个 Amazon Route 53 多值应答路由策略。
+D. 启动三个 EC2 实例:一个可用区中的两个实例和另一个可用区中的一个实例。 E. 启动四个 EC2 实例:一个可用区中的两个实例和另一个可用区中的两个实例。
+答案.CE
+
+Q225.一家媒体公司在本地收集和分析用户活动数据。该公司希望将此功能迁移到 AWS。用户活动数据存储将继续增长，大小将达到 PB 级。该公司需要构建一个高度可用的数据摄取解决方案，以促进使用 SQL 对现有数据和新数据进行按需分析。 哪种解决方案能够以最少的运营开销满足这些要求?
+A. 将活动数据发送到 Amazon Kinesis 数据流。配置流以将数据传送到 Amazon S3 存储桶。
+B. 将活动数据发送到 Amazon Kinesis Data Firehose 传输流。配置流以将数据传送到 Amazon Redshift 集群。
+C. 将活动数据放入 Amazon S3 存储桶中。配置 Amazon S3 以在数据到达 S3 存储桶时对数据运行 AWS Lambda 函数。
+D. 在分布在多个可用区的 Amazon EC2 实例上创建摄取服务。配置服务以将数据转发到 Amazon RDS 多可用区数据库。
+答案.B
+
+Q226.一家公司使用在 Amazon EC2 实例上运行的 RESTful Web 服务应用程序从数千台远程设备收集数据。EC2 实例 接收原始数据，转换原始数据，并将所有数据存储在 Amazon S3 存储桶中。远程设备的数量将很快增加到数百万。公司需要一个高度可扩 展的解决方案，以最大限度地减少运营开销。解决方案架构师应该采取哪些步骤组合来满足这些要求?(选择两项。)
+A. 使用 AWS Glue 处理 Amazon S3 中的原始数据。
+B. 使用 Amazon Route 53 将流量路由到不同的 EC2 实例。
+C. 添加更多 EC2 实例以适应不断增加的传入数据量。
+D. 将原始数据发送到 Amazon Simple Queue Service (Amazon SQS)。使用 EC2 实例处理数据。
+E. 使用 Amazon API Gateway 将原始数据发送到 Amazon Kinesis 数据流。配置 Amazon Kinesis Data Firehose 以使用数据流作为将 数据传输到 Amazon S3 的源。
+答案.AE
+
+Q227.一家公司需要将其 AWS CloudTrail 日志保留 3 年。该公司通过使用来自父账户的 AWS Organizations，在一组 AWS 账户中实施 CloudTrail。CloudTrail 目标 S3 存储桶配置为启用了 S3 版本控制。S3 生命周期策略已到位，可在 3 年后删除当前对象。 在使用 S3 存储桶的第四年之后，S3 存储桶指标显示对象数量持续上升。但是，传送到 S3 存储桶的新 CloudTrail 日志的数量保持一致。 哪种解决方案将以最具成本效益的方式删除超过 3 年的对象?
+A. 配置组织的集中式 CloudTrail 跟踪以在 3 年后使对象过期。
+B. 配置 S3 生命周期策略以删除以前的版本和当前版本。
+C. 创建一个 AWS Lambda 函数来枚举和删除 Amazon S3 中超过 3 年的对象。
+D. 将父帐户配置为传递到 S3 存储桶的所有对象的所有者。
+答案.B
+
+Q228.一家公司有一个 API，可以从一组监控设备接收实时数据。API 将此数据存储在 Amazon RDS 数据库实例中以供以后分析。监控设备发送到 API 的数据量会波动。在流量大的时候，API 经常会返回超时错误。检查日志后，公司确定数据库无法处理来自 API 的写入流量。解决方案架构师必须尽量减少与数据库的连接数，并且必须确保数据在繁忙的流量期间不会丢失。哪种解决方案可以满足这些要求?
+A. 将数据库实例的大小增加到具有更多可用内存的实例类型。
+B. 将数据库实例修改为多可用区数据库实例。配置应用程序以写入所有活动的 RDS 数据库实例。
+C. 修改 API 以将传入数据写入 Amazon Simple Queue Service (Amazon SQS) 队列。使用 Amazon SQS 调用的 AWS Lambda 函数将 数据从队列写入数据库。
+D. 修改 API 以将传入数据写入 Amazon Simple Notification Service (Amazon SNS) 主题。使用 Amazon SNS 调用的 AWS Lambda 函 数将数据从主题写入数据库。
+答案.C
+
+Q229.一家公司管理自己的运行 MySQL 数据库的 Amazon EC2 实例。随着需求的增加或减少，该公司正在手动管理复制和扩 展。公司需要一种新的解决方案来简化根据需要向数据库层添加或从中删除计算容量的过程。该解决方案还必须提供改进的性能、扩展性 和耐用性，同时最大限度地减少运营工作。哪个解决方案满足这些要求?
+A. 将数据库迁移到 Amazon Aurora Serverless for Aurora MySQL。
+B. 将数据库迁移到 Amazon Aurora Serverless for Aurora PostgreSQL。
+C. 将数据库合并成一个更大的 MySQL 数据库。在更大的 EC2 实例上运行更大的数据库。
+D. 为数据库层创建一个 EC2 Auto Scaling 组。将现有数据库迁移到新环境。
+答案.A
+
+Q230.一家公司担心正在使用的两个 NAT 实例将无法再支持公司应用程序所需的流量。解决方案架构师想要实施一个高度可用、容错且可自动扩展的解决方案。解决方案架构师应该推荐什么?
+A. 删除两个 NAT 实例，并用同一可用区中的两个 NAT 网关替换它们。
+B. 将 Auto Scaling 组与网络负载均衡器一起用于不同可用区中的 NAT 实例。
+C. 删除两个 NAT 实例并用不同可用区中的两个 NAT 网关替换它们。
+D. 将两个 NAT 实例替换为不同可用区中的 Spot 实例并部署网络负载均衡器。
+答案.C
+
+Q231.应用程序在 Amazon EC2 实例上运行，该实例在 VPC A 中具有弹性 IP 地址。该应用程序需要访问 VPC B 中的数据库。两个 VPC 都在同一个 AWS 账户中。 哪种解决方案将最安全地提供所需的访问权限?
+A. 创建实例安全组，允许所有来自VPC A中应用服务器公网IP的流量。
+B. 在VPC A和VPC B之间配置VPC对等连接。
+C. 使数据库实例可公开访问。为数据库实例分配一个公共 IP 地址。
+D. 在 VPC 中启动具有弹性 IP 地址的 EC2 实例 B. 通过新的 EC2 实例代理所有请求。
+答案.B
+
+Q232.一家公司在 Amazon EC2 实例上为其客户运行演示环境。每个环境都隔离在自己的 VPC 中。当建立对环境的RDP 或 SSH 访问时，需要通知公司的运营团队。
+A. 配置 Amazon CloudWatch Application Insights 以在检测到 RDP 或 SSH 访问时创建 AWS Systems Manager OpsItems。
+B. 使用 IAM 实例配置文件配置 EC2 实例，该配置文件具有附加了 AmazonSSMManagedInstanceCore 策略的 IAM 角色。
+C. 将 VPC 流日志发布到 Amazon CloudWatch Logs。创建所需的指标过滤器。创建一个 Amazon CloudWatch 指标警报，并在警报处 于 ALARM 状态时使用通知操作。
+D. 配置 Amazon EventBridge 规则以侦听类型为 EC2 实例状态更改通知的事件。将 Amazon Simple Notification Service (Amazon SNS) 主题配置为目标。为运营团队订阅主题。
+答案.C
+
+Q233.解决方案架构师创建了一个新的 AWS 账户，并且必须保护 AWS 账户根用户访问权限。 哪种行动组合可以实现这一目标?(选择两项。)
+A. 确保 root 用户使用强密码。
+B. 对 root 用户启用多重身份验证。
+C. 将根用户访问密钥存储在加密的 Amazon S3 存储桶中。
+D. 将 root 用户添加到包含管理权限的组中。
+E. 使用内联策略文档向根用户应用所需的权限。
+答案.AB
+
+Q234.一家公司正在构建一个新的基于 Web 的客户关系管理应用程序。该应用程序将使用多个 Amazon EC2 实例，这些实例 由 Application Load Balancer (ALB) 后面的 Amazon Elastic Block Store (Amazon EBS) 卷提供支持。该应用程序还将使用 Amazon Aurora 数据库。应用程序的所有数据都必须在静态和传输中加密。哪种解决方案可以满足这些要求?
+A. 在 ALB 上使用 AWS Key Management Service (AWS KMS) 证书加密传输中的数据。使用 AWS Certificate Manager (ACM) 加密 EBS 卷和静态 Aurora 数据库存储。
+B. 使用 AWS root 账户登录 AWS 管理控制台。上传公司的加密证书。在 root 帐户中，选择该选项以对该帐户的所有静态和传输数据 启用加密。
+C. 使用 AWS Key Management Service (AWS KMS) 加密 EBS 卷和静态 Aurora 数据库存储。将 AWS Certificate Manager (ACM) 证 书附加到 ALB 以加密传输中的数据。
+D. 使用 BitLocker 加密所有静态数据。将公司的 TLS 证书密钥导入 AWS Key Management Service (AWS KMS) 将 KMS 密钥附加到 ALB 以加密传输中的数据。
+答案.C
+
+Q235.一家公司正在将其本地 Oracle 数据库迁移到 Amazon Aurora PostgreSQL。该数据库有多个写入相同表的应用程序。 应用程序需要一个一个地迁移，每次迁移之间间隔一个月。管理层表示担心数据库的读写次数过多。在整个迁移过程中，数据必须在两个 数据库之间保持同步。解决方案架构师应该推荐什么?
+A. 使用 AWS DataSync 进行初始迁移。使用 AWS Database Migration Service (AWS DMS) 创建变更数据捕获 (CDC) 复制任务和表映 射以选择所有表。
+B. 使用 AWS DataSync 进行初始迁移。使用 AWS Database Migration Service (AWS DMS) 创建完整加载和变更数据捕获 (CDC) 复制 任务和表映射以选择所有表。
+C. 将 AWS Schema Conversion Tool 与使用内存优化复制实例的 AWS Database Migration Service (AWS DMS) 结合使用。创建一个 完整加载加更改数据捕获 (CDC) 复制任务和一个表映射以选择所有表。
+D. 使用计算优化复制实例将 AWS Schema Conversion Tool 与 AWS Database Migration Service (AWS DMS) 结合使用。创建一个完 整加载加更改数据捕获 (CDC) 复制任务和一个表映射以选择最大的表。
+答案.C
+
+Q236.一家公司有一个用于图像共享的三层应用程序。该应用程序使用一个 Amazon EC2 实例作为前端层，另一个 EC2 实例作为应用层，第三个 EC2 实例作为 MySQL 数据库。解决方案架构师必须设计一个可扩展且高度可用的解决方案，该解决方案需要对 应用程序进行最少的更改。哪个解决方案满足这些要求?
+A. 使用Amazon S3 托管前端层。将 AWS Lambda 函数用于应用程序层。将数据库移动到 Amazon DynamoDB 表。使用 Amazon S3 存储和提供用户图像。
+B. 为前端层和应用层使用负载均衡的多可用区 AWS Elastic Beanstalk 环境。将数据库移动到具有多个只读副本的 Amazon RDS 数据 库实例以提供用户图像。
+C. 使用Amazon S3 托管前端层。在应用程序层的 Auto Scaling 组中使用一组 EC2 实例。将数据库移动到内存优化实例类型以存储和 提供用户图像。
+D. 为前端层和应用层使用负载均衡的多可用区 AWS Elastic Beanstalk 环境。将数据库移动到 Amazon RDS 多可用区数据库实例。使 用 Amazon S3 存储和提供用户图像。
+答案.D
+
+Q237.在 VPC-A 中的 Amazon EC2 实例上运行的应用程序需要访问 VPC-B 中另一个 EC2 实例中的文件。两个 VPC 都 在不同的 AWS 账户中。网络管理员需要设计一个解决方案来配置从 VPC-A 安全访问 VPC-B 中的 EC2 实例。连接不应有单点故障或带宽问 题。哪种解决方案可以满足这些要求?
+A. 在VPC-A和VPC-B之间建立VPC对等连接。
+B. 为在 VPC-B 中运行的 EC2 实例设置 VPC 网关端点。
+C. 将虚拟专用网关附加到 VPC-B 并设置从 VPC-A 的路由。
+D. 为在 VPC-B 中运行的 EC2 实例创建私有虚拟接口 (VIF)，并添加来自 VPC-A 的适当路由。
+答案.A
+
+Q238.一家公司想要为其工程师团队试验个人 AWS 账户。该公司希望在给定月份的 Amazon EC2 实例使用量超过每个账户的特定阈值时立即收到通知。解决方案架构师应该怎么做才能最经济有效地满足此要求?
+A. 使用 Cost Explorer 按服务创建每日成本报告。按 EC2 实例筛选报告。配置 Cost Explorer 以在超过阈值时发送 Amazon Simple Email Service (Amazon SES) 通知。
+B. 使用 Cost Explorer 按服务创建成本月度报告。按 EC2 实例筛选报告。配置 Cost Explorer 以在超过阈值时发送 Amazon Simple Email Service (Amazon SES) 通知。
+C. 使用 AWS 预算为每个账户创建成本预算。将期间设置为每月。将范围设置为 EC2 实例。为预算设置警报阈值。配置 Amazon Simple Notification Service (Amazon SNS) 主题以在超过阈值时接收通知。
+D. 使用 AWS Cost and Usage Reports 创建一个以小时为粒度的报告。将报告数据与 Amazon Athena 集成。使用 Amazon EventBridge 安排 Athena 查询。配置 Amazon Simple Notification Service (Amazon SNS) 主题以在超过阈值时接收通知。
+答案.C
+
+Q239.解决方案架构师需要为公司的应用程序设计新的微服务。客户端必须能够调用 HTTPS 端点才能访问微服务。微 服务还必须使用 AWS Identity and Access Management (IAM) 来验证调用。解决方案架构师将使用以 Go 1.x 编写的单个 AWS Lambda 函 数为此微服务编写逻辑。哪种解决方案将以最有效的方式部署该功能?
+A. 创建一个 Amazon API Gateway REST API。配置方法以使用 Lambda 函数。在 API 上启用 IAM 身份验证。
+B. 为函数创建一个 Lambda 函数 URL。指定 AWS_IAM 作为身份验证类型。
+C. 创建一个 Amazon CloudFront 分配。将函数部署到Lambda@Edge。将 IAM 身份验证逻辑集成到Lambda@Edge函数中。
+D. 创建一个 Amazon CloudFront 分配。将函数部署到 CloudFront Functions。指定 AWS_IAM 作为身份验证类型。
+答案.A
+
+Q240.一家公司之前将其数据仓库解决方案迁移到了 AWS。该公司还拥有 AWS Direct Connect 连接。公司办公用户使 用可视化工具查询数据仓库。数据仓库返回的查询的平均大小为 50 MB，可视化工具发送的每个网页大约为 500 KB。数据仓库返回的结果 集不被缓存。
+哪种解决方案为公司提供最低的数据传输出口成本?
+A. 在本地托管可视化工具并直接通过 Internet 查询数据仓库。
+B. 在与数据仓库相同的 AWS 区域中托管可视化工具。通过互联网访问它。
+C. 在本地托管可视化工具，并在同一 AWS 区域的某个位置直接通过 Direct Connect 连接查询数据仓库。
+D. 在与数据仓库相同的 AWS 区域托管可视化工具，并在同一区域的某个位置通过 Direct Connect 连接访问它。
+答案.D
+
+Q241.一家在线学习公司正在迁移到 AWS 云。公司在 PostgreSQL 数据库中维护其学生记录。该公司需要一种解决方 案，使其数据始终跨多个 AWS 区域在线可用。哪种解决方案能够以最少的运营开销满足这些要求?
+A. 将 PostgreSQL 数据库迁移到 Amazon EC2 实例上的 PostgreSQL 集群。
+B. 将 PostgreSQL 数据库迁移到启用了多可用区功能的 Amazon RDS for PostgreSQL 数据库实例。
+C. 将 PostgreSQL 数据库迁移到 Amazon RDS for PostgreSQL 数据库实例。在另一个区域中创建只读副本。
+D. 将 PostgreSQL 数据库迁移到 Amazon RDS for PostgreSQL 数据库实例。设置要复制到另一个区域的数据库快照。
+答案.C
+
+Q242.一家公司使用七个 Amazon EC2 实例在 AWS 上托管其 Web 应用程序。公司要求返回所有健康 EC2 实例的 IP地址以响应 DNS 查询。 应使用哪种策略来满足此要求?
+A. 简单路由策略
+B. 延迟路由策略
+C. 多值路由策略
+D. 地理位置路由策略
+答案.C
+
+Q243.医学研究实验室生成与新研究相关的数据。该实验室希望以最小的延迟向全国各地的诊所提供数据，以供其基于文件的本地应用程序使用。数据文件存储在对每个诊所具有只读权限的 Amazon S3 存储桶中。 解决方案架构师应该推荐什么来满足这些要求?
+A. 在每个诊所的本地部署 AWS Storage Gateway 文件网关作为虚拟机 (VM)
+B. 将文件迁移到每个诊所的本地应用程序，使用 AWS DataSync 进行处理。
+C. 在每个诊所的本地部署 AWS Storage Gateway 卷网关作为虚拟机 (VM)。
+D. 将 Amazon Elastic File System (Amazon EFS) 文件系统附加到每个诊所的本地服务器。
+答案.A
+
+Q244.一家公司正在使用在单个 Amazon EC2 实例上运行的内容管理系统。EC2 实例包含 Web 服务器和数据库软件。 公司必须使其网站平台高度可用，并且必须使网站能够扩展以满足用户需求。解决方案架构师应该推荐什么来满足这些要求?
+A. 将数据库移动到 Amazon RDS，并启用自动备份。在同一可用区中手动启动另一个 EC2 实例。在可用区配置应用程序负载均衡 器，并将两个实例设置为目标。
+B. 将数据库迁移到具有只读副本的 Amazon Aurora 实例，该实例位于与现有 EC2 实例相同的可用区中。在同一可用区中手动启动另 一个 EC2 实例。配置应用程序负载均衡器，并将两个 EC2 实例设置为目标。
+C. 将数据库移动到具有另一个可用区中的只读副本的 Amazon Aurora。从 EC2 实例创建 Amazon 系统映像 (AMI)。在两个可用区中 配置应用程序负载均衡器。附加一个跨两个可用区使用 AMI 的 Auto Scaling 组。
+D. 将数据库移动到单独的 EC2 实例，并安排备份到 Amazon S3。从原始 EC2 实例创建 Amazon 系统映像 (AMI)。在两个可用区中配 置应用程序负载均衡器。附加一个跨两个可用区使用 AMI 的 Auto Scaling 组。
+答案.C
+
+Q245.一家公司正在 AWS 上启动一个应用程序。该应用程序使用应用程序负载均衡器 (ALB) 将流量定向到单个目标组 中的至少两个 Amazon EC2 实例。这些实例位于每个环境的 Auto Scaling 组中。公司需要开发环境和生产环境。生产环境会有高流量时 期。哪种解决方案可以最经济高效地配置开发环境?
+A. 重新配置开发环境中的目标组，使其只有一个 EC2 实例作为目标。
+B. 将 ALB 平衡算法更改为最少未完成的请求。
+C. 减少两个环境中 EC2 实例的大小。
+D. 减少开发环境的 Auto Scaling 组中 EC2 实例的最大数量。
+答案.D
+
+Q246.一家公司在多个可用区的 Amazon EC2 实例上运行 Web 应用程序。EC2 实例位于私有子网中。解决方案架构师实施面向 Internet 的应用程序负载均衡器 (ALB)，并将 EC2 实例指定为目标组。但是，互联网流量未到达 EC2 实例。 解决方案架构师应该如何重新配置架构来解决这个问题?
+A. 用网络负载均衡器替换 ALB。在公共子网中配置 NAT 网关以允许互联网流量。
+B. 将 EC2 实例移动到公共子网。将规则添加到 EC2 实例的安全组以允许出站流量到 0.0.0.0/0。
+C. 更新 EC2 实例子网的路由表以通过互联网网关路由发送 0.0.0.0/0 流量。将规则添加到 EC2 实例的安全组以允许出站流量到 0.0.0.0/0。
+D. 在每个可用区中创建公共子网。将公共子网与 ALB 相关联。使用到私有子网的路由更新公共子网的路由表。
+答案.D
+
+Q247.一家公司在 Amazon RDS for MySQL 中部署了一个数据库。由于事务增加，数据库支持团队报告数据库实例读 取缓慢，并建议添加只读副本。在实施此更改之前，解决方案架构师应该采取哪些行动组合?(选择两项。)
+A. 在 RDS 主节点上启用二进制日志复制。
+B. 为源数据库实例选择故障转移优先级。
+C. 允许长时间运行的事务在源数据库实例上完成。
+D. 创建一个全局表并指定该表可用的 AWS 区域。
+E. 通过将备份保留期设置为 0 以外的值，在源实例上启用自动备份。
+答案.CE
+
+Q248.一家公司在 Amazon EC2 实例上运行分析软件。该软件接受用户的工作请求以处理已上传到 Amazon S3 的数 据。用户报告一些提交的数据没有得到处理 Amazon CloudWatch 显示 EC2 实例的 CPU 使用率一直处于或接近 100%。该公司希望提高系 统性能并根据用户负载扩展系统。解决方案架构师应该怎么做才能满足这些要求?
+A. 创建实例的副本。将所有实例置于 Application Load Balancer 之后。
+B. 为 Amazon S3 创建一个 S3 VPC 端点。更新软件以引用端点。
+C. 停止 EC2 实例。将实例类型修改为具有更强大的 CPU 和更多内存的实例类型。重新启动实例。
+D. 将传入请求路由到 Amazon Simple Queue Service (Amazon SQS)。根据队列大小配置 EC2 Auto Scaling 组。更新软件以从队列中 读取。
+答案.D
+
+Q249.一家公司正在为托管在 AWS 云中的媒体应用程序实施共享存储解决方案。公司需要能够使用 SMB 客户端访问数据。该解决方案必须得到全面管理。 哪个 AWS 解决方案满足这些要求?
+A. 创建一个 AWS Storage Gateway 卷网关。创建使用所需客户端协议的文件共享。将应用程序服务器连接到文件共享。
+B. 创建一个 AWS Storage Gateway 磁带网关。配置磁带以使用 Amazon S3。将应用程序服务器连接到磁带网关。
+C. 创建一个 Amazon EC2 Windows 实例。在实例上安装和配置 Windows 文件共享角色。将应用程序服务器连接到文件共享。
+D. 为 Windows 文件服务器文件系统创建一个 Amazon FSx。将文件系统附加到源服务器。将应用程序服务器连接到文件系统。
+答案.D
+
+Q250.一家公司的安全团队要求在 VPC 流日志中捕获网络流量。日志将被频繁访问 90 天，然后间歇性访问。 在配置日志时，解决方案架构师应该怎么做才能满足这些要求?
+A. 使用 Amazon CloudWatch 作为目标。将 CloudWatch 日志组设置为 90 天到期
+B. 使用 Amazon Kinesis 作为目标。配置 Kinesis 流以始终将日志保留 90 天。
+C. 使用 AWS CloudTrail 作为目标。配置 CloudTrail 以保存到 Amazon S3 存储桶，并启用 S3 智能分层。
+D. 使用 Amazon S3 作为目标。启用 S3 生命周期策略以在 90 天后将日志转换为 S3 标准-不频繁访问 (S3 标准-IA)。
+答案.D
+
+Q251.Amazon EC2 实例位于新 VPC 的私有子网中。此子网没有出站互联网访问权限，但 EC2 实例需要能够从外部供 应商下载每月安全更新。解决方案架构师应该怎么做才能满足这些要求?
+A. 创建一个互联网网关，并将其附加到 VPC。配置私有子网路由表以使用互联网网关作为默认路由。
+B. 创建一个 NAT 网关，并将其放置在公共子网中。配置私有子网路由表以使用 NAT 网关作为默认路由。
+C. 创建一个NAT实例，并将其放在EC2实例所在的同一子网中。配置私有子网路由表以使用 NAT 实例作为默认路由。
+D. 创建一个互联网网关，并将其附加到 VPC。创建一个NAT实例，并将其放置在EC2实例所在的同一子网中。配置私有子网路由表以 使用互联网网关作为默认路由。
+答案.B
+
+Q252.解决方案架构师需要设计一个系统来存储客户案例文件。这些文件是公司的核心资产，非常重要。文件的数量会随着时间的推移而增长。这些文件必须可以同时从在 Amazon EC2 实例上运行的多个应用程序服务器访问。该解决方案必须具有内置冗余。 哪个解决方案满足这些要求?
+A. 亚马逊弹性文件系统(Amazon EFS)
+B. Amazon Elastic Block Store (Amazon EBS)
+C. Amazon S3 Glacier 深度存档
+D. AWS 备份
+答案.A
+
+Q253.解决方案架构师创建了两个 IAM 策略:Policy1 和 Policy2。这两个策略都附加到一个 IAM 组。云工程师作为 IAM 用户添加到 IAM 组。云工程师将能够执行哪些操作?
+A. 删除 IAM 用户
+B. 删除目录
+C. 删除 Amazon EC2 实例
+D. 从 Amazon CloudWatch Logs 中删除日志
+答案.C
+
+Q254.一家公司正在审查最近将三层应用程序迁移到 VPC 的情况。安全团队发现最小权限原则并未应用于应用程序层之间的 Amazon EC2 安全组入口和出口规则。 解决方案架构师应该如何纠正这个问题?
+A. 使用实例 ID 作为源或目标创建安全组规则。
+B. 使用安全组 ID 作为源或目标创建安全组规则。
+C. 使用 VPC CIDR 块作为源或目标创建安全组规则。
+D. 使用子网 CIDR 块作为源或目标创建安全组规则。
+答案.B
+
+Q255.一家公司有一个电子商务结账工作流，该工作流将订单写入数据库并调用服务来处理付款。用户在结帐过程中遇到超时。当用户重新提交结帐表单时，会为同一个所需交易创建多个唯一订单。解决方案架构师应如何重构此工作流程以防止创建多个订单?
+A. 配置 Web 应用程序以向 Amazon Kinesis Data Firehose 发送订单消息。设置支付服务以从 Kinesis Data Firehose 检索消息并处理 订单。
+B. 在 AWS CloudTrail 中创建规则以根据记录的应用程序路径请求调用 AWS Lambda 函数。使用Lambda查询数据库，调用支付服 务，传入订单信息。
+C. 将订单存储在数据库中。将包含订单号的消息发送到 Amazon Simple Notification Service (Amazon SNS)。设置支付服务以轮询 Amazon SNS、检索消息并处理订单。
+D. 将订单存储在数据库中。将包含订单号的消息发送到 Amazon Simple Queue Service (Amazon SQS) FIFO 队列。设置支付服务以 检索消息并处理订单。从队列中删除消息。
+答案.D
+
+Q256.解决方案架构师正在使用 Amazon S3 存储桶实现文档审阅应用程序。该解决方案必须防止文档被意外删除，并确保所有版本的文档都可用。用户必须能够下载、修改和上传文档。应该采取哪些行动组合来满足这些要求?(选择两项。)
+A. 启用只读桶 ACL。
+B. 在桶上启用版本控制。
+C. 将 IAM 策略附加到存储桶。
+D. 在存储桶上启用 MFA 删除。
+E. 使用 AWS KMS 加密存储桶。
+答案.BD
+
+Q257.一家公司正在构建一个解决方案，该解决方案将跨 AWS 账户中的所有应用程序报告 Amazon EC2 Auto Scaling 事件。 该公司需要使用无服务器解决方案将 EC2 Auto Scaling 状态数据存储在 Amazon S3 中。然后，该公司将使用 Amazon S3 中的数据在仪表 板中提供近乎实时的更新。该解决方案不得影响 EC2 实例的启动速度。公司应如何将数据移动到 Amazon S3 以满足这些要求?
+A. 使用 Amazon CloudWatch 指标流将 EC2 Auto Scaling 状态数据发送到 Amazon Kinesis Data Firehose。将数据存储在 Amazon S3 中。
+B. 启动 Amazon EMR 集群以收集 EC2 Auto Scaling 状态数据并将数据发送到 Amazon Kinesis Data Firehose。将数据存储在 Amazon S3 中。
+C. 创建 Amazon EventBridge 规则以按计划调用 AWS Lambda 函数。配置 Lambda 函数以将 EC2 Auto Scaling 状态数据直接发送到 Amazon S3。
+D. 在启动 EC2 实例期间使用引导脚本安装 Amazon Kinesis Agent。配置 Kinesis 代理以收集 EC2 Auto Scaling 状态数据并将数据发 送到 Amazon Kinesis Data Firehose。将数据存储在 Amazon S3 中。
+答案.A
+
+Q258.一家公司有一个应用程序，每小时将数百个 .csv 文件放入 Amazon S3 存储桶中。这些文件的大小为 1 GB。每次上传文件时，公司都需要将文件转换为 Apache Parquet 格式并将输出文件放入 S3 存储桶中。 哪种解决方案能够以最少的运营开销满足这些要求?
+A. 创建一个 AWS Lambda 函数来下载 .csv 文件，将文件转换为 Parquet 格式，并将输出文件放入 S3 存储桶中。为每个 S3 PUT 事件 调用 Lambda 函数。
+B. 创建一个 Apache Spark 作业来读取 .csv 文件，将文件转换为 Parquet 格式，并将输出文件放入 S3 存储桶中。为每个 S3 PUT 事件 创建一个 AWS Lambda 函数以调用 Spark 作业。
+C. 为应用程序放置 .csv 文件的 S3 存储桶创建一个 AWS Glue 表和一个 AWS Glue 爬虫。安排 AWS Lambda 函数定期使用 Amazon Athena 查询 AWS Glue 表，将查询结果转换为 Parquet 格式，并将输出文件放入 S3 存储桶中。
+D. 创建 AWS Glue 提取、转换和加载 (ETL) 作业以将 .csv 文件转换为 Parquet 格式并将输出文件放入 S3 存储桶中。为每个 S3 PUT 事件创建一个 AWS Lambda 函数以调用 ETL 作业。
+答案.D
+
+Q259.一家公司正在为在 Amazon RDS 数据库实例上运行的所有数据库实施新的数据保留策略。公司必须保留每日备份至少 2 年。备份必须一致且可恢复。解决方案架构师应该推荐哪种解决方案来满足这些要求?
+A. 在 AWS Backup 中创建备份保管库以保留 RDS 备份。创建一个新的备份计划，该计划具有每天的计划和创建后 2 年的有效期。将 RDS 数据库实例分配给备份计划。
+B. 为每日快照的 RDS 数据库实例配置一个备份窗口。为每个 RDS 数据库实例分配 2 年的快照保留策略。使用 Amazon Data Lifecycle Manager (Amazon DLM) 安排快照删除。
+C. 配置数据库事务日志自动备份到 Amazon CloudWatch Logs，有效期为 2 年。
+D. 配置 AWS Database Migration Service (AWS DMS) 复制任务。部署复制实例，并配置更改数据捕获 (CDC) 任务以将数据库更改流 式传输到作为目标的 Amazon S3。配置 S3 生命周期策略以在 2 年后删除快照。
+答案.A
+
+Q260.一家公司的合规团队需要将其文件共享转移到 AWS。这些共享在 Windows Server SMB 文件共享上运行。自我管理的本地 Active Directory 控制对文件和文件夹的访问。该公司希望使用 Amazon FSx for Windows File Server 作为解决方案的一部分。公司必须确保本地 Active Directory 组在迁移到 AWS 后限制对 FSx for Windows File Server SMB 合规性共享、文件夹和文件的访问。该公司创建了一个 FSx for Windows File Server 文件系统。 哪种解决方案可以满足这些要求?
+A. 创建一个 Active Directory 连接器以连接到 Active Directory。将 Active Directory 组映射到 IAM 组以限制访问。
+B. 分配一个带有 Restrict 标签键和 Compliance 标签值的标签。将 Active Directory 组映射到 IAM 组以限制访问。
+C. 创建直接链接到 FSx for Windows 文件服务器的 IAM 服务相关角色以限制访问。
+D. 将文件系统加入 Active Directory 以限制访问。
+答案.D
+
+Q261.一家公司最近宣布面向全球受众部署其零售网站。该网站在 Elastic Load Balancer 后面的多个 Amazon EC2 实例上运行。这些实例在跨多个可用区的 Auto Scaling 组中运行。 该公司希望根据客户用来访问网站的设备为其客户提供不同版本的内容。 解决方案架构师应该采取哪些行动组合来满足这些要求?(选择两项。)
+A. 配置 Amazon CloudFront 以缓存内容的多个版本。
+B. 在网络负载均衡器中配置主机头以将流量转发到不同的实例。
+C. 配置Lambda@Edge函数以根据 User-Agent 标头向用户发送特定对象。
+D. 配置 AWS 全球加速器。将请求转发到网络负载平衡器 (NLB)。配置 NLB 以设置到不同 EC2 实例的基于主机的路由。 E. 配置 AWS 全球加速器。将请求转发到网络负载平衡器 (NLB)。配置 NLB 以设置到不同 EC2 实例的基于路径的路由。
+答案.AC
+
+Q262.一家公司计划将 Amazon ElastiCache 用于其多层 Web 应用程序。解决方案架构师为 ElastiCache 集群创建缓存 VPC，为应用程序的 Amazon EC2 实例创建应用 VPC。两个 VPC 都位于 us-east-1 区域。 解决方案架构师必须实施解决方案来为应用程序的 EC2 实例提供对 ElastiCache 集群的访问权限。 哪种解决方案能够最经济有效地满足这些要求?
+A. 在 VPC 之间创建对等连接。在两个 VPC 中为对等连接添加路由表条目。为 ElastiCache 集群的安全组配置入站规则以允许来自应 用程序安全组的入站连接。
+B. 创建一个中转 VPC。更新缓存 VPC 和应用程序 VPC 中的 VPC 路由表，以通过传输 VPC 路由流量。为 ElastiCache 集群的安全组 配置入站规则以允许来自应用程序安全组的入站连接。
+C. 在 VPC 之间创建对等连接。在两个 VPC 中为对等连接添加路由表条目。为对等连接的安全组配置入站规则，以允许来自应用程序 安全组的入站连接。
+D. 创建一个中转 VPC。更新缓存 VPC 和应用程序 VPC 中的 VPC 路由表，以通过传输 VPC 路由流量。为 Transit VPC 的安全组配置 入站规则，以允许来自应用程序安全组的入站连接。
+答案.A
+
+Q263. 一家公司正在构建一个由多个微服务组成的应用程序。该公司已决定使用容器技术在 AWS 上部署其软件。该公司需要一种解决方案来最大限度地减少维护和扩展的持续工作量。公司无法管理额外的基础设施。解决方案架构师应该采取哪些行动组合来满足这些要求?(选择两项。)
+A. 部署一个 Amazon Elastic Container Service (Amazon ECS) 集群。
+B. 在跨越多个可用区的 Amazon EC2 实例上部署 Kubernetes 控制平面。
+C. 部署具有 Amazon EC2 启动类型的 Amazon Elastic Container Service (Amazon ECS) 服务。指定大于或等于 2 的所需任务编号级 别。
+D. 部署具有 Fargate 启动类型的 Amazon Elastic Container Service (Amazon ECS) 服务。指定大于或等于 2 的所需任务编号级别。 E. 在跨越多个可用区的 Amazon EC2 实例上部署 Kubernetes 工作节点。创建一个为每个微服务指定两个或更多副本的部署。
+答案.AD
+
+Q264.一家公司有一个 Web 应用程序托管了 10 多个 Amazon EC2 实例，流量由 Amazon Route 53 引导。该公司在尝试浏览 该应用程序时偶尔会遇到超时错误。网络团队发现一些 DNS 查询返回不健康实例的 IP 地址，导致超时错误。解决方案架构师应该实施什么来克服这些超时错误?
+A. 为每个 EC2 实例创建一个 Route 53 简单路由策略记录。将健康检查与每条记录相关联。
+B. 为每个 EC2 实例创建 Route 53 故障转移路由策略记录。将健康检查与每条记录相关联。
+C. 创建一个以 EC2 实例为源的 Amazon CloudFront 分配。将运行状况检查与 EC2 实例相关联。
+D. 在 EC2 实例前面创建一个带有运行状况检查的应用程序负载均衡器 (ALB)。从 53 号公路到 ALB 的路线。
+答案.D
+
+Q265.解决方案架构师需要设计一个高度可用的应用程序，该应用程序由 Web、应用程序和数据库层组成。HTTPS 内容交付应尽可能靠近边缘，交付时间最短。哪种解决方案满足这些要求并且最安全?
+A. 在公共子网中配置具有多个冗余 Amazon EC2 实例的公共应用程序负载均衡器 (ALB)。配置 Amazon CloudFront 以使用公共 ALB 作为源来交付 HTTPS 内容。
+B. 在私有子网中配置具有多个冗余 Amazon EC2 实例的公共应用程序负载均衡器。配置 Amazon CloudFront 以使用 EC2 实例作为源 来交付 HTTPS 内容。
+C. 在私有子网中配置具有多个冗余 Amazon EC2 实例的公共应用程序负载均衡器 (ALB)。配置 Amazon CloudFront 以使用公共 ALB 作为源来交付 HTTPS 内容。
+D. 在公共子网中配置具有多个冗余 Amazon EC2 实例的公共应用程序负载均衡器。配置 Amazon CloudFront 以使用 EC2 实例作为源 来交付 HTTPS 内容。
+答案.C
+
+Q266.一家公司有一个在 AWS 上运行的流行游戏平台。该应用程序对延迟很敏感，因为延迟会影响用户体验并给某些 玩家带来不公平的优势。该应用程序部署在每个 AWS 区域。它在 Amazon EC2 实例上运行，这些实例是在应用程序负载均衡器 (ALB) 后 面配置的 Auto Scaling 组的一部分。解决方案架构师需要实施一种机制来监控应用程序的健康状况并将流量重定向到健康的端点。哪个解决方案满足这些要求?
+A. 在 AWS Global Accelerator 中配置加速器。为应用程序侦听的端口添加侦听器，并将其附加到每个区域中的区域端点。添加 ALB 作为端点。
+B. 创建一个 Amazon CloudFront 分配并指定 ALB 作为源服务器。配置缓存行为以使用原始缓存标头。使用 AWS Lambda 函数优化 流量。
+C. 创建一个 Amazon CloudFront 分配并指定 Amazon S3 作为源服务器。配置缓存行为以使用原始缓存标头。使用 AWS Lambda 函 数优化流量。
+D. 配置 Amazon DynamoDB 数据库作为应用程序的数据存储。创建 DynamoDB Accelerator (DAX) 集群以充当托管应用程序数据的 DynamoDB 的内存缓存。
+答案.A
+
+Q267.一家公司有 100 万用户使用其移动应用程序。公司必须近乎实时地分析数据使用情况。公司还必须对数据进行近乎实时的加密，并且必须将数据以 Apache Parquet 格式存储在一个集中位置以供进一步处理。 哪种解决方案能够以最少的运营开销满足这些要求?
+A. 创建一个 Amazon Kinesis 数据流以将数据存储在 Amazon S3 中。创建 Amazon Kinesis Data Analytics 应用程序来分析数据。调用 AWS Lambda 函数以将数据发送到 Kinesis Data Analytics 应用程序。
+B. 创建 Amazon Kinesis 数据流以将数据存储在 Amazon S3 中。创建一个 Amazon EMR 集群来分析数据。调用 AWS Lambda 函数将 数据发送到 EMR 集群。
+C. 创建 Amazon Kinesis Data Firehose 传输流以将数据存储在 Amazon S3 中。创建一个 Amazon EMR 集群来分析数据。
+D. 创建 Amazon Kinesis Data Firehose 传输流以将数据存储在 Amazon S3 中。创建 Amazon Kinesis Data Analytics 应用程序来分析 数据。
+答案.D
+
+Q268.一家游戏公司有一个显示分数的 Web 应用程序。该应用程序在 Application Load Balancer 后面的 Amazon EC2 实例上 运行。该应用程序将数据存储在 Amazon RDS for MySQL 数据库中。用户开始体验到由数据库读取性能引起的长时间延迟和中断。该公司 希望改善用户体验，同时尽量减少对应用程序架构的更改。解决方案架构师应该怎么做才能满足这些要求?
+A. 在数据库前面使用 Amazon ElastiCache。
+B. 在应用程序和数据库之间使用 RDS Proxy。
+C. 将应用程序从 EC2 实例迁移到 AWS Lambda。
+D. 将数据库从 Amazon RDS for MySQL 迁移到 Amazon DynamoDB。
+答案.A
+
+Q269.一家电子商务公司注意到其基于 Amazon RDS 的 Web 应用程序的性能下降。性能下降归因于业务分析师触发的 只读 SQL 查询数量的增加。解决方案架构师需要在对现有 Web 应用程序进行最少更改的情况下解决问题。解决方案架构师应该推荐什么?
+A. 将数据导出到 Amazon DynamoDB 并让业务分析师运行他们的查询。
+B. 将数据加载到 Amazon ElastiCache 并让业务分析师运行他们的查询。
+C. 创建主数据库的只读副本并让业务分析师运行他们的查询。
+D. 将数据复制到 Amazon Redshift 集群中，让业务分析师运行他们的查询。
+答案.C
+
+Q270.一家公司使用集中式 AWS 账户将日志数据存储在各种 Amazon S3 存储桶中。解决方案架构师需要确保在将数
+据上传到 S3 存储桶之前对静态数据进行加密。数据在传输过程中也必须加密。 哪个解决方案满足这些要求?
+A. 使用客户端加密来加密上传到 S3 存储桶的数据。
+B. 使用服务器端加密来加密正在上传到 S3 存储桶的数据。
+C. 创建存储桶策略，要求使用服务器端加密和 S3 托管加密密钥 (SSE-S3) 进行 S3 上传。
+D. 启用安全选项以通过使用默认的 AWS 密钥管理服务 (AWS KMS) 密钥来加密 S3 存储桶。
+答案.A
+
+Q271.解决方案架构师发现，在达到所需的 Amazon EC2 容量之前，夜间批处理作业会自动扩展 1 小时。峰值容量每晚都一 样，批处理作业总是在凌晨 1 点开始。解决方案架构师需要找到一种经济高效的解决方案，以允许快速达到所需的 EC2 容量，并允许 Auto Scaling 组在批处理作业完成后缩减规模。解决方案架构师应该怎么做才能满足这些要求?
+A. 增加 Auto Scaling 组的最小容量。
+B. 增加 Auto Scaling 组的最大容量。
+C. 配置计划扩展以扩展到所需的计算级别。
+D. 更改扩展策略以在每次扩展操作期间添加更多 EC2 实例。
+答案.C
+
+Q272.一家公司通过 Application Load Balancer (ALB) 后面的一组 Amazon EC2 实例为动态网站提供服务。网站需要支持多种语言才能服务全球客户。该网站的架构在 us-west-1 区域运行，并且对位于世界其他地区的用户表现出高请求延迟。 无论用户身在何处，网站都需要快速高效地处理请求。但是，该公司不希望跨多个区域重新创建现有架构。 解决方案架构师应该怎么做才能满足这些要求?
+A. 将现有架构替换为从 Amazon S3 存储桶提供服务的网站。配置以 S3 存储桶为源的 Amazon CloudFront 分配。将缓存行为设置为 基于 Accept-Language 请求标头进行缓存。
+B. 配置一个以 ALB 作为源的 Amazon CloudFront 分配。将缓存行为设置为基于 Accept-Language 请求标头进行缓存。
+C. 创建与 ALB 集成的 Amazon API Gateway API。配置 API 以使用 HTTP 集成类型。设置 API 网关阶段以根据 Accept-Language 请 求标头启用 API 缓存。
+D. 在每个附加区域中启动一个 EC2 实例，并将 NGINX 配置为该区域的缓存服务器。将所有 EC2 实例和 ALB 放在具有地理定位路由 策略的 Amazon Route 53 记录集后面。
+答案.B
+
+Q273. 一家快速发展的电子商务公司正在单个 AWS 区域中运行其工作负载。解决方案架构师必须创建包含不同 AWS 区域的灾难恢复 (DR) 策略。该公司希望其数据库在 DR 区域中以尽可能短的延迟保持最新。DR 区域中的其余基础设施需要以降低的容量 运行，并且必须能够在必要时进行扩展。哪种解决方案将满足这些要求并具有最低的恢复时间目标 (RTO)?
+A. 使用 Amazon Aurora 全球数据库进行试点部署。
+B. 使用具有热备份部署的 Amazon Aurora 全局数据库。
+C. 使用 Amazon RDS 多可用区数据库实例进行试点部署。
+D. 使用具有热备用部署的 Amazon RDS 多可用区数据库实例。
+答案.B
+
+Q274.一家公司在 Amazon EC2 实例上运行一个应用程序。公司需要为应用程序实施灾难恢复 (DR) 解决方案。DR 解决方案需要有一个小于 4 小时的恢复时间目标 (RTO)。DR 解决方案还需要在正常操作期间使用尽可能少的 AWS 资源。 哪种解决方案能够以最高效的方式满足这些要求?
+A. 创建 Amazon 机器映像 (AMI) 来备份 EC2 实例。将 AMI 复制到辅助 AWS 区域。使用 AWS Lambda 和自定义脚本在次要区域中 自动部署基础设施。
+B. 创建 Amazon 机器映像 (AMI) 以备份 EC2 实例。将 AMI 复制到辅助 AWS 区域。使用 AWS CloudFormation 在次要区域中自动部 署基础设施。
+C. 在辅助 AWS 区域启动 EC2 实例。始终保持次要区域中的 EC2 实例处于活动状态。
+D. 在辅助可用区中启动 EC2 实例。始终保持辅助可用区中的 EC2 实例处于活动状态。
+答案.B
+
+Q275.一家公司运行一个基于浏览器的内部应用程序。该应用程序在 Application Load Balancer 后面的 Amazon EC2 实例上运行。这些实例在跨多个可用区的 Amazon EC2 Auto Scaling 组中运行。Auto Scaling 组在工作时间内最多扩展到 20 个实例，但在 一夜之间缩减到 2 个实例。工作人员抱怨说，应用程序在一天开始时非常慢，尽管它在上午运行良好。应如何更改比例以解决员工投诉并将成本保持在最低水平?
+A. 实施预定操作，在办公室开业前不久将所需容量设置为 20。
+B. 实施在较低 CPU 阈值下触发的步长缩放操作，并减少冷却时间。
+C. 执行在较低 CPU 阈值下触发的目标跟踪动作，并减少冷却时间。
+D. 实施计划的行动，在办公室开业前不久将最小和最大容量设置为 20。
+答案.C
+
+Q276.一家公司在 Auto Scaling 组中的多个 Amazon EC2 实例上部署了一个多层应用程序。Amazon RDS for Oracle 实例是 应用程序的数据层，它使用特定于 Oracle 的 PL/SQL 函数。应用程序的流量一直在稳步增长。这导致 EC2 实例过载并且 RDS 实例耗尽存 储空间。Auto Scaling 组没有任何扩展指标，仅定义最小健康实例数。该公司预测，在趋于平稳之前，流量将继续以稳定但不可预测的速度 增长。解决方案架构师应该怎么做才能确保系统可以自动扩展以适应增加的流量?(选择两项。)
+A. 在 RDS for Oracle 实例上配置存储 Auto Scaling。
+B. 将数据库迁移到 Amazon Aurora 以使用 Auto Scaling 存储。 C. 在 RDS for Oracle 实例上配置可用存储空间不足的警报。
+D. 配置 Auto Scaling 组使用平均 CPU 作为扩展指标。
+E. 配置 Auto Scaling 组以使用平均可用内存作为缩放指标。
+答案.AD
+
+Q277.一家公司提供在线服务，用于发布视频内容并将其转码以供任何移动平台使用。应用程序架构使用 Amazon Elastic File System (Amazon EFS) Standard 来收集和存储视频，以便多个 Amazon EC2 Linux 实例可以访问视频内容进行处理。随着该服 务越来越受欢迎，存储成本变得太昂贵了。
+哪种存储解决方案最具成本效益?
+A. 使用 AWS Storage Gateway for files 来存储和处理视频内容。
+B. 使用 AWS Storage Gateway 的卷来存储和处理视频内容。
+C. 使用 Amazon EFS 存储视频内容。处理完成后，将文件传输到 Amazon Elastic Block Store (Amazon EBS)。
+D. 使用 Amazon S3 存储视频内容。将文件暂时移至附加到服务器的 Amazon Elastic Block Store (Amazon EBS) 卷进行处理。
+答案.D
+
+Q278.一家公司想要创建一个应用程序来以层次结构关系存储员工数据。公司需要对员工数据的高流量查询做出最低延 迟响应，并且必须保护所有敏感数据。如果员工数据中存在任何财务信息，公司还需要每月接收电子邮件消息。解决方案架构师应该采取哪些步骤组合来满足这些要求?(选择两项。)
+A. 使用 Amazon Redshift 将员工数据存储在层次结构中。每个月将数据卸载到 Amazon S3。
+B. 使用 Amazon DynamoDB 将员工数据存储在层次结构中。每个月将数据导出到 Amazon S3。
+C. 为 AWS 账户配置 Amazon Macie。将 Macie 与 Amazon EventBridge 集成以将每月事件发送到 AWS Lambda。
+D. 使用 Amazon Athena 分析 Amazon S3 中的员工数据。将 Athena 与 Amazon QuickSight 集成以发布分析控制面板并与用户共享控 制面板。
+E. 为 AWS 账户配置 Amazon Macie。将 Macie 与 Amazon EventBridge 集成以通过 Amazon Simple Notification Service (Amazon SNS) 订阅发送每月通知。
+答案.BE
+
+Q279.一家公司有一个由 Amazon DynamoDB 表支持的应用程序。公司的合规性要求规定，数据库备份必须每月进行 一次，必须可用 6 个月，并且必须保留 7 年。哪种解决方案可以满足这些要求?
+A. 创建一个 AWS Backup 计划在每个月的第一天备份 DynamoDB 表。指定在 6 个月后将备份转换为冷存储的生命周期策略。将每个 备份的保留期设置为 7 年。
+B. 在每个月的第一天创建 DynamoDB 表的 DynamoDB 按需备份。6 个月后将备份转换为 Amazon S3 Glacier 灵活检索。创建 S3 生 命周期策略以删除超过 7 年的备份。
+C. 使用 AWS SDK 开发一个脚本来创建 DynamoDB 表的按需备份。设置在每个月的第一天运行脚本的 Amazon EventBridge 规则。 创建将在每个月的第二天运行的第二个脚本，以将超过 6 个月的 DynamoDB 备份转换为冷存储并删除超过 7 年的备份。
+D. 使用 AWS CLI 创建 DynamoDB 表的按需备份。设置 Amazon EventBridge 规则，在每个月的第一天使用 cron 表达式运行命令。 在命令中指定在 6 个月后将备份转移到冷存储，并在 7 年后删除备份。
+答案.A
+
+Q280.一家公司在其网站上使用 Amazon CloudFront。公司已在 CloudFront 分配上启用日志记录，日志保存在公司的 Amazon S3 存储桶之一中。公司需要对日志进行高级分析并构建可视化。解决方案架构师应该怎么做才能满足这些要求?
+A. 使用 Amazon Athena 中的标准 SQL 查询来分析 S3 存储桶中的 CloudFront 日志。使用 AWS Glue 可视化结果。
+B. 使用 Amazon Athena 中的标准 SQL 查询来分析 S3 存储桶中的 CloudFront 日志。使用 Amazon QuickSight 可视化结果。
+C. 使用 Amazon DynamoDB 中的标准 SQL 查询来分析 S3 存储桶中的 CloudFront 日志。使用 AWS Glue 可视化结果。
+D. 使用 Amazon DynamoDB 中的标准 SQL 查询来分析 S3 存储桶中的 CloudFront 日志。使用 Amazon QuickSight 可视化结果。
+答案.B
+
+Q281.一家公司使用 Amazon RDS for PostgreSQL 数据库实例运行一组 Web 服务器。在例行的合规性检查之后，公司设定了 一个标准，要求其所有生产数据库的恢复点目标 (RPO) 小于 1 秒。哪个解决方案满足这些要求?
+A. 为数据库实例启用多可用区部署。
+B. 为一个可用区中的数据库实例启用自动缩放。
+C. 在一个可用区中配置数据库实例，并在单独的可用区中创建多个只读副本。
+D. 在一个可用区中配置数据库实例，并配置 AWS Database Migration Service (AWS DMS) 变更数据捕获 (CDC) 任务。
+答案.A
+
+Q282.一家公司运行一个部署在 VPC 私有子网中的 Amazon EC2 实例上的 Web 应用程序。跨公共子网扩展的应用程序负载均 衡器 (ALB) 将 Web 流量定向到 EC2 实例。该公司希望实施新的安全措施来限制从 ALB 到 EC2 实例的入站流量，同时防止从 EC2 实例的 私有子网内部或外部的任何其他来源进行访问。哪种解决方案可以满足这些要求?
+A. 在路由表中配置一条路由，将来自互联网的流量定向到 EC2 实例的私有 IP 地址。
+B. 将 EC2 实例的安全组配置为仅允许来自 ALB 安全组的流量。
+C. 将 EC2 实例移动到公共子网中。为 EC2 实例提供一组弹性 IP 地址。
+D. 为 ALB 配置安全组以允许任何端口上的任何 TCP 流量。
+答案.B
+
+Q283.一家研究公司运行由模拟应用程序和可视化应用程序提供支持的实验。模拟应用程序在 Linux 上运行，每 5 分钟将中间数据输出到 NFS 共享。可视化应用程序是一个 Windows 桌面应用程序，它显示模拟输出并需要 SMB 文件系统。 公司维护着两个同步的文件系统。这种策略导致数据重复和资源使用效率低下。公司需要将应用程序迁移到 AWS，而无需对任何一个应用程序进行代码更改。哪种解决方案可以满足这些要求?
+A. 将两个应用程序迁移到 AWS Lambda。创建 Amazon S3 存储桶以在应用程序之间交换数据。
+B. 将两个应用程序迁移到 Amazon Elastic Container Service (Amazon ECS)。为存储配置 Amazon FSx 文件网关。
+C. 将模拟应用程序迁移到 Linux Amazon EC2 实例。将可视化应用程序迁移到 Windows EC2 实例。配置 Amazon Simple Queue Service (Amazon SQS) 以在应用程序之间交换数据。
+D. 将模拟应用程序迁移到 Linux Amazon EC2 实例。将可视化应用程序迁移到 Windows EC2 实例。为 NetApp ONTAP 配置 Amazon FSx 以进行存储。
+答案.D
+
+Q284.作为预算计划的一部分，管理层需要一份用户列出的 AWS 计费项目的报告。这些数据将用于创建部门预算。解决方案架构师需要确定获取此报告信息的最有效方式。哪个解决方案满足这些要求?
+A. 使用 Amazon Athena 运行查询以生成报告。
+B. 在 Cost Explorer 中创建报告并下载报告。
+C. 从账单仪表板访问账单详细信息并下载账单。
+D. 修改 AWS 预算中的成本预算以使用 Amazon Simple Email Service (Amazon SES) 发出警报。
+答案.B
+
+Q285.一家公司使用 Amazon S3 托管其静态网站。公司想在其网页上添加联系表。联系人表单将具有动态服务器端组件，供用户输入姓名、电子邮件地址、电话号码和用户消息。该公司预计每月的现场访问次数将少于 100 次。 哪种解决方案能够最经济有效地满足这些要求?
+A. 在 Amazon Elastic Container Service (Amazon ECS) 中托管动态联系表单页面。设置 Amazon Simple Email Service (Amazon SES) 以连接到任何第三方电子邮件提供商。
+B. 使用 AWS Lambda 后端创建一个 Amazon API Gateway 端点，调用 Amazon Simple Email Service (Amazon SES)。
+C. 通过部署 Amazon Lightsail 将静态网页转换为动态网页。使用客户端脚本构建联系表单。将表单与 Amazon WorkMail 集成。
+D. 创建一个 t2.micro Amazon EC2 实例。部署 LAMP(Linux、Apache、MySQL、PHP/Perl/Python)堆栈来托管网页。使用客户 端脚本构建联系表单。将表单与 Amazon WorkMail 集成。
+答案.B
+
+Q286.一家公司有一个静态网站托管在 Amazon S3 前面的 Amazon CloudFront 上。静态网站使用数据库后端。该公司 注意到该网站未反映在该网站的 Git 存储库中所做的更新。公司检查 Git 存储库和 Amazon S3 之间的持续集成和持续交付 (CI/CD) 管道。 公司验证 webhooks 配置是否正确，以及 CI/CD 管道是否正在发送指示成功部署的消息。解决方案架构师需要实施一个在网站上显示更新的解决方案。 哪种解决方案可以满足这些要求?
+A. 添加应用程序负载均衡器。
+B. 将 Amazon ElastiCache for Redis 或 Memcached 添加到 Web 应用程序的数据库层。
+C. 使 CloudFront 缓存无效。
+D. 使用 AWS Certificate Manager (ACM) 验证网站的 SSL 证书。
+答案.C
+
+Q287.一家公司想要将基于 Windows 的应用程序从本地迁移到 AWS 云。该应用程序具有三层:应用程序层、业务层和带有 Microsoft SQL Server 的数据库层。该公司希望使用 SQL Server 的特定功能，例如本机备份和数据质量服务。公司还需要共享文件以在各 层之间进行处理。解决方案架构师应如何设计架构以满足这些要求?
+A. 在 Amazon EC2 实例上托管所有三层。使用 Amazon FSx 文件网关在层之间共享文件。
+B. 在 Amazon EC2 实例上托管所有三层。使用 Amazon FSx for Windows File Server 在层之间共享文件。
+C. 在 Amazon EC2 实例上托管应用层和业务层。在 Amazon RDS 上托管数据库层。使用 Amazon Elastic File System (Amazon EFS) 在层之间共享文件。
+D. 在 Amazon EC2 实例上托管应用层和业务层。在 Amazon RDS 上托管数据库层。使用预配置 IOPS SSD (io2) Amazon Elastic Block Store (Amazon EBS) 卷在层之间共享文件。
+答案.B
+
+Q288.一家公司正在将基于 Linux 的 Web 服务器组迁移到 AWS。Web 服务器必须访问共享文件存储中的文件以获取某些内容。公司不得对申请进行任何更改。解决方案架构师应该怎么做才能满足这些要求?
+A. 创建一个可以访问 Web 服务器的 Amazon S3 标准存储桶。
+B. 配置以 Amazon S3 存储桶为源的 Amazon CloudFront 分配。
+C. 创建一个 Amazon Elastic File System (Amazon EFS) 文件系统。在所有 Web 服务器上安装 EFS 文件系统。
+D. 配置通用 SSD (gp3) Amazon Elastic Block Store (Amazon EBS) 卷。将 EBS 卷挂载到所有 Web 服务器。
+答案.C
+
+Q289.一家公司有一个 AWS Lambda 函数，它需要对位于同一 AWS 账户中的 Amazon S3 存储桶的读取权限。 哪种解决方案将以最安全的方式满足这些要求?
+A. 应用授予对 S3 存储桶读取访问权限的 S3 存储桶策略。
+B. 将 IAM 角色应用于 Lambda 函数。将 IAM 策略应用于角色以授予对 S3 存储桶的读取访问权限。
+C. 在 Lambda 函数的代码中嵌入一个访问密钥和一个秘密密钥，以授予读取 S3 存储桶所需的 IAM 权限。
+D. 将 IAM 角色应用于 Lambda 函数。将 IAM 策略应用于该角色以授予对账户中所有 S3 存储桶的读取访问权限。
+答案.B
+
+Q290.一家公司在多个 Amazon EC2 实例上托管一个 Web 应用程序。EC2 实例位于根据用户需求进行扩展的 AutoScaling 组中。该公司希望在不做出长期承诺的情况下优化成本节约。 解决方案架构师应该推荐哪种 EC2 实例购买选项来满足这些要求?
+A. 仅限专用实例
+B. 仅限按需实例
+C. 按需实例和 Spot 实例的混合
+D. 按需实例和预留实例的混合
+答案.C
+
+Q291.一家媒体公司使用 Amazon CloudFront 来处理其公开的流媒体视频内容。该公司希望通过控制有权访问的人员 来保护托管在 Amazon S3 中的视频内容。公司的一些用户正在使用不支持 cookie 的自定义 HTTP 客户端。公司的一些用户无法更改他们用 于访问的硬编码 URL。哪些服务或方法将满足这些要求，同时对用户的影响最小?(选择两项。)
+A. 签名 cookie
+B. 签名 URL
+C. AWS AppSync
+D. JSON 网络令牌 (JWT)
+E. AWS Secrets Manager
+答案.AB
+
+Q292.一家公司正在准备一个新的数据平台，该平台将从多个来源获取实时流数据。公司需要在将数据写入 Amazon
+S3 之前转换数据。公司需要能够使用 SQL 来查询转换后的数据。 哪些解决方案将满足这些要求?(选择两项。)
+A. 使用 Amazon Kinesis Data Streams 流式传输数据。使用 Amazon Kinesis Data Analytics 转换数据。使用 Amazon Kinesis Data Firehose 将数据写入 Amazon S3。使用 Amazon Athena 从 Amazon S3 查询转换后的数据。
+B. 使用 Amazon Managed Streaming for Apache Kafka (Amazon MSK) 流式传输数据。使用 AWS Glue 转换数据并将数据写入 Amazon S3。使用 Amazon Athena 从 Amazon S3 查询转换后的数据。
+C. 使用 AWS Database Migration Service (AWS DMS) 提取数据。使用 Amazon EMR 转换数据并将数据写入 Amazon S3。使用 Amazon Athena 从 Amazon S3 查询转换后的数据。
+D. 使用 Amazon Managed Streaming for Apache Kafka (Amazon MSK) 流式传输数据。使用 Amazon Kinesis Data Analytics 转换数 据并将数据写入 Amazon S3。使用 Amazon RDS 查询编辑器从 Amazon S3 查询转换后的数据。
+E. 使用 Amazon Kinesis Data Streams 流式传输数据。使用 AWS Glue 转换数据。使用 Amazon Kinesis Data Firehose 将数据写入 Amazon S3。使用 Amazon RDS 查询编辑器从 Amazon S3 查询转换后的数据。
+答案.AB
+
+Q293.一家公司的本地卷备份解决方案已达到生命周期的尽头。该公司希望将 AWS 用作新备份解决方案的一部分，并 希望在 AWS 上备份数据时保持对所有数据的本地访问。该公司希望确保备份在 AWS 上的数据自动且安全地传输。
+哪个解决方案满足这些要求?
+A. 使用 AWS Snowball 将数据从本地解决方案迁移到 Amazon S3。配置本地系统以装载 Snowball S3 端点以提供对数据的本地访问。
+B. 使用 AWS Snowball Edge 将数据从本地解决方案迁移到 Amazon S3。使用 Snowball Edge 文件接口为本地系统提供对数据的本地 访问权限。
+C. 使用 AWS Storage Gateway 并配置缓存卷网关。在本地运行 Storage Gateway 软件设备并配置一定比例的数据以在本地缓存。安装 网关存储卷以提供对数据的本地访问。
+D. 使用 AWS Storage Gateway 并配置存储卷网关。在本地运行 Storage Gateway 软件设备并将网关存储卷映射到本地存储。安装网关 存储卷以提供对数据的本地访问。
+答案.D
+
+Q294.托管在 Amazon EC2 实例上的应用程序需要访问 Amazon S3 存储桶。流量不得穿越互联网。 解决方案架构师应如何配置访问权限以满足这些要求?
+A. 使用 Amazon Route 53 创建私有托管区域。
+B. 在 VPC 中为 Amazon S3 设置网关 VPC 端点。
+C. 配置 EC2 实例以使用 NAT 网关访问 S3 存储桶。
+D. 在 VPC 和 S3 存储桶之间建立 AWS Site-to-Site VPN 连接。
+答案.B
+
+Q295.一家电子商务公司在 AWS 云中存储了数 TB 的客户数据。数据包含个人身份信息 (PII)。该公司希望在三个应用程序中使用这些数据。只有一个应用程序需要处理 PII。在其他两个应用程序处理数据之前，必须删除 PII。 哪种解决方案能够以最少的运营开销满足这些要求?
+A. 将数据存储在 Amazon DynamoDB 表中。创建一个代理应用层来拦截和处理每个应用程序请求的数据。
+B. 将数据存储在 Amazon S3 存储桶中。在将数据返回给发出请求的应用程序之前，使用 S3 Object Lambda 处理和转换数据。
+C. 处理数据并将转换后的数据存储在三个独立的 Amazon S3 存储桶中，以便每个应用程序都有自己的自定义数据集。将每个应用程 序指向其各自的 S3 存储桶。
+D. 处理数据并将转换后的数据存储在三个独立的 Amazon DynamoDB 表中，以便每个应用程序都有自己的自定义数据集。将每个应 用程序指向其各自的 DynamoDB 表。
+答案.B
+
+Q296.开发团队启动了一个新应用程序，该应用程序托管在开发 VPC 内的 Amazon EC2 实例上。解决方案架构师需要 在同一账户中创建一个新的 VPC。新 VPC 将与开发 VPC 对等。开发 VPC 的 VPC CIDR 块是 192.168.0.0/24。解决方案架构师需要为新 VPC 创建一个 CIDR 块。CIDR 块对于与开发 VPC 的 VPC 对等连接必须有效。满足这些要求的最小 CIDR 块是什么?
+A.10.0.1.0 /32
+B.192.168.0.0 /24
+C.192.168.1.0 /32
+D.10.0.1.0 /24
+答案.D
+
+Q297.一家公司在五个 Amazon EC2 实例上部署了一个应用程序。应用程序负载均衡器 (ALB) 使用目标组将流量分配给实例。大多数情况下，每个实例的平均 CPU 使用率低于 10%，偶尔会飙升至 65%。 解决方案架构师需要实施一个解决方案来自动化应用程序的可伸缩性。该解决方案必须优化架构的成本，并且必须确保应用程序在出现激增时有足够的 CPU 资源。 哪种解决方案可以满足这些要求?
+A. 创建一个 Amazon CloudWatch 警报，当 CPUUtilization 指标低于 20% 时进入 ALARM 状态。创建 CloudWatch 警报调用以终止 ALB 目标组中的 EC2 实例之一的 AWS Lambda 函数。
+B. 创建一个 EC2 Auto Scaling 组。选择现有的 ALB 作为负载均衡器，选择现有的目标组作为目标组。设置基于 ASGAverageCPUUtilization 指标的目标跟踪扩展策略。将最小实例设置为 2，所需容量设置为 3，最大实例设置为 6，目标值设置为 50%。将 EC2 实例添加到 Auto Scaling 组。
+C. 创建一个 EC2 Auto Scaling 组。选择现有的 ALB 作为负载均衡器，选择现有的目标组作为目标组。将最小实例设置为 2，将所需 容量设置为 3，并将最大实例设置为 6。将 EC2 实例添加到 Auto Scaling 组。
+D. 创建两个 Amazon CloudWatch 警报。将第一个 CloudWatch 警报配置为在平均 CPUUtilization 指标低于 20% 时进入 ALARM 状 态。配置第二个 CloudWatch 警报，使其在平均 CPUUtilization 矩阵高于 50% 时进入 ALARM 状态。配置警报以发布到 Amazon Simple Notification Service (Amazon SNS) 主题以发送电子邮件。收到消息后，登录以减少或增加正在运行的 EC2 实例数。
+答案.B
+
+Q298.一家公司在 Application Load Balancer 后面的 Amazon EC2 实例上运行一个关键业务应用程序。EC2 实例在 Auto Scaling 组中运行并访问 Amazon RDS 数据库实例。该设计未通过运营审查，因为 EC2 实例和数据库实例都位于单个可用区中。解决方案架构师必须更新设计以使用第二个可用区。 哪种解决方案将使应用程序具有高可用性?
+A. 在每个可用区中配置一个子网。配置 Auto Scaling 组以跨两个可用区分布 EC2 实例。使用与每个网络的连接配置数据库实例。
+B. 提供两个跨两个可用区的子网。配置 Auto Scaling 组以跨两个可用区分布 EC2 实例。使用与每个网络的连接配置数据库实例。
+C. 在每个可用区中配置一个子网。配置 Auto Scaling 组以跨两个可用区分布 EC2 实例。为多可用区部署配置数据库实例。
+D. 提供一个跨越两个可用区的子网。配置 Auto Scaling 组以跨两个可用区分布 EC2 实例。为多可用区部署配置数据库实例。
+答案.C
+
+Q299.研究实验室需要处理大约 8 TB 的数据。该实验室要求存储子系统具有亚毫秒级延迟和至少 6 GBps 的吞吐量。数百个运行 Amazon Linux 的 Amazon EC2 实例将分发和处理数据。 哪种解决方案将满足性能要求?
+A. 为 NetApp ONTAP 文件系统创建一个 Amazon FSx。将每个卷的分层策略设置为 ALL。将原始数据导入文件系统。在 EC2 实例上 安装 fila 系统。
+B. 创建一个 Amazon S3 存储桶来存储原始数据。创建一个使用持久性 SSD 存储的 Amazon FSx for Lustre 文件系统。选择从 Amazon S3 导入和导出数据的选项。在 EC2 实例上挂载文件系统。
+C. 创建一个 Amazon S3 存储桶来存储原始数据。创建一个使用永久性 HDD 存储的 Amazon FSx for Lustre 文件系统。选择从 Amazon S3 导入和导出数据的选项。在 EC2 实例上挂载文件系统。
+D. 为 NetApp ONTAP 文件系统创建一个 Amazon FSx。将每个卷的分层策略设置为 NONE。将原始数据导入文件系统。在 EC2 实例 上挂载文件系统。
+答案.B
+
+Q300. 由于硬件容量限制，公司需要将遗留应用程序从本地数据中心迁移到 AWS 云。该应用程序每周 7 天、每天 24 小时运行。应用程序的数据库存储会随着时间的推移不断增长。解决方案架构师应该怎么做才能最经济有效地满足这些要求?
+A. 将应用层迁移到 Amazon EC2 Spot 实例。将数据存储层迁移到 Amazon S3。
+B. 将应用层迁移到 Amazon EC2 Reserved Instances。将数据存储层迁移到 Amazon RDS 按需实例。
+C. 将应用层迁移到 Amazon EC2 Reserved Instances。将数据存储层迁移到 Amazon Aurora 预留实例。
+D. 将应用层迁移到 Amazon EC2 按需实例。将数据存储层迁移到 Amazon RDS 预留实例。
+答案.C
+
+Q301.大学研究实验室需要将 30 TB 的数据从本地 Windows 文件服务器迁移到 Amazon FSx for Windows File Server。该实验室有一个 1 Gbps 的网络链接，该大学的许多其他部门共享该链接。 实验室希望实施数据迁移服务，以最大限度地提高数据传输的性能。但是，实验室需要能够控制服务使用的带宽量，以尽量减少对其他部门的影响。数据迁移必须在接下来的 5 天内进行。 哪种 AWS 解决方案可以满足这些要求?
+A. AWS 雪锥
+B. Amazon FSx 文件网关
+C. AWS 数据同步
+D. AWS 传输系列
+答案.C
+
+Q302.一家公司想要创建一个移动应用程序，允许用户在他们的移动设备上播放慢动作视频剪辑。目前，该应用程序捕 获视频剪辑并将原始格式的视频剪辑上传到 Amazon S3 存储桶中。该应用程序直接从 S3 存储桶中检索这些视频剪辑。但是，这些视频的 原始格式很大。用户在移动设备上遇到缓冲和播放问题。该公司希望实施解决方案以最大限度地提高应用程序的性能和可扩展性，同时最大限度地减少运营开销。哪种解决方案组合可以满足这些要求?(选择两项。)
+A. 部署 Amazon CloudFront 进行内容交付和缓存。
+B. 使用 AWS DataSync 在其他 S3 存储桶中跨 AW 区域复制视频文件。
+C. 使用 Amazon Elastic Transcoder 将视频文件转换为更合适的格式。
+D. 在本地区域中部署 Amazon EC2 实例的自动密封组以进行内容交付和缓存。
+E. 部署一组 Amazon EC2 实例的 Auto Scaling 以将视频文件转换为更合适的格式。
+答案.A
+
+Q303.一家公司正在启动一个部署在 Amazon Elastic Container Service (Amazon ECS) 集群上的新应用程序，并使用 Fargate 启动类型执行 ECS 任务。该公司正在监控 CPU 和内存使用情况，因为它预计应用程序在启动时会出现高流量。但是，该公司希望在利用率 下降时降低成本。解决方案架构师应该推荐什么?
+A. 使用 Amazon EC2 Auto Scaling 根据之前的流量模式在特定时期进行扩展。
+B. 使用 AWS Lambda 函数根据触发 Amazon CloudWatch 警报的指标违规扩展 Amazon ECS。
+C. 使用具有简单扩展策略的 Amazon EC2 Auto Scaling 在 ECS 指标违规触发 Amazon CloudWatch 警报时进行扩展。
+D. 使用带有目标跟踪策略的 AWS Application Auto Scaling 在 ECS 指标违规触发 Amazon CloudWatch 警报时进行扩展。
+答案.D
+
+Q304.一家公司最近在不同的 AWS 区域创建了一个灾难恢复站点。公司需要定期在两个Region的NFS文件系统之间来回传输大量数据。哪种解决方案能够以最少的运营开销满足这些要求?
+A. 使用 AWS DataSync。
+B. 使用 AWS Snowball 设备。
+C. 在 Amazon EC2 上设置 SFTP 服务器。
+D. 使用 AWS 数据库迁移服务 (AWS DMS)。
+答案.A
+
+Q305.一家公司正在为托管在 AWS 云中的游戏应用程序设计共享存储解决方案。公司需要能够使用 SMB 客户端访问数据。该解决方案必须得到全面管理。 哪个 AWS 解决方案满足这些要求?
+A. 创建一个 AWS DataSync 任务，将数据共享为一个可装载的文件系统。将文件系统挂载到应用服务器。
+B. 创建一个 Amazon EC2 Windows 实例。在实例上安装和配置 Windows 文件共享角色。将应用程序服务器连接到文件共享。
+C. 为 Windows 文件服务器文件系统创建一个 Amazon FSx。将文件系统附加到源服务器。将应用程序服务器连接到文件系统。
+D. 创建一个 Amazon S3 桶。为应用程序分配 IAM 角色以授予对 S3 存储桶的访问权限。将 S3 存储桶挂载到应用程序服务器。
+答案.C
+
+Q306.一家公司想要为在 Amazon EC2 实例上运行的对延迟敏感的应用程序运行内存数据库。该应用程序每分钟处理超过 100,000 个事务，并且需要高网络吞吐量。解决方案架构师需要提供具有成本效益的网络设计，以最大限度地减少数据传输费用。 哪个解决方案满足这些要求?
+A. 在同一 AWS 区域内的同一可用区中启动所有 EC2 实例。启动 EC2 实例时指定带有集群策略的归置组。
+B. 在同一 AWS 区域内的不同可用区中启动所有 EC2 实例。启动 EC2 实例时指定具有分区策略的归置组。
+C. 部署一个 Auto Scaling 组以根据网络利用率目标在不同可用区启动 EC2 实例。
+D. 部署一个具有逐步扩展策略的 Auto Scaling 组，以在不同的可用区中启动 EC2 实例。
+答案.A
+
+Q307.主要在本地运行其应用程序服务器的公司已决定迁移到 AWS。该公司希望尽量减少在本地扩展其互联网小型计算机系统接口 (iSCSI) 存储的需求。该公司只希望将最近访问的数据保留在本地。 公司应使用哪种 AWS 解决方案来满足这些要求?
+A. Amazon S3 文件网关
+B. AWS Storage Gateway 磁带网关
+C. AWS Storage Gateway 卷网关存储的卷
+D. AWS Storage Gateway 卷网关缓存卷
+答案.D
+
+Q308.一家公司有多个使用整合账单的 AWS 账户。该公司为 Oracle 按需数据库实例运行多个活跃的高性能 Amazon RDS 90天。公司的财务团队可以访问整合账单账户和所有其他 AWS 账户中的 AWS Trusted Advisor。财务团队需要使用适当的 AWS 账户来访问 RDS 的 Trusted Advisor 检查建议。财务团队必须审查适当的 Trusted Advisor 检查以降低 RDS成本。财务团队应该采取哪些步骤组合来满足这些要求?(选择两项。)
+A. 使用来自运行 RDS 实例的帐户的 Trusted Advisor 建议。
+B. 使用合并账单账户中的 Trusted Advisor 建议同时查看所有 RDS 实例检查。 C. 查看 Amazon RDS 预留实例优化的 Trusted Advisor 检查。
+D. 查看 Amazon RDS 空闲数据库实例的 Trusted Advisor 检查。
+E. 查看 Amazon Redshift 预留节点优化的 Trusted Advisor 检查。
+答案.BD
+
+Q309.解决方案架构师需要优化存储成本。解决方案架构师必须确定不再访问或很少访问的所有 Amazon S3 存储桶。 哪种解决方案将以最少的运营开销实现这一目标?
+A. 使用 S3 Storage Lens 仪表板分析存储桶访问模式以获得高级活动指标。
+B. 使用 AWS 管理控制台中的 S3 仪表板分析存储桶访问模式。
+C. 打开存储桶的 Amazon CloudWatch BucketSizeBytes 指标。通过将指标数据与 Amazon Athena 结合使用来分析存储桶访问模式。
+D. 打开 AWS CloudTrail 进行 S3 对象监控。使用与 Amazon CloudWatch Logs 集成的 CloudTrail 日志分析存储桶访问模式。
+答案.A
+
+Q310.一家公司向从事人工智能和机器学习 (AI/ML) 研究的客户销售数据集。数据集是大型格式化文件，存储在 us-east-1 区 域的 Amazon S3 存储桶中。公司托管一个 Web 应用程序，客户使用该应用程序购买对给定数据集的访问权限。Web 应用程序部署在 Application Load Balancer 后面的多个 Amazon EC2 实例上。购买后，客户会收到一个允许访问文件的 S3 签名 URL。客户分布在北美和欧洲。公司希望降低与数据传输相关的成本，并希望保持或提高性能。 解决方案架构师应该怎么做才能满足这些要求?
+A. 在现有 S3 存储桶上配置 S3 Transfer Acceleration。将客户请求定向到 S3 Transfer Acceleration 端点。继续使用 S3 签名 URL 进行 访问控制。
+B. 部署一个以现有 S3 存储桶为源的 Amazon CloudFront 分配。将客户请求定向到 CloudFront URL。切换到 CloudFront 签名 URL 以进行访问控制。
+C. 在 eu-central-1 区域中设置第二个 S3 存储桶，在存储桶之间使用 S3 跨区域复制。将客户请求定向到最近的区域。继续使用 S3 签 名 URL 进行访问控制。
+D. 修改 web 应用程序以允许将数据集流式传输给最终用户。配置 Web 应用程序以从现有 S3 存储桶中读取数据。直接在应用程序中 实施访问控制。
+答案.B
+
+Q311.一家公司正在使用 AWS 设计一个将处理保险报价的 Web 应用程序。用户将向应用程序请求报价。报价必须按报价类型分开，必须在24小时内回复，不能丢失。该解决方案必须最大限度地提高运营效率，并且必须最大限度地减少维护。 哪个解决方案满足这些要求?
+A. 根据报价类型创建多个 Amazon Kinesis 数据流。配置 Web 应用程序以将消息发送到适当的数据流。配置每个后端应用程序服务器 组以使用 Kinesis Client Library (KCL) 从其自己的数据流中汇集消息。
+B. 为每个报价类型创建一个 AWS Lambda 函数和一个 Amazon Simple Notification Service (Amazon SNS) 主题。将 Lambda 函数订 阅到其关联的 SNS 主题。配置应用程序以将报价请求发布到适当的 SNS 主题。
+C. 创建单个 Amazon Simple Notification Service (Amazon SNS) 主题。将 Amazon Simple Queue Service (Amazon SQS) 队列订阅到 SNS 主题。配置 SNS 消息过滤以根据报价类型将消息发布到适当的 SQS 队列。配置每个后端应用程序服务器以使用其自己的 SQS 队 列。
+D. 根据报价类型创建多个 Amazon Kinesis Data Firehose 传输流，以将数据流传输到 Amazon OpenSearch Service 集群。配置应用程 序以将消息发送到正确的传输流。配置每个后端应用程序服务器组以搜索来自 OpenSearch 服务的消息并相应地处理它们。
+答案.C
+
+Q312.一家公司有一个在多个 Amazon EC2 实例上运行的应用程序。每个 EC2 实例都附加有多个 Amazon Elastic Block Store (Amazon EBS) 数据卷。应用程序的 EC2 实例配置和数据需要每晚备份。该应用程序还需要能够在不同的 AWS 区域中恢复。 哪种解决方案能够以最高效的方式满足这些要求?
+A. 编写一个 AWS Lambda 函数来安排应用程序 EBS 卷的夜间快照并将快照复制到不同的区域。
+B. 通过使用 AWS Backup 执行夜间备份来创建备份计划。将备份复制到另一个区域。添加应用程序的 EC2 实例作为资源。
+C. 通过使用 AWS Backup 执行夜间备份来创建备份计划。将备份复制到另一个区域。添加应用程序的 EBS 卷作为资源。
+D. 编写一个 AWS Lambda 函数来安排应用程序 EBS 卷的夜间快照并将快照复制到不同的可用区。
+答案.B
+
+Q313.一家公司正在 AWS 上构建移动应用程序。该公司希望将其覆盖范围扩大到数百万用户。公司需要建立一个平台，以便授权用户可以在他们的移动设备上观看公司的内容。解决方案架构师应该推荐什么来满足这些要求?
+A. 将内容发布到公共 Amazon S3 存储桶。使用 AWS Key Management Service (AWS KMS) 密钥流式传输内容。
+B. 在移动应用程序和 AWS 环境之间设置 IPsec VPN 以流式传输内容。
+C. 使用 Amazon CloudFront。提供签名 URL 以流式传输内容。
+D. 在移动应用程序和 AWS 环境之间设置 AWS Client VPN 以流式传输内容。
+答案.C
+
+Q314.一家公司有一个内部部署的 MySQL 数据库，供全球销售团队使用，访问模式不频繁。销售团队要求数据库的停机时间最少。数据库管理员希望在不选择特定实例类型的情况下将此数据库迁移到 AWS，以期将来有更多用户。 解决方案架构师应该推荐哪种服务?
+A. 亚马逊极光 MySQL
+B. 用于 MySQL 的 Amazon Aurora Serverless
+C. Amazon Redshift 频谱
+D. Amazon RDS for MySQL
+答案.B
+
+Q315.一家公司遭遇了一次影响其本地数据中心内多个应用程序的漏洞。攻击者利用了服务器上运行的自定义应用程序 中的漏洞。该公司现在正在迁移其应用程序以在 Amazon EC2 实例上运行。该公司希望实施一种解决方案，主动扫描 EC2 实例上的漏洞并 发送一份详细说明调查结果的报告。哪种解决方案可以满足这些要求?
+A. 部署 AWS Shield 以扫描 EC2 实例中的漏洞。创建 AWS Lambda 函数以将任何发现记录到 AWS CloudTrail。
+B. 部署 Amazon Macie 和 AWS Lambda 函数来扫描 EC2 实例中的漏洞。将任何发现记录到 AWS CloudTrail。
+C. 打开 Amazon GuardDuty。将 GuardDuty 代理部署到 EC2 实例。配置 AWS Lambda 函数以自动生成和分发详细说明调查结果的 报告。
+D. 打开 Amazon Inspector。将 Amazon Inspector 代理部署到 EC2 实例。配置 AWS Lambda 函数以自动生成和分发详细说明调查结 果的报告。
+答案.D
+
+Q316.一家公司使用 Amazon EC2 实例运行脚本来轮询和处理 Amazon Simple Queue Service (Amazon SQS) 队列中的消息。 该公司希望降低运营成本，同时保持其处理越来越多添加到队列中的消息的能力。解决方案架构师应该推荐什么来满足这些要求?
+A. 增加 EC2 实例的大小以更快地处理消息。
+B. 当实例未被充分利用时，使用 Amazon EventBridge 关闭 EC2 实例。
+C. 将 EC2 实例上的脚本迁移到具有适当运行时的 AWS Lambda 函数。
+D. 使用 AWS Systems Manager Run Command 按需运行脚本。
+答案.C
+
+Q317. 一家公司使用遗留应用程序生成 CSV 格式的数据。遗留应用程序将输出数据存储在 Amazon S3 中。该公司正在 部署一个新的商业现成 (COTS) 应用程序，该应用程序可以执行复杂的 SQL 查询来分析仅存储在 Amazon Redshift 和 Amazon S3 中的数 据。但是，COTS 应用程序无法处理遗留应用程序生成的 .csv 文件。公司无法更新遗留应用程序以生成另一种格式的数据。公司需要实施一种解决方案，以便 COTS 应用程序可以使用遗留应用程序生成的数 据。哪种解决方案能够以最少的运营开销满足这些要求?
+A. 创建一个按计划运行的 AWS Glue 提取、转换和加载 (ETL) 作业。配置 ETL 作业以处理 .csv 文件并将处理后的数据存储在 Amazon Redshift 中。
+B. 开发在 Amazon EC2 实例上运行的 Python 脚本，以将 .csv 文件转换为 .sql 文件。按 cron 计划调用 Python 脚本以将输出文件存储 在 Amazon S3 中。
+C. 创建一个 AWS Lambda 函数和一个 Amazon DynamoDB 表。使用 S3 事件调用 Lambda 函数。配置 Lambda 函数以执行提取、转 换和加载 (ETL) 作业以处理 .csv 文件并将处理后的数据存储在 DynamoDB 表中。
+D. 使用 Amazon EventBridge 按每周计划启动 Amazon EMR 集群。配置 EMR 集群以执行提取、转换和加载 (ETL) 作业以处理 .csv 文件并将处理后的数据存储在 Amazon Redshift 表中。
+答案.A
+
+Q318.一家公司最近将其整个 IT 环境迁移到了 AWS 云。该公司发现用户在未使用适当的变更控制流程的情况下配置超大Amazon EC2 实例并修改安全组规则。解决方案架构师必须设计一种策略来跟踪和审核这些清单和配置更改。 解决方案架构师应该采取哪些行动来满足这些要求?(选择两项。)
+A. 启用 AWS CloudTrail 并将其用于审计。
+B. 对 Amazon EC2 实例使用数据生命周期策略。
+C. 启用 AWS Trusted Advisor 并参考安全仪表板。
+D. 启用 AWS Config 并创建用于审计和合规性目的的规则。 E. 使用 AWS CloudFormation 模板恢复以前的资源配置。
+答案.AD
+
+Q319. 一家公司在 AWS 云中拥有数百个基于 Amazon EC2 Linux 的实例。系统管理员使用共享 SSH 密钥来管理实例。经过最近的审计，该公司的安全团队要求删除所有共享密钥。解决方案架构师必须设计一个解决方案来提供对 EC2 实例的安全访问。 哪种解决方案能够以最少的管理开销满足此要求?
+A. 使用 AWS Systems Manager 会话管理器连接到 EC2 实例。
+B. 使用 AWS Security Token Service (AWS STS) 按需生成一次性 SSH 密钥。
+C. 允许共享 SSH 访问一组堡垒实例。配置所有其他实例以仅允许从堡垒实例进行 SSH 访问。
+D. 使用 Amazon Cognito 自定义授权方对用户进行身份验证。调用 AWS Lambda 函数以生成临时 SSH 密钥。
+答案.A
+
+Q320.一家公司正在使用一组 Amazon EC2 实例从本地数据源提取数据。数据采用 JSON 格式，摄取速率可高达 1 MB/s。 重新启动 EC2 实例时，传输中的数据会丢失。该公司的数据科学团队希望近乎实时地查询摄取的数据。哪种解决方案提供可扩展且数据丢失最少的近实时数据查询?
+A. 将数据发布到 Amazon Kinesis Data Streams，使用 Kinesis Data Analytics 查询数据。
+B. 以 Amazon Redshift 作为目的地将数据发布到 Amazon Kinesis Data Firehose。使用 Amazon Redshift 查询数据。
+C. 将摄取的数据存储在 EC2 实例存储中。以 Amazon S3 作为目标将数据发布到 Amazon Kinesis Data Firehose。使用 Amazon Athena 查询数据。
+D. 将摄取的数据存储在 Amazon Elastic Block Store (Amazon EBS) 卷中。将数据发布到 Amazon ElastiCache for Redis。订阅 Redis 频道查询数据。
+答案.A
+
+Q321.解决方案架构师应该如何确保上传到 Amazon S3 存储桶的所有对象都已加密?
+A. 如果 PutObject 没有设置 s3:x-amz-acl 标头，则将存储桶策略更新为拒绝。
+B. 如果 PutObject 没有将 s3:x-amz-acl 标头设置为私有，则更新存储桶策略以拒绝。
+C. 如果 PutObject 没有将 aws:SecureTransport 标头设置为 true，则更新存储桶策略以拒绝。
+D. 如果 PutObject 没有设置 x-amz-server-side-encryption 标头，则将存储桶策略更新为拒绝。
+答案.D
+
+Q322.解决方案架构师正在为公司设计多层应用程序。该应用程序的用户从移动设备上传图像。该应用程序生成每个图像的缩略图，并向用户返回一条消息以确认图像已成功上传。生成缩略图最多可能需要 60 秒，但该公司希望为其用户提供更快的响应时间，以通知他们已收到原始图像。解决方案架构师必须将应用程 序设计为将请求异步分派到不同的应用程序层。解决方案架构师应该怎么做才能满足这些要求?
+A. 编写自定义 AWS Lambda 函数来生成缩略图并提醒用户。使用图像上传过程作为事件源来调用 Lambda 函数。
+B. 创建 AWS Step Functions 工作流程。配置 Step Functions 以处理应用程序层之间的编排，并在缩略图生成完成时提醒用户。
+C. 创建一个 Amazon Simple Queue Service (Amazon SQS) 消息队列。上传图像时，在 SQS 队列中放置一条消息以生成缩略图。通过 收到图像的应用程序消息提醒用户。
+D. 创建 Amazon Simple Notification Service (Amazon SNS) 通知主题和订阅。在图像上传完成后，使用一个订阅与应用程序生成缩略 图。在缩略图生成完成后，使用第二个订阅通过推送通知向用户的移动应用程序发送消息。
+答案.C
+
+Q323.一家公司的设施在整个大楼的每个入口处都有徽章读取器。扫描徽章时，读者会通过 HTTPS 发送一条消息，以表明谁试图访问该特定入口。解决方案架构师必须设计一个系统来处理来自传感器的这些消息。解决方案必须具有高可用性，而且结果必须可供公司的安全团队进行分 析。解决方案架构师应该推荐哪种系统架构?
+A. 启动一个 Amazon EC2 实例作为 HTTPS 端点并处理消息。配置 EC2 实例以将结果保存到 Amazon S3 存储桶。
+B. 在 Amazon API Gateway 中创建一个 HTTPS 端点。配置 API 网关端点以调用 AWS Lambda 函数来处理消息并将结果保存到 Amazon DynamoDB 表中。
+C. 使用 Amazon Route 53 将传入的传感器消息定向到 AWS Lambda 函数。配置 Lambda 函数以处理消息并将结果保存到 Amazon DynamoDB 表中。
+D. 为 Amazon S3 创建网关 VPC 端点。配置从设施网络到 VPC 的 Site-to-Site VPN 连接，以便可以通过 VPC 端点将传感器数据直接 写入 S3 存储桶。
+答案.B
+
+Q324.一家公司想要为其主要的本地文件存储卷实施灾难恢复计划。文件存储卷从本地存储服务器上的 Internet 小型计算机系统接口 (iSCSI) 设备安装。文件存储卷包含数百兆兆字节 (TB) 的数据。 该公司希望确保最终用户能够立即访问本地系统中的所有文件类型，而不会遇到延迟。 哪种解决方案能够在对公司现有基础设施进行最少改动的情况下满足这些要求?
+A. 将 Amazon S3 文件网关配置为本地托管的虚拟机 (VM)。将本地缓存设置为 10 TB。修改现有应用程序以通过 NFS 协议访问文件。 要从灾难中恢复，请配置一个 Amazon EC2 实例并装载包含文件的 S3 存储桶。
+B. 配置 AWS Storage Gateway 磁带网关。使用数据备份解决方案将所有现有数据备份到虚拟磁带库。将数据备份解决方案配置为在初 始备份完成后每晚运行。要从灾难中恢复，请配置一个 Amazon EC2 实例并将数据从虚拟磁带库中的卷恢复到 Amazon Elastic Block Store (Amazon EBS) 卷。
+C. 配置一个 AWS Storage Gateway Volume Gateway 缓存卷。将本地缓存设置为 10 TB。使用iSCSI 将Volume Gateway 缓存卷挂载到 现有的文件服务器上，并将所有文件复制到存储卷中。配置存储卷的计划快照。要从灾难中恢复，请将快照还原到 Amazon Elastic Block Store (Amazon EBS) 卷并将 EBS 卷附加到 Amazon EC2 实例。
+D. 使用与现有文件存储卷相同数量的磁盘空间配置 AWS Storage Gateway Volume Gateway 存储卷。使用iSCSI将Volume Gateway存 储卷挂载到已有的文件服务器上，将所有文件复制到存储卷中。配置存储卷的计划快照。要从灾难中恢复，请将快照还原到 Amazon Elastic Block Store (Amazon EBS) 卷并将 EBS 卷附加到 Amazon EC2 实例。
+答案.D
+
+Q325.一家公司正在托管来自 Amazon S3 存储桶的 Web 应用程序。该应用程序使用 Amazon Cognito 作为身份提供商 来对用户进行身份验证并返回一个 JSON Web 令牌 (JWT)，该令牌提供对存储在另一个 S3 存储桶中的受保护资源的访问。部署应用程序后，用户报告错误并且无法访问受保护的内容。解决方案架构师必须通过提供适当的权限来解决此问题，以便用户可以访问受保护的内容。哪个解决方案满足这些要求?
+A. 更新 Amazon Cognito 身份池以承担适当的 IAM 角色以访问受保护的内容。
+B. 更新 S3 ACL 以允许应用程序访问受保护的内容。
+C. 将应用程序重新部署到 Amazon S3，以防止 S3 存储桶中的最终一致性读取影响用户访问受保护内容的能力。
+D. 更新 Amazon Cognito 池以使用身份池中的自定义属性映射并授予用户访问受保护内容的适当权限。
+答案.A
+
+Q326.图像托管公司将其大型资产上传到 Amazon S3 标准存储桶。该公司通过S3 API 并行使用分段上传，如果再次上传相同 的对象则覆盖。上传后的前 30 天，对象将被频繁访问。30 天后对象的使用频率将降低，但每个对象的访问模式将不一致。公司必须优化 其 S3 存储成本，同时保持存储资产的高可用性和弹性。解决方案架构师应该推荐哪些操作组合来满足这些要求?(选择两项。)
+A. 30 天后将资产移至 S3 智能分层。
+B. 配置 S3 生命周期策略以清理不完整的分段上传。
+C. 配置 S3 生命周期策略以清除过期对象删除标记。
+D. 30 天后将资产移至 S3 Standard-Infrequent Access (S3 Standard-IA)。 E. 30 天后将资产移至 S3 One Zone-Infrequent Access (S3 One Zone-IA)。
+答案.AB
+
+Q327.解决方案架构师必须保护托管 Amazon EC2 实例的 VPC 网络。EC2 实例包含高度敏感的数据并在私有子网中运行。根 据公司政策，VPC 中运行的 EC2 实例只能访问 Internet 上经过批准的第三方软件存储库，以使用第三方 URL 进行软件产品更新。必须阻 止其他互联网流量。哪个解决方案满足这些要求?
+A. 更新私有子网的路由表以将出站流量路由到 AWS Network Firewall 防火墙。配置域列表规则组。
+B. 设置 AWS WAF Web ACL。创建一组自定义规则，根据源和目标 IP 地址范围集过滤流量请求。
+C. 执行严格的入站安全组规则。配置出站规则，通过指定 URL 仅允许流量流向 Internet 上的授权软件存储库。
+D. 在 EC2 实例前面配置应用程序负载平衡器 (ALB)。将所有出站流量定向到 ALB。在 ALB 的目标组中使用基于 URL 的规则侦听器 以进行对 Internet 的出站访问。
+答案.A
+
+Q328.一家公司在 AWS 云中托管一个三层电子商务应用程序。该公司在 Amazon S3 上托管该网站，并将该网站与处理销售请 求的 API 集成。该公司在 Application Load Balancer (ALB) 后面的三个 Amazon EC2 实例上托管 API。API 由静态和动态前端内容以及异 步处理销售请求的后端工作人员组成。该公司预计在新产品发布活动期间销售请求的数量会突然显着增加。解决方案架构师应提出什么建议以确保成功处理所有请求?
+A. 为动态内容添加一个 Amazon CloudFront 分配。增加 EC2 实例的数量以应对流量的增加。
+B. 为静态内容添加一个 Amazon CloudFront 分配。将 EC2 实例置于 Auto Scaling 组中以根据网络流量启动新实例。
+C. 为动态内容添加一个 Amazon CloudFront 分配。在 ALB 前面添加一个 Amazon ElastiCache 实例以减少 API 处理的流量。
+D. 为静态内容添加一个 Amazon CloudFront 分配。添加 Amazon Simple Queue Service (Amazon SQS) 队列以接收来自网站的请求， 供 EC2 实例稍后处理。
+答案.D
+
+Q329. 安全审计显示 Amazon EC2 实例没有定期打补丁。解决方案架构师需要提供一种解决方案，该解决方案将对大量 EC2实例运行定期安全扫描。该解决方案还应定期为 EC2 实例打补丁，并提供每个实例的补丁状态报告。 哪种解决方案可以满足这些要求?
+A. 设置 Amazon Macie 以扫描 EC2 实例中的软件漏洞。在每个 EC2 实例上设置一个 cron 作业以定期修补实例。
+B. 在账户中开启 Amazon GuardDuty。配置 GuardDuty 以扫描 EC2 实例中的软件漏洞。设置 AWS Systems Manager 会话管理器以 定期修补 EC2 实例。
+C. 设置 Amazon Detective 扫描 EC2 实例中的软件漏洞。设置 Amazon EventBridge 计划规则以定期修补 EC2 实例。
+D. 在账户中开启 Amazon Inspector。配置 Amazon Inspector 以扫描 EC2 实例中的软件漏洞。设置 AWS Systems Manager Patch Manager 以定期修补 EC2 实例。
+答案.D
+
+Q330. 一家公司计划将数据存储在 Amazon RDS 数据库实例上。公司必须加密静态数据。 解决方案架构师应该怎么做才能满足此要求?
+A. 在 AWS Key Management Service (AWS KMS) 中创建密钥。为数据库实例启用加密。
+B. 创建加密密钥。将密钥存储在 AWS Secrets Manager 中。使用密钥加密数据库实例。
+C. 在 AWS Certificate Manager (ACM) 中生成证书。使用证书在数据库实例上启用 SSL/TLS。
+D. 在 AWS Identity and Access Management (IAM) 中生成证书。使用证书在数据库实例上启用 SSL/TLS。
+答案.A
+
+Q331.公司必须在 30 天内将 20 TB 的数据从数据中心迁移到 AWS 云。公司的网络带宽限制为 15 Mbps，并且不能超过 70% 的利用率。解决方案架构师应该怎么做才能满足这些要求?
+A. 使用 AWS Snowball。
+B. 使用 AWS DataSync。
+C. 使用安全的 VPN 连接。
+D. 使用 Amazon S3 传输加速。
+答案.A
+
+Q332.公司需要为其员工提供对机密和敏感文件的安全访问权限。公司希望确保只有授权用户才能访问这些文件。这些文件必须安全地下载到员工的设备上。这些文件存储在本地 Windows 文件服务器中。但是，由于远程使用量的增加，文件服务器的容量即将耗尽。 .哪种解决方案可以满足这些要求?
+A. 将文件服务器迁移到公共子网中的 Amazon EC2 实例。配置安全组限制入站流量到员工的IP地址。
+B. 将文件迁移到 Amazon FSx for Windows File Server 文件系统。将 Amazon FSx 文件系统与本地 Active Directory 集成。配置 AWS 客户端 VPN。
+C. 将文件迁移到 Amazon S3，并创建私有 VPC 端点。创建一个签名 URL 以允许下载。
+D. 将文件迁移到 Amazon S3，并创建一个公共 VPC 端点。允许员工使用 AWS IAM Identity Center (AWS Single Sign-On) 登录。
+答案.B
+
+Q333.一家公司的应用程序在应用程序负载均衡器 (ALB) 后面的 Amazon EC2 实例上运行。这些实例在跨多个可用区的 Amazon EC2 Auto Scaling 组中运行。在每个月的第一天午夜，当月末财务计算批处理运行时，应用程序会变得非常慢。这会导致 EC2 实 例的 CPU 使用率立即达到 100% 的峰值，从而中断应用程序。解决方案架构师应该提出什么建议来确保应用程序能够处理工作负载并避免停机?
+A. 在 ALB 前面配置一个 Amazon CloudFront 分布。
+B. 根据 CPU 利用率配置 EC2 Auto Scaling 简单扩展策略。
+C. 根据每月计划配置 EC2 Auto Scaling 计划扩展策略。
+D. 配置 Amazon ElastiCache 以从 EC2 实例中删除一些工作负载。
+答案.C
+
+Q334.一家公司希望让客户能够使用本地 Microsoft Active Directory 下载存储在 Amazon S3 中的文件。客户的应用程序使用SFTP 客户端下载文件。 哪种解决方案能够以最少的运营开销满足这些要求并且无需更改客户的应用程序?
+A. 为 Amazon S3 使用 SFTP 设置 AWS Transfer Family。配置集成的 Active Directory 身份验证。
+B. 设置 AWS Database Migration Service (AWS DMS) 以将本地客户端与 Amazon S3 同步。配置集成的 Active Directory 身份验证。
+C. 设置 AWS DataSync 以使用 AWS IAM Identity Center (AWS Single Sign-On) 在本地位置和 S3 位置之间同步。
+D. 使用 SFTP 设置 Windows Amazon EC2 实例以将本地客户端与 Amazon S3 连接。集成 AWS 身份和访问管理 (IAM)。
+答案.A
+
+Q335.一家公司的需求突然增加。公司需要从 Amazon 系统映像 (AMI) 提供大型 Amazon EC2 实例。这些实例将在Auto Scaling 组中运行。公司需要一种能够提供最小初始化延迟的解决方案来满足需求。 哪个解决方案满足这些要求?
+A. 使用 aws ec2 register-image 命令从快照创建 AMI。使用 AWS Step Functions 替换 Auto Scaling 组中的 AMI。
+B. 在快照上启用 Amazon Elastic Block Store (Amazon EBS) 快速快照还原。使用快照供应 AMI。将 Auto Scaling 组中的 AMI 替换为 新的 AMI。
+C. 启用 AMI 创建并在 Amazon Data Lifecycle Manager (Amazon DLM) 中定义生命周期规则。创建一个 AWS Lambda 函数来修改 Auto Scaling 组中的 AMI。
+D. 使用 Amazon EventBridge 调用预置 AMI 的 AWS Backup 生命周期策略。在 EventBridge 中将 Auto Scaling 组容量限制配置为事 件源。
+答案.B
+
+Q336.一家公司托管一个多层 Web 应用程序，该应用程序使用 Amazon Aurora MySQL 数据库集群进行存储。应用程序层托 管在 Amazon EC2 实例上。公司的 IT 安全准则要求对数据库凭据进行加密并每 14 天轮换一次。解决方案架构师应该如何以最少的操作工作来满足此要求?
+A. 创建一个新的 AWS Key Management Service (AWS KMS) 加密密钥。使用 AWS Secrets Manager 创建一个使用 KMS 密钥和适当 凭证的新密钥。将密钥与 Aurora 数据库集群相关联。配置 14 天的自定义轮换周期。
+B. 在 AWS Systems Manager Parameter Store 中创建两个参数:一个用于用户名作为字符串参数，另一个使用 SecureString 类型作 为密码。为密码参数选择 AWS Key Management Service (AWS KMS) 加密，并将这些参数加载到应用程序层中。实施每 14 天轮换一 次密码的 AWS Lambda 函数。
+C. 将包含凭证的文件存储在 AWS Key Management Service (AWS KMS) 加密的 Amazon Elastic File System (Amazon EFS) 文件系统 中。在应用层的所有 EC2 实例中挂载 EFS 文件系统。限制对文件系统上文件的访问，以便应用程序可以读取文件并且只有超级用户 可以修改文件。实施一个 AWS Lambda 函数，该函数每 14 天在 Aurora 中轮换一次密钥并将新凭证写入文件。
+D. 将包含凭据的文件存储在应用程序用于加载凭据的 AWS Key Management Service (AWS KMS) 加密 Amazon S3 存储桶中。定期将 文件下载到应用程序以确保使用正确的凭据。实施 AWS Lambda 函数，每 14 天轮换一次 Aurora 凭证并将这些凭证上传到 S3 存储桶 中的文件。
+答案.A
+
+Q337.一家公司在 AWS 上部署了一个 Web 应用程序。该公司在 Amazon RDS for MySQL 上托管后端数据库，其中包含一个主数据库实例和五个只读副本以支持扩展需求。只读副本必须比主数据库实例滞后不超过 1 秒。数据库定期运行预定的存储过程。 随着网站流量的增加，副本在高峰负载期间会出现额外的滞后。解决方案架构师必须尽可能减少复制滞后。解决方案架构师必须尽量减少对应用程序代码的更改，并且必须尽量减少持续的运营开销。哪种解决方案可以满足这些要求?
+A. 将数据库迁移到 Amazon Aurora MySQL。将只读副本替换为 Aurora 副本，并配置 Aurora Auto Scaling。用 Aurora MySQL 本机 函数替换存储过程。
+B. 在数据库前面部署一个 Amazon ElastiCache for Redis 集群。修改应用程序以在应用程序查询数据库之前检查缓存。用 AWS Lambda 函数替换存储过程。
+C. 将数据库迁移到在 Amazon EC2 实例上运行的 MySQL 数据库。为所有副本节点选择大型、计算优化的 EC2 实例。维护 EC2 实例 上的存储过程。
+D. 将数据库迁移到 Amazon DynamoDB。提供大量读取容量单元 (RCU) 以支持所需的吞吐量，并配置按需容量扩展。用 DynamoDB 流替换存储过程。
+答案.A
+
+Q338.解决方案架构师必须为大容量软件即服务 (SaaS) 平台创建灾难恢复 (DR) 计划。该平台的所有数据都存储在 Amazon Aurora MySQL 数据库集群中。DR 计划必须将数据复制到辅助 AWS 区域。 哪种解决方案能够最经济有效地满足这些要求?
+A. 使用 MySQL 二进制日志复制到辅助区域中的 Aurora 集群。为次要区域中的 Aurora 集群预配一个数据库实例。
+B. 为数据库集群设置一个 Aurora 全局数据库。设置完成后，从次要区域中删除数据库实例。
+C. 使用 AWS Database Migration Service (AWS DMS) 将数据持续复制到辅助区域中的 Aurora 集群。从次要区域中删除数据库实 例。
+D. 为数据库集群设置一个 Aurora 全局数据库。在次要区域中至少指定一个数据库实例。
+答案.A
+
+Q339 .一家公司有一个自定义应用程序，其中嵌入了凭证，可以从 Amazon RDS MySQL 数据库实例中检索信息。管理层表 示，应用程序必须以最少的编程工作量变得更加安全。解决方案架构师应该怎么做才能满足这些要求?
+A. 使用 AWS Key Management Service (AWS KMS) 创建密钥。配置应用程序以从 AWS KMS 加载数据库凭证。启用自动密钥轮换。
+B. 在 RDS for MySQL 数据库上为应用程序用户创建凭证并将凭证存储在 AWS Secrets Manager 中。配置应用程序以从 Secrets Manager 加载数据库凭证。创建一个 AWS Lambda 函数，用于轮换 Secret Manager 中的凭证。
+C. 在 RDS for MySQL 数据库上为应用程序用户创建凭证并将凭证存储在 AWS Secrets Manager 中。配置应用程序以从 Secrets Manager 加载数据库凭证。使用 Secrets Manager 为 RDS for MySQL 数据库中的应用程序用户设置凭证轮换计划。
+D. 在 RDS for MySQL 数据库上为应用程序用户创建凭证并将凭证存储在 AWS Systems Manager Parameter Store 中。配置应用程序 以从 Parameter Store 加载数据库凭证。使用 Parameter Store 为 RDS for MySQL 数据库中的应用程序用户设置凭据轮换计划。
+答案.C
+
+Q340. 一家媒体公司在 AWS 上托管其网站。该网站应用程序的架构包括应用程序负载均衡器 (ALB) 后面的一系列Amazon EC2 实例和托管在 Amazon Aurora 上的数据库。该公司的网络安全团队报告说，该应用程序容易受到 SQL 注入攻击。 公司应该如何解决这个问题?
+A. 在 ALB 前面使用 AWS WAF。将适当的 Web ACL 与 AWS WAF 相关联。
+B. 创建一个 ALB 侦听器规则以固定响应回复 SQL 注入。
+C. 订阅 AWS Shield Advanced 以自动阻止所有 SQL 注入尝试。
+D. 设置 Amazon Inspector 以自动阻止所有 SQL 注入尝试。
+答案.A
+
+Q341. 一家公司有一个由 AWS Lake Formation 管理的 Amazon S3 数据湖。该公司希望通过将数据湖中的数据与存储 在 Amazon Aurora MySQL 数据库中的运营数据相结合，在 Amazon QuickSight 中创建可视化。公司希望强制执行列级授权，以便公司的 营销团队只能访问数据库中列的子集。哪种解决方案能够以最少的运营开销满足这些要求?
+A. 使用 Amazon EMR 将数据直接从数据库提取到 QuickSight SPICE 引擎。仅包括必需的列。
+B. 使用 AWS Glue Studio 将数据从数据库提取到 S3 数据湖。将 IAM 策略附加到 QuickSight 用户以实施列级访问控制。使用 Amazon S3 作为 QuickSight 中的数据源。
+C. 使用 AWS Glue Elastic Views 为 Amazon S3 中的数据库创建物化视图。创建 S3 存储桶策略以对 QuickSight 用户实施列级访问控 制。使用 Amazon S3 作为 QuickSight 中的数据源。
+D. 使用 Lake Formation 蓝图将数据从数据库提取到 S3 数据湖。使用 Lake Formation 为 QuickSight 用户实施列级访问控制。使用 Amazon Athena 作为 QuickSight 中的数据源。
+答案.D
+
+Q342.一家交易处理公司每周都有在 Amazon EC2 实例上运行的脚本化批处理作业。EC2 实例位于 Auto Scaling 组 中。事务数可能会有所不同，但每次运行时记录的基准 CPU 利用率至少为 60%。公司需要在作业运行前 30 分钟配置容量。目前，工程师通过手动修改 Auto Scaling 组参数来完成此任务。公司没有资源来分析 Auto Scaling 组计数所需的容量趋势。公司需要一种 自动化方式来修改 Auto Scaling 组的所需容量。哪种解决方案能够以最少的运营开销满足这些要求?
+A. 为 Auto Scaling 组创建一个动态扩展策略。配置策略以根据 CPU 利用率指标进行扩展。将指标的目标值设置为 60%。
+B. 为 Auto Scaling 组创建计划扩展策略。设置适当的所需容量、最小容量和最大容量。将重复周期设置为每周一次。将开始时间设置 为批处理作业运行前 30 分钟。
+C. 为 Auto Scaling 组创建预测性扩展策略。配置策略以根据预测进行缩放。将缩放指标设置为 CPU 利用率。将指标的目标值设置为 60%。在策略中，将实例设置为在作业运行前 30 分钟预启动。
+D. 创建一个 Amazon EventBridge 事件以在 Auto Scaling 组的 CPU 使用率指标值达到 60% 时调用 AWS Lambda 函数。配置 Lambda 函数以将 Auto Scaling 组的所需容量和最大容量增加 20%。
+答案.C
+
+Q343.解决方案架构师正在设计公司的灾难恢复 (DR) 架构。该公司有一个 MySQL 数据库，该数据库在私有子网中的Amazon EC2 实例上运行，并有计划的备份。DR 设计需要包括多个 AWS 区域。 哪种解决方案能够以最少的运营开销满足这些要求?
+A. 将 MySQL 数据库迁移到多个 EC2 实例。在 DR 区域配置备用 EC2 实例。开启复制。
+B. 将 MySQL 数据库迁移到 Amazon RDS。使用多可用区部署。为不同可用区中的主数据库实例开启读取复制。
+C. 将 MySQL 数据库迁移到 Amazon Aurora 全局数据库。在主要区域中托管主要数据库集群。在 DR Region 中托管辅助数据库集 群。
+D. 将 MySQL 数据库的计划备份存储在为 S3 跨区域复制 (CRR) 配置的 Amazon S3 存储桶中。使用数据备份恢复容灾域中的数据库。
+答案.C
+
+Q344.一家公司有一个使用 Amazon Simple Queue Service (Amazon SQS) 解析消息的 Java 应用程序。应用程序无法 解析大小超过 256 KB 的消息。该公司希望实施一种解决方案，使应用程序能够解析大至 50 MB 的消息。哪种解决方案可以通过对代码进行 FEWEST 更改来满足这些要求?
+A. 使用适用于 Java 的 Amazon SQS 扩展客户端库在 Amazon S3 中托管大于 256 KB 的消息。
+B. 使用 Amazon EventBridge 从应用程序而不是 Amazon SQS 发布大消息。
+C. 更改 Amazon SQS 中的限制以处理大于 256 KB 的消息。
+D. 在 Amazon Elastic File System (Amazon EFS) 中存储大于 256 KB 的消息。配置 Amazon SQS 以在消息中引用此位置。
+答案.A
+
+Q345. 一家公司希望限制对其主要 Web 应用程序之一的内容的访问，并通过使用 AWS 上可用的授权技术来保护内容。该公 司希望为少于 100 个用户实施无服务器架构和身份验证解决方案。该解决方案需要与主 Web 应用程序集成并在全球范围内提供 Web 内 容。该解决方案还必须随着公司用户群的增长而扩展，同时提供尽可能低的登录延迟。哪种解决方案能够最经济有效地满足这些要求?
+A. 使用 Amazon Cognito 进行身份验证。使用Lambda@Edge进行授权。使用 Amazon CloudFront 在全球范围内提供 Web 应用程 序。
+B. 使用 AWS Directory Service for Microsoft Active Directory 进行身份验证。使用 AWS Lambda 进行授权。使用 Application Load Balancer 在全球范围内为 Web 应用程序提供服务。
+C. 使用 Amazon Cognito 进行身份验证。使用 AWS Lambda 进行授权。使用 Amazon S3 Transfer Acceleration 在全球范围内为 Web 应用程序提供服务。
+D. 使用 AWS Directory Service for Microsoft Active Directory 进行身份验证。使用Lambda@Edge进行授权。使用 AWS Elastic Beanstalk 在全球范围内为 Web 应用程序提供服务。
+答案.A
+
+Q346.一家公司的数据中心有一个老化的网络附加存储 (NAS) 阵列。NAS 阵列向客户端工作站提供 SMB 共享和 NFS 共享。公司不想购买新的 NAS 阵列。该公司也不想承担续订 NAS 阵列支持合同的费用。一些数据被频繁访问，但大部分数据是不活动的。 解决方案架构师需要实施将数据迁移到 Amazon S3、使用 S3 生命周期策略并为客户端工作站保持相同外观的解决方案。解决方案架构师已将 AWS Storage Gateway 确定为解决方案的一部分。 解决方案架构师应该提供哪种类型的存储网关来满足这些要求?
+A. 卷网关
+B. 磁带网关
+C. Amazon FSx 文件网关
+D. Amazon S3 文件网关
+答案.D
+
+Q347. 一家公司有一个在 Amazon EC2 实例上运行的应用程序。解决方案架构师已根据公司的当前需求在特定实例系 列和各种实例大小上对公司进行了标准化。该公司希望在未来 3 年内最大限度地节省应用程序的成本。公司需要能够在未来 6 个月内根据应用程序的流行度和使用情况更改实例系列 和大小。哪种解决方案能够最经济有效地满足这些要求?
+A. 计算储蓄计划
+B. EC2 实例节省计划
+C. 区域预留实例
+D. 标准预留实例
+答案.A
+
+Q348.一家公司从大量使用可穿􏰁设备的参与者那里收集数据。该公司将数据存储在 Amazon DynamoDB 表中，并使用应用 程序来分析数据。数据工作量是恒定且可预测的。该公司希望保持或低于其 DynamoDB 的预测预算。哪种解决方案能够最经济有效地满足这些要求?
+A. 使用配置模式和 DynamoDB 标准-不频繁访问 (DynamoDB Standard-IA)。为预测的工作负载保留容量。
+B. 使用配置模式。指定读取容量单位 (RCU) 和写入容量单位 (WCU)。
+C. 使用点播模式。将读取容量单位 (RCU) 和写入容量单位 (WCU) 设置得足够高，以适应工作负载的变化。
+D. 使用点播模式。指定具有预留容量的读取容量单位 (RCU) 和写入容量单位 (WCU)。
+答案.B
+
+Q349 .一家公司将机密数据存储在 ap-southeast-3 区域的 Amazon Aurora PostgreSQL 数据库中。该数据库使用 AWS Key Management Service (AWS KMS) 客户管理的密钥进行加密。该公司最近被收购，必须与收购公司在 ap-southeast-3 中的 AWS 账户安全地 共享数据库备份。解决方案架构师应该怎么做才能满足这些要求?
+A. 创建数据库快照。将快照复制到新的未加密快照。与收购公司的 AWS 账户共享新快照。
+B. 创建数据库快照。将收购公司的 AWS 账户添加到 KMS 密钥策略中。与收购公司的 AWS 账户共享快照。
+C. 创建一个使用不同 AWS 管理的 KMS 密钥的数据库快照。将收购公司的 AWS 账户添加到 KMS 密钥别名。与收购公司的 AWS 账 户共享快照。
+D. 创建数据库快照。下载数据库快照。将数据库快照上传到 Amazon S3 存储桶。更新 S3 存储桶策略以允许从收购公司的 AWS 账户 进行访问。
+答案.B
+
+Q350 .一家公司在 us-east-1 区域使用 100 GB Amazon RDS for Microsoft SQL Server 单可用区数据库实例来存储客户交易。公司需要数据库实例的高可用和自动恢复。公司还必须每年多次在 RDS 数据库上运行报告。报告过程导致交易花费比平时更长的时间记入客户账户。公司需要一种能够提高报告流程 性能的解决方案。哪些步骤组合可以满足这些要求?(选择两项。)
+A. 将数据库实例从单可用区数据库实例修改为多可用区部署。
+B. 拍摄当前数据库实例的快照。将快照还原到另一个可用区中的新 RDS 部署。
+C. 在不同的可用区中创建数据库实例的只读副本。将所有报告请求指向只读副本。 D. 将数据库迁移到 RDS Custom。
+E. 使用 RDS Proxy 将报告请求限制在维护时段内。
+答案.AC
+
+Q351. 一家公司正在将其数据管理应用程序迁移到 AWS。公司希望过渡到事件驱动的架构。该架构需要更加分布式，并在执行工作流的不同方面时使用无服务器概念。该公司还希望最大限度地减少运营开销。 哪种解决方案可以满足这些要求?
+A. 在 AWS Glue 中构建工作流程。使用 AWS Glue 调用 AWS Lambda 函数来处理工作流步骤。
+B. 在 AWS Step Functions 中构建工作流程。在 Amazon EC2 实例上部署应用程序。使用 Step Functions 在 EC2 实例上调用工作流步 骤。
+C. 在 Amazon EventBridge 中构建工作流。使用 EventBridge 按计划调用 AWS Lambda 函数以处理工作流步骤。
+D. 在 AWS Step Functions 中构建工作流程。使用 Step Functions 创建状态机。使用状态机调用 AWS Lambda 函数来处理工作流步 骤。
+答案.D
+
+Q352.一家公司正在为在线多人游戏设计网络。该游戏使用 UDP 网络协议，将部署在八个 AWS 区域。网络架构需要最大限度地减少延迟和数据包丢失，以便为最终用户提供高质量的游戏体验。 哪种解决方案可以满足这些要求?
+A. 在每个区域设置一个transit gateway。在每个中转网关之间创建区域间对等连接。
+B. 在每个区域中使用 UDP 侦听器和终端节点组设置 AWS Global Accelerator。
+C. 在打开 UDP 的情况下设置 Amazon CloudFront。在每个区域配置一个源。
+D. 在每个 Region 之间建立一个 VPC peering mesh。为每个 VPC 打开 UDP。
+答案.B
+
+Q353.一家公司在单个可用区中的 Amazon EC2 实例上托管一个三层 Web 应用程序。Web 应用程序使用托管在 EC2 实例上的 自我管理的 MySQL 数据库将数据存储在 Amazon Elastic Block Store (Amazon EBS) 卷中。MySQL 数据库当前使用 1 TB 预置 IOPS SSD (io2) EBS 卷。该公司预计在高峰流量时读取和写入的流量均为 1,000 IOPS。该公司希望最大限度地减少任何中断、稳定性能并降低成本，同时保留双倍 IOPS 的容量。该公司希望将数据库层转移到高度可用且容错的 完全托管解决方案。哪种解决方案能够最经济有效地满足这些要求?
+A. 使用带有 io2 Block Express EBS 卷的 Amazon RDS for MySQL 数据库实例的多可用区部署。
+B. 使用具有通用 SSD (gp2) EBS 卷的 Amazon RDS for MySQL 数据库实例的多可用区部署。
+C. 使用 Amazon S3 智能分层访问层。
+D. 使用两个大型 EC2 实例以主动-被动模式托管数据库。
+答案.B
+
+Q354.一家公司在 AWS 上托管一个无服务器应用程序。该应用程序使用 Amazon API Gateway、AWS Lambda 和 Amazon RDS for PostgreSQL 数据库。该公司注意到在高峰流量或不可预测的流量期间由于数据库连接超时而导致的应用程序错误有所增 加。公司需要一种解决方案，能够以最少的代码更改量来减少应用程序故障。解决方案架构师应该怎么做才能满足这些要求?
+A. 降低 Lambda 并发率。
+B. 在 RDS 数据库实例上启用 RDS 代理。
+C. 调整 RDS 数据库实例类的大小以接受更多连接。
+D. 将数据库迁移到具有按需扩展功能的 Amazon DynamoDB。
+答案.B
+
+Q355.一家公司正在将旧应用程序迁移到 AWS。该应用程序每小时运行一个批处理作业并且是 CPU 密集型的。使用本地服务器，批处理作业平均需要 15 分钟。服务器有 64 个虚拟 CPU (vCPU) 和 512 GiB 内存。 哪种解决方案将在 15 分钟内以最少的操作开销运行批处理作业?
+A. 使用具有功能扩展的 AWS Lambda。
+B. 将 Amazon Elastic Container Service (Amazon ECS) 与 AWS Fargate 结合使用。
+C. 将 Amazon Lightsail 与 AWS Auto Scaling 结合使用。
+D. 在 Amazon EC2 上使用 AWS Batch。
+答案.D
+
+Q356.一家公司将其数据对象存储在 Amazon S3 标准存储中。一位解决方案架构师发现 75% 的数据在 30 天后很少被访问。公司需要所有数据都能够立即访问，并具有相同的高可用性和弹性，但公司希望最大限度地降低存储成本。 哪种存储解决方案能够满足这些要求?
+A. 30 天后将数据对象移动到 S3 Glacier Deep Archive。
+B. 30 天后将数据对象移至 S3 标准-不频繁访问 (S3 Standard-IA)。
+C. 30 天后将数据对象移至 S3 One Zone-Infrequent Access (S3 One Zone-IA)。
+D. 立即将数据对象移动到 S3 One Zone-Infrequent Access (S3 One Zone-IA)。
+答案.B
+
+Q357.一家游戏公司正在将其公共记分牌从数据中心转移到 AWS 云。该公司使用 Application Load Balancer 背后的 Amazon EC2 Windows Server 实例来托管其动态应用程序。公司需要为应用程序提供高可用的存储解决方案。该应用程序由静态文件和动态服务器 端代码组成。解决方案架构师应该采取哪些步骤组合来满足这些要求?(选择两项。)
+A. 将静态文件存储在 Amazon S3 上。使用 Amazon CloudFront 在边缘缓存对象。
+B. 将静态文件存储在 Amazon S3 上。使用 Amazon ElastiCache 在边缘缓存对象。
+C. 将服务器端代码存储在 Amazon Elastic File System (Amazon EFS) 上。在每个 EC2 实例上挂载 EFS 卷以共享文件。
+D. 将服务器端代码存储在 Amazon FSx for Windows File Server 上。在每个 EC2 实例上安装 FSx for Windows 文件服务器卷以共享 文件。
+E. 将服务器端代码存储在通用 SSD (gp2) Amazon Elastic Block Store (Amazon EBS) 卷上。在每个 EC2 实例上挂载 EBS 卷以共享文 件。
+答案.AD
+
+Q358.一家社交媒体公司在应用程序负载均衡器 (ALB) 后面的 Amazon EC2 实例上运行其应用程序。ALB 是 Amazon CloudFront 分配的来源。该应用程序在 Amazon S3 存储桶中存储了超过 10 亿张图像，每秒处理数千张图像。该公司希望动态调整图像大 小并为客户提供适当的格式。哪种解决方案能够以最少的运营开销满足这些要求?
+A. 在 EC2 实例上安装外部图像管理库。使用图像管理库处理图像。
+B. 创建 CloudFront 源请求策略。使用策略自动调整图像大小并根据请求中的 User-Agent HTTP 标头提供适当的格式。
+C. 使用带有外部图像管理库的Lambda@Edge函数。将Lambda@Edge函数与提供图像的 CloudFront 行为相关联。
+D. 创建 CloudFront 响应标头策略。使用策略自动调整图像大小并根据请求中的 User-Agent HTTP 标头提供适当的格式。
+答案.C
+
+Q359.医院需要将患者记录存储在 Amazon S3 存储桶中。医院的合规团队必须确保所有受保护的健康信息 (PHI) 在传输和静 止时都经过加密。合规团队必须管理静态数据的加密密钥。哪种解决方案可以满足这些要求?
+A. 在 AWS Certificate Manager (ACM) 中创建公共 SSL/TLS 证书。将证书与 Amazon S3 相关联。为每个 S3 存储桶配置默认加密以 使用带有 AWS KMS 密钥的服务器端加密 (SSE-KMS)。分配合规团队管理 KMS 密钥。
+B. 在 S3 存储桶策略上使用 aws:SecureTransport 条件以仅允许通过 HTTPS (TLS) 的加密连接。为每个 S3 存储桶配置默认加密以使 用服务器端加密和 S3 托管加密密钥 (SSE-S3)。分配合规团队管理 SSE-S3 密钥。
+C. 在 S3 存储桶策略上使用 aws:SecureTransport 条件以仅允许通过 HTTPS (TLS) 的加密连接。为每个 S3 存储桶配置默认加密以使 用带有 AWS KMS 密钥的服务器端加密 (SSE-KMS)。分配合规团队管理 KMS 密钥。
+D. 在 S3 存储桶策略上使用 aws:SecureTransport 条件以仅允许通过 HTTPS (TLS) 的加密连接。使用 Amazon Macie 保护存储在 Amazon S3 中的敏感数据。指派合规团队管理 Macie。
+答案.C
+
+Q360.一家公司使用 Amazon API Gateway 在同一 VPC 中运行带有两个 REST API 的私有网关。BuyStock RESTful Web 服务调用 CheckFunds RESTful Web 服务以确保在购买股票之前有足够的资金可用。该公司在 VPC 流日志中注意到，BuyStock RESTful Web 服务通过互联网而不是通过 VPC 调用 CheckFunds RESTful Web 服务。解决方案架构师必须实施解决方案，以便 API 通过 VPC 进行通信。哪种解决方案可以通过对代码进行 FEWEST 更改来满足这些要求?
+A. 在 HTTP 标头中添加 X-API-Key 标头用于授权。
+B. 使用接口端点。
+C. 使用网关端点。
+D. 在两个 REST API 之间添加一个 Amazon Simple Queue Service (Amazon SQS) 队列。
+答案.B
+
+Q361.一家公司在 AWS 上托管多人游戏应用程序。该公司希望应用程序以亚毫秒级延迟读取数据并对历史数据运行一次性查询。哪种解决方案能够以最少的运营开销满足这些要求?
+A. 将 Amazon RDS 用于经常访问的数据。定期运行自定义脚本以将数据导出到 Amazon S3 存储桶。
+B. 将数据直接存储在 Amazon S3 存储桶中。实施 S3 生命周期策略以将旧数据移动到 S3 Glacier Deep Archive 以进行长期存储。使用 Amazon Athena 对 Amazon S3 中的数据运行一次性查询。
+C. 将 Amazon DynamoDB 与 DynamoDB Accelerator (DAX) 一起用于经常访问的数据。使用 DynamoDB 表导出将数据导出到 Amazon S3 存储桶。使用 Amazon Athena 对 Amazon S3 中的数据运行一次性查询。
+D. 将 Amazon DynamoDB 用于经常访问的数据。打开流式传输到 Amazon Kinesis Data Streams。使用 Amazon Kinesis Data Firehose 从 Kinesis Data Streams 读取数据。将记录存储在 Amazon S3 存储桶中。
+答案.C
+
+Q362.一家公司使用支付处理系统，该系统要求特定支付 ID 的消息按发送顺序接收。否则，付款可能无法正确处理。 解决方案架构师应采取哪些行动来满足此要求?(选择两项。)
+A. 将消息写入以支付 ID 作为分区键的 Amazon DynamoDB 表。
+B. 将消息写入以支付 ID 作为分区键的 Amazon Kinesis 数据流。
+C. 将消息写入以支付 ID 作为键的 Amazon ElastiCache for Memcached 集群。
+D. 将消息写入 Amazon Simple Queue Service (Amazon SQS) 队列。设置消息属性以使用支付 ID。
+E. 将消息写入 Amazon Simple Queue Service (Amazon SQS) FIFO 队列。将消息组设置为使用支付 ID。
+答案.AE
+
+Q363. 一家公司正在构建一个游戏系统，该系统需要将唯一事件同时发送到单独的排行榜、匹配和身份验证服务。公司 需要一个 AWS 事件驱动系统来保证事件的顺序。哪种解决方案可以满足这些要求?
+A. Amazon EventBridge 事件总线
+B. Amazon Simple Notification Service (Amazon SNS) FIFO 主题
+C. Amazon Simple Notification Service (Amazon SNS) 标准主题
+D. 亚马逊简单队列服务 (Amazon SQS) FIFO 队列
+答案.A
+
+Q364. 一家医院正在设计一个新的应用程序来收集患者的症状。该医院已决定在架构中使用 Amazon Simple Queue Service (Amazon SQS) 和 Amazon Simple Notification Service (Amazon SNS)。解决方案架构师正在审查基础架构设计。数据必须在静态和传输中加密。只有医院的授权人员才能访问数据。解决方案架构师应该采取哪些步骤组合来满足这些要求?(选择两项。)
+A. 在 SQS 组件上打开服务器端加密。更新默认密钥策略以将密钥使用限制为一组授权主体。
+B. 使用 AWS Key Management Service (AWS KMS) 客户管理的密钥在 SNS 组件上启用服务器端加密。应用密钥策略以将密钥使用限 制为一组授权主体。
+C. 打开 SNS 组件上的加密。更新默认密钥策略以将密钥使用限制为一组授权主体。在主题策略中设置条件以仅允许通过 TLS 进行加 密连接。
+D. 使用 AWS Key Management Service (AWS KMS) 客户管理的密钥在 SQS 组件上启用服务器端加密。应用密钥策略以将密钥使用限 制为一组授权主体。在队列策略中设置条件以仅允许通过 TLS 的加密连接。
+E. 使用 AWS Key Management Service (AWS KMS) 客户管理的密钥在 SQS 组件上启用服务器端加密。应用 IAM 策略以将密钥使用 限制为一组授权委托人。在队列策略中设置条件以仅允许通过 TLS 的加密连接。
+答案.BD
+
+Q365. 一家公司运行一个由 Amazon RDS 支持的 Web 应用程序。一位新的数据库管理员不小心编辑了数据库表中的信息，导致数据丢失。为了帮助从此类事件中恢复，该公司希望能够将数据库恢复到过去 30 天内发生任何更改前 5 分钟的状态。 解决方案架构师应在设计中包含哪些功能以满足此要求?
+A. 读取副本
+B. 手动快照
+C. 自动备份
+D. 多可用区部署
+答案.C
+
+Q366. 一家公司的 Web 应用程序由位于 AWS Lambda 函数和 Amazon DynamoDB 数据库前面的 Amazon API Gateway API 组成。Lambda 函数处理业务逻辑，而 DynamoDB 表托管数据。该应用程序使用 Amazon Cognito 用户池来识别应用程序的 各个用户。解决方案架构师需要更新应用程序，以便只有订阅的用户才能访问高级内容。哪种解决方案能够以最少的运营开销满足此要求?
+A. 在 API 网关 API 上启用 API 缓存和限制。
+B. 在 API 网关 API 上设置 AWS WAF。创建规则以过滤已订阅的用户。 C. 将细粒度的 IAM 权限应用于 DynamoDB 表中的高级内容。
+D. 实施 API 使用计划和 API 密钥以限制未订阅用户的访问。
+答案.D
+
+Q367 .一家公司正在使用 Amazon Route 53 基于延迟的路由将请求路由到其面向全球用户的基于 UDP 的应用程序。该应用程 序托管在公司位于美国、亚洲和欧洲的本地数据中心的冗余服务器上。公司的合规要求规定应用程序必须在内部托管。公司希望提高应用 程序的性能和可用性。解决方案架构师应该怎么做才能满足这些要求?
+A. 在三个 AWS 区域配置三个网络负载均衡器 (NLB) 来处理本地端点。使用 AWS Global Accelerator 创建加速器，并将 NLB 注册为 其终端节点。使用指向加速器 DNS 的 CNAME 提供对应用程序的访问。
+B. 在三个 AWS 区域配置三个应用程序负载均衡器 (ALB) 以解决本地端点。使用 AWS Global Accelerator 创建加速器，并将 ALB 注 册为其终端节点。使用指向加速器 DNS 的 CNAME 提供对应用程序的访问。
+C. 在三个 AWS 区域配置三个网络负载均衡器 (NLB) 来处理本地端点。在 Route 53 中，创建指向三个 NLB 的基于延迟的记录，并将 其用作 Amazon CloudFront 分配的源。使用指向 CloudFront DNS 的 CNAME 提供对应用程序的访问。
+D. 在三个 AWS 区域配置三个应用程序负载均衡器 (ALB) 以解决本地端点。在 Route 53 中，创建指向三个 ALB 的基于延迟的记录， 并将其用作 Amazon CloudFront 分配的源。使用指向 CloudFront DNS 的 CNAME 提供对应用程序的访问。
+答案.A
+
+Q368.解决方案架构师希望所有新用户对 IAM 用户密码都有特定的复杂性要求和强制轮换期。 解决方案架构师应该怎么做才能实现这一点?
+A. 为整个 AWS 账户设置一个整体密码策略。
+B. 为 AWS 账户中的每个 IAM 用户设置密码策略。
+C. 使用第三方供应商软件设置密码要求。
+D. 将 Amazon CloudWatch 规则附加到 Create_newuser 事件以根据适当的要求设置密码。
+答案.A
+
+Q369. 一家公司已将应用程序迁移到 Amazon EC2 Linux 实例。其中一个 EC2 实例按计划运行多个 1 小时的任务。这 些任务由不同的团队编写，没有共同的编程语言。当这些任务在单个实例上运行时，该公司关注性能和可扩展性。解决方案架构师需要实 施解决方案来解决这些问题。哪种解决方案能够以最少的运营开销满足这些要求?
+A. 使用 AWS Batch 将任务作为作业运行。使用 Amazon EventBridge (Amazon CloudWatch Events) 安排作业。
+B. 将 EC2 实例转换为容器。使用 AWS App Runner 按需创建容器以将任务作为作业运行。
+C. 将任务复制到 AWS Lambda 函数中。使用 Amazon EventBridge (Amazon CloudWatch Events) 安排 Lambda 函数。
+D. 创建运行任务的 EC2 实例的 Amazon 系统映像 (AMI)。使用 AMI 创建 Auto Scaling 组以运行实例的多个副本。
+答案.A
+
+Q370. 一家公司在 VPC 中运行一个公共的三层 Web 应用程序。该应用程序在跨多个可用区的 Amazon EC2 实例上运行。在私有子网中运行的 EC2 实例需要通过 Internet 与许可证服务器通信。公司需要一个可最大程度减少运营维护的托管解决方案。 哪个解决方案满足这些要求?
+A. 在公共子网中提供 NAT 实例。使用指向 NAT 实例的默认路由修改每个私有子网的路由表。
+B. 在私有子网中提供 NAT 实例。使用指向 NAT 实例的默认路由修改每个私有子网的路由表。
+C. 在公共子网中提供 NAT 网关。使用指向 NAT 网关的默认路由修改每个私有子网的路由表。
+D. 在私有子网中提供 NAT 网关。使用指向 NAT 网关的默认路由修改每个私有子网的路由表。
+答案.C
+
+Q371 .一家公司需要创建一个 Amazon Elastic Kubernetes Service (Amazon EKS) 集群来托管数字媒体流应用程序。EKS 集群 将使用由 Amazon Elastic Block Store (Amazon EBS) 卷支持的托管节点组进行存储。公司必须使用存储在 AWS Key Management Service (AWS KMS) 中的客户托管密钥对所有静态数据进行加密。哪种操作组合将以最少的操作开销满足此要求?(选择两项。)
+A. 使用 Kubernetes 插件，该插件使用客户管理的密钥来执行数据加密。
+B. 创建 EKS 集群后，找到 EBS 卷。使用客户管理的密钥启用加密。
+C. 在将创建 EKS 集群的 AWS 区域默认启用 EBS 加密。选择客户管理的密钥作为默认密钥。
+D. 创建 EKS 集群。创建一个 IAM 角色，该角色具有向客户管理的密钥授予权限的策略。将角色与 EKS 集群相关联。 E. 将客户管理的密钥作为 Kubernetes 秘密存储在 EKS 集群中。使用客户管理的密钥加密 EBS 卷。
+答案.CD
+
+Q372.一家公司想要将 Oracle 数据库迁移到 AWS。该数据库由一个表组成，该表包含数百万个高分辨率的地理信息系 统 (GIS) 图像，并由地理代码标识。当发生自然灾害时，数以万计的图像每隔几分钟就会更新一次。每个地理代码都有与其关联的单个图像或行。该公司需要一个在此类事件期间具有高可用性和可扩展性的解决方案。哪种解决方案能够最经济有效地满足这些要求?
+A. 将图像和地理代码存储在数据库表中。使用在 Amazon RDS 多可用区数据库实例上运行的 Oracle。
+B. 将图像存储在 Amazon S3 存储桶中。使用 Amazon DynamoDB，将地理代码作为键，将图像 S3 URL 作为值。
+C. 将图像和地理代码存储在 Amazon DynamoDB 表中。在高负载期间配置 DynamoDB 加速器 (DAX)。
+D. 将图像存储在 Amazon S3 存储桶中。将地理代码和图像 S3 URL 存储在数据库表中。使用在 Amazon RDS 多可用区数据库实例上 运行的 Oracle。
+答案.B
+
+Q373.一家公司有一个从汽车上的物联网传感器收集数据的应用程序。数据通过 Amazon Kinesis Data Firehose 流式传 输并存储在 Amazon S3 中。这些数据每年产生数万亿个 S3 对象。每天早上，该公司使用前 30 天的数据重新训练一套机器学习 (ML) 模 型。公司每年四次使用前 12 个月的数据进行分析和训练其他 ML 模型。数据必须以最少的延迟提供最多 1 年。1 年后，数据必须保留以供存 档。哪种存储解决方案能够最经济高效地满足这些要求?
+A. 使用 S3 智能分层存储类。创建 S3 生命周期策略以在 1 年后将对象转换到 S3 Glacier Deep Archive。
+B. 使用 S3 智能分层存储类。配置 S3 智能分层以在 1 年后自动将对象移动到 S3 Glacier Deep Archive。
+C. 使用S3 Standard-Infrequent Access(S3 Standard-IA)存储类。创建 S3 生命周期策略以在 1 年后将对象转换到 S3 Glacier Deep Archive。
+D. 使用 S3 标准存储类。创建 S3 生命周期策略以在 30 天后将对象转换为 S3 标准-不频繁访问 (S3 标准-IA)，然后在 1 年后转换为 S3 Glacier Deep Archive。
+答案.D
+
+Q374.一家公司在 us-east-1 区域内的三个独立 VPC 中运行多个业务应用程序。应用程序必须能够在 VPC 之间进行通信。这些应用程序还必须能够每天始终如一地将数百 GB 的数据发送到在单个本地数据中心运行的对延迟敏感的应用程序。 解决方案架构师需要设计一个网络连接解决方案，以最大限度地提高成本效益。哪个解决方案满足这些要求?
+A. 配置三个从数据中心到 AWS 的 AWS Site-to-Site VPN 连接。通过为每个 VPC 配置一个 VPN 连接来建立连接。
+B. 在每个 VPC 中启动第三方虚拟网络设备。在数据中心和每个虚拟设备之间建立 IPsec VPN 隧道。
+C. 设置三个从数据中心到 us-east-1 中的 Direct Connect 网关的 AWS Direct Connect 连接。通过将每个 VPC 配置为使用其中一个 Direct Connect 连接来建立连接。
+D. 建立一个从数据中心到 AWS 的 AWS Direct Connect 连接。创建一个中转网关，并将每个 VPC 附加到中转网关。在 Direct Connect 连接和中转网关之间建立连接。
+答案.D
+
+Q375.一家电子商务公司正在构建一个分布式应用程序，该应用程序涉及多个无服务器功能和 AWS 服务以完成订单处 理任务。作为工作流的一部分，这些任务需要手动批准。解决方案架构师需要为订单处理应用程序设计架构。该解决方案必须能够将多个 AWS Lambda 函数组合到响应迅速的无服务器应用程序中。该解决方案还必须编排在 Amazon EC2 实例、容器或本地服务器上运行的数据 和服务。哪种解决方案能够以最少的运营开销满足这些要求?
+A. 使用 AWS Step Functions 构建应用程序。
+B. 将所有应用程序组件集成到一个 AWS Glue 作业中。
+C. 使用 Amazon Simple Queue Service (Amazon SQS) 构建应用程序。
+D. 使用 AWS Lambda 函数和 Amazon EventBridge 事件构建应用程序。
+答案.A
+
+Q376.一家公司推出了 Amazon RDS for MySQL 数据库实例。大多数与数据库的连接来自无服务器应用程序。到数据 库的应用程序流量会以随机间隔发生显着变化。在需求量大的时候，用户报告他们的应用程序遇到数据库连接拒绝错误。哪种解决方案将以最少的运营开销解决此问题?
+A. 在 RDS Proxy 中创建代理。配置用户的应用程序以通过 RDS 代理使用数据库实例。
+B. 在用户的应用程序和数据库实例之间部署 Amazon ElastiCache for Memcached。
+C. 将数据库实例迁移到具有更高 I/O 容量的不同实例类。配置用户的应用程序以使用新的数据库实例。
+D. 为数据库实例配置多可用区。配置用户的应用程序以在数据库实例之间切换。
+答案.A
+
+Q377.一家公司最近部署了一个新的审计系统来集中有关操作系统版本、补丁和为 Amazon EC2 实例安装的软件的信息。解决方案架构师必须确保通过 EC2 Auto Scaling 组配置的所有实例在启动和终止后立即成功地将报告发送到审计系统。 哪种解决方案最有效地实现了这些目标?
+A. 使用预定的 AWS Lambda 函数并在所有 EC2 实例上远程运行脚本以将数据发送到审计系统。
+B. 使用 EC2 Auto Scaling 生命周期挂钩运行自定义脚本，在实例启动和终止时将数据发送到审计系统。
+C. 使用 EC2 Auto Scaling 启动配置通过用户数据运行自定义脚本，以便在实例启动和终止时将数据发送到审计系统。
+D. 在实例操作系统上运行自定义脚本将数据发送到审计系统。将脚本配置为在实例启动和终止时由 EC2 Auto Scaling 组调用。
+答案.B
+
+Q378.一家公司正在开发一款实时多人游戏，该游戏使用 UDP 在 Auto Scaling 组中的客户端和服务器之间进行通信。预计白 天的需求会激增，因此游戏服务器平台必须做出相应调整。开发人员希望将游戏玩家分数和其他非关系数据存储在无需干预即可扩展的数 据库解决方案中。解决方案架构师应该推荐哪种解决方案?
+A. 使用 Amazon Route 53 进行流量分发，使用 Amazon Aurora Serverless 进行数据存储。
+B. 使用网络负载均衡器进行流量分配，按需使用 Amazon DynamoDB 进行数据存储。
+C. 使用网络负载均衡器进行流量分配，使用 Amazon Aurora Global Database 进行数据存储。
+D. 使用 Application Load Balancer 进行流量分配，使用 Amazon DynamoDB 全局表进行数据存储。
+答案.B
+
+Q379.一家公司托管一个前端应用程序，该应用程序使用与 AWS Lambda 集成的 Amazon API Gateway API 后端。当 API 收 到请求时，Lambda 函数会加载许多库。然后 Lambda 函数连接到 Amazon RDS 数据库，处理数据，并将数据返回给前端应用程序。该公 司希望确保所有用户的响应延迟尽可能低，同时对公司运营的更改次数最少。哪种解决方案可以满足这些要求?
+A. 在前端应用程序和数据库之间建立连接，通过绕过 API 来加快查询速度。
+B. 为处理请求的 Lambda 函数配置预置并发。
+C. 在 Amazon S3 中缓存查询结果，以便更快地检索相似的数据集。
+D. 增加数据库的大小以增加 Lambda 一次可以建立的连接数。
+答案.B
+
+Q380.一家公司正在将其本地工作负载迁移到 AWS 云。该公司已经使用了多个 Amazon EC2 实例和 Amazon RDS 数据库实 例。该公司需要一种能够在工作时间以外自动启动和停止 EC2 实例和数据库实例的解决方案。该解决方案必须最大限度地减少成本和基础 设施维护。哪种解决方案可以满足这些要求?
+A. 使用弹性调整大小来缩放 EC2 实例。在工作时间以外将数据库实例缩放为零。
+B. 探索 AWS Marketplace 以获取可按计划自动启动和停止 EC2 实例和数据库实例的合作伙伴解决方案。
+C. 启动另一个 EC2 实例。配置 crontab 计划以运行将按计划启动和停止现有 EC2 实例和数据库实例的 shell 脚本。
+D. 创建一个 AWS Lambda 函数来启动和停止 EC2 实例和数据库实例。配置 Amazon EventBridge 以按计划调用 Lambda 函数。
+答案.D
+
+Q381.一家公司拥有一个包含 PostgreSQL 数据库的三层 Web 应用程序。数据库存储来自文档的元数据。公司在元数据中搜索 关键术语，以检索公司每月在报告中审查的文档。文档存储在 Amazon S3 中。文档通常只写一次，但经常更新。使用关系查询，报告过程需要几个小时。报告过程不得阻止任何文件修改或新文件的添加。解决方案架构师需要实施解决方案来加快报告过程。哪种解决方案能够以最少的应用程序代码更改来满足这些要求?
+A. 设置一个包含只读副本的新 Amazon DocumentDB(兼容 MongoDB)集群。缩放只读副本以生成报告。
+B. 设置一个包含 Aurora 副本的新 Amazon Aurora PostgreSQL 数据库集群。向 Aurora 副本发出查询以生成报告。
+C. 为 PostgreSQL 多可用区数据库实例设置一个新的 Amazon RDS。配置上报模块查询从RDS节点，上报模块不影响主节点。
+D. 设置一个新的 Amazon DynamoDB 表来存储文档。使用固定的写入容量来支持新的文档条目。自动扩展读取容量以支持报告。
+答案.B
+
+Q382.一家公司在 AWS 上有一个三层应用程序，它从用户的设备中获取传感器数据。流量流经网络负载均衡器 (NLB)，然后 流向 Web 层的 Amazon EC2 实例，最后流向应用层的 EC2 实例。应用层调用数据库。解决方案架构师应该如何提高传输中数据的安全性?
+A. 配置 TLS 侦听器。在 NLB 上部署服务器证书。
+B. 配置 AWS Shield Advanced。在 NLB 上启用 AWS WAF。
+C. 将负载均衡器更改为应用程序负载均衡器 (ALB)。在 ALB 上启用 AWS WAF。
+D. 使用 AWS Key Management Service (AWS KMS) 加密 EC2 实例上的 Amazon Elastic Block Store (Amazon EBS) 卷。
+答案.A
+
+Q383.一家公司计划将现成的商业应用程序从其本地数据中心迁移到 AWS。该软件有一个软件许可模型，使用具有可预测容量和正常运行时间要求的插槽和内核。该公司希望使用今年早些时候购买的现有许可证。 哪种 Amazon EC2 定价选项最具成本效益?
+A. 专用预留主机
+B. 专用按需主机
+C. 专用预留实例
+D. 专用按需实例
+答案.A
+
+Q384.一家公司在跨多个可用区的 Amazon EC2 Linux 实例上运行应用程序。该应用程序需要一个高度可用且符合便携式操 作系统接口 (POSIX) 标准的存储层。存储层必须提供最大的数据持久性，并且必须可在 EC2 实例之间共享。存储层中的数据在前 30 天会 被频繁访问，之后将很少被访问。哪种解决方案能够最经济有效地满足这些要求?
+A. 使用 Amazon S3 标准存储类。创建 S3 生命周期策略以将不常访问的数据移动到 S3 Glacier。
+B. 使用 Amazon S3 标准存储类。创建 S3 生命周期策略以将不常访问的数据移动到 S3 标准-不频繁访问 (S3 Standard-IA)。
+C. 使用 Amazon Elastic File System (Amazon EFS) 标准存储类。创建生命周期管理策略以将不常访问的数据移动到 EFS 标准-不经常 访问 (EFS Standard-IA)。
+D. 使用 Amazon Elastic File System (Amazon EFS) One Zone 存储类。创建生命周期管理策略，将不常访问的数据移动到 EFS One Zone-Infrequent Access (EFS One Zone-IA)。
+答案.C
+
+Q385. 解决方案架构师正在创建新的 VPC 设计。负载均衡器有两个公共子网，Web 服务器有两个私有子网，MySQL 有两个私有子网。Web 服务器仅使用 HTTPS。解决方案架构师已经为负载均衡器创建了一个安全组，允许来自 0.0.0.0/0 的端口 443。公 司政策要求每个资源都具有仍然能够执行其任务所需的最少访问权限。解决方案架构师应该使用哪种额外的配置策略来满足这些要求?
+A. 为 Web 服务器创建一个安全组并允许来自 0.0.0.0/0 的端口 443。为 MySQL 服务器创建一个安全组，并允许来自 Web 服务器安 全组的端口 3306。
+B. 为 Web 服务器创建网络 ACL 并允许来自 0.0.0.0/0 的端口 443。为 MySQL 服务器创建网络 ACL，并允许来自 Web 服务器安全组 的端口 3306。
+C. 为 Web 服务器创建一个安全组并允许来自负载均衡器的端口 443。为 MySQL 服务器创建一个安全组，并允许来自 Web 服务器安 全组的端口 3306。
+D. 为 Web 服务器创建网络 ACL 并允许来自负载均衡器的端口 443。为 MySQL 服务器创建网络 ACL，并允许来自 Web 服务器安全 组的端口 3306。
+答案.C
+
+Q386.一家电子商务公司正在 AWS 上运行一个多层应用程序。前端和后端层都在 Amazon EC2 上运行，数据库在 Amazon RDS for MySQL 上运行。后端层与 RDS 实例通信。频繁调用从数据库返回相同的数据集，导致性能下降。 应该采取什么措施来提高后端的性能?
+A. 实施 Amazon SNS 来存储数据库调用。
+B. 实施 Amazon ElastiCache 来缓存大型数据集。
+C. 实施 RDS for MySQL 只读副本以缓存数据库调用。
+D. 实施 Amazon Kinesis Data Firehose 以流式传输对数据库的调用。
+答案.B
+
+Q387. 一名新员工作为部署工程师加入了一家公司。部署工程师将使用 AWS CloudFormation 模板创建多个 AWS 资源。解决方案架构师希望部署工程师在遵循最小特权原则的同时执行工作活动。解决方案架构师应该采取哪些行动组合来实现这个目标?(选择两项。)
+A. 让部署工程师使用 AWS 账户根用户凭证来执行 AWS CloudFormation 堆栈操作。
+B. 为部署工程师创建一个新的 IAM 用户，并将 IAM 用户添加到附加了 PowerUsers IAM 策略的组中。
+C. 为部署工程师创建一个新的 IAM 用户，并将 IAM 用户添加到附加了 AdministratorAccess IAM 策略的组中。
+D. 为部署工程师创建一个新的 IAM 用户，并将 IAM 用户添加到具有仅允许 AWS CloudFormation 操作的 IAM 策略的组。
+E. 为部署工程师创建一个 IAM 角色，以明确定义特定于 AWS CloudFormation 堆栈的权限并使用该 IAM 角色启动堆栈。
+答案.DE
+
+Q388. 一家公司正在 VPC 中部署一个两层 Web 应用程序。Web 层正在使用一个 Amazon EC2 Auto Scaling 组，该组 具有跨越多个可用区的公共子网。数据库层由位于单独私有子网中的 Amazon RDS for MySQL 数据库实例组成。Web 层需要访问数据库以 检索产品信息。Web 应用程序未按预期工作。Web 应用程序报告它无法连接到数据库。确认数据库已启动并正在运行。网络 ACL、安全组和路由表的所有 配置仍处于默认状态。解决方案架构师应该建议什么来修复应用程序?
+A. 向私有子网的网络 ACL 添加一条显式规则以允许来自 Web 层的 EC2 实例的流量。
+B. 在 VPC 路由表中添加路由以允许 Web 层的 EC2 实例和数据库层之间的流量。
+C. 将web层的EC2实例和数据库层的RDS实例部署到两个独立的VPC中，并配置VPC对等。
+D. 向数据库层的 RDS 实例的安全组添加入站规则以允许来自 Web 层安全组的流量。
+答案.D
+
+Q389 .一家公司有一个大型在线广告业务数据集，存储在单个可用区的 Amazon RDS for MySQL 数据库实例中。该公司希望在不影响对生产数据库实例的写入操作的情况下运行业务报告查询。哪个解决方案满足这些要求?
+A. 部署 RDS 只读副本来处理业务报告查询。
+B. 通过将数据库实例放置在弹性负载均衡器后面来水平扩展数据库实例。
+C. 将数据库实例扩展到更大的实例类型以处理写入操作和查询。
+D. 在多个可用区部署数据库实例来处理业务报告查询。
+答案.A
+
+Q390 .一家公司在一组 Amazon EC2 实例上托管一个三层电子商务应用程序。这些实例在 Application Load Balancer (ALB) 后面的 Auto Scaling 组中运行。所有电子商务数据都存储在 Amazon RDS for MariaDB 多可用区数据库实例中。该公司希望优化交易期间的客户会话管理。应用程序必须持久地存储会话数据。 哪些解决方案将满足这些要求?(选择两项。)
+A. 在 ALB 上打开粘性会话功能(会话亲和力)。
+B. 使用 Amazon DynamoDB 表存储客户会话信息。
+C. 部署一个 Amazon Cognito 用户池来管理用户会话信息。
+D. 部署一个 Amazon ElastiCache for Redis 集群来存储客户会话信息。
+E. 在应用程序中使用 AWS Systems Manager Application Manager 来管理用户会话信息。
+答案.AD
+
+Q391.一家公司需要为其三层无状态 Web 应用程序制定备份策略。Web 应用程序在 Auto Scaling 组中的 Amazon EC2 实例上 运行，该组具有配置为响应扩展事件的动态扩展策略。数据库层在 Amazon RDS for PostgreSQL 上运行。Web 应用程序不需要 EC2 实例上 的临时本地存储。公司的恢复点目标 (RPO) 是 2 小时。备份策略必须最大限度地提高可扩展性并优化此环境的资源利用率。哪种解决方案可以满足这些要求?
+A. 每 2 小时对 EC2 实例和数据库的 Amazon Elastic Block Store (Amazon EBS) 卷进行一次快照以满足 RPO。
+B. 配置快照生命周期策略以获取 Amazon Elastic Block Store (Amazon EBS) 快照。在 Amazon RDS 中启用自动备份以满足 RPO。
+C. 保留 Web 和应用程序层的最新 Amazon 机器映像 (AMI)。在 Amazon RDS 中启用自动备份并使用时间点恢复来满足 RPO。
+D. 每 2 小时为 EC2 实例的 Amazon Elastic Block Store (Amazon EBS) 卷拍摄一次快照。在 Amazon RDS 中启用自动备份并使用时间 点恢复来满足 RPO。
+答案.B
+
+Q392.一家公司想要在 AWS 上部署一个新的公共 Web 应用程序。该应用程序包括一个使用 Amazon EC2 实例的 Web 服务器 层。该应用程序还包括一个使用 Amazon RDS for MySQL 数据库实例的数据库层。该应用程序必须安全且可供拥有动态 IP 地址的全球客户访问。 解决方案架构师应如何配置安全组以满足这些要求?
+A. 为 Web 服务器配置安全组以允许来自 0.0.0.0/0 的端口 443 上的入站流量。为数据库实例配置安全组以允许端口 3306 上来自 Web 服务器安全组的入站流量。
+B. 为 Web 服务器配置安全组以允许来自客户 IP 地址的端口 443 上的入站流量。为数据库实例配置安全组以允许端口 3306 上来自 Web 服务器安全组的入站流量。
+C. 为 Web 服务器配置安全组以允许来自客户 IP 地址的端口 443 上的入站流量。为数据库实例配置安全组，以允许来自客户 IP 地址 的端口 3306 上的入站流量。
+D. 为 Web 服务器配置安全组以允许来自 0.0.0.0/0 的端口 443 上的入站流量。为数据库实例配置安全组以允许端口 3306 上来自 0.0.0.0/0 的入站流量。
+答案.A
+
+Q393.支付处理公司记录与其客户的所有语音通信并将音频文件存储在 Amazon S3 存储桶中。公司需要从音频文件中捕获文本。公司必须从文本中删除属于客户的任何个人身份信息 (PII)。 解决方案架构师应该怎么做才能满足这些要求?
+A. 使用 Amazon Kinesis Video Streams 处理音频文件。使用 AWS Lambda 函数扫描已知的 PII 模式。
+B. 当音频文件上传到 S3 存储桶时，调用 AWS Lambda 函数启动 Amazon Textract 任务来分析通话录音。
+C. 配置 Amazon Transcribe 转录作业并启用 PII 编辑。当音频文件上传到 S3 存储桶时，调用 AWS Lambda 函数启动转录作业。将输 出存储在单独的 S3 存储桶中。
+D. 创建一个 Amazon Connect 联系流，在打开转录的情况下提取音频文件。嵌入 AWS Lambda 函数以扫描已知的 PII 模式。当音频 文件上传到 S3 存储桶时，使用 Amazon EventBridge 启动联系流。
+答案.C
+
+Q394.一家公司正在 AWS 云中运行多层电子商务 Web 应用程序。该应用程序在具有 Amazon RDS for MySQL 多可用区数据 库实例的 Amazon EC2 实例上运行。Amazon RDS 配置了最新一代数据库实例，在通用 SSD (gp3) Amazon Elastic Block Store (Amazon EBS) 卷中具有 2,000 GB 的存储空间。数据库性能会在高需求期间影响应用程序。一位数据库管理员分析Amazon CloudWatch Logs中的日志发现，当读写IOPS数高于20,000时，应用程序性能总是下降。 解决方案架构师应该如何提高应用程序性能?
+A. 用磁性卷替换卷。
+B. 增加 gp3 卷上的 IOPS 数。
+C. 将卷替换为预置 IOPS SSD (io2) 卷。
+D. 用两个 1,000 GB 的 gp3 卷替换 2,000 GB 的 gp3 卷。
+答案.C
+
+Q395.在上周的生产部署期间，IAM 用户对其公司账户中的 AWS 资源进行了多项配置更改。一位解决方案架构师了解到，一些安全组规则未按需要配置。解决方案架构师想要确认哪个 IAM 用户负责进行更改。 解决方案架构师应该使用哪种服务来查找所需信息?
+A. Amazon GuardDuty
+B. 亚马逊检查员
+C. AWS CloudTrail
+D. AWS 配置
+答案.C
+
+Q396. 一家公司在 AWS 上实施了自我管理的 DNS 服务。该解决方案包括以下内容: • 不同 AWS 区域中的 Amazon EC2 实例 .AWS Global Accelerator 中标准加速器的端点 公司希望保护该解决方案免受 DDoS 攻击。解决方案架构师应该怎么做才能满足此要求?
+A. 订阅 AWS Shield Advanced。添加加速器作为要保护的资源。
+B. 订阅 AWS Shield Advanced。添加 EC2 实例作为要保护的资源。
+C. 创建一个包含基于速率的规则的 AWS WAF Web ACL。将 Web ACL 与加速器相关联。
+D. 创建一个包含基于速率的规则的 AWS WAF Web ACL。将 Web ACL 与 EC2 实例相关联。
+答案.A
+
+Q397. 一家电子商务公司需要运行一个预定的日常工作来聚合和过滤销售记录以进行分析。公司将销售记录存储在 Amazon S3 存储桶中。每个对象的大小可达 10 GB。根据销售事件的数量，该作业最多可能需要一个小时才能完成。作业的 CPU 和内存使 用率是恒定的，并且是预先知道的。解决方案架构师需要最大限度地减少作业运行所需的操作工作量。哪个解决方案满足这些要求?
+A. 创建一个具有 Amazon EventBridge 通知的 AWS Lambda 函数。安排 EventBridge 事件每天运行一次。
+B. 创建一个 AWS Lambda 函数。创建 Amazon API Gateway HTTP API，并将 API 与函数集成。创建调用 API 和函数的 Amazon EventBridge 计划事件。
+C. 创建具有 AWS Fargate 启动类型的 Amazon Elastic Container Service (Amazon ECS) 集群。创建一个 Amazon EventBridge 计划事 件，在集群上启动 ECS 任务以运行作业。
+D. 创建具有 Amazon EC2 启动类型的 Amazon Elastic Container Service (Amazon ECS) 集群和具有至少一个 EC2 实例的 Auto Scaling 组。创建一个 Amazon EventBridge 计划事件，在集群上启动 ECS 任务以运行作业。
+答案.C
+
+Q398.一家公司需要将 600 TB 的数据从其本地网络附加存储 (NAS) 系统传输到 AWS 云。数据传输必须在 2 周内完成。数据是敏感的，必须在传输过程中加密。公司的互联网连接可以支持 100 Mbps 的上传速度。 哪种解决方案能够最经济有效地满足这些要求?
+A. 使用 Amazon S3 分段上传功能通过 HTTPS 传输文件。
+B. 在本地 NAS 系统和最近的 AWS 区域之间创建 VPN 连接。通过 VPN 连接传输数据。
+C. 使用 AWS Snow 系列控制台订购多个 AWS Snowball Edge Storage Optimized 设备。使用这些设备将数据传输到 Amazon S3。
+D. 在公司位置和最近的 AWS 区域之间建立 10 Gbps AWS Direct Connect 连接。通过 VPN 连接将数据传输到区域以将数据存储在 Amazon S3 中。
+答案.C
+
+Q399. 一家金融公司在 AWS 上托管一个 Web 应用程序。该应用程序使用 Amazon API Gateway 区域 API 端点让用户 能够检索当前股票价格。公司的安全团队注意到 API 请求的数量有所增加。安全团队担心 HTTP 泛洪攻击可能会使应用程序脱机。解决方案架构师必须设计一个解决方案来保护应用程序免受此类攻击。 哪种解决方案以最少的运营开销满足这些要求?
+A. 在 API 网关区域 API 端点前面创建一个 Amazon CloudFront 分配，最大 TTL 为 24 小时。
+B. 使用基于速率的规则创建区域 AWS WAF Web ACL。将 Web ACL 与 API 网关阶段相关联。
+C. 使用 Amazon CloudWatch 指标监控计数指标，并在达到预定义速率时提醒安全团队。
+D. 在 API 网关区域 API 端点前面使用Lambda@Edge 创建一个 Amazon CloudFront 分配。创建 AWS Lambda 函数以阻止来自 IP 地 址的超过预定义速率的请求。
+答案.B
+
+Q400. 一家气象初创公司有一个定制的 Web 应用程序，可以在线向其用户销售天气数据。该公司使用 Amazon DynamoDB 来存储其数据，并希望构建一项新服务，以便在每次记录新的天气事件时向四个内部团队的经理发送警报。公司不希望这项新 服务影响当前应用程序的性能。解决方案架构师应该怎么做才能以最少的运营开销满足这些要求?
+A. 使用 DynamoDB 事务将新的事件数据写入表中。配置事务以通知内部团队。
+B. 让当前应用程序向四个 Amazon Simple Notification Service (Amazon SNS) 主题发布消息。让每个团队订阅一个主题。
+C. 在表上启用 Amazon DynamoDB Streams。使用触发器写入团队可以订阅的单个 Amazon Simple Notification Service (Amazon SNS) 主题。
+D. 为每条记录添加自定义属性以标记新项目。编写一个 cron 作业，每分钟扫描一次表以查找新项目，并通知团队可以订阅的 Amazon Simple Queue Service (Amazon SQS) 队列。
+答案.C
+
+Q401. 一家公司希望使用 AWS 云使现有应用程序具有高可用性和弹性。该应用程序的当前版本驻留在公司的数据中 心。该应用程序最近在数据库服务器因意外断电而崩溃后丢失了数据。公司需要一种避免任何单点故障的解决方案。该解决方案必须使应用程序能够扩展以满足用户需求。哪种解决方案可以满足这些要求?
+A. 使用跨多个可用区的 Auto Scaling 组中的 Amazon EC2 实例部署应用程序服务器。在多可用区配置中使用 Amazon RDS 数据库实 例。
+B. 在单个可用区的 Auto Scaling 组中使用 Amazon EC2 实例部署应用程序服务器。在 EC2 实例上部署数据库。启用 EC2 自动恢复。
+C. 在跨多个可用区的 Auto Scaling 组中使用 Amazon EC2 实例部署应用程序服务器。在单个可用区中使用具有只读副本的 Amazon RDS 数据库实例。如果主数据库实例出现故障，提升只读副本以替换主数据库实例。
+D. 使用跨多个可用区的 Auto Scaling 组中的 Amazon EC2 实例部署应用程序服务器。在跨多个可用区的 EC2 实例上部署主数据库服 务器和辅助数据库服务器。使用 Amazon Elastic Block Store (Amazon EBS) Multi-Attach 在实例之间创建共享存储。
+答案.A
+
+Q402. 一家公司需要摄取和处理其应用程序生成的大量流数据。该应用程序在 Amazon EC2 实例上运行，并将数据发 送到使用默认设置配置的 Amazon Kinesis Data Streams。每隔一天，应用程序都会使用数据并将数据写入 Amazon S3 存储桶以进行商业 智能 (BI) 处理。该公司观察到 Amazon S3 没有收到应用程序发送到 Kinesis Data Streams 的所有数据。解决方案架构师应该如何解决这个问题?
+A. 通过修改数据保留期更新 Kinesis Data Streams 默认设置。
+B. 更新应用程序以使用 Kinesis Producer Library (KPL) 将数据发送到 Kinesis Data Streams。
+C. 更新 Kinesis 分片的数量以处理发送到 Kinesis Data Streams 的数据的吞吐量。
+D. 在 S3 存储桶中打开 S3 版本控制以保留 S3 存储桶中摄取的每个对象的每个版本。
+答案.A
+
+Q403. 开发人员有一个使用 AWS Lambda 函数将文件上传到 Amazon S3 的应用程序，并且需要获得执行任务所需的权限。开发人员已经拥有一个 IAM 用户，该用户具有 Amazon S3 所需的有效 IAM 凭证。 解决方案架构师应该如何授予权限?
+A. 在 Lambda 函数的资源策略中添加所需的 IAM 权限。
+B. 使用 Lambda 函数中的现有 IAM 凭证创建签名请求。
+C. 创建一个新的 IAM 用户并在 Lambda 函数中使用现有的 IAM 凭证。
+D. 创建具有所需权限的 IAM 执行角色并将 IAM 角色附加到 Lambda 函数。
+答案.D
+
+Q404. 一家公司部署了一个无服务器应用程序，当新文档上传到 Amazon S3 存储桶时，该应用程序会调用 AWS Lambda 函数。该应用程序使用 Lambda 函数来处理文档。在最近的营销活动之后，该公司注意到该应用程序并未处理许多文档。解决方案架构师应该如何改进此应用程序的架构?
+A. 将 Lambda 函数的运行时超时值设置为 15 分钟。
+B. 配置 S3 存储桶复制策略。暂存 S3 存储桶中的文档以供以后处理。
+C. 部署一个额外的 Lambda 函数。跨两个 Lambda 函数对文档处理进行负载平衡。
+D. 创建一个 Amazon Simple Queue Service (Amazon SQS) 队列。将请求发送到队列。将队列配置为 Lambda 的事件源。
+答案.D
+
+Q405.解决方案架构师正在为软件演示环境设计架构。该环境将在 Application Load Balancer (ALB) 后面的 Auto Scaling 组中的 Amazon EC2 实例上运行。该系统在工作时间的流量会显着增加，但不需要在周末运行。 解决方案架构师应该采取哪些行动组合来确保系统可以扩展以满足需求?(选择两项。)
+A. 使用 AWS Auto Scaling 根据请求率调整 ALB 容量。
+B. 使用 AWS Auto Scaling 扩展 VPC 互联网网关的容量。
+C. 在多个 AWS 区域启动 EC2 实例以跨区域分配负载。
+D. 使用目标跟踪扩展策略根据实例 CPU 利用率扩展 Auto Scaling 组。
+E. 使用计划扩展将周末的 Auto Scaling 组最小、最大和所需容量更改为零。在一周开始时恢复为默认值。
+答案.AE
+
+Q406. 解决方案架构师正在设计一个包含公共子网和数据库子网的两层架构。公共子网中的 Web 服务器必须在端口 443 上对 Internet 开放。数据库子网中的 Amazon RDS for MySQL 数据库实例必须只能由端口 3306 上的 Web 服务器访问。解决方案架构 师应该采取哪些步骤组合来实现满足这些要求?(选择两项。)
+A. 为公共子网创建一个网络 ACL。添加一条规则以拒绝到端口 3306 上的 0.0.0.0/0 的出站流量。
+B. 为数据库实例创建一个安全组。添加规则以允许来自端口 3306 上的公共子网 CIDR 块的流量。
+C. 为公共子网中的 Web 服务器创建一个安全组。添加规则以允许来自端口 443 上的 0.0.0.0/0 的流量。
+D. 为数据库实例创建一个安全组。添加规则以允许来自端口 3306 上的 Web 服务器安全组的流量。
+E. 为数据库实例创建一个安全组。添加规则以拒绝所有流量，但来自端口 3306 上的 Web 服务器安全组的流量除外。
+答案.CD
+
+Q407. 一家公司正在为托管在 AWS 云中的游戏应用程序实施共享存储解决方案。公司需要能够使用 Lustre 客户端访问数据。该解决方案必须得到全面管理。哪个解决方案满足这些要求?
+A. 创建一个 AWS DataSync 任务，将数据共享为一个可装载的文件系统。将文件系统挂载到应用服务器。
+B. 创建一个 AWS Storage Gateway 文件网关。创建使用所需客户端协议的文件共享。将应用程序服务器连接到文件共享。
+C. 创建一个 Amazon Elastic File System (Amazon EFS) 文件系统，并配置它以支持 Lustre。将文件系统附加到源服务器。将应用程 序服务器连接到文件系统。
+D. 创建一个 Amazon FSx for Lustre 文件系统。将文件系统附加到源服务器。将应用程序服务器连接到文件系统。
+答案.D
+
+Q408. 一家公司运行一个应用程序，该应用程序从数千个地理上分散的使用 UDP 的远程设备接收数据。应用程序立即 处理数据并在必要时将消息发送回设备。不存储任何数据。公司需要一种解决方案来最大限度地减少设备数据传输的延迟。该解决方案还必须提供到另一个 AWS 区域的快速故障转移。 哪种解决方案可以满足这些要求?
+A. 配置 Amazon Route 53 故障转移路由策略。在两个区域中的每一个中创建一个网络负载均衡器 (NLB)。配置 NLB 以调用 AWS Lambda 函数来处理数据。
+B. 使用 AWS 全球加速器。在两个区域中的每一个中创建网络负载均衡器 (NLB) 作为端点。使用 Fargate 启动类型创建 Amazon Elastic Container Service (Amazon ECS) 集群。在集群上创建 ECS 服务。将 ECS 服务设置为 NL 的目标处理 Amazon ECS 中的数 据。
+C. 使用 AWS 全球加速器。在两个区域中的每一个中创建一个应用程序负载均衡器 (ALB) 作为端点。使用 Fargate 启动类型创建 Amazon Elastic Container Service (Amazon ECS) 集群。在集群上创建 ECS 服务。将 ECS 服务设置为 ALB 的目标。在 Amazon ECS 中处理数据。
+D. 配置 Amazon Route 53 故障转移路由策略。在两个区域中的每一个中创建一个应用程序负载均衡器 (ALB)。使用 Fargate 启动类型 创建 Amazon Elastic Container Service (Amazon ECS) 集群。在集群上创建 ECS 服务。将 ECS 服务设置为 ALB 的目标。在 Amazon ECS 中处理数据。
+答案.B
+
+Q409. 解决方案架构师必须将 Windows Internet Information Services (IIS) Web 应用程序迁移到 AWS。该应用程序 当前依赖于托管在用户本地网络附加存储 (NAS) 中的文件共享。解决方案架构师建议将 IIS Web 服务器迁移到连接到存储解决方案的多个 可用区中的 Amazon EC2 实例，并配置附加到实例的弹性负载均衡器。哪种本地文件共享的替代方案最具弹性和持久性?
+A. 将文件共享迁移到 Amazon RDS。
+B. 将文件共享迁移到 AWS Storage Gateway。
+C. 将文件共享迁移到 Amazon FSx for Windows File Server。
+D. 将文件共享迁移到 Amazon Elastic File System (Amazon EFS)。
+答案.C
+
+Q410. 一家公司正在 Amazon EC2 实例上部署一个新的应用程序。该应用程序将数据写入 Amazon Elastic Block Store (Amazon EBS) 卷。公司需要确保写入 EBS 卷的所有数据都经过静态加密。哪种解决方案可以满足此要求?
+A. 创建一个指定 EBS 加密的 IAM 角色。将角色附加到 EC2 实例。
+B. 创建 EBS 卷作为加密卷。将 EBS 卷附加到 EC2 实例。
+C. 创建一个 EC2 实例标签，其密钥为 Encrypt，值为 True。标记所有需要在 EBS 级别加密的实例。
+D. 创建一个 AWS Key Management Service (AWS KMS) 密钥策略，在账户中强制执行 EBS 加密。确保密钥策略处于活动状态。
+答案.B
+
+Q411. 一家公司有一个具有零星使用模式的 Web 应用程序。每月月初使用量大，每周初使用量中等，周内使用量不可 预测。该应用程序由在数据中心内运行的 Web 服务器和 MySQL 数据库服务器组成。公司希望将应用程序迁移到AWS云上，需要选择一个 不需要修改数据库且具有成本效益的数据库平台。哪种解决方案可以满足这些要求?
+A. 亚马逊 DynamoDB
+B. 用于 MySQL 的亚马逊 RDS
+C. 兼容 MySQL 的 Amazon Aurora Serverless
+D. MySQL 部署在 Amazon EC2 的一个 Auto Scaling 组中
+答案.C
+
+Q412.图像托管公司将其对象存储在 Amazon S3 存储桶中。该公司希望避免 S3 存储桶中的对象意外暴露给公众。整个 AWS账户中的所有 S3 对象都需要保持私有。 哪种解决方案可以满足这些要求?
+A. 使用 Amazon GuardDuty 监控 S3 存储桶策略。创建一个自动修复操作规则，该规则使用 AWS Lambda 函数来修复使对象公开的 任何更改。
+B. 使用 AWS Trusted Advisor 查找可公开访问的 S3 存储桶。在检测到更改时在 Trusted Advisor 中配置电子邮件通知。如果允许公共 访问，请手动更改 S3 存储桶策略。
+C. 使用 AWS Resource Access Manager 查找可公开访问的 S3 存储桶。使用 Amazon Simple Notification Service (Amazon SNS) 在检 测到更改时调用 AWS Lambda 函数。部署以编程方式修复更改的 Lambda 函数。
+D. 在帐户级别使用 S3 阻止公共访问功能。使用 AWS Organizations 创建服务控制策略 (SCP)，以防止 IAM 用户更改设置。将 SCP 应用到帐户。
+答案.D
+
+Q413. 一家电子商务公司的用户流量正在增加。该公司的商店部署在 Amazon EC2 实例上，作为一个两层 Web 应用程 序，由一个 Web 层和一个单独的数据库层组成。随着流量的增加，该公司注意到该体系结构导致无法及时向用户发送营销和订单确认电子 邮件。该公司希望减少解决复杂电子邮件传送问题的时间并最大限度地减少运营开销。解决方案架构师应该怎么做才能满足这些要求?
+A. 使用专用于电子邮件处理的 EC2 实例创建一个单独的应用程序层。
+B. 配置 Web 实例以通过 Amazon Simple Email Service (Amazon SES) 发送电子邮件。
+C. 配置 Web 实例以通过 Amazon Simple Notification Service (Amazon SNS) 发送电子邮件。
+D. 使用专用于电子邮件处理的 EC2 实例创建一个单独的应用程序层。将实例放在 Auto Scaling 组中。
+答案.B
+
+Q414. 一家公司有一个每天生成数百份报告的业务系统。业务系统将报表以 CSV 格式保存到网络共享中。公司需要将这些数据近乎实时地存储在 AWS 云中以供分析。 哪种解决方案能够以最少的管理开销满足这些要求?
+A. 使用 AWS DataSync 将文件传输到 Amazon S3。创建一个在每天结束时运行的计划任务。
+B. 创建一个 Amazon S3 文件网关。更新业务系统以使用来自 S3 文件网关的新网络共享。
+C. 使用 AWS DataSync 将文件传输到 Amazon S3。创建一个在自动化工作流程中使用 DataSync API 的应用程序。
+D. 部署 AWS Transfer for SFTP 端点。创建一个脚本来检查网络共享上的新文件并使用 SFTP 上传新文件。
+答案.B
+
+Q415. 一家公司正在 Amazon S3 Standard 中存储数 PB 的数据。数据存储在多个 S3 存储桶中，并以不同的频率访问。 公司不知道所有数据的访问模式。公司需要为每个 S3 存储桶实施一个解决方案，以优化 S3 使用成本。哪种解决方案能够以最高的运营效率满足这些要求?
+A. 使用规则创建 S3 生命周期配置，将 S3 存储桶中的对象转换为 S3 智能分层。
+B. 使用 S3 存储类分析工具为 S3 存储桶中的每个对象确定正确的层。将每个对象移动到标识的存储层。
+C. 创建一个 S3 生命周期配置，其中包含将 S3 存储桶中的对象转换为 S3 Glacier 即时检索的规则。
+D. 使用规则创建 S3 生命周期配置，将 S3 存储桶中的对象转换为 S3 One Zone-Infrequent Access (S3 One Zone-IA)。
+答案.A
+
+Q416. 一家快速发展的全球电子商务公司正在 AWS 上托管其 Web 应用程序。Web 应用程序包括静态内容和动态内 容。该网站将在线事务处理 (OLTP) 数据存储在 Amazon RDS 数据库中 该网站的用户遇到页面加载缓慢的问题。解决方案架构师应该采取哪些行动组合来解决这个问题?(选择两项。)
+A. 配置 Amazon Redshift 集群。
+B. 设置 Amazon CloudFront 分配。
+C. 在 Amazon S3 中托管动态 Web 内容。 D. 为 RDS 数据库实例创建只读副本。
+E. 为 RDS 数据库实例配置多可用区部署。
+答案.BD
+
+Q417. 一家公司使用 Amazon EC2 实例和 AWS Lambda 函数来运行其应用程序。该公司在其 AWS 账户中拥有带有公 有子网和私有子网的 VPC。EC2 实例在其中一个 VPC 的私有子网中运行。Lambda 函数需要直接通过网络访问 EC2 实例，应用程序才能运 行。该应用程序将运行至少 1 年。该公司预计应用程序使用的 Lambda 函数的数量在此期间会增加。该公司希望最大限度地节省所有应用程序 资源，并保持服务之间的网络延迟较低。哪种解决方案可以满足这些要求?
+A. 购买 EC2 Instance Savings Plan 优化 Lambda 函数的持续时间和内存使用以及调用次数。将 Lambda 函数连接到包含 EC2 实例的 私有子网。
+B. 购买 EC2 Instance Savings Plan 优化 Lambda 函数的持续时间和内存使用、调用次数以及传输的数据量。将 Lambda 函数连接到 运行 EC2 实例的同一 VPC 中的公有子网。
+C. 购买计算储蓄计划。优化 Lambda 函数的持续时间和内存使用、调用次数以及传输的数据量。将 Lambda 函数连接到包含 EC2 实 例的私有子网。
+D. 购买计算储蓄计划。优化 Lambda 函数的持续时间和内存使用、调用次数以及传输的数据量。将 Lambda 函数保留在 Lambda 服 务 VPC 中。
+答案.C
+
+Q418.解决方案架构师需要允许团队成员访问两个不同 AWS 账户中的 Amazon S3 存储桶:开发账户和生产账户。该团队目前可以通过使用分配给在帐户中具有适当权限的 IAM 组的唯一 IAM 用户来访问开发帐户中的 S3 存储桶。 解决方案架构师在生产账户中创建了一个 IAM 角色。该角色具有授予对生产账户中 S3 存储桶的访问权限的策略。 哪种解决方案将满足这些要求，同时遵守最小特权原则?
+A. 将管理员访问策略附加到开发帐户用户。
+B. 在生产账户角色的信任策略中添加开发账户作为委托人。
+C. 关闭生产帐户中 S3 存储桶上的 S3 阻止公共访问功能。
+D. 在生产帐户中为每个团队成员创建一个具有唯一凭据的用户。
+答案.B
+
