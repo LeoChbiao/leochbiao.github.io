@@ -2957,10 +2957,9 @@
       "stem": "Q109.Which service is best for storing common database query results,which helps to alleviate database access load?",
       "is_confirm": true,
       "answer": [
-        " ",
         "C"
       ],
-      "is_multiple": true
+      "is_multiple": false
     },
     {
       "choices": [
