@@ -142,7 +142,7 @@
         },
         {
           "option": "C",
-          "content": "Design for failurE."
+          "content": "Design for failure."
         },
         {
           "option": "D",
@@ -172,7 +172,7 @@
         },
         {
           "option": "D",
-          "content": "Amazon Redshift E.Amazon S3"
+          "content": "Amazon Redshift"
         },
         {
           "option": "E",
@@ -255,7 +255,7 @@
         },
         {
           "option": "D",
-          "content": "Pay-as-you-go pricing E.Reliability"
+          "content": "Pay-as-you-go pricing"
         },
         {
           "option": "E",
@@ -312,7 +312,7 @@
         },
         {
           "option": "D",
-          "content": "A network file systemE.A durable storage system"
+          "content": "A network file system"
         },
         {
           "option": "E",
@@ -343,7 +343,7 @@
         },
         {
           "option": "D",
-          "content": "Auto ScalingE.Amazon CloudWatch default metrics"
+          "content": "Auto Scaling"
         },
         {
           "option": "E",
@@ -452,7 +452,7 @@
         },
         {
           "option": "D",
-          "content": "AWS Total Cost of Ownership (TCO)Calculator E.Cost Estimator"
+          "content": "AWS Total Cost of Ownership (TCO)Calculator"
         },
         {
           "option": "E",
@@ -484,7 +484,7 @@
         },
         {
           "option": "D",
-          "content": "Potential volume discounts, as usage in all accounts is combinedE.The automatic extension of the master account's AWS support plan to all accounts"
+          "content": "Potential volume discounts, as usage in all accounts is combined"
         },
         {
           "option": "E",
@@ -749,7 +749,7 @@
         },
         {
           "option": "D",
-          "content": "Configuring Network Access Control Lists (ACL)E.Maintaining environmental controls within a data center"
+          "content": "Configuring Network Access Control Lists (ACL)"
         },
         {
           "option": "E",
@@ -759,7 +759,6 @@
       "stem": "Q28.Under the AWS shared responsibility model,which of the following activities are the customer's responsibility?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "D"
       ],
@@ -833,7 +832,7 @@
         },
         {
           "option": "D",
-          "content": "Using Multi-Factor Authentication (MFA) E.Enforcing password strength and expiration"
+          "content": "Using Multi-Factor Authentication (MFA)"
         },
         {
           "option": "E",
@@ -864,7 +863,7 @@
         },
         {
           "option": "D",
-          "content": "Amazon Redshift E.Amazon EFS"
+          "content": "Amazon Redshift"
         },
         {
           "option": "E",
@@ -1311,7 +1310,7 @@
         },
         {
           "option": "D",
-          "content": "Real-time monitoring E.Adjustable retention"
+          "content": "Real-time monitoring"
         },
         {
           "option": "E",
@@ -1368,7 +1367,7 @@
         },
         {
           "option": "D",
-          "content": "Cooling costs in hotter climatesE.Proximity to the customer's officefor on-site visits"
+          "content": "Cooling costs in hotter climates"
         },
         {
           "option": "E",
@@ -1555,7 +1554,7 @@
         },
         {
           "option": "D",
-          "content": "Software-as-a-service E.Hybrid"
+          "content": "Software-as-a-service"
         },
         {
           "option": "E",
@@ -1612,7 +1611,7 @@
         },
         {
           "option": "D",
-          "content": "Amazon GlacierE.Amazom CloudFront"
+          "content": "Amazon Glacier"
         },
         {
           "option": "E",
@@ -1622,7 +1621,6 @@
       "stem": "Q60.Which of the following AWS services can be used to serve large amounts of online video content with the lowest possible latency?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "E"
       ],
@@ -1748,7 +1746,7 @@
         },
         {
           "option": "D",
-          "content": "Automated penetration testingE.Amazon S3 copyrighted content detection"
+          "content": "Automated penetration testing"
         },
         {
           "option": "E",
@@ -1758,7 +1756,6 @@
       "stem": "Q65.Which of thefollowing security-related services does AWS offer?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "C"
       ],
@@ -1988,7 +1985,7 @@
         },
         {
           "option": "D",
-          "content": "Performance E.Storage Capacity"
+          "content": "Performance"
         },
         {
           "option": "E",
@@ -2238,7 +2235,7 @@
         },
         {
           "option": "D",
-          "content": "AWS Batch E.AWS X-Ray"
+          "content": "AWS Batch"
         },
         {
           "option": "E",
@@ -2295,7 +2292,7 @@
         },
         {
           "option": "D",
-          "content": "Rely on individual components. E.Design for scalability."
+          "content": "Rely on individual components."
         },
         {
           "option": "E",
@@ -2534,7 +2531,7 @@
         },
         {
           "option": "D",
-          "content": "Amazon CloudFront E.Amazon DynamoDB"
+          "content": "Amazon CloudFront"
         },
         {
           "option": "E",
@@ -2591,7 +2588,7 @@
         },
         {
           "option": "D",
-          "content": "Ensuring that access to data centers is restrictedE.Ensuring that hardware is disposed of properly"
+          "content": "Ensuring that access to data centers is restricted"
         },
         {
           "option": "E",
@@ -2674,7 +2671,7 @@
         },
         {
           "option": "D",
-          "content": "deferred payment plans for startups. E.business credit lines for stratups."
+          "content": "deferred payment plans for startups."
         },
         {
           "option": "E",
@@ -2684,7 +2681,6 @@
       "stem": "Q99.The financial benefits of using AWS are:(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "A",
         "C"
       ],
@@ -2732,7 +2728,7 @@
         },
         {
           "option": "D",
-          "content": "Amazon EC2 Auto ScalingE.AWS Management Console"
+          "content": "Amazon EC2 Auto Scaling"
         },
         {
           "option": "E",
@@ -2788,7 +2784,7 @@
         },
         {
           "option": "D",
-          "content": "Enable Amazon CloudFront.E.Activate multi-factor authentication (MFA) for privileged users."
+          "content": "Enable Amazon CloudFront."
         },
         {
           "option": "E",
@@ -2798,7 +2794,6 @@
       "stem": "Q103.Which of the following security measures protect access to an AWS account? (Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "E"
       ],
@@ -2826,7 +2821,6 @@
       "stem": "Q104.Which service provides a hybrid storage service that enables on-premises applications to seamlessly use cloud storage?",
       "is_confirm": true,
       "answer": [
-        " ",
         "C"
       ],
       "is_multiple": true
@@ -3003,7 +2997,7 @@
         },
         {
           "option": "D",
-          "content": "AWS ForumsE.AWS Classroom Training"
+          "content": "AWS Forums"
         },
         {
           "option": "E",
@@ -3034,7 +3028,7 @@
         },
         {
           "option": "D",
-          "content": "SubnetsE.Elastic Load Balancing"
+          "content": "Subnets"
         },
         {
           "option": "E",
@@ -3044,7 +3038,6 @@
       "stem": "Q112.Which of the following features can be configured through the Amazon Virtual Private Cloud (Amazon VPC) Dashboard?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "C",
         "D"
       ],
@@ -3118,7 +3111,7 @@
         },
         {
           "option": "D",
-          "content": "AWS CloudHSM E.Amazon CloudWatch"
+          "content": "AWS CloudHSM"
         },
         {
           "option": "E",
@@ -3149,7 +3142,7 @@
         },
         {
           "option": "D",
-          "content": "Creating database schema E.Running penetration tests"
+          "content": "Creating database schema"
         },
         {
           "option": "E",
@@ -3159,7 +3152,6 @@
       "stem": "Q116.Which of the following common IT tasks can AWS cover to free up company IT resources?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "A",
         "C"
       ],
@@ -3311,7 +3303,7 @@
         },
         {
           "option": "D",
-          "content": "Reducing traffic on the server by caching responses E.Sending notification messages to end users"
+          "content": "Reducing traffic on the server by caching responses"
         },
         {
           "option": "E",
@@ -3556,7 +3548,6 @@
       "stem": "Q131.Which of the following services is in the category of AWS serverless platform?",
       "is_confirm": true,
       "answer": [
-        " ",
         "C"
       ],
       "is_multiple": true
@@ -3655,7 +3646,7 @@
         },
         {
           "option": "D",
-          "content": "ColocationE.Capital expenses"
+          "content": "Colocation"
         },
         {
           "option": "E",
@@ -3738,7 +3729,7 @@
         },
         {
           "option": "D",
-          "content": "It ensures the use of compliance frameworks that are being used by other cloud providers. E.It will adopt new compliance frameworks as they become relevantto customer workloads."
+          "content": "It ensures the use of compliance frameworks that are being used by other cloud providers."
         },
         {
           "option": "E",
@@ -3748,7 +3739,6 @@
       "stem": "Q138.Which of the following benefits does the AWS Compliance program provide to AWS customers?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "C"
       ],
@@ -3822,7 +3812,7 @@
         },
         {
           "option": "D",
-          "content": "Physical serversE.Antivirus software license"
+          "content": "Physical servers"
         },
         {
           "option": "E",
@@ -3832,7 +3822,6 @@
       "stem": "Q141.When comparing AWS Cloud with on-premises Total Cost of Ownership,which expenses must be considered?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "C",
         "D"
       ],
@@ -3854,7 +3843,7 @@
         },
         {
           "option": "D",
-          "content": "Replacing failed hard disk drives.E.Deploying hardware in different Availability Zones."
+          "content": "Replacing failed hard disk drives."
         },
         {
           "option": "E",
@@ -3864,7 +3853,6 @@
       "stem": "Q142.Under the shared responsibility model,which of the following tasks are the responsibility of the customer? (Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "C"
       ],
@@ -3886,7 +3874,7 @@
         },
         {
           "option": "D",
-          "content": "Using AWS compliance documents to accelerate the compliance process. E.Having the ability to create and govern environments using codE."
+          "content": "Using AWS compliance documents to accelerate the compliance process."
         },
         {
           "option": "E",
@@ -3896,7 +3884,6 @@
       "stem": "Q143.Which scenarios represent the concept of elasticity on AWS? (Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "A",
         "B"
       ],
@@ -3944,7 +3931,7 @@
         },
         {
           "option": "D",
-          "content": "Application developer timeE.Database engine capacity"
+          "content": "Application developer time"
         },
         {
           "option": "E",
@@ -4261,7 +4248,7 @@
         },
         {
           "option": "D",
-          "content": "Use tags to associate each instance with a particular department. E.Pay bills using purchase orders."
+          "content": "Use tags to associate each instance with a particular department."
         },
         {
           "option": "E",
@@ -4370,7 +4357,7 @@
         },
         {
           "option": "D",
-          "content": "Facilties management E.Firewall management"
+          "content": "Facilties management"
         },
         {
           "option": "E",
@@ -4380,7 +4367,6 @@
       "stem": "Q161.Under the AWS shared responsibility model,customers are responsible for which aspects of security in the cloud?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "C",
         "E"
       ],
@@ -4584,7 +4570,7 @@
         },
         {
           "option": "D",
-          "content": "Configure a strong password policy E.Enable AWS Organizations"
+          "content": "Configure a strong password policy"
         },
         {
           "option": "E",
@@ -4594,7 +4580,6 @@
       "stem": "Q169.How can a customer increase security to AWS account logons?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "C"
       ],
@@ -5032,7 +5017,7 @@
         },
         {
           "option": "D",
-          "content": "Planned E.Variable cost"
+          "content": "Planned"
         },
         {
           "option": "E",
@@ -5063,7 +5048,7 @@
         },
         {
           "option": "D",
-          "content": "Cross-zone load balancers with public and private IPs E.Application Load Balancers"
+          "content": "Cross-zone load balancers with public and private IPs"
         },
         {
           "option": "E",
@@ -5073,7 +5058,6 @@
       "stem": "Q187.Which load balancer types are available with Elastic Load Balancing (ELB)?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "C",
         "E"
       ],
@@ -5329,7 +5313,7 @@
         },
         {
           "option": "D",
-          "content": "Amazon CloudFront E.Amazon Inspector"
+          "content": "Amazon CloudFront"
         },
         {
           "option": "E",
@@ -5360,11 +5344,15 @@
         },
         {
           "option": "D",
-          "content": "Data transfer costsE.Network infrastructure costs F. Hardware lifecycle costs"
+          "content": "Data transfer costs"
         },
         {
           "option": "E",
-          "content": "Network infrastructure costs F. Hardware lifecycle costs"
+          "content": "Network infrastructure costs"
+        },
+        {
+          "option": "F",
+          "content": "Hardware lifecycle costs"
         }
       ],
       "stem": "Q198.When building a cloud Total Cost of Ownership(TCO)model,which cost elements should be considered for workloads running on AWS?(Choose three.)",
@@ -5652,7 +5640,7 @@
         },
         {
           "option": "D",
-          "content": "AWS CloudFormation E.AWS Config"
+          "content": "AWS CloudFormation"
         },
         {
           "option": "E",
@@ -5709,7 +5697,7 @@
         },
         {
           "option": "D",
-          "content": "Test for moderate demand to ensure reliability E.Backup recovery to an on-premises environment"
+          "content": "Test for moderate demand to ensure reliability"
         },
         {
           "option": "E",
@@ -5740,7 +5728,7 @@
         },
         {
           "option": "D",
-          "content": "Delete AWS CloudTrail Resources.E.Contact AWS Support."
+          "content": "Delete AWS CloudTrail Resources."
         },
         {
           "option": "E",
@@ -5875,7 +5863,7 @@
         },
         {
           "option": "D",
-          "content": "Customers can upgrade instances as new types become availablE.E.Customers can reserve capacity in an Availability ZonE."
+          "content": "Customers can upgrade instances as new types become availablE."
         },
         {
           "option": "E",
@@ -5885,7 +5873,6 @@
       "stem": "Q217.What are the advantages of Reserved Instances?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "A",
         "E"
       ],
@@ -5965,7 +5952,6 @@
       "stem": "Q220.A customer runs an On-Demand Amazon Linux EC2 instance for 3 hours,5 minutes,and 6 seconds. For how much time wil the customer be billed?",
       "is_confirm": true,
       "answer": [
-        " ",
         "B"
       ],
       "is_multiple": true
@@ -5986,7 +5972,7 @@
         },
         {
           "option": "D",
-          "content": "Amazon Glacier E.AWS Organizations"
+          "content": "Amazon Glacier"
         },
         {
           "option": "E",
@@ -5996,7 +5982,6 @@
       "stem": "Q221.Which of the following AWS services provide compute resources?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "A",
         "B"
       ],
@@ -6044,7 +6029,7 @@
         },
         {
           "option": "D",
-          "content": "AWS Storage Gateway E.Amazon Connect"
+          "content": "AWS Storage Gateway"
         },
         {
           "option": "E",
@@ -6054,7 +6039,6 @@
       "stem": "Q223.Which AWS services provide a way to extend an on-premises architecture to the AWS Cloud?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "D"
       ],
@@ -6102,7 +6086,7 @@
         },
         {
           "option": "D",
-          "content": "Amazon RDSE.Amazon ElastiCache"
+          "content": "Amazon RDS"
         },
         {
           "option": "E",
@@ -6185,7 +6169,7 @@
         },
         {
           "option": "D",
-          "content": "AWS Marketplace eliminates the need to upgrade to newer software versions. E.Users can deploy third-party software without testing."
+          "content": "AWS Marketplace eliminates the need to upgrade to newer software versions."
         },
         {
           "option": "E",
@@ -6242,7 +6226,7 @@
         },
         {
           "option": "D",
-          "content": "Physical security of data centers E.Configuration of the security group"
+          "content": "Physical security of data centers"
         },
         {
           "option": "E",
@@ -6252,7 +6236,6 @@
       "stem": "Q230.Under the shared responsibility model:which of the following areas are the customer's responsibility? (Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "E"
       ],
@@ -6430,7 +6413,7 @@
         },
         {
           "option": "D",
-          "content": "Users have access to free and unlimited storage.E.Users have control over the physical infrastructurE."
+          "content": "Users have access to free and unlimited storage."
         },
         {
           "option": "E",
@@ -6519,7 +6502,6 @@
       "stem": "Q240.Which AWS service or feature allows a company to visualize,understand,and manage AWS costs and usage over time?",
       "is_confirm": true,
       "answer": [
-        " ",
         "B"
       ],
       "is_multiple": true
@@ -6566,7 +6548,7 @@
         },
         {
           "option": "D",
-          "content": "Amazon Comprehend allows users to build applications that can respond to user requests in many languages.E.Elastic LoadBalancing can distribute application web traffic to multiple AWS Regions around the world, which reduces latency."
+          "content": "Amazon Comprehend allows users to build applications that can respond to user requests in many languages."
         },
         {
           "option": "E",
@@ -6576,7 +6558,6 @@
       "stem": "Q242.What are the benefits of using the AWS Cloud for companies wvith customers in many countries around the world?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "A",
         "C"
       ],
@@ -6806,7 +6787,7 @@
         },
         {
           "option": "D",
-          "content": "Encryption usage E.High availability"
+          "content": "Encryption usage"
         },
         {
           "option": "E",
@@ -6915,7 +6896,7 @@
         },
         {
           "option": "D",
-          "content": "Connect the company's on-premises data center to AWS using AWS Direct Connect.E.Leverage Amazon CloudFront to restrict access to static web content provided through the companys on-premises web servers."
+          "content": "Connect the company's on-premises data center to AWS using AWS Direct Connect."
         },
         {
           "option": "E",
@@ -6925,7 +6906,6 @@
       "stem": "Q255.A company wants to migrate its applications to a VPC on AWS.These applications will need to access on- premises resources.What combination of actions will enable the company to accomplish this goal?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "D"
       ],
@@ -7129,7 +7109,7 @@
         },
         {
           "option": "D",
-          "content": "AWS can easily accommodate application demand changes. E.AWS takes care application security patching."
+          "content": "AWS can easily accommodate application demand changes."
         },
         {
           "option": "E",
@@ -7139,7 +7119,6 @@
       "stem": "Q263.What are the benefits of developing and running a new application in the AWS Cloud compared to on- premises?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "C",
         "D"
       ],
@@ -7265,7 +7244,7 @@
         },
         {
           "option": "D",
-          "content": "Increased agility.E.AWS holds responsibility for security in the clouD."
+          "content": "Increased agility."
         },
         {
           "option": "E",
@@ -7498,7 +7477,7 @@
         },
         {
           "option": "D",
-          "content": "By the programming language that is used for the Lambda function. E.By the total number of Lambda functions in an AWS account."
+          "content": "By the programming language that is used for the Lambda function."
         },
         {
           "option": "E",
@@ -7529,7 +7508,7 @@
         },
         {
           "option": "D",
-          "content": "There are more AWS Regions than edge locations. E.There are more Availability Zones than AWS Regions."
+          "content": "There are more AWS Regions than edge locations."
         },
         {
           "option": "E",
@@ -7539,7 +7518,6 @@
       "stem": "Q278.Which of the following describes the relationships among AWS Regions,Availability Zones,and edge locations?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "E"
       ],
@@ -7613,7 +7591,7 @@
         },
         {
           "option": "D",
-          "content": "Purchase AWS security and compliance documents. E.Order AWS Snowball."
+          "content": "Purchase AWS security and compliance documents."
         },
         {
           "option": "E",
@@ -7623,7 +7601,6 @@
       "stem": "Q281.What does AWS Marketplace allow users to do?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "C"
       ],
@@ -7749,7 +7726,7 @@
         },
         {
           "option": "D",
-          "content": "Increased upfront capital expenditure E.Physical access to cloud data centers"
+          "content": "Increased upfront capital expenditure"
         },
         {
           "option": "E",
@@ -7759,7 +7736,6 @@
       "stem": "Q286.What are the advantages of the AWS Cloud?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "C"
       ],
@@ -7781,7 +7757,7 @@
         },
         {
           "option": "D",
-          "content": "The costs of third-party penetration testing.E.The advertising costs associated with an ongoing enterprise-wide campaign."
+          "content": "The costs of third-party penetration testing."
         },
         {
           "option": "E",
@@ -8072,7 +8048,7 @@
         },
         {
           "option": "D",
-          "content": "AWS Server Migration Service (AWS SMS)to move Amazon EC2 instances into a different Region E.Distributed resources across multiple AWS points of presence"
+          "content": "AWS Server Migration Service (AWS SMS)to move Amazon EC2 instances into a different Region"
         },
         {
           "option": "E",
@@ -8082,7 +8058,6 @@
       "stem": "Q298.When designing a typical three-tier web application,which AWS services and/or features improve availability and reduce the impact failures?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "A",
         "C"
       ],
@@ -8130,7 +8105,7 @@
         },
         {
           "option": "D",
-          "content": "Require IAM users to store their passwords in raw textE.Disable multi-factor authentication (MFA) for IAM users"
+          "content": "Require IAM users to store their passwords in raw text"
         },
         {
           "option": "E",
@@ -8140,7 +8115,6 @@
       "stem": "Q300.Which of the following are recommended practices for managing IAM users?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "A",
         "B"
       ],
@@ -8162,7 +8136,7 @@
         },
         {
           "option": "D",
-          "content": "Select a partner from the AWS Partner Network (APN)to assist with the migrationE.Use Amazon Connect to create a new request for proposal (RFP)for expert assistance in migrating to the AWS ClouD."
+          "content": "Select a partner from the AWS Partner Network (APN)to assist with the migration"
         },
         {
           "option": "E",
@@ -8172,7 +8146,6 @@
       "stem": "Q301.A company is migrating from on-premises data centers to the AWS Cloud and is looking for hands-on help with the project.How can the company get this support?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "C",
         "D"
       ],
@@ -8350,7 +8323,7 @@
         },
         {
           "option": "D",
-          "content": "Amazon CloudFront E.AWS Lambda"
+          "content": "Amazon CloudFront"
         },
         {
           "option": "E",
@@ -8407,7 +8380,7 @@
         },
         {
           "option": "D",
-          "content": "Internet gateways E.Access key"
+          "content": "Internet gateways"
         },
         {
           "option": "E",
@@ -8417,7 +8390,6 @@
       "stem": "Q310.Which of the following are components of Amazon VPC?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "D"
       ],
@@ -8445,7 +8417,6 @@
       "stem": "Q311.AWS Budgets can be used to:",
       "is_confirm": true,
       "answer": [
-        " ",
         "B"
       ],
       "is_multiple": true
@@ -8466,7 +8437,7 @@
         },
         {
           "option": "D",
-          "content": "Security groupsE.Password policies"
+          "content": "Security groups"
         },
         {
           "option": "E",
@@ -8476,7 +8447,6 @@
       "stem": "Q312.Which of the following will enhance the security of access to the AWS Management Console?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "C",
         "E"
       ],
@@ -8498,7 +8468,7 @@
         },
         {
           "option": "D",
-          "content": "Available software patchesE.Number of users in the account"
+          "content": "Available software patches"
         },
         {
           "option": "E",
@@ -8535,7 +8505,6 @@
       "stem": "Q314.Which functions can users perform using AWS KMS?",
       "is_confirm": true,
       "answer": [
-        " ",
         "C"
       ],
       "is_multiple": true
@@ -8556,7 +8525,7 @@
         },
         {
           "option": "D",
-          "content": "It automatically s potential security issues caused by permissions settings on account resources E.It provides proactive alerting whenever an Amazon EC2 instance has been compromised"
+          "content": "It automatically s potential security issues caused by permissions settings on account resources"
         },
         {
           "option": "E",
@@ -8566,7 +8535,6 @@
       "stem": "Q315.How does AWS Trusted Advisor provide guidance to users of the AWS Cloud? (Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "C"
       ],
@@ -8588,7 +8556,7 @@
         },
         {
           "option": "D",
-          "content": "AWS manages the development of applications on AWS E.AWS manages cost planning for virtual servers"
+          "content": "AWS manages the development of applications on AWS"
         },
         {
           "option": "E",
@@ -8598,7 +8566,6 @@
       "stem": "Q316.Which of the following are advantages of the AWS Cloud?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "A",
         "C"
       ],
@@ -8646,7 +8613,7 @@
         },
         {
           "option": "D",
-          "content": "AWS Direct Connect E.AWS Managed Services"
+          "content": "AWS Direct Connect"
         },
         {
           "option": "E",
@@ -8885,7 +8852,7 @@
         },
         {
           "option": "D",
-          "content": "AWS Secrets ManagerE.AWS CloudHSM"
+          "content": "AWS Secrets Manager"
         },
         {
           "option": "E",
@@ -8895,7 +8862,6 @@
       "stem": "Q327.Which AWS service will provide a way to generate encryption keys that can be used to encrypt data? (Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "C",
         "E"
       ],
@@ -8943,7 +8909,7 @@
         },
         {
           "option": "D",
-          "content": "AWS Partner Network(APN) E.AWS Secrets Manager"
+          "content": "AWS Partner Network(APN)"
         },
         {
           "option": "E",
@@ -8953,7 +8919,6 @@
       "stem": "Q329.What can assist in evaluating an application for migration to the cloud?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "D"
       ],
@@ -8981,7 +8946,6 @@
       "stem": "Q330.Which AWS service helps users meet contractual and regulatory compliance requirements for data security by using dedicated hardwareappliances within the AWS Cloud?",
       "is_confirm": true,
       "answer": [
-        " ",
         "B"
       ],
       "is_multiple": true
@@ -9002,7 +8966,7 @@
         },
         {
           "option": "D",
-          "content": "Controlling physical access to data centersE.Patch management of an Amazon EC2 instance operating system"
+          "content": "Controlling physical access to data centers"
         },
         {
           "option": "E",
@@ -9163,7 +9127,7 @@
         },
         {
           "option": "D",
-          "content": "Billing alerts and Amazon CloudWatch alarms E.AWS Price List API"
+          "content": "Billing alerts and Amazon CloudWatch alarms"
         },
         {
           "option": "E",
@@ -9173,7 +9137,6 @@
       "stem": "Q337.Which features or services can be used to monitor costs and expenses for an AWS account?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "A",
         "D"
       ],
@@ -9201,7 +9164,6 @@
       "stem": "Q338.Amazon Route 53 enables users to:",
       "is_confirm": true,
       "answer": [
-        " ",
         "B"
       ],
       "is_multiple": true
@@ -9378,7 +9340,7 @@
         },
         {
           "option": "D",
-          "content": "Rotate access keys on a regular basisE.Avoid using IAM roles to delegate permissions"
+          "content": "Rotate access keys on a regular basis"
         },
         {
           "option": "E",
@@ -9461,7 +9423,7 @@
         },
         {
           "option": "D",
-          "content": "Use AWS Certificate Manager to whitelistapproved AWS resources and services E.Use Amazon GuardDuty to validate configuration changes made to AWS resources"
+          "content": "Use AWS Certificate Manager to whitelistapproved AWS resources and services"
         },
         {
           "option": "E",
@@ -9544,7 +9506,7 @@
         },
         {
           "option": "D",
-          "content": "AWS Database Migration Service (AWS DMS) E.Amazon API Gateway"
+          "content": "AWS Database Migration Service (AWS DMS)"
         },
         {
           "option": "E",
@@ -9835,7 +9797,7 @@
         },
         {
           "option": "D",
-          "content": "Networking infrastructure protectionE.Security groups configuration"
+          "content": "Networking infrastructure protection"
         },
         {
           "option": "E",
@@ -9892,7 +9854,7 @@
         },
         {
           "option": "D",
-          "content": "AWS Organizations E.Network ACLs"
+          "content": "AWS Organizations"
         },
         {
           "option": "E",
@@ -9949,7 +9911,7 @@
         },
         {
           "option": "D",
-          "content": "Encrypting communication between the EC2 instances and the Elastic Load Balancer E.Configuring a security group and a network access control list(NACL)for EC2 instances"
+          "content": "Encrypting communication between the EC2 instances and the Elastic Load Balancer"
         },
         {
           "option": "E",
@@ -10136,7 +10098,7 @@
         },
         {
           "option": "D",
-          "content": "Amazon Route 53 E.Amazon Redshift"
+          "content": "Amazon Route 53"
         },
         {
           "option": "E",
@@ -10167,7 +10129,7 @@
         },
         {
           "option": "D",
-          "content": "Decreased latency to reach applications deployed on AWS E.Higher security of data stored on AWS"
+          "content": "Decreased latency to reach applications deployed on AWS"
         },
         {
           "option": "E",
@@ -10177,7 +10139,6 @@
       "stem": "Q374.Which of the following are benefits of AWS Global Accelerator?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "D"
       ],
@@ -10303,7 +10264,7 @@
         },
         {
           "option": "D",
-          "content": "Switch automatically to Reserved Instances or Spot Instances,whichever is most cost-effectivE.E.Move data stored in Amazon S3 to a more cost-effective storage class."
+          "content": "Switch automatically to Reserved Instances or Spot Instances,whichever is most cost-effectivE."
         },
         {
           "option": "E",
@@ -10313,7 +10274,6 @@
       "stem": "Q379.The AWS Cost Management tools give users the ability to do which of the following? (Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "C"
       ],
@@ -10621,7 +10581,7 @@
         },
         {
           "option": "D",
-          "content": "Implementing consolidated billingE.Enforcing the governance of AWS accounts"
+          "content": "Implementing consolidated billing"
         },
         {
           "option": "E",
@@ -10730,7 +10690,7 @@
         },
         {
           "option": "D",
-          "content": "AWS VPNE.Amazon Connect"
+          "content": "AWS VPN"
         },
         {
           "option": "E",
@@ -10740,7 +10700,6 @@
       "stem": "Q395.Which AWS services can be used to provide network connectivity between an on-premises network and a VPC?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "D"
       ],
@@ -10762,7 +10721,7 @@
         },
         {
           "option": "D",
-          "content": "Physical security of data center facilities E.Compute capacity availability"
+          "content": "Physical security of data center facilities"
         },
         {
           "option": "E",
@@ -11157,7 +11116,7 @@
         },
         {
           "option": "D",
-          "content": "AWS OpsWorks E.Amazon QuickSight"
+          "content": "AWS OpsWorks"
         },
         {
           "option": "E",
@@ -11266,7 +11225,7 @@
         },
         {
           "option": "D",
-          "content": "A user IDE.A secondary key"
+          "content": "A user ID"
         },
         {
           "option": "E",
@@ -11297,7 +11256,7 @@
         },
         {
           "option": "D",
-          "content": "AWS BatchE.Amazon Inspector"
+          "content": "AWS Batch"
         },
         {
           "option": "E",
@@ -11614,7 +11573,7 @@
         },
         {
           "option": "D",
-          "content": "Security of data in transit E.Data integrity authentication"
+          "content": "Security of data in transit"
         },
         {
           "option": "E",
@@ -11781,7 +11740,6 @@
       "stem": "Q434.A company must ensure that its endpoint for a database instance remains the same after a single Availability Zone service interruption.The application needs to resume database operations without the need for manual administrative intervention.How can these requirements be met?",
       "is_confirm": true,
       "answer": [
-        " ",
         "B"
       ],
       "is_multiple": true
@@ -11828,7 +11786,7 @@
         },
         {
           "option": "D",
-          "content": "PerformanceE.Scalability"
+          "content": "Performance"
         },
         {
           "option": "E",
@@ -11859,7 +11817,7 @@
         },
         {
           "option": "D",
-          "content": "Attaching a role to an Amazon EC2 instance E.Generating access keys for IAM users"
+          "content": "Attaching a role to an Amazon EC2 instance"
         },
         {
           "option": "E",
@@ -11869,7 +11827,6 @@
       "stem": "Q437.Which of the following tasks can only be performed after signing in with AWS account root user credentials?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "A",
         "C"
       ],
@@ -11969,7 +11926,7 @@
         },
         {
           "option": "D",
-          "content": "Reserved Instances for sustained workloadsE.Spend limits set using AWS Budgets"
+          "content": "Reserved Instances for sustained workloads"
         },
         {
           "option": "E",
@@ -12234,7 +12191,7 @@
         },
         {
           "option": "D",
-          "content": "Transit gatewayE.Virtual private gateway"
+          "content": "Transit gateway"
         },
         {
           "option": "E",
@@ -12421,7 +12378,7 @@
         },
         {
           "option": "D",
-          "content": "Amazon DynamoDB E.Amazon Redshift"
+          "content": "Amazon DynamoDB"
         },
         {
           "option": "E",
@@ -12452,7 +12409,7 @@
         },
         {
           "option": "D",
-          "content": "Amazon Connect E.Amazon Route 53"
+          "content": "Amazon Connect"
         },
         {
           "option": "E",
@@ -12639,7 +12596,7 @@
         },
         {
           "option": "D",
-          "content": "Using AWS Trusted Advisor E.Using Consolidated Billing"
+          "content": "Using AWS Trusted Advisor"
         },
         {
           "option": "E",
@@ -12649,7 +12606,6 @@
       "stem": "Q466.Which of the following assist in identifying costs by department? (Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "E"
       ],
@@ -12677,7 +12633,6 @@
       "stem": "Q467.A company wants to allow full access to an Amazon S3 bucket for a particular user.Which element in the S3 bucket policy holds the user details that describe who needs access to the S3 bucket?",
       "is_confirm": true,
       "answer": [
-        " ",
         "C"
       ],
       "is_multiple": true
@@ -12958,7 +12913,7 @@
         },
         {
           "option": "D",
-          "content": "Software patchingE.Extract,transform,and load (ETL)management"
+          "content": "Software patching"
         },
         {
           "option": "E",
@@ -13145,7 +13100,7 @@
         },
         {
           "option": "D",
-          "content": "Improving security by proactively monitoring the AWS environment E.Implementing enforced tagging across AWS resources"
+          "content": "Improving security by proactively monitoring the AWS environment"
         },
         {
           "option": "E",
@@ -13155,7 +13110,6 @@
       "stem": "Q485.Which of the following are benefits of using AWS Trusted Advisor?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "D",
         "E"
       ],
@@ -13177,7 +13131,7 @@
         },
         {
           "option": "D",
-          "content": "Configure a password policy that ensures the developer's password cannot be changeD.E.Ensure the account password policy requires a minimum length."
+          "content": "Configure a password policy that ensures the developer's password cannot be changeD."
         },
         {
           "option": "E",
@@ -13286,7 +13240,7 @@
         },
         {
           "option": "D",
-          "content": "AWS Application Discovery ServiceE.Amazon Kinesis"
+          "content": "AWS Application Discovery Service"
         },
         {
           "option": "E",
@@ -13655,7 +13609,7 @@
         },
         {
           "option": "D",
-          "content": "AWS Support CenterE.AWS Service Health Dashboard"
+          "content": "AWS Support Center"
         },
         {
           "option": "E",
@@ -13665,7 +13619,6 @@
       "stem": "Q504.A web developer is concerned that a DDoS attack could target an application.Which AWS servrices or features can help protect against such an attack?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "A",
         "B"
       ],
@@ -13713,7 +13666,7 @@
         },
         {
           "option": "D",
-          "content": "Create an IAM policy with administrator access and attach it to the IAM user. E.Create an IAM policy with Amazon RDS access and attach it to the IAM user."
+          "content": "Create an IAM policy with administrator access and attach it to the IAM user."
         },
         {
           "option": "E",
@@ -13723,7 +13676,6 @@
       "stem": "Q506.A company wants to provide one of its employees with access to Amazon RDS. The company also wants to limit the interaction to only the AWS CLI and AWS software development kits (SDKs).Which combination of actions should the company take to meet these requirements while following the principles of least privilege?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "E"
       ],
@@ -13771,7 +13723,7 @@
         },
         {
           "option": "D",
-          "content": "Increasing the availability of the applicationE.Increasing the load of the application"
+          "content": "Increasing the availability of the application"
         },
         {
           "option": "E",
@@ -13912,7 +13864,6 @@
       "stem": "Q513.A company wants to be notified when its AWS Cloud costs or usage exceed defined thresholds. Which AWS service will support these requirements?",
       "is_confirm": true,
       "answer": [
-        " ",
         "A"
       ],
       "is_multiple": true
@@ -14011,7 +13962,7 @@
         },
         {
           "option": "D",
-          "content": "Amazon CognitoE.AWS Lambda"
+          "content": "Amazon Cognito"
         },
         {
           "option": "E",
@@ -14146,7 +14097,7 @@
         },
         {
           "option": "D",
-          "content": "Adopting a consumption model E.Automatically recovering from failure"
+          "content": "Adopting a consumption model"
         },
         {
           "option": "E",
@@ -14156,7 +14107,6 @@
       "stem": "Q522.Which AWS Cloud design principles can help increase reliability?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "C",
         "E"
       ],
@@ -14360,7 +14310,7 @@
         },
         {
           "option": "D",
-          "content": "Installment payment optionsE.Custom cost and usage budget creation"
+          "content": "Installment payment options"
         },
         {
           "option": "E",
@@ -14370,7 +14320,6 @@
       "stem": "Q530.What are the benefits of consolidated billing for AWS Cloud services?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "C",
         "E"
       ],
@@ -14626,7 +14575,7 @@
         },
         {
           "option": "D",
-          "content": "Configuring database user accounts E.Installing operating systems"
+          "content": "Configuring database user accounts"
         },
         {
           "option": "E",
@@ -14636,7 +14585,6 @@
       "stem": "Q540.Which of the following IT tasks does AWS perform to offioad a company's IT resource management responsibilities?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "C",
         "E"
       ],
@@ -14788,7 +14736,7 @@
         },
         {
           "option": "D",
-          "content": "Physical security of hardware E.Credentials and policies"
+          "content": "Physical security of hardware"
         },
         {
           "option": "E",
@@ -14819,7 +14767,7 @@
         },
         {
           "option": "D",
-          "content": "Amazon CloudWatch E.AWS CloudTrail"
+          "content": "Amazon CloudWatch"
         },
         {
           "option": "E",
@@ -15156,7 +15104,7 @@
         },
         {
           "option": "D",
-          "content": "Space for data center E.Network costs"
+          "content": "Space for data center"
         },
         {
           "option": "E",
@@ -15166,7 +15114,6 @@
       "stem": "Q560.Which of the following contribute to total cost of ownership of a workload running in the AWS Cloud? (Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "D"
       ],
@@ -15318,7 +15265,7 @@
         },
         {
           "option": "D",
-          "content": "RDS database compute capacity can be easily scaled.E.RDS inbound traffic control (for example,security groups) is managed by AWS."
+          "content": "RDS database compute capacity can be easily scaled."
         },
         {
           "option": "E",
@@ -15505,7 +15452,7 @@
         },
         {
           "option": "D",
-          "content": "AWS Global Accelerator E.Amazon S3 Glacier"
+          "content": "AWS Global Accelerator"
         },
         {
           "option": "E",
@@ -16030,7 +15977,7 @@
         },
         {
           "option": "D",
-          "content": "MongoDB E.PostgreSQL"
+          "content": "MongoDB"
         },
         {
           "option": "E",
@@ -16347,7 +16294,7 @@
         },
         {
           "option": "D",
-          "content": "Purchasing Reserved Instances.E.Adding EC2 instances to a second AWS Region that is geographically close to the end users."
+          "content": "Purchasing Reserved Instances."
         },
         {
           "option": "E",
@@ -16357,7 +16304,6 @@
       "stem": "Q605.A user can optimize Amazon EC2 costs by performing which of the following tasks?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "C"
       ],
@@ -16379,7 +16325,7 @@
         },
         {
           "option": "D",
-          "content": "AWS Direct Connect E.AWS Global Accelerator"
+          "content": "AWS Direct Connect"
         },
         {
           "option": "E",
@@ -16389,7 +16335,6 @@
       "stem": "Q606.Which AWSservices or features help decrease network latency for a globally dispersed user base? (Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "D"
       ],
@@ -16411,7 +16356,7 @@
         },
         {
           "option": "D",
-          "content": "Cost optimization E.Compliance status"
+          "content": "Cost optimization"
         },
         {
           "option": "E",
@@ -16546,7 +16491,7 @@
         },
         {
           "option": "D",
-          "content": "Physical and environmental controlsE.Service and communications protection or security"
+          "content": "Physical and environmental controls"
         },
         {
           "option": "E",
@@ -16577,7 +16522,7 @@
         },
         {
           "option": "D",
-          "content": "Use managed services.E.Improve application security."
+          "content": "Use managed services."
         },
         {
           "option": "E",
@@ -16608,7 +16553,7 @@
         },
         {
           "option": "D",
-          "content": "Server design and concurrency E.Minimal viable product"
+          "content": "Server design and concurrency"
         },
         {
           "option": "E",
@@ -16618,7 +16563,6 @@
       "stem": "Q614.Which design principles are enabled by the AWS Cloud to improve the operation of workloads?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "C"
       ],
@@ -16718,7 +16662,7 @@
         },
         {
           "option": "D",
-          "content": "Amazon ElastiCache E.Amazon CloudFront"
+          "content": "Amazon ElastiCache"
         },
         {
           "option": "E",
@@ -16728,7 +16672,6 @@
       "stem": "Q618.A cloud practitioner needs an effective method to decrease application latency and increase performance for end users.Which services will help?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "D",
         "E"
       ],
@@ -16906,7 +16849,7 @@
         },
         {
           "option": "D",
-          "content": "Creating an Amazon CloudFront key pairE.Granting an IAM user full administrative access"
+          "content": "Creating an Amazon CloudFront key pair"
         },
         {
           "option": "E",
@@ -16916,7 +16859,6 @@
       "stem": "Q625.Which tasks require using AWS account root user credentials?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "C",
         "E"
       ],
@@ -16938,7 +16880,7 @@
         },
         {
           "option": "D",
-          "content": "AgilityE.Access to physical hosts"
+          "content": "Agility"
         },
         {
           "option": "E",
@@ -16948,7 +16890,6 @@
       "stem": "Q626.Which of the following are advantages of using Amazon EC2 instances over traditional on-premises servers?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "D"
       ],
@@ -16996,7 +16937,7 @@
         },
         {
           "option": "D",
-          "content": "Increased productivity for application development teams. E.A decrease in the average server CPU utilization."
+          "content": "Increased productivity for application development teams."
         },
         {
           "option": "E",
@@ -17079,7 +17020,7 @@
         },
         {
           "option": "D",
-          "content": "Project managementE.Database schema development"
+          "content": "Project management"
         },
         {
           "option": "E",
@@ -17089,7 +17030,6 @@
       "stem": "Q631.When comparing AWS Cloud with on-premises Total Cost of Ownership,which expenses must be considered?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "A",
         "C"
       ],
@@ -17163,7 +17103,7 @@
         },
         {
           "option": "D",
-          "content": "Access to AWS data centers E.Lower resource provisioning cost"
+          "content": "Access to AWS data centers"
         },
         {
           "option": "E",
@@ -17272,7 +17212,7 @@
         },
         {
           "option": "D",
-          "content": "Users have the ability to use license-included Amazon EC2 instances.E.Users can take advantage of AWS Systems Manager features."
+          "content": "Users have the ability to use license-included Amazon EC2 instances."
         },
         {
           "option": "E",
@@ -17615,7 +17555,7 @@
         },
         {
           "option": "D",
-          "content": "Setting up access controls for data E.Writing application code"
+          "content": "Setting up access controls for data"
         },
         {
           "option": "E",
@@ -17625,7 +17565,6 @@
       "stem": "Q651.AWS can relieve a companys IT staff of which of the following IT tasks?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "A",
         "C"
       ],
@@ -17653,7 +17592,6 @@
       "stem": "Q652.A company's security team requires that all Amazon EC2 workloads use approved Amazon Machine Images (AMIs).Which AWS service should the company use to verify that the EC2 instances are using approved AMIs?",
       "is_confirm": true,
       "answer": [
-        " ",
         "C"
       ],
       "is_multiple": true
@@ -17958,7 +17896,7 @@
         },
         {
           "option": "D",
-          "content": "Hypervisor-level software patchingE.Physical security at data center facilities"
+          "content": "Hypervisor-level software patching."
         },
         {
           "option": "E",
@@ -17968,7 +17906,6 @@
       "stem": "Q663.Which are customer responsibilities when using Amazon EC2? (Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "C"
       ],
@@ -18042,7 +17979,7 @@
         },
         {
           "option": "D",
-          "content": "Move on-premises network hardware to VPCs.E.Design elasticity into the AWS Cloud design."
+          "content": "Move on-premises network hardware to VPCs."
         },
         {
           "option": "E",
@@ -18052,7 +17989,6 @@
       "stem": "Q666.A company wants to build an application for a new line of business.According to the AWS Well-Architected Framework,what design principles should be implemented? (Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "D",
         "E"
       ],
@@ -18152,7 +18088,7 @@
         },
         {
           "option": "D",
-          "content": "A secret keyE.User name and password"
+          "content": "A secret key."
         },
         {
           "option": "E",
@@ -18183,7 +18119,7 @@
         },
         {
           "option": "D",
-          "content": "Enabling multi-factor authentication (MFA)with Amazon Cognito E.Using AWS Trusted Advisor security checks"
+          "content": "Enabling multi-factor authentication (MFA)with Amazon Cognito."
         },
         {
           "option": "E",
@@ -18240,7 +18176,7 @@
         },
         {
           "option": "D",
-          "content": "AWS shared responsibility model E.Pay-as-you-go pricing"
+          "content": "AWS shared responsibility model."
         },
         {
           "option": "E",
@@ -18250,7 +18186,6 @@
       "stem": "Q673.An online retail company has seasonal sales spikes several times a year,primariy around holidays. Demand is lower at other times.The company finds it difficult to predict the increasing infrastructure demand for each season.Which advantages of moving to the AWS CloudI would MOST benefit the company?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "E"
       ],
@@ -18480,7 +18415,7 @@
         },
         {
           "option": "D",
-          "content": "AWS Snowball Edge E.AWS AppSync"
+          "content": "AWS Snowball Edge."
         },
         {
           "option": "E",
@@ -18490,7 +18425,6 @@
       "stem": "Q682.A company has performance and regulatory requirements that call for it to run its workload only in its on- premises data center.Which AWS services or resources should the company use?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "C"
       ],
@@ -18512,7 +18446,7 @@
         },
         {
           "option": "D",
-          "content": "The pay-as-you-go billing modelE.How easily resources can be produced when they are needed"
+          "content": "The pay-as-you-go billing model"
         },
         {
           "option": "E",
@@ -18522,7 +18456,6 @@
       "stem": "Q683.Elasticity in the AWS Cloud refers to which of the following?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "E"
       ],
@@ -18606,7 +18539,7 @@
         },
         {
           "option": "D",
-          "content": "VPC peeringE.Amazon CloudFront"
+          "content": "VPC peering."
         },
         {
           "option": "E",
@@ -18923,7 +18856,7 @@
         },
         {
           "option": "D",
-          "content": "Use the root user for daily tasks.E.Assign a read-only access policy to the root user."
+          "content": "Use the root user for daily tasks."
         },
         {
           "option": "E",
@@ -19188,7 +19121,7 @@
         },
         {
           "option": "D",
-          "content": "AWS Identity and Access Management (IAM) E.AWS CodeStar"
+          "content": "AWS Identity and Access Management (IAM)."
         },
         {
           "option": "E",
@@ -19245,7 +19178,7 @@
         },
         {
           "option": "D",
-          "content": "Management of AWS Lambda infrastructureE.Management of network throughput of each AWS Region"
+          "content": "Management of AWS Lambda infrastructure."
         },
         {
           "option": "E",
@@ -19255,7 +19188,6 @@
       "stem": "Q710.Which of the following are customer responsibilities under the AWS shared responsibility model?(Choosetwo.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "D",
         "E"
       ],
@@ -19277,7 +19209,7 @@
         },
         {
           "option": "D",
-          "content": "A company's resources are being used in a way that is inconsistent with corporate policy. E.A company is receiving HTTPS requests on a web server that is serving HTTP."
+          "content": "A company's resources are being used in a way that is inconsistent with corporate policy."
         },
         {
           "option": "E",
@@ -19287,7 +19219,6 @@
       "stem": "Q711.A user should contact the AWS Abuse team to report which situations?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "A",
         "C"
       ],
@@ -19309,7 +19240,7 @@
         },
         {
           "option": "D",
-          "content": "Creation of DynamoDB endpointsE.Infrastructure provisioning and maintenance"
+          "content": "Creation of DynamoDB endpoints"
         },
         {
           "option": "E",
@@ -19319,7 +19250,6 @@
       "stem": "Q712.A company uses Amazon DynamoDB in its AWS Cloud architecture.According to the AWS shared responsibility model,which of the following are responsibilities of the company?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "D"
       ],
@@ -19367,7 +19297,7 @@
         },
         {
           "option": "D",
-          "content": "Rightsize when seasonal workloads are at their peak.E.Rightsize after purchasing all Reserved Instances."
+          "content": "Rightsize when seasonal workloads are at their peak."
         },
         {
           "option": "E",
@@ -19377,7 +19307,6 @@
       "stem": "Q714.A company wants to rightsize its infrastructure to control costs. At which points should the company rightsize?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "D",
         "E"
       ],
@@ -19399,7 +19328,7 @@
         },
         {
           "option": "D",
-          "content": "Delete AWS CloudTrail resources.E.Contact AWS Support."
+          "content": "Delete AWS CloudTrail resources."
         },
         {
           "option": "E",
@@ -19508,7 +19437,7 @@
         },
         {
           "option": "D",
-          "content": "Use managed services when possiblE.E.Design for human interaction"
+          "content": "Use managed services when possible."
         },
         {
           "option": "E",
@@ -19545,7 +19474,6 @@
       "stem": "Q720.What is the LEAST expensive AW/S Support plan that provides 24-hour access to AWS customer service and AWS communities?",
       "is_confirm": true,
       "answer": [
-        " ",
         "D"
       ],
       "is_multiple": true
@@ -19878,7 +19806,7 @@
         },
         {
           "option": "D",
-          "content": "Call the customer service phone number.E.Use the video conference functionality of the AWS Support consolE."
+          "content": "Call the customer service phone number."
         },
         {
           "option": "E",
@@ -19987,7 +19915,7 @@
         },
         {
           "option": "D",
-          "content": "Well-Architected Framework E.Rightsizing"
+          "content": "Well-Architected Framework"
         },
         {
           "option": "E",
@@ -19997,7 +19925,6 @@
       "stem": "Q737.Which of the following are AWS Trusted Advisor support categories?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "C"
       ],
@@ -20123,7 +20050,7 @@
         },
         {
           "option": "D",
-          "content": "Amazon DynamoDB E.Amazon Redshift"
+          "content": "Amazon DynamoDB"
         },
         {
           "option": "E",
@@ -20362,7 +20289,7 @@
         },
         {
           "option": "D",
-          "content": "AWS Site-to-Site VPNE.Amazon Elastic Container Service (Amazon ECS)"
+          "content": "AWS Site-to-Site VPN"
         },
         {
           "option": "E",
@@ -20445,7 +20372,7 @@
         },
         {
           "option": "D",
-          "content": "Amazon SageMakerE.AWS Storage Gateway"
+          "content": "Amazon SageMaker"
         },
         {
           "option": "E",
@@ -20685,7 +20612,7 @@
         },
         {
           "option": "D",
-          "content": "Having multiple accounts reduces the risks associated with malicious activity targeted at a single account.E.Amazon QuickSight offers access to a cost tool that provides application-specific recommendations for environments running in multiple accounts."
+          "content": "Having multiple accounts reduces the risks associated with malicious activity targeted at a single account."
         },
         {
           "option": "E",
@@ -20748,7 +20675,6 @@
       "stem": "Q765.What does Amazon CloudFront provide?",
       "is_confirm": true,
       "answer": [
-        " ",
         "B"
       ],
       "is_multiple": true
@@ -20821,7 +20747,7 @@
         },
         {
           "option": "D",
-          "content": "Load balancer optimizationE.Large number of rules in an EC2 security groups"
+          "content": "Load balancer optimization"
         },
         {
           "option": "E",
@@ -20878,7 +20804,7 @@
         },
         {
           "option": "D",
-          "content": "Security groups E.Firewall rules"
+          "content": "Security groups."
         },
         {
           "option": "E",
@@ -20987,7 +20913,7 @@
         },
         {
           "option": "D",
-          "content": "AWS Wavelength E.Amazon VPC"
+          "content": "AWS Wavelength"
         },
         {
           "option": "E",
@@ -21018,7 +20944,7 @@
         },
         {
           "option": "D",
-          "content": "AWS Enterprise Support at no additional cost E.Bring-your-own-hardware model"
+          "content": "AWS Enterprise Support at no additional cost"
         },
         {
           "option": "E",
@@ -21089,7 +21015,7 @@
       "choices": [
         {
           "option": "A",
-          "content": "Create an IAM role with the required permissions.Attach the role to the EC2 instancE."
+          "content": "Create an IAM role with the required permissions.Attach the role to the EC2 instance."
         },
         {
           "option": "B",
@@ -21231,7 +21157,7 @@
         },
         {
           "option": "D",
-          "content": "Running applications in Amazon Elastic Kubernetes Service (Amazon EKS) E.Closing anAWS account"
+          "content": "Running applications in Amazon Elastic Kubernetes Service (Amazon EKS)"
         },
         {
           "option": "E",
@@ -21580,7 +21506,6 @@
       "stem": "Q796.Which AWS service should a company use to continuously monitor the compliance of AWS resource configurations?",
       "is_confirm": true,
       "answer": [
-        " ",
         "B"
       ],
       "is_multiple": true
@@ -21601,7 +21526,7 @@
         },
         {
           "option": "D",
-          "content": "Security of the cloudE.Patches for the operating system of Amazon DynamoDB"
+          "content": "Security of the cloud"
         },
         {
           "option": "E",
@@ -21620,7 +21545,7 @@
       "choices": [
         {
           "option": "A",
-          "content": "Activate IAM access to the AWS Biling and Cost MManagement consolE."
+          "content": "Activate IAM access to the AWS Biling and Cost MManagement console."
         },
         {
           "option": "B",
@@ -21632,7 +21557,7 @@
         },
         {
           "option": "D",
-          "content": "Change the AWS Support plan.E.Delegate access to another AWS account."
+          "content": "Change the AWS Support plan."
         },
         {
           "option": "E",
@@ -21903,7 +21828,6 @@
       "stem": "Q808.Which AWS service or tool gives a company the ability to release application chhanges in an automated way?",
       "is_confirm": true,
       "answer": [
-        " ",
         "B"
       ],
       "is_multiple": true
@@ -21930,7 +21854,6 @@
       "stem": "Q809.A company's compliance officer wants to review the AW/S Service Organization Control (SOC) reports. Which AWS service or feature should the compliance officer use to complete this task?",
       "is_confirm": true,
       "answer": [
-        " ",
         "A"
       ],
       "is_multiple": true
@@ -22107,7 +22030,7 @@
         },
         {
           "option": "D",
-          "content": "AWS Well-Architected Tool E.AWS Personal Health Dashboard"
+          "content": "AWS Well-Architected Tool"
         },
         {
           "option": "E",
@@ -22117,7 +22040,6 @@
       "stem": "Q816.A cloud practitioner wants information on the state of an existing AWS environment compared against established best practices.Which AWS services or features should the cloud practitioner use to obtain this information?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "D"
       ],
@@ -22197,7 +22119,6 @@
       "stem": "Q819.A company needs to securely store important credentials that an application uses to connect users to a database.Which AWS service can meet this requirement with the MINIMAL amount of operational overhead?",
       "is_confirm": true,
       "answer": [
-        " ",
         "C"
       ],
       "is_multiple": true
@@ -22244,7 +22165,7 @@
         },
         {
           "option": "D",
-          "content": "Enhanced securityE.Increases in cost and complexity"
+          "content": "Enhanced security"
         },
         {
           "option": "E",
@@ -22275,7 +22196,7 @@
         },
         {
           "option": "D",
-          "content": "Flexibility to scale up in minutes as the application becomes popularE.Ability to pick the specific data centers that will host the application servers"
+          "content": "Flexibility to scale up in minutes as the application becomes popular"
         },
         {
           "option": "E",
@@ -22354,21 +22275,20 @@
         },
         {
           "option": "C",
-          "content": "Users can reserve excess capacity to ensure that resources are always availablE."
+          "content": "Users can reserve excess capacity to ensure that resources are always available."
         },
         {
           "option": "D",
-          "content": "Users trade variable expenses for capital expenses.E.Users benefit from massive economies of scalE."
+          "content": "Users trade variable expenses for capital expenses."
         },
         {
           "option": "E",
-          "content": "Users benefit from massive economies of scalE."
+          "content": "Users benefit from massive economies of scale."
         }
       ],
       "stem": "Q825.Which of the following are advantages of using AWS for cloud computing?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "A",
         "E"
       ],
@@ -22390,7 +22310,7 @@
         },
         {
           "option": "D",
-          "content": "AWS Global AcceleratorE.Application Load Balancer"
+          "content": "AWS Global Accelerator"
         },
         {
           "option": "E",
@@ -22400,7 +22320,6 @@
       "stem": "Q826.Which AWS services or features provide high availability and low latency by enabling failover across different AWS Regions?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "A",
         "D"
       ],
@@ -22448,7 +22367,7 @@
         },
         {
           "option": "D",
-          "content": "AWS Site-to-Site VPN E.Amazon API Gateway"
+          "content": "AWS Site-to-Site VPN"
         },
         {
           "option": "E",
@@ -22458,7 +22377,6 @@
       "stem": "Q828.Which AWS services can use AWS WAF to protect against common web exploitations? (Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "B",
         "E"
       ],
@@ -22480,7 +22398,7 @@
         },
         {
           "option": "D",
-          "content": "Wipe Amazon Elastic Block Store(Amazon EBS)volumes clean before they are decommissioneD.E.Conduct database patching for Amazon RDS instances."
+          "content": "Wipe Amazon Elastic Block Store(Amazon EBS)volumes clean before they are decommissioneD."
         },
         {
           "option": "E",
@@ -22573,7 +22491,6 @@
       "stem": "Q832.Which AWS services are eligible for aCompute Savings Plan?(Choose two.)",
       "is_confirm": true,
       "answer": [
-        " ",
         "A",
         "E"
       ],
@@ -22803,7 +22720,7 @@
         },
         {
           "option": "D",
-          "content": "Outbound data transfers without acceleration E.Compute resources that are currently in use"
+          "content": "Outbound data transfers without acceleration"
         },
         {
           "option": "E",
@@ -22860,7 +22777,7 @@
         },
         {
           "option": "D",
-          "content": "Create an Amazon Simple Queue Service(Amazon SQS) queue in a different AWS Region to manage writes to the DB instancE."
+          "content": "Create an Amazon Simple Queue Service(Amazon SQS) queue in a different AWS Region to manage writes to the DB instance."
         }
       ],
       "stem": "Q843.A company has a business-critical Amazon RDS for MySQL DB instance that resides in a single Availability Zone.Which solutionwill improve the availability of the DB instance?",
