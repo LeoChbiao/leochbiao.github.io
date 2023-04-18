@@ -1198,7 +1198,7 @@
         },
         {
           "option": "B",
-          "content": "Physical security(人身安全)"
+          "content": "Physical security(物理安全)"
         },
         {
           "option": "C",
@@ -1907,7 +1907,7 @@
         },
         {
           "option": "D",
-          "content": "Amazon Connect(亚马逊连接)"
+          "content": "Amazon Direct Connect(亚马逊直接连接)"
         }
       ],
       "stem": "Q71.Which AWS service allows companies to connect an Amazon VPC to an on-premises data center?(Q71.哪种 AWS 服务允许公司将 Amazon VPC 连接到本地数据中心？)",
@@ -9561,7 +9561,7 @@
           "content": "Use Cost Explorer to combine costs from all accounts.Then replicate IAM policies across accounts.(使用 Cost Explorer 合并所有账户的成本。然后跨账户复制 IAM 策略。)"
         }
       ],
-      "stem": "Q353.Each department within a company has its own independent AWS account and its own payment method.New company leadership wants to centralize departmental govemance and consolidate payments. How can this be achieved using AWS services or features?(一个公司的每个部门都有自己独立的AWS账户和自己的支付方式。新的公司领导层希望集中部门管理和合并支付。如何使用AWS服务或功能来实现这一目标)(Q353.Each department within a company has its own independent AWS account and its own payment method.New company leadership wants to centralize departmental govemance and consolidate payments. How can this be achieved using AWS services or features?(一个公司的每个部门都有自己独立的AWS账户和自己的支付方式。新的公司领导层希望集中部门管理和合并支付。如何使用AWS服务或功能来实现这一目标))",
+      "stem": "Q353.Each department within a company has its own independent AWS account and its own payment method.New company leadership wants to centralize departmental govemance and consolidate payments. How can this be achieved using AWS services or features?(一个公司的每个部门都有自己独立的AWS账户和自己的支付方式。新的公司领导层希望集中部门管理和合并支付。如何使用AWS服务或功能来实现这一目标)",
       "is_confirm": true,
       "answer": [
         "B"
@@ -17400,7 +17400,7 @@
       "stem": "Q645.A company has existing software licenses that it wants to bring to AWS,but the licensing model requires licensing physical cores.How can the company meet this requirement in the AWS Cloud?(Q645.一家公司有现有的软件许可证，它想带到 AWS，但许可模型需要许可物理内核。该公司如何在 AWS 云中满足这一要求？)",
       "is_confirm": true,
       "answer": [
-        "A"
+        "B"
       ],
       "is_multiple": false
     },
@@ -17600,44 +17600,25 @@
         {
           "option": "B",
           "content": "Total control over underlying infrastructure(对底层基础设施的全面控制)"
+        },
+        {
+          "option": "C",
+          "content": "Fast provisioning of IT resources(IT资源快速供应)"
+        },
+        {
+          "option": "D",
+          "content": "Outsourcing all application coding to AWS(将所有应用程序编码外包给 AWS)"
+        },
+        {
+          "option": "E",
+          "content": "Ability to go global quickly(快速走向全球的能力)"
         }
       ],
       "stem": "Q653.Which of the following are benefits of using the AWS Cloud?(Choose two.)(Q653.以下哪些是使用 AWS 云的好处？（选择两项。）)",
       "is_confirm": true,
       "answer": [
-        "F",
-        "a",
-        "s",
-        "t",
-        " ",
-        "p",
-        "r",
-        "o",
-        "v",
-        "i",
-        "s",
-        "i",
-        "o",
-        "n",
-        "i",
-        "n",
-        "g",
-        " ",
-        "o",
-        "f",
-        " ",
-        "I",
-        "T",
-        " ",
-        "r",
-        "e",
-        "s",
-        "o",
-        "u",
-        "r",
-        "c",
-        "e",
-        "s"
+        "C",
+        "E"
       ],
       "is_multiple": true
     },
@@ -17954,7 +17935,7 @@
       "stem": "Q665.A company wants to route its traffic directly and privately to a VPC without going over the public internet. Which connectivity option provides this capability?(Q665.一家公司希望在不通过公共互联网的情况下将其流量直接私密地路由到 VPC。哪个连接选项提供此功能？)",
       "is_confirm": true,
       "answer": [
-        "D"
+        "B"
       ],
       "is_multiple": false
     },
@@ -18260,7 +18241,7 @@
       "stem": "Q676.A company wants to eliminate the need to guess infrastructure capacity before deployments.The company also wants to spend its budget on cloud resources only as the company uses the resources.Which advantage of the AWS Cloud matches the company's requirements?(Q676.一家公司希望消除在部署前猜测基础设施容量的需要。该公司还希望仅在公司使用资源时将其预算花在云资源上。AWS 云的哪些优势符合公司的要求？)",
       "is_confirm": true,
       "answer": [
-        "A"
+        "D"
       ],
       "is_multiple": false
     },
@@ -18469,26 +18450,16 @@
         {
           "option": "C",
           "content": "AWS Management Console(AWS 管理控制台)"
+        },
+        {
+          "option": "D",
+          "content": "AWS Marketplace"
         }
       ],
       "stem": "Q684.A company wants to migrate to AWS and use the same security software it uses on premises.The security software vendor offers its security software as a service on AWS.Where can the company purchase the security solution?(Q684.一家公司想要迁移到 AWS 并使用其在本地使用的相同安全软件。安全软件供应商在 AWS 上提供其安全软件即服务。该公司可以在哪里购买安全解决方案？)",
       "is_confirm": true,
       "answer": [
-        "A",
-        "W",
-        "S",
-        " ",
-        "M",
-        "a",
-        "r",
-        "k",
-        "e",
-        "t",
-        "p",
-        "l",
-        "a",
-        "c",
-        "e"
+        "D"
       ],
       "is_multiple": true
     },
@@ -18545,7 +18516,7 @@
       "is_confirm": true,
       "answer": [
         "A",
-        "D"
+        "C"
       ],
       "is_multiple": true
     },
@@ -19183,8 +19154,8 @@
       "stem": "Q710.Which of the following are customer responsibilities under the AWS shared responsibility model?(Choosetwo.)(Q710.以下哪些是 AWS 责任共担模型下的客户责任？（选择两项。）)",
       "is_confirm": true,
       "answer": [
-        "D",
-        "E"
+        "B",
+        "C"
       ],
       "is_multiple": true
     },
@@ -20347,7 +20318,7 @@
       "stem": "Q753.Which AWS service is always free of charge for users?(Q753. 哪项 AWS 服务对用户永远免费？)",
       "is_confirm": true,
       "answer": [
-        "C"
+        "D"
       ],
       "is_multiple": false
     },
@@ -20378,8 +20349,7 @@
       "is_confirm": true,
       "answer": [
         "A",
-        "C",
-        "E"
+        "C"
       ],
       "is_multiple": true
     },
@@ -22669,7 +22639,7 @@
       "stem": "Q839.Which AWS service provides recommendations for rightsizing AWS resources such as Amazon EC2 instances,Amazon Elastic Block Store (Amazon EBS)volumes,and Amazon RDS databases to help users reduce costs?(Q839. 哪项 AWS 服务提供了合理调整 AWS 资源（例如 Amazon EC2 实例、Amazon Elastic Block Store (Amazon EBS) 卷和 Amazon RDS 数据库）以帮助用户降低成本的建议？)",
       "is_confirm": true,
       "answer": [
-        "C"
+        "B"
       ],
       "is_multiple": false
     },
@@ -23094,8 +23064,8 @@
       "stem": "Q855.Which AWS services or features give users the ability to createa network connection between two VPCs? (Choose two.)(Q855.哪些 AWS 服务或功能使用户能够在两个 VPC 之间创建网络连接？ （选择两项。）)",
       "is_confirm": true,
       "answer": [
-        "A",
-        "C"
+        "C",
+        "E"
       ],
       "is_multiple": true
     },
