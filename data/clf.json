@@ -13298,7 +13298,7 @@
       "stem": "Q492.What tool enables customers without an AWS account to estimate costs for almost all AWS services?(Q492.什么工具可以让没有 AWS 账户的客户估算几乎所有 AWS 服务的成本？)",
       "is_confirm": true,
       "answer": [
-        "A"
+        "B"
       ],
       "is_multiple": false
     },
@@ -15109,7 +15109,7 @@
       "stem": "Q560.Which of the following contribute to total cost of ownership of a workload running in the AWS Cloud? (Choose two.)(Q560.以下哪些因素会影响在 AWS 云中运行的工作负载的总拥有成本？ （选择两项。）)",
       "is_confirm": true,
       "answer": [
-        "B",
+        "C",
         "D"
       ],
       "is_multiple": true
@@ -18293,7 +18293,7 @@
       "stem": "Q678.A company wants to migrate a small website and database quickly from on-premises infrastructure to the AWS Cloud.The company has limited operational knowledge to perform the migration.Which AWS service supports this use case?(Q678.一家公司希望将小型网站和数据库从本地基础设施快速迁移到 AWS 云。该公司执行迁移的操作知识有限。哪种 AWS 服务支持此用例？)",
       "is_confirm": true,
       "answer": [
-        "C"
+        "A"
       ],
       "is_multiple": false
     },
@@ -19035,7 +19035,7 @@
         },
         {
           "option": "D",
-          "content": "Amazon Connect(亚马逊连接)"
+          "content": "Amazon Direct Connect(亚马逊直接连接)"
         }
       ],
       "stem": "Q706.A company is moving its office and must establish an encrypted connection to AWS. Which AWS service will help meet this requirement?(Q706.某公司正在搬迁办公室，必须与 AWS 建立加密连接。哪项 AWS 服务将有助于满足此要求？)",
@@ -19515,7 +19515,7 @@
           "content": "AWS Trusted Advisor(AWS 可信顾问)"
         }
       ],
-      "stem": "Q723.A company uses Amazon S3 buckets.One of the companys departments enabled S3 Cross-Region Replication for those buckets to meet new requirements.The companys bill for that month was larger thanjensnWhich AWS service or feature can the company use to confirm that the cost increase was caused by the data replication?(Q723.某公司使用Amazon S3 buckets，公司的一个部门为这些buckets启用了S3 Cross-Region Replication，以满足新的需求。公司当月的账单比jensn大，公司可以使用哪个AWS服务或功能来确认成本增加是由数据复制引起的？)",
+      "stem": "Q723.A company uses Amazon S3 buckets.One of the companys departments enabled S3 Cross-Region Replication for those buckets to meet new requirements.The companys bill for that month was larger thanjensnWhich AWS service or feature can the company use to confirm that the cost increase was caused by the data replication?(Q723.某公司使用Amazon S3 buckets，公司的一个部门为这些buckets启用了S3 Cross-Region Replication，以满足新的需求。公司当月的账单比平常大，公司可以使用哪个AWS服务或功能来确认成本增加是由数据复制引起的？)",
       "is_confirm": true,
       "answer": [
         "B"
